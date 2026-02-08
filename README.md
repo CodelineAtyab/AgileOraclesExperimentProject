@@ -1,6 +1,6 @@
 ﻿# AgileOraclesExperimentProject
 
-Under Development By Team Code Orbit
+Under Development By Team Agile Oracles
 
 ## Contribution Guidelines
 
@@ -62,3 +62,4 @@ git pull
 
 ### Step 15
 Repeat the same steps from Step 1 for a new task
+
