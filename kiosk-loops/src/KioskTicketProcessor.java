@@ -9,10 +9,23 @@ public class KioskTicketProcessor {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        // Get queue size from user
+        // Get queue size from user with basic validation
         System.out.print("How many tickets are in today's queue? ");
-        int queueSize = scanner.nextInt();
-        scanner.nextLine(); // consume newline
+        int queueSize = 0;
+        try {
+            queueSize = scanner.nextInt();
+            scanner.nextLine(); // consume newline
+            
+            if (queueSize <= 0) {
+                System.out.println("Queue size must be positive. Exiting.");
+                scanner.close();
+                return;
+            }
+        } catch (Exception e) {
+            System.out.println("Please enter a valid number. Exiting.");
+            scanner.close();
+            return;
+        }
         
         // Part 1: Process tickets using while-loop
         System.out.println("\n--- Part 1: Processing with while-loop ---");
