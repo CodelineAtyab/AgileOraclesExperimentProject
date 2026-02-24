@@ -1,4 +1,4 @@
-package org.example.aljolanda;
+package org.example.fromaljolanda;
 
 public class Main {
     public static void main(String[] args) {
