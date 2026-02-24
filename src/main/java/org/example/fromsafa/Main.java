@@ -1,4 +1,4 @@
-package org.example.fromSafa;
+package org.example.fromsafa;
 
 public class Main {
     public static void main(String[] args){
