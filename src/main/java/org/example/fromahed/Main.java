@@ -1,4 +1,4 @@
-package org.example.Ahed;
+package org.example.ahed;
 
 public class Main {
     public static void main(String[] args) {
