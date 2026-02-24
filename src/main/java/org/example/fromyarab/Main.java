@@ -1,4 +1,4 @@
-package org.example.yarab;
+package org.example.fromyarab;
 
 public class Main {
     public static void main(String[] args){
