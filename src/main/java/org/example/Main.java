@@ -1,8 +1,7 @@
 package org.example;
 
-public class Main {
-    public static void main(String[] args) {
+import java.util.Scanner;
 
-        System.out.println("The Parent Project Main");
-    }
+public class Main {
+
 }
