@@ -15,11 +15,15 @@ public class Main {
 
             if (option == 1){
                 //customer menu
+                System.out.println("Welcome to Customer menu!");
             }else if (option == 2){
                 // admin menu
+                System.out.println("Welcome to Admin menu!");
             }else if (option == 3){
                 //support staff menu
+                System.out.println("Welcome to Staff Support menu!");
             } else if (option == 4) {
+                System.out.println("Exiting the application. Goodbye!");
                 running = false;
             }else {
                 System.out.println("Invalid option! please choose a valid option");
