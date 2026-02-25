@@ -26,16 +26,16 @@ public class ProjectSetup {
         } else if (choice == 2) {
             System.out.println("Admin menu (coming soon)");
 
-        } else if (choice == 3) {
-            System.out.println("Support Staff menu (coming soon)");
+    } else if (choice == 3) {
+        System.out.println("Support Staff menu (coming soon)");
 
-        } else if (choice == 4) {
-            System.out.println("Exiting application...");
-            running = false;
+    } else if (choice == 4) {
+        System.out.println("Exiting application...");
+        running = false;
 
-        } else {
-            System.out.println("Invalid choice. Please select 1–4.");
-        }
+    } else {
+        System.out.println("Invalid choice. Please select 1–4.");
+    }
 
 
         sc.close();
