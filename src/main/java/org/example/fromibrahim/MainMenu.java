@@ -28,7 +28,7 @@ public class MainMenu {
                     System.out.print("Invalid Option!\n");
                     System.out.print("Please enter a number from 1 to 4!\n");
                 }
-            }else {                        // If the user enter anything except integer
+            }else {                         // If the user enter anything except integer
                 System.out.println("Invalid Choice !");
                 inputBuffer1.nextLine();
             }
