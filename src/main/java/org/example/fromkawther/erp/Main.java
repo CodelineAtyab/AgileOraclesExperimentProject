@@ -30,7 +30,7 @@ public class Main {
                         break;
                     case "4":
                         System.out.println("Exiting application. Goodbye!");
-                        running = false; // إنهاء البرنامج
+                        running = false; // end program
                         break;
                     default:
                         System.out.println("Invalid choice. Please select a valid menu option.");
@@ -58,7 +58,7 @@ public class Main {
                     System.out.println("Placing order... (functionality to be added)");
                     break;
                 case "3":
-                    inCustomerMenu = false; // العودة للقائمة الرئيسية
+                    inCustomerMenu = false; // back to mune
                     break;
                 default:
                     System.out.println("Invalid choice. Please select a valid menu option.");
