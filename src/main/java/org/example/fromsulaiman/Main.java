@@ -16,13 +16,15 @@ public class Main {
                 System.out.println("3. Support Staff");
                 System.out.println("4. Exit");
 
-                //Check if input is a number
-                if (!scanner.hasNext()){
-                    System.out.println("Invalid input! Please enter a number between 1-4. ");
-                    scanner.next();
-                    continue;
+                int choice;
+
+                try {
+                    choice = scanner.nextInt();
+                } catch (Exception e) {
+                    System.out.println("Invalid input! Please enter numbers only.");
+                    scanner.nextLine(); // clear wrong input
+                    continue; // go back to menu
                 }
-                int choice = scanner.nextInt();
 
                 switch (choice){
                     case 1:
