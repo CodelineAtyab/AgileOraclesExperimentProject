@@ -12,7 +12,7 @@ public class Main {
         ArrayList<String> complaintDescriptions = new ArrayList<>();
         ArrayList<String> complaintPriorities = new ArrayList<>();
 
-        boolean name = true;
+        boolean running = true;
         System.out.println("   (Choose: 1,2,3,4)");
 
 
@@ -29,7 +29,7 @@ public class Main {
 
             switch (menu) {
                 case "1":
-                    System.out.println("1. Customer");
+                    System.out.println("Customer");
                     Scanner sc= new Scanner(System.in);
 
                     // ArrayList for Complaints
@@ -112,17 +112,20 @@ public class Main {
                     break;
 
                 case "2":
-                    System.out.println("2. Admin");
+                    System.out.println("Admin");
                     break;
 
                 case "3":
-                    System.out.println("3. Support Staff");
+                    System.out.println("Support Staff");
                     break;
 
                 case "4":
-                    System.out.println("4. Exit");
-                    name = false;
+                    System.out.println("Exit the system");
+                    running = false;
+                    complaint = false;
+
                     break;
+
 
             }
         }
