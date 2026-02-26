@@ -120,7 +120,8 @@ public class Main {
             System.out.println("1. View All Complaints");
             System.out.println("2. Search Complaint by ID");
             System.out.println("3. Close Complaint");
-            System.out.println("4. Back to Main Menu");
+            System.out.println("4. Assign Complaint");
+            System.out.println("5. Back to Main Menu");
             System.out.println("Choose option: ");
 
 
@@ -146,9 +147,12 @@ public class Main {
                     break;
 
                 case 4:
-                    isAdminRunning =false;
+                    assignComplaint(scanner,complaints);
                     break;
 
+                case 5:
+                    isAdminRunning =false;
+                    break;
                 default:
                     System.out.println("Invalid option");
             }
@@ -209,12 +213,51 @@ public class Main {
         }
         for (Complaint complaint: complaints){
             if (complaint.getComplaintId()== id ){
-                if(complaint.getStatus().equals("CLOSED")){
+                if("CLOSED".equals(complaint.getStatus())){
                     System.out.println(" Complaint already Closed");
                 }else {
                     complaint.closeComplaint();
                     System.out.println(" Complaint closed successfully");
                 }
+                return;
+            }
+        }
+        System.out.println("Complaint Not Found");
+    }
+
+    public static void assignComplaint(Scanner scanner, ArrayList<Complaint> complaints){
+
+        System.out.println("Enter Complaint ID to assign: ");
+
+        int id;
+
+        try {
+            id = Integer.parseInt(scanner.nextLine());
+        }catch (Exception e){
+            System.out.println("Invalid ID");
+            return;
+        }
+
+        for (Complaint complaint: complaints){
+
+            if (complaint.getComplaintId()==id){
+
+                if ("CLOSED".equals(complaint.getStatus())){
+                    System.out.println("Cannot assign a CLOSED complaint");
+                    return;
+                }
+
+                System.out.println("Enter Support Staff Name");
+                String staffName =scanner.nextLine();
+
+                if (staffName.trim().isEmpty()){
+                    System.out.println("Staff name cannot be empty");
+                    return;
+                }
+
+                complaint.setAssignedStaff(staffName);
+
+                System.out.println("Complaint assigned successfully to "+ staffName);
                 return;
             }
         }
