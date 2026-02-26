@@ -1,6 +1,5 @@
 package org.example.fromyarab;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +9,6 @@ public class Main{
     public static void main(String[] args){
         // prepare data structure
         ArrayList<Map<String, Object>> complaints = new ArrayList<>();
-
         Scanner scan = new Scanner(System.in);
         System.out.println("=".repeat(50));
         System.out.println("                   --- CLI ERP ---   ");
