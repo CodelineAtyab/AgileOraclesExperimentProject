@@ -39,39 +39,34 @@ public class CustomerModule {
                         //        **************** Priority ******************
                         while (priorityRunning) {
 
-                            System.out.println("The priorities Available are:\n[1] Low\n[2] Medium\n[3] High\n[4] Return to the Main Menu");
-                            System.out.print("Please Enter a Number: ");
-                            if (inputBuffer1.hasNextInt()) {                               //   If ID input is integer
-                                int priorityChoice =inputBuffer1.nextInt();
-                                inputBuffer1.nextLine();
-                                String inputPriority;
-                                if (priorityChoice == 1) {
+                            System.out.println("The priorities Available are:\n[1] Low\n[2] Medium\n[3] High\n[4] Type Return to go back to the Main Menu");
+                            System.out.print("Please Enter the Priority Word: ");
+                            String priorityChoice = inputBuffer1.nextLine().trim().toLowerCase(); //any kind of letter will be changed to a lower case
+                            String inputPriority;
+                                if (priorityChoice.equals("low")) {
                                     inputPriority = ticketPriority[0];
-                                } else if (priorityChoice == 2) {
+                                } else if (priorityChoice.equals("medium")) {
                                     inputPriority = ticketPriority[1];
-                                } else if (priorityChoice == 3) {
+                                } else if (priorityChoice.equals("high")) {
                                     inputPriority = ticketPriority[2];
-                                } else if (priorityChoice == 4) {
+                                } else if (priorityChoice.equals("return")) {
+                                    System.out.println("Returning to the Main Menu...");
                                     priorityRunning = false;
-                                    continue;  // Not saving the ticket
-//                               } else if (priorityChoice.isEmpty()){
-//                                    inputPriority = ticketPriority[1];
-//                               }
-                                }else {
-                                    System.out.println("Please Enter From the Numbers Available!");
-                                    continue; //Not saving the ticket
+                                    continue;                                   // Not saving the ticket
+                               } else if (priorityChoice.isEmpty()){
+                                    inputPriority = ticketPriority[1];
+                               } else {
+                                    System.out.println("Please Enter the Word: Low or Medium or High or Return !!!!");
+                                    continue;                                    //Not saving the ticket
                                 }
                                 cutomerID.add(inputID);
                                 cutomerDescription.add(inputDescription);
                                 cutomerPriority.add(inputPriority);
+
                                 System.out.println("The Complaint Successfully Created!");
                                 priorityRunning = false;
-                            } else {                                       // If the user enter anything except integer
-                                System.out.println("Invalid Choice !");
-                                inputBuffer1.nextLine();
-                            }
                         }
-                    }else {                                                 // If the user enter anything except integer
+                    }else {                                                 // If the user enter anything except integer in the Compliant ID
                         System.out.println("Invalid Choice !");
                         inputBuffer1.nextLine();
                     }
@@ -85,7 +80,7 @@ public class CustomerModule {
                 } else {
                     System.out.print("Please Enter a Number From 1 to 4 !!!!\n");
                 }
-            }else {                                                        // If the user enter anything except integer
+            }else {                                                        // If the user enter anything except integer in the Main Menu
                 System.out.println("Invalid Choice !");
                 inputBuffer1.nextLine();
             }
