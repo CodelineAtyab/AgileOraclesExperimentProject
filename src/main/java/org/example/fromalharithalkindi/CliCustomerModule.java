@@ -17,7 +17,16 @@ public class CliCustomerModule {
         String[] level = {" Low ", " Medium ", " High"};
 
 
-        while (run) {
+
+        System.out.println("========== customer Page ==========");
+        // while (userMenuRun)
+
+        System.out.println("1.creat complain ");
+        System.out.println("2.exit to main menu ");
+        int userMenuChoice=Integer.parseInt(input.nextLine());
+
+        if(userMenuChoice==1)
+        {
             System.out.println("\n");
             System.out.print("Enter complain ID:");
             int comId = Integer.parseInt(input.nextLine());
@@ -31,35 +40,32 @@ public class CliCustomerModule {
             System.out.println("your complaint by defult set to medium if you want to change? " +
                     "\n enter 1 for yes" +
                     "\n enter 2 for no");
-            int choice=Integer.parseInt(input.nextLine());
+            int priorityChoice = Integer.parseInt(input.nextLine());
 
-            if(choice==1)
-            {
+            if (priorityChoice == 1) {
                 System.out.println("[1] Low \t [2] Medium \t [3] High");
                 System.out.print("Set priority to your Complaint:");
                 int prLev = Integer.parseInt(input.nextLine());
-                if(prLev==1)
-                {
+                if (prLev == 1) {
                     levl.add(level[0]);
-                } else if (prLev==2) {
+                } else if (prLev == 2) {
                     levl.add(level[1]);
-                } else if (prLev==3) {
+                } else if (prLev == 3) {
                     levl.add(level[2]);
-                }else {
+                } else {
                     System.out.println("Only press 1 or 2 or 3");
                 }
 
-            }
-            else if (choice==2)
-            {
+            } else if (priorityChoice == 2) {
                 levl.add(level[1]);
 
-            }
-            else {
+            } else {
                 System.out.println("Only press 1 or 2");
             }
+        }
 
-            System.out.println(userId);
+
+        System.out.println(userId);
             System.out.println(userDes);
             System.out.println(levl);
 
@@ -71,4 +77,4 @@ public class CliCustomerModule {
 
         }
     }
-}
+
