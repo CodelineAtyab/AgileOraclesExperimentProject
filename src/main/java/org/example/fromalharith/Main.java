@@ -7,11 +7,25 @@ public class Main {
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
+
+        ArrayList<Integer> complaintIds = new ArrayList<>();
+        ArrayList<String> complaintDescriptions = new ArrayList<>();
+        ArrayList<String> complaintPriorities = new ArrayList<>();
+
         boolean name = true;
+        System.out.println("   (Choose: 1,2,3,4)");
 
-        do {
 
-            String menu = scan.nextLine();
+        int idCounter = 1;
+        boolean complaint = true;
+
+        while (complaint) {
+
+            String menu = scan.nextLine().trim();
+            if (!menu.matches("[1-4]")) {
+                System.out.println("Invalid input! Please enter a number between 1 and 4.");
+               continue;
+            }
 
             switch (menu) {
                 case "1":
@@ -20,17 +34,12 @@ public class Main {
 
                     // ArrayList for Complaints
 
-                    ArrayList<Integer> complaintIds = new ArrayList<>();
-                    ArrayList<String> complaintDescriptions = new ArrayList<>();
-                    ArrayList<String> complaintPriorities = new ArrayList<>();
 
 
                     System.out.println("<Please Enter Your Complaint>");
 
 
 
-                    boolean complaint = true;
-                    int idCounter = 1;
 
                     while(complaint){
 
@@ -118,7 +127,6 @@ public class Main {
             }
         }
 
-        while (name) ;
         scan.close();
 
 
