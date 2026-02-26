@@ -3,13 +3,13 @@ package org.example.fromtibyan.CLIERP;
 public class Complaints {
     int complaintId;
     String complaintDescription;
-    String complaintPriority;
+    String[] complaintPriority = {"LOW", "MEDIUM", "HIGH"};
+    String cPriorityIndex;
 
-
-    public Complaints(int complaintId, String complaintDescription, String complaintPriority) {
+    public Complaints(int complaintId, String complaintDescription, int index) {
         this.complaintId = complaintId;
         this.complaintDescription = complaintDescription;
-        this.complaintPriority = complaintPriority;
+        this.cPriorityIndex = complaintPriority[index];
     }
 
     public int getComplaintId() {
@@ -21,7 +21,7 @@ public class Complaints {
     }
 
     public String getComplaintPriority() {
-        return complaintPriority;
+        return cPriorityIndex;
     }
 
 }
