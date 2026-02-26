@@ -35,8 +35,16 @@ public class CustomerModule {
                 System.out.println("Add your Complaint ");
                 String des = sc.nextLine();
 
-                System.out.print("Enter priority (Low / Medium / High): ");
-                String priority = sc.nextLine();
+                System.out.print("Enter priority (LOW / MEDIUM / HIGH) [Default: MEDIUM]: ");
+                String priority = sc.nextLine().trim().toUpperCase();
+
+                if (priority.isEmpty()) {
+                    priority = "MEDIUM";
+                }
+
+                if (!priority.equals("LOW") && !priority.equals("MEDIUM") && !priority.equals("HIGH")) {
+                    System.out.println("Invalid priority, defaulting to MEDIUM.");
+                    priority = "MEDIUM";
 
 
                 complaintIds.add(idCounter);
