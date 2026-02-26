@@ -50,8 +50,16 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println("Support Staff module selected.");
+                    System.out.println("Enter Support Staff Name. ");
+                    String staffName =scanner.nextLine();
+
+                    if (staffName.trim().isEmpty()){
+                        System.out.println("Staff name cannot be empty. ");
+                        break;
+                    }
+                    supportStaffLogin(scanner,complaints,staffName);
                     break;
+
 
                 case 4:
                     System.out.println("Exiting system... Goodbye!");
@@ -85,7 +93,7 @@ public class Main {
         System.out.println("1. Low");
         System.out.println("2. Medium");
         System.out.println("3. High");
-        System.out.println("Choose option (1-3 pr press Enter for Default");
+        System.out.println("Choose option from 1 to 3 or press Enter for Default (Default is Medium) ");
 
         String priority = "Medium"; //default
         String input = scanner.nextLine().trim();
@@ -116,7 +124,7 @@ public class Main {
 
         while (isAdminRunning){
 
-            System.out.println("=====Admin Menu=====");
+            System.out.println("\n=====Admin Menu=====");
             System.out.println("1. View All Complaints");
             System.out.println("2. Search Complaint by ID");
             System.out.println("3. Close Complaint");
@@ -258,6 +266,143 @@ public class Main {
                 complaint.setAssignedStaff(staffName);
 
                 System.out.println("Complaint assigned successfully to "+ staffName);
+                return;
+            }
+        }
+        System.out.println("Complaint Not Found");
+    }
+    public static void supportStaffLogin(Scanner scanner, ArrayList<Complaint>complaints,String staffName){
+        boolean running =true;
+
+        while (running){
+
+            System.out.println("\n=====Support Staff Menu=====");
+            System.out.println("Logged in as: "+staffName);
+            System.out.println("1. View My Complaints");
+            System.out.println("2. Add Comment");
+            System.out.println("3. Close Complaint");
+            System.out.println("4. Back");
+
+            int choice;
+
+            try {
+                choice =Integer.parseInt(scanner.nextLine());
+            }catch (Exception e){
+                System.out.println("Numbers Only!");
+                continue;
+            }
+
+            switch (choice){
+                case 1:
+                    viewAssignedComplaints(complaints,staffName);
+                    break;
+
+                case 2:
+                    addCommentToComplaint(scanner,complaints,staffName);
+                    break;
+
+                case 3:
+                    closeByStaff(scanner,complaints,staffName);
+                    break;
+
+                case 4:
+                    running =false;
+                    break;
+
+                default:
+                    System.out.println("invalid option ");
+            }
+
+        }
+    }
+
+    public static void viewAssignedComplaints(ArrayList<Complaint>complaints,String staffName){
+        boolean found =false;
+
+        for (Complaint complaint: complaints){
+
+            if (staffName.equals(complaint.getAssignedStaff())){
+                System.out.println("-----------------");
+                System.out.println(complaint);
+                found=true;
+            }
+        }
+        if(!found){
+            System.out.println("No complaints assigned to you");
+        }
+    }
+    public static void addCommentToComplaint(Scanner scanner, ArrayList<Complaint> complaints,String staffName){
+
+        System.out.println("Enter Complaint ID: ");
+
+        int id;
+
+        try {
+            id = Integer.parseInt(scanner.nextLine());
+        }catch (Exception e){
+            System.out.println("Invalid ID");
+            return;
+        }
+
+        for (Complaint complaint: complaints){
+
+            if (complaint.getComplaintId()==id){
+
+                if (!staffName.equals(complaint.getAssignedStaff())){
+                    System.out.println("You cannot modify this complaint");
+                    return;
+                }
+
+                if ("CLOSED".equals(complaint.getStatus())){
+                    System.out.println("Cannot comment on CLOSED complaint");
+                    return;
+                }
+
+                System.out.println("Enter your comment: ");
+                String comment =scanner.nextLine();
+
+                if (comment.trim().isEmpty()){
+                    System.out.println("Comment cannot be Empty");
+                    return;
+                }
+
+                complaint.addComment(staffName+ ": " +comment);
+
+                System.out.println("Comment added successfully");
+                return;
+            }
+        }
+        System.out.println("Complaint Not Found");
+    }
+
+    public static void closeByStaff(Scanner scanner, ArrayList<Complaint> complaints,String staffName ){
+        System.out.println("Enter complaint ID: ");
+
+        int id;
+
+        try {
+            id = Integer.parseInt(scanner.nextLine());
+        }catch (Exception e){
+            System.out.println("Invalid ID");
+            return;
+        }
+
+        for (Complaint complaint : complaints){
+
+            if (complaint.getComplaintId()==id){
+
+                if (!staffName.equals(complaint.getAssignedStaff())){
+                    System.out.println("You cannot close this complaint");
+                    return;
+                }
+
+                if ("CLOSED".equals(complaint.getStatus())){
+                    System.out.println("Complaint Already Closed");
+                    return;
+                }
+
+                complaint.closeComplaint();
+                System.out.println("Complaint Closed Successfully ");
                 return;
             }
         }
