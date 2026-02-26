@@ -8,14 +8,11 @@ public class CustomerModule {
         Scanner sc= new Scanner(System.in);
 
 
-
         ArrayList<Integer> complaintIds = new ArrayList<>();
         ArrayList<String> complaintDescriptions = new ArrayList<>();
         ArrayList<String> complaintPriorities = new ArrayList<>();
 
-
         System.out.println("=== Customer Complaint Module ===");
-
 
 
         boolean run = true;
@@ -29,10 +26,8 @@ public class CustomerModule {
             System.out.print("Choose: ");
 
 
-
             int choice = sc.nextInt();
             sc.nextLine();
-
 
 
             if(choice == 1){
@@ -40,11 +35,8 @@ public class CustomerModule {
                 System.out.println("Add your Complaint ");
                 String des = sc.nextLine();
 
-
-
                 System.out.print("Enter priority (Low / Medium / High): ");
                 String priority = sc.nextLine();
-
 
 
                 complaintIds.add(idCounter);
@@ -52,7 +44,6 @@ public class CustomerModule {
                 complaintPriorities.add(priority);
 
                 idCounter++;
-
 
 
             } else if (choice == 2) {
@@ -74,12 +65,8 @@ public class CustomerModule {
                                         + " | Priority: " + complaintPriorities.get(i)
 
                         );
-
                     }
-
                 }
-
-
 
             } else if (choice == 3) {
 
@@ -93,41 +80,6 @@ public class CustomerModule {
             }
         }
 
-
-
         sc.close();
-
-
-
-
-
-
-
     }
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
