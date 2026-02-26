@@ -8,17 +8,40 @@ public class CustomerMenu {
     static Scanner userInput = new Scanner(System.in);
     public static void main (String[] args){
         System.out.println("Welcome to Customer menu! \nCreate a ticket");
-        System.out.println("Enter complaint ID: ");
-        int compID = userInput.nextInt();
+        int compID;
+        while (true) {
+            System.out.println("Enter complaint ID: ");
+            if (userInput.hasNextInt()) {
+                compID = userInput.nextInt();
+                break;
+            } else {
+                System.out.println("Please enter a valid complaint ID");
+                userInput.next();
+            }
+        }
         userInput.nextLine();
         System.out.println("Enter complaint description: ");
         String compDes = userInput.nextLine();
-        System.out.println("Enter complaint Priority. \n1.LOW 2.MEDIUM 3.HIGH ");
-        int compPri = userInput.nextInt();
-        if (compPri > 3 || compPri < 0) {
-            compPri = 2;
+
+        // fix this block for invalid input
+
+        System.out.println("Enter complaint Priority. \n1.LOW 2.MEDIUM (default) 3.HIGH ");
+        String comPri = userInput.nextLine().trim();
+        int compriIndex = comPri.isEmpty() ? 2 : Integer.parseInt(comPri);
+        if (compriIndex == 1) {
+            comPri = "LOW";
         }
-        Tickets.add(new Complaints(compID, compDes, compPri - 1));
+        else if (compriIndex == 2) {
+            comPri = "MEDIUM";
+        }
+        else if (compriIndex == 3) {
+            comPri = "HIGH";
+        } else {
+            System.out.println("Please select a valid number.");
+        }
+
+        // fix this block for invalid input
+        Tickets.add(new Complaints(compID, compDes, comPri));
         System.out.println("Ticket Created Successfully!");
 
         userInput.nextLine();
