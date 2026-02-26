@@ -18,7 +18,7 @@ public class CliErp {
                     "3. Support Staff\n" +
                     "4. Exit\n \n ");
             System.out.print("enter number:");
-            int choice=input.nextInt();
+            int choice=Integer.parseInt(input.nextLine());
             if(choice==1)
             {
                 System.out.println("customer ");
