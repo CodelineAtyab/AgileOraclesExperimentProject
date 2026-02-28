@@ -1,13 +1,20 @@
+import java.util.ArrayList;
+
 public class Complaint {
 
     private int complaintId;    private String description;
     private String priority;
     private String status;
+    private String assignedStaff;
+    private ArrayList<String> comments;
 
     public Complaint(int complainId, String description, String priority){
         this.complaintId =complainId;
         this.description= description;
         this.priority =priority;
+        this.status = "OPEN";
+        this.assignedStaff="Not Assigned";
+        this.comments=new ArrayList<>();
     }
 
     public int getComplaintId(){
@@ -30,7 +37,21 @@ public class Complaint {
         return "Complaint ID: " + complaintId +
                 "\nDescription: " + description +
                 "\nPriority: " + priority +
-                "\nStatus: " + status;
+                "\nStatus: " + status +
+                "\nAssigned To: " + assignedStaff +
+                "\nComments:\n" + String.join("\n", comments);
+    }
+    public String getAssignedStaff(){
+        return assignedStaff;
+    }
+    public void setAssignedStaff(String staffName){
+        this.assignedStaff =staffName;
+    }
+    public void addComment(String comment){
+        comments.add(comment);
+    }
+    public ArrayList<String> getComments(){
+        return comments;
     }
 
 
