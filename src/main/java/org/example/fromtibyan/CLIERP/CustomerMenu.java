@@ -27,6 +27,7 @@ public class CustomerMenu {
         while (true) {
             System.out.println("Enter complaint Priority. \n1.LOW 2.MEDIUM (default) 3.HIGH ");
             String priority = userInput.nextLine();
+
             if (priority.isEmpty()) {
                 comPri = "MEDIUM";
                 break;
