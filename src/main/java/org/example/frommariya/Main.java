@@ -1,12 +1,15 @@
 package org.example.frommariya;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 
 public class Main {
     public static void main(String[] args){
 
         Scanner scanner = new Scanner(System.in);
+
+        ArrayList<complaintC> complaintCS = new ArrayList<>();
 
 
         while (true){
@@ -19,7 +22,7 @@ public class Main {
             scanner.nextLine();
 
             if ( choice == 1 ){
-                System.out.println("Customer...");
+                customerModule.CustomertMenu(scanner,complaintCS);
             }
             else if ( choice == 2 ){
                 System.out.println("Admin...");
