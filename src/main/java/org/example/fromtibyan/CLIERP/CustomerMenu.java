@@ -53,7 +53,7 @@ public class CustomerMenu {
                 System.out.println("Please select a valid priority number 1-3.");
             }
         }
-        Tickets.add(new Complaints(compID, compDes, comPri));
+        Tickets.add(new Complaints(compID, compDes, comPri, "OPEN"));
         System.out.println("Ticket Created Successfully!");
     }
 
