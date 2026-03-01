@@ -1,9 +1,10 @@
 package org.example.frommariya;
 
 public class ComplaintC {
-    private int id;
+    public int id;
     private String desc;
     private String priority;
+    public String Status;
 
     public ComplaintC(int id, String desc, String priority){
         this.id =id;
