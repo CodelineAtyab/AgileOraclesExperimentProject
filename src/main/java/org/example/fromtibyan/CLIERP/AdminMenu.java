@@ -22,6 +22,7 @@ public class AdminMenu {
                         System.out.println("Complaint ID: " + compTickets.getComplaintId());
                         System.out.println("Complaint Description: " + compTickets.getComplaintDescription());
                         System.out.println("Complaint Priority: " + compTickets.getComplaintPriority());
+                        System.out.println("Complaint Status: " + compTickets.getComplaintStatus());
                         System.out.println("-----------------------------");
                     }
                 } else if (adminOption == 2) {
