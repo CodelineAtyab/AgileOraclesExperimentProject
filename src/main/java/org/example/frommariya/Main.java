@@ -9,7 +9,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        ArrayList<complaintC> complaintCS = new ArrayList<>();
+        ArrayList<ComplaintC> complaintCS = new ArrayList<>();
 
 
         while (true){
@@ -22,7 +22,7 @@ public class Main {
             scanner.nextLine();
 
             if ( choice == 1 ){
-                customerModule.CustomertMenu(scanner,complaintCS);
+                CustomerModule.CustomertMenu(scanner,complaintCS);
             }
             else if ( choice == 2 ){
                 System.out.println("Admin...");

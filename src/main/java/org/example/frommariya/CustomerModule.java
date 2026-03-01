@@ -4,9 +4,9 @@ package org.example.frommariya;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class customerModule {
+public class CustomerModule {
 
-    public static void CustomertMenu(Scanner scanner, ArrayList<complaintC> complaintCS){
+    public static void CustomertMenu(Scanner scanner, ArrayList<ComplaintC> complaintCS){
 
 
         System.out.println("Enter The complaint ID: ");
@@ -35,7 +35,7 @@ public class customerModule {
             priority = "Medium";
         }
 
-        complaintC newComplaint = new complaintC(id, desc, priority);
+        ComplaintC newComplaint = new ComplaintC(id, desc, priority);
         complaintCS.add(newComplaint);
 
         System.out.println("Complaint Successfully Created");
