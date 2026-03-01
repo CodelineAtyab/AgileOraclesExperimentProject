@@ -23,16 +23,18 @@ public class CustomerMenu {
         userInput.nextLine();
         System.out.println("Enter complaint description: ");
         String compDes = userInput.nextLine();
+
         String comPri;
         while (true) {
             System.out.println("Enter complaint Priority. \n1.LOW 2.MEDIUM (default) 3.HIGH ");
             String priority = userInput.nextLine();
+
             if (priority.isEmpty()) {
                 comPri = "MEDIUM";
                 break;
             }
-            int comPriIndex;
 
+            int comPriIndex;
             try {
                 comPriIndex = Integer.parseInt(priority);
             } catch (NumberFormatException e) {
