@@ -1,129 +1,110 @@
 package org.example.fromkawther.erp;
-
-
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 public class costomer {
-        public enum Priority {
-            LOW,
-            MEDIUM,
-            HIGH
-        }
 
-        public static class Complaint {
-            private int complaintId;
-            private String description;
-            private Priority priority;
-
-            public Complaint(int complaintId, String description, Priority priority) {
-                this.complaintId = complaintId;
-                this.description = description;
-                this.priority = priority != null ? priority : Priority.MEDIUM;
-            }
-
-            @Override
-            public String toString() {
-                return "Complaint ID: " + complaintId +
-                        "\nDescription: " + description +
-                        "\nPriority: " + priority;
-            }
-        }
-
-        public static class CustomerModule {
-            private List<Complaint> complaints = new ArrayList<>();
-            private Scanner sc = new Scanner(System.in);
-
-            public void createComplaint() {
-                System.out.println("=== Create New Complaint ===");
-
-                int id = 0;
-                while (true) {
-                    System.out.print("Enter Complaint ID (numeric): ");
-                    String input = sc.nextLine();
-                    try {
-                        id = Integer.parseInt(input);
-                        if (id <= 0) {
-                            System.out.println("ID must be positive.");
-                            continue;
-                        }
-                        break;
-                    } catch (NumberFormatException e) {
-                        System.out.println("Invalid input. Please enter a numeric value.");
-                    }
-                }
-
-                System.out.print("Enter Complaint Description: ");
-                String description = sc.nextLine().trim();
-                if (description.isEmpty()) description = "No description provided.";
-
-                System.out.print("Select Priority (LOW/MEDIUM/HIGH) [default MEDIUM]: ");
-                String priorityInput = sc.nextLine().trim().toUpperCase();
-
-                Priority priority;
-                switch (priorityInput) {
-                    case "LOW":
-                        priority = Priority.LOW;
-                        break;
-                    case "HIGH":
-                        priority = Priority.HIGH;
-                        break;
-                    default:
-                        priority = Priority.MEDIUM;
-                        break;
-                }
-
-                Complaint complaint = new Complaint(id, description, priority);
-                complaints.add(complaint);
-
-                System.out.println("\n Complaint created successfully!");
-                System.out.println(complaint);
-            }
-
-            public void listComplaints() {
-                if (complaints.isEmpty()) {
-                    System.out.println("No complaints found.");
-                    return;
-                }
-
-                System.out.println("=== All Complaints ===");
-                for (Complaint c : complaints) {
-                    System.out.println(c);
-                    System.out.println("----------------------");
-                }
-            }
-        }
 
         public static void main(String[] args) {
-            CustomerModule customerModule = new CustomerModule();
+
             Scanner sc = new Scanner(System.in);
 
-            while (true) {
-                System.out.println("\n=== Main Menu ===");
-                System.out.println("1. Customer - Create Complaint");
-                System.out.println("2. Customer - List Complaints");
-                System.out.println("3. Exit");
-                System.out.print("Select option: ");
+            String correctPin = "1234";
 
-                String choice = sc.nextLine();
 
-                switch (choice) {
-                    case "1":
-                        customerModule.createComplaint();
-                        break;
-                    case "2":
-                        customerModule.listComplaints();
-                        break;
-                    case "3":
-                        System.out.println("Exiting...");
-                        return;
-                    default:
-                        System.out.println("Invalid option. Try again.");
+            ArrayList<Complaint> complaints = new ArrayList<>();
+
+            complaints.add(new Complaint(1, "Internet issue"));
+            complaints.add(new Complaint(2, "Login problem"));
+            complaints.add(new Complaint(3, "Payment error"));
+
+            System.out.print("Enter Admin PIN: ");
+            String pin = sc.nextLine();
+
+            if (pin.equals(correctPin)) {
+                System.out.println("Wrong PIN! Access Denied.");
+                return;
+            }
+
+            System.out.println("Access Granted!");
+
+            int choice = 0;
+
+            while (choice != 4) {
+                System.out.println("\n=== Admin Menu ===");
+                System.out.println("1. View All Complaints");
+                System.out.println("2. Search Complaint by ID");
+                System.out.println("3. Close Complaint");
+                System.out.println("4. Exit");
+                System.out.print("Enter your choice: ");
+                choice = sc.nextInt();
+                sc.nextLine();
+
+                if (choice == 1) {
+                    for (Complaint c : complaints) {
+                        System.out.println("ID: " + c.id);
+                        System.out.println("Description: " + c.description);
+                        System.out.println("Status: " + c.status);
+                        System.out.println("-------------------");
+                    }
+
+                } else if (choice == 2) {
+                    System.out.print("Enter Complaint ID: ");
+                    int id = sc.nextInt();
+                    sc.nextLine();
+
+                    boolean found = false;
+                    for (Complaint c : complaints) {
+                        if (c.id == id) {
+                            System.out.println("Complaint Found:");
+                            System.out.println("Description: " + c.description);
+                            System.out.println("Status: " + c.status);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) {
+                        System.out.println("Complaint not found.");
+                    }
+
+                } else if (choice == 3) {
+                    System.out.print("Enter Complaint ID to close: ");
+                    int id = sc.nextInt();
+                    sc.nextLine();
+
+                    boolean found = false;
+                    for (Complaint c : complaints) {
+                        if (c.id == id) {
+                            found = true;
+                            if (c.status.equals("CLOSED")) {
+                                System.out.println("Complaint already CLOSED!");
+                            } else {
+                                c.status = "CLOSED";
+                                System.out.println("Complaint closed successfully.");
+                            }
+                            break;
+                        }
+                    }
+                    if (found) {
+                        System.out.println("complaint not found");
+                    }
+                } else if (choice == 4) {
+                   System.out.println("Exiting Admin module");
+                } else {
+                  System.out.println("Invalid choice");
                 }
             }
         }
     }
 
+    class Complaint {
+        int id;
+        String description;
+        String status;
 
+        public Complaint (int id, String description){
+            this.id = id;
+            this.description = description;
+            this.status = "Open";
 
+        }
+    }
