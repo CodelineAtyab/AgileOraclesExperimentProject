@@ -14,11 +14,9 @@ public class Main {
             if (userInput.hasNextInt()) {
                 int option = userInput.nextInt();
                 if (option == 1) {
-                    //customer menu
-                    System.out.println("Welcome to Customer menu!");
+                    CustomerMenu.main();
                 } else if (option == 2) {
-                    // admin menu
-                    System.out.println("Welcome to Admin menu!");
+                    AdminMenu.main();
                 } else if (option == 3) {
                     //support staff menu
                     System.out.println("Welcome to Staff Support menu!");
