@@ -31,6 +31,8 @@ public class Main {
             }
             else if ( choice == 3 ){
                 System.out.println("Support...");
+
+                SupportStaff.SupportMenu(scanner,complaintCS);
             }
             else {
                 break;
