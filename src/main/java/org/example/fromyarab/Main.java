@@ -69,27 +69,43 @@ public class Main{
             return;
         }
         int id = Integer.parseInt(stringId);
-        System.out.println("Enter Complaint Description: ");
-        String description = scan.nextLine();
-        System.out.println("Select Priority(LOW/MEDIUM/HIGH): ");
-        String priority = scan.nextLine();
-        // check validity of complaint priority type
-        if (!priority.equalsIgnoreCase("LOW") && !priority.equalsIgnoreCase("MEDIUM") && !priority.equalsIgnoreCase("HIGH")){
-            System.out.println("Unrecognized priority type or Unspecified priority type ...");
-            System.out.println("Priority type set to default (MEDIUM) >>>.");
-            priority = "MEDIUM";
+
+        // check the uniqueness of ID
+        int found = 0 ;
+        Map<Object, Object> searchedComplaint = new HashMap<>();
+        for (Map oldComplaint : complaints){
+            if (oldComplaint.get("ID").equals(id)){
+                found = 1;
+            }
         }
-        else {priority = priority.toUpperCase(); }
 
-        // save the compliant
-        complaint.put("ID" , id);
-        complaint.put("Description" , description);
-        complaint.put("Priority" , priority);
-        complaint.put("Status" , "OPEN");
-        complaints.add(complaint);
+        if (found == 1){
+            System.out.printf("This ID (%d) Already Exists ... \n" , id);
+            System.out.println("Returning to Main Menu >>>\n");
+        }
+        else {
+            System.out.println("Enter Complaint Description: ");
+            String description = scan.nextLine();
+            System.out.println("Select Priority(LOW/MEDIUM/HIGH): ");
+            String priority = scan.nextLine();
+            // check validity of complaint priority type
+            if (!priority.equalsIgnoreCase("LOW") && !priority.equalsIgnoreCase("MEDIUM") && !priority.equalsIgnoreCase("HIGH")){
+                System.out.println("Unrecognized priority type or Unspecified priority type ...");
+                System.out.println("Priority type set to default (MEDIUM) >>>.");
+                priority = "MEDIUM";
+            }
+            else {priority = priority.toUpperCase(); }
 
-        System.out.println("\nYour Complaint Has Been Recorded Successfully >...\n");
+            // save the compliant
+            complaint.put("ID" , id);
+            complaint.put("Description" , description);
+            complaint.put("Priority" , priority);
+            complaint.put("Status" , "OPEN");
+            complaint.put("Staff" , "N/A");
+            complaints.add(complaint);
 
+            System.out.println("\nYour Complaint Has Been Recorded Successfully >...\n");
+        }
     }
 
     // Admin Module
@@ -115,7 +131,8 @@ public class Main{
             System.out.println("1. View all complaints");
             System.out.println("2. Search complaint by ID");
             System.out.println("3. Close a complaint");
-            System.out.println("4. Exit Administrator menu");
+            System.out.println("4. Assign complaint to staff");
+            System.out.println("5. Exit Administrator menu");
             System.out.print("\nEnter your choice: ");
             String sChoice = scan.nextLine();
             int choice = 0;
@@ -126,19 +143,22 @@ public class Main{
             }
 
             // handle user choice
+            // list all complaints
             if (choice == 1){
                 if (complaints.isEmpty()) {
                     System.out.println("NO Complaints Found ..\n");
                 }
                 else {
                     System.out.println("List of complaints: ");
-                    int counter = 0;
+                    int counter = 1;
                     for (Map complaint : complaints){
                         System.out.println(counter + ". Complaint ID: " + complaint.get("ID"));
                         System.out.println("   Complaint Description: " + complaint.get("Description"));
                         System.out.println("   Complaint Priority: " + complaint.get("Priority"));
+                        System.out.println("   Complaint Assigned Staff: " + complaint.get("Staff"));
                         System.out.println("   Complaint Status: " + complaint.get("Status"));
                         System.out.println();
+                        counter += 1;
                     }
                 }
             }
@@ -171,6 +191,8 @@ public class Main{
                             System.out.println("Complaint ID: "+ searchedComplaint.get("ID"));
                             System.out.println("Complaint Description: " + searchedComplaint.get("Description"));
                             System.out.println("Complaint Priority: " + searchedComplaint.get("Priority"));
+                            System.out.println("Complaint Assigned Staff: " + searchedComplaint.get("Staff"));
+                            System.out.println("Complaint Status: " + searchedComplaint.get("Status"));
                             System.out.println();
                         }
                         else {
@@ -209,9 +231,14 @@ public class Main{
                         }
                         // change the status to closed
                         if (found == 1){
-                            closeComplaint.replace("Status" , "CLOSED");
-                            complaints.set(index , closeComplaint);
-                            System.out.println("The Complaint Closed Successfully >...\n");
+                            if (closeComplaint.get("Status").equals("CLOSED")){
+                                System.out.println("The Complaint Already Closed ...\n");
+                            }
+                            else {
+                                closeComplaint.replace("Status", "CLOSED");
+                                complaints.set(index, closeComplaint);
+                                System.out.println("The Complaint Closed Successfully >...\n");
+                            }
                         }
                         else {
                             System.out.printf("There is no complaint with ID number (%d) \n\n" ,ID);
@@ -219,7 +246,55 @@ public class Main{
                     }
                 }
             }
-            else if(choice == 4){
+            else if (choice == 4){
+                // check if no complaints yet
+                if (complaints.isEmpty()) {
+                    System.out.println("Sorry! NO Complaints Found ..\n");
+                }
+                else {
+                    System.out.print("Enter Complaint ID to Assign to Staff: ");
+                    String sID = scan.nextLine();
+                    if (!isNumeric(sID)){
+                        System.out.println("Error! Please Numbers Are Only Allowed For Complaint ID ..");
+                        System.out.println("Returning to Administrator Menu >>>\n");
+                    }
+                    else {
+                        // handle complaint id
+                        int ID = Integer.parseInt(sID);
+                        int found = 0;
+                        int index = 0;
+                        int cout = 0;
+                        Map<String, Object> assignComplaint = new HashMap<>();
+                        for (Map complaint : complaints){
+                            if (complaint.get("ID").equals(ID)) {
+                                assignComplaint = complaint;
+                                index = cout;
+                                found = 1;
+                            }
+                            cout = cout + 1;
+                        }
+
+                        // assign staff to the complaint
+                        if (found == 1){
+                            // check if the complaint status is closed
+                            if (assignComplaint.get("Status").equals("CLOSED")){
+                                System.out.println("The Complaint Already Closed ...\n");
+                            }
+                            else {
+                                System.out.print("Enter Staff Name: ");
+                                String staffName = scan.nextLine();
+                                assignComplaint.replace("Staff", staffName);
+                                complaints.set(index, assignComplaint);
+                                System.out.printf("The Complaint (%d) Has Been Assigned Successfully TO (%s)>...\n\n" , ID , staffName);
+                            }
+                        }
+                        else {
+                            System.out.printf("There is no complaint with ID number (%d) \n\n" ,ID);
+                        }
+                    }
+                }
+            }
+            else if (choice == 5){
                 System.out.println("Exiting Administrator menu!...\n");
                 active = false;
             }
