@@ -3,7 +3,7 @@ package org.example.fromahed.Sprint1;
 import java.util.Scanner;
 
 public class Customer {
-    public static void main(String[] args) throws ExceptionInInitializerError {
+    public static void main(String[] args){
         //Declaration
         Scanner inputCus = new Scanner(System.in);
         //input
