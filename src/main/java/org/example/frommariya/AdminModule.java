@@ -21,8 +21,12 @@ public class AdminModule{
             System.out.println("1. View Complaints");
             System.out.println("2. Search Complaints using ID's");
             System.out.println("3. Close  Complaint ");
+<<<<<<< feature/86ewphrgk-CLI-ERP-Assign-Complaints-to-Support-Staff
             System.out.println("4. Assign a Complaint to a Staff");
             System.out.println("5. Exit ");
+=======
+            System.out.println("4. Exit ");
+>>>>>>> main
             System.out.print("Enter Option Please: ");
 
             String choice = scanner.nextLine();
@@ -37,9 +41,12 @@ public class AdminModule{
                 closeComp(scanner,complaintCS);
             }
             else if ( choice.equals("4")){
+<<<<<<< feature/86ewphrgk-CLI-ERP-Assign-Complaints-to-Support-Staff
                 assignedToStaff(scanner,complaintCS);
             }
             else if ( choice.equals("5")){
+=======
+>>>>>>> main
                 session = false;
             }
             else {
@@ -49,6 +56,7 @@ public class AdminModule{
         }
     }
 
+<<<<<<< feature/86ewphrgk-CLI-ERP-Assign-Complaints-to-Support-Staff
     private static void assignedToStaff(Scanner scanner, ArrayList<ComplaintC> complaintCS){
         System.out.println("Please Enter ID of A complaint to Assign: ");
         int assignID = Integer.parseInt(scanner.nextLine());
@@ -75,6 +83,8 @@ public class AdminModule{
 
 
 
+=======
+>>>>>>> main
     private static void viewComp(ArrayList<ComplaintC> complaintCS){
         if ( complaintCS.isEmpty()){
             System.out.println("No Such Complaints");
@@ -109,12 +119,20 @@ public class AdminModule{
 
         for (ComplaintC c : complaintCS){
             if (c.id == idClosing){
+<<<<<<< feature/86ewphrgk-CLI-ERP-Assign-Complaints-to-Support-Staff
                 if( c.status.equals("Closed")){
+=======
+                if( c.Status.equals("Closed")){
+>>>>>>> main
                     System.out.println("Error: The Complaint is Closed Before");
                 }
                 else
                 {
+<<<<<<< feature/86ewphrgk-CLI-ERP-Assign-Complaints-to-Support-Staff
                     c.status = "Closed";
+=======
+                    c.Status = "Closed";
+>>>>>>> main
                     System.out.println("Complaint with ID: "+idClosing+ " has been Closed Successfully!");
                 }
                 return;
@@ -122,4 +140,8 @@ public class AdminModule{
         }
         System.out.println("Error: Not Found Complaint ID");
     }
+<<<<<<< feature/86ewphrgk-CLI-ERP-Assign-Complaints-to-Support-Staff
 }
+=======
+}
+>>>>>>> main
