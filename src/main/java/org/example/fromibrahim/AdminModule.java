@@ -21,15 +21,18 @@ public class AdminModule {
             System.out.println("The available options are:\n[1] Customer\n[2] Admin\n[3] Support Stuff\n[4] Exit");
             System.out.print("Please enter the number: ");
 
-// ********************************************* Customer *******************************************************
-            if (inputBuffer1.hasNextInt()) {                                             //   Checking if Menu input is integer
+//       ********************************************* Customer *******************************************************
+            // Checking if Menu input is integer
+            if (inputBuffer1.hasNextInt()) {
                 int userChoice = Integer.parseInt(inputBuffer1.nextLine());
                 if (userChoice == 1) {
                     System.out.println("I have select Customer Menu");
 
                     //           ************* Complaint ID ****************
                     System.out.println("Please Enter Complaint ID: ");
-                    if (inputBuffer1.hasNextInt()) {                                       //  If ID input is integer
+
+                    //  If ID input is integer
+                    if (inputBuffer1.hasNextInt()) {
                         int inputID = Integer.parseInt(inputBuffer1.nextLine());
 
                         //         *********** Complaint Description ***********
@@ -53,12 +56,12 @@ public class AdminModule {
                             } else if (priorityChoice.equals("return")) {
                                 System.out.println("Returning to the Main Menu...");
                                 priorityRunning = false;
-                                continue;                                   // Not saving the ticket
+                                continue; // Not saving the ticket
                             } else if (priorityChoice.isEmpty()) {
                                 inputPriority = ticketPriority[1];
                             } else {
                                 System.out.println("Please Enter the Word: Low or Medium or High or Return !!!!");
-                                continue;                                    //Not saving the ticket
+                                continue; // Not saving the ticket
                             }
                             cutomerID.add(inputID);
                             cutomerDescription.add(inputDescription);
@@ -68,11 +71,12 @@ public class AdminModule {
                             System.out.println("The Complaint Successfully Created!");
                             priorityRunning = false;
                         }
-                    } else {                                                 // If the user enter anything except integer in the Compliant ID
+                    } else {   // If the user enter anything except integer in the Compliant ID
                         System.out.println("Invalid Choice !");
                         inputBuffer1.nextLine();
                     }
-// ********************************************** Admin ********************************************
+
+//                 ********************************************** Admin ********************************************
                 } else if (userChoice == 2) {
                     System.out.println("I have Select Admin Menu");
                     System.out.println("Please Enter your Valid PIN");
@@ -105,33 +109,38 @@ public class AdminModule {
                                         } else {
                                             System.out.println("The Complaint not found!!!!!");
                                         }
-                                    }else if (adminChoice == 3){
+                                    } else if (adminChoice == 3) {
                                         System.out.println("Please Enter the Complaint ID that you want to close: ");
-                                        int searchID = inputBuffer1.nextInt();
-                                        int index = cutomerID.indexOf(searchID);
-                                        if (index != -1) {
-                                            if (complaintStatus.get(index).equals("CLOSED")) {
-                                                System.out.println("Complaint already CLOSED!");
+                                        if (inputBuffer1.hasNextInt()) {
+                                            int searchID = inputBuffer1.nextInt();
+                                            int index = cutomerID.indexOf(searchID);
+                                            if (index != -1) {
+                                                if (complaintStatus.get(index).equals("CLOSED")) {
+                                                    System.out.println("Complaint already CLOSED!");
+                                                } else {
+                                                    complaintStatus.set(index, "CLOSED");
+                                                    System.out.println("Complaint successfully CLOSED.");
+                                                }
                                             } else {
-                                                complaintStatus.set(index, "CLOSED");
-                                                System.out.println("Complaint successfully CLOSED.");
+                                                System.out.println("The Complaint not found!!!!!");
                                             }
-                                        } else {
-                                            System.out.println("The Complaint not found!!!!!");
+                                        } else {    // If the admin enter anything except complaint ID
+                                            System.out.println("Invalid Choice !");
+                                            inputBuffer1.nextLine();
                                         }
-                                    } else if(adminChoice == 4){
+                                    } else if (adminChoice == 4) {
                                         System.out.println("Exiting The Main Menu...");
                                         adminRunning = false;
                                     } else {
                                         System.out.println("Invalid Choice!!!!");
                                     }
-                                } else {                                                 // If the user enter anything except integer in the Admin Choice
+                                } else {    // If the user enter anything except integer in the Admin Choice
                                     System.out.println("Invalid Choice !");
                                     inputBuffer1.nextLine();
                                 }
                             }
                         }
-                    } else {                                                 // If the user enter anything except integer in the PIN
+                    } else {    // If the user enter anything except integer in the PIN
                         System.out.println("Invalid Choice !");
                         inputBuffer1.nextLine();
                     }
@@ -143,7 +152,7 @@ public class AdminModule {
                 } else {
                     System.out.print("Please Enter a Number From 1 to 4 !!!!\n");
                 }
-            } else {                                                        // If the user enter anything except integer in the Main Menu
+            } else {    // If the user enter anything except integer in the Main Menu
                 System.out.println("Invalid Choice !");
                 inputBuffer1.nextLine();
             }
