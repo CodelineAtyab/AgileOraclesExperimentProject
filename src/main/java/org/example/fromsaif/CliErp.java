@@ -3,7 +3,7 @@ package org.example.fromsaif;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class cliErp {
+public class CliErp {
 
     public static void main(String[] args) {
 
