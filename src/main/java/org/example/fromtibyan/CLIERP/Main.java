@@ -9,8 +9,7 @@ public class Main {
 
     public static void mainMenu() {
         Scanner userInput = new Scanner(System.in);
-        boolean running = true;
-        while (running) {
+        while (true) {
             System.out.println("######### MAIN MENU #########");
             System.out.println("1.Customer \n2.Admin \n3.Support Staff \n4.Exit");
             System.out.println("#############################");
@@ -25,7 +24,7 @@ public class Main {
                     //support staff menu
                 } else if (option == 4) {
                     System.out.println("Exiting the application. Goodbye!");
-                    running = false;
+                    System.exit(0);
                 } else {
                     System.out.println("Please choose a number between 1-4");
                 }
