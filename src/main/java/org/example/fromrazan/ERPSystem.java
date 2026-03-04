@@ -10,12 +10,12 @@ enum ComplaintStatus {
 }
 
 
-class Complaint{
+class Complaint2{
     private int id;
     private String description;
     private ComplaintStatus status;
 
-    public Complaint(int id , String description){
+    public Complaint2(int id , String description){
         this.id = id;
         this.description = description;
         this.status = ComplaintStatus.OPEN;
@@ -58,7 +58,7 @@ class SupportStaff{
 }
 
 class Admin{
-    private Map<Integer, Complaint> complaints;
+    private Map<Integer, Complaint2> complaints;
     private Map<Integer, SupportStaff> staffMembers;
     private Map<Integer, Integer> assignments;
 
@@ -69,7 +69,7 @@ class Admin{
         assignments = new HashMap<>();
 
     }
-    public void addComplaint(Complaint complaint){
+    public void addComplaint(Complaint2 complaint){
         complaints.put(complaint.getId(), complaint);
     }
 
@@ -83,7 +83,7 @@ class Admin{
             System.out.println("error complaint does exit. ");
             return;
         }
-        Complaint complaint = complaints.get(complaintId);
+        Complaint2 complaint = complaints.get(complaintId);
 
         if (complaint.getStatus() == ComplaintStatus.CLOSED){
             System.out.println("error can not assign");
@@ -109,7 +109,7 @@ class Admin{
         }
 
         for (Map.Entry<Integer,Integer> entry : assignments.entrySet()){
-            Complaint complaint = complaints.get(entry.getKey());
+            Complaint2 complaint = complaints.get(entry.getKey());
             SupportStaff staff = staffMembers.get(entry.getValue());
 
 
@@ -126,9 +126,9 @@ public class ERPSystem {
       admin.addStaff(new SupportStaff(2, "Rayan"));
 
 
-      Complaint c1 =  new Complaint(101, "login issue ");
-      Complaint c2 =  new Complaint(102, "payment failure ");
-      Complaint c3 =  new Complaint(103, "account locked");
+      Complaint2 c1 =  new Complaint2(101, "login issue ");
+      Complaint2 c2 =  new Complaint2(102, "payment failure ");
+      Complaint2 c3 =  new Complaint2(103, "account locked");
 
       c3.setStatus(ComplaintStatus.CLOSED);
 
