@@ -85,17 +85,21 @@ public class AdminModule {
                         if (adminPIN == 1122) {
                             boolean adminRunning = true;
                             while (adminRunning) {
-                                System.out.println("Your PIN is Correct !");
+                                //System.out.println("Your PIN is Correct !");
                                 System.out.println("Please Enter a number from the Following: ");
                                 System.out.println("[1] View All Complaints\n[2] Search Complaint by ID\n[3] Close a Complaint\n[4] Back to the main menu ");
                                 if (inputBuffer1.hasNextInt()) {
-                                    int adminChoice = Integer.parseInt(inputBuffer1.nextLine());
+                                    int adminChoice = inputBuffer1.nextInt();
                                     if (adminChoice == 1) {
-                                        for (int i = 0; i < cutomerID.size(); i++) {
-                                            System.out.printf("Customer ID: %s\n", cutomerID.get(i));
-                                            System.out.printf("Customer Description: %s\n", cutomerDescription.get(i));
-                                            System.out.printf("Customer priorities: %s\n", cutomerPriority.get(i));
-                                            System.out.println();
+                                        if (cutomerID.isEmpty()) {
+                                            System.out.println("There is no complaint to be viewed !");
+                                        } else {
+                                            for (int i = 0; i < cutomerID.size(); i++) {
+                                                System.out.printf("Customer ID: %s\n", cutomerID.get(i));
+                                                System.out.printf("Customer Description: %s\n", cutomerDescription.get(i));
+                                                System.out.printf("Customer priorities: %s\n", cutomerPriority.get(i));
+                                                System.out.println();
+                                            }
                                         }
                                     } else if (adminChoice == 2) {
                                         System.out.println("Please Enter the ID: ");
@@ -144,6 +148,8 @@ public class AdminModule {
                                     inputBuffer1.nextLine();
                                 }
                             }
+                        } else {
+                            System.out.println("Your PIN is inCorrect !");
                         }
                     } else {    // If the user enter anything except integer in the PIN
                         System.out.println("Invalid Choice !");
