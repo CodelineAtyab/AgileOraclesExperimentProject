@@ -1,5 +1,4 @@
 package org.example.fromtibyan.CLIERP;
-
 public class Complaints {
     int complaintId;
     String complaintDescription;
