@@ -99,15 +99,20 @@ public class AdminModule {
                                         }
                                     } else if (adminChoice == 2) {
                                         System.out.println("Please Enter the ID: ");
-                                        int searchID = inputBuffer1.nextInt();
-                                        int index = cutomerID.indexOf(searchID);
-                                        if (index != -1) {
-                                            System.out.println("The Customer ID is: " + cutomerID.get(index));
-                                            System.out.println("The Description is: " + cutomerDescription.get(index));
-                                            System.out.println("The Priority is: " + cutomerPriority.get(index));
+                                        if (inputBuffer1.hasNextInt()) {
+                                            int searchID = inputBuffer1.nextInt();
+                                            int index = cutomerID.indexOf(searchID);
+                                            if (index != -1) {
+                                                System.out.println("The Customer ID is: " + cutomerID.get(index));
+                                                System.out.println("The Description is: " + cutomerDescription.get(index));
+                                                System.out.println("The Priority is: " + cutomerPriority.get(index));
 
-                                        } else {
-                                            System.out.println("The Complaint not found!!!!!");
+                                            } else {
+                                                System.out.println("The Complaint not found!!!!!");
+                                            }
+                                        } else {    // If the admin enter anything except integer
+                                            System.out.println("Invalid Choice !");
+                                            inputBuffer1.nextLine();
                                         }
                                     } else if (adminChoice == 3) {
                                         System.out.println("Please Enter the Complaint ID that you want to close: ");
@@ -115,10 +120,10 @@ public class AdminModule {
                                             int searchID = inputBuffer1.nextInt();
                                             int index = cutomerID.indexOf(searchID);
                                             if (index != -1) {
-                                                if (complaintStatus.get(index).equals("CLOSED")) {
+                                                if (complaintStatus.get(index).equals("CLOSED")) {  // CHECK IF IT'S CLOSED
                                                     System.out.println("Complaint already CLOSED!");
                                                 } else {
-                                                    complaintStatus.set(index, "CLOSED");
+                                                    complaintStatus.set(index, "CLOSED");      // CLOSE IT IF IT'S NOT
                                                     System.out.println("Complaint successfully CLOSED.");
                                                 }
                                             } else {
