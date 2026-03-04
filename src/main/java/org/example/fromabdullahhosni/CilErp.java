@@ -14,9 +14,11 @@ public class CilErp {
         ArrayList<String> descriptions = new ArrayList<String>();
         ArrayList<String> complainsProiorty = new ArrayList<String>();
         ArrayList<String> complainStatus = new ArrayList<>();
-        //hash map
-        HashMap<Integer, String> staffComplains = new HashMap<>();
         String[] proiorty = {"Low","Medium","High"};
+        //hash map - i will do nested hashmap
+        HashMap<Integer, String> staffComplains = new HashMap<>();
+        HashMap<String, HashMap<Integer, String>> staffNested = new HashMap<>();
+
 //  Looping Menu
         boolean menuIsRunning = true;
         while (menuIsRunning==true){
@@ -174,6 +176,7 @@ public class CilErp {
                     }
 
 
+
                     //extending
 
                     //Admin option 4
@@ -185,34 +188,34 @@ public class CilErp {
                         if (staffAdminMenu==1){
                             System.out.println("enter the complain Id example[Complain Id: 8868] .....>> ");
                             int complainid  = Integer.parseInt(scannerBuffer.nextLine());
-                            //error handling if the user enters the wronge id
-                            if (complainid >= complains.size() || complainid < 0){
-                                System.out.println("try again");
+
+
+                            //get a particular report
+                            int getIndex = complains.indexOf(complainid);
+                            int staffIndexValue = complains.get(getIndex);
+
+                            //checking for Non-existing complaints or Closed complaints .
+                            if (complainid!=staffIndexValue && complainStatus.equals("Closed") || complainid==staffIndexValue && complainStatus.equals("Closed") ){
+                                System.out.println("Try Again, this complain ID maybe closed or Non existing");
                             }
                             else {
-                                //get a particular report
-                                int getIndex = complains.indexOf(complainid);
-                                int staffIndexValue = complains.get(getIndex);
-                                //checking for Non-existing complaints or Closed complaints .
-                                if (complainid!=staffIndexValue && complainStatus.equals("Closed") || complainid==staffIndexValue && complainStatus.equals("Closed") ){
-                                    System.out.println("Try Again, this complain ID maybe closed or Non existing");
-                                }
-                                else {
-                                    System.out.printf("Ticket ID[%s]\n",complainid );
-                                    System.out.println("enter the staff person you want to assign to .....>> ");
-                                    String staff = scannerBuffer.nextLine();
+                                System.out.printf("Ticket ID[%s]\n",complainid );
+                                System.out.println("enter the staff person you want to assign to .....>> ");
+                                String staff = scannerBuffer.nextLine();
 
-                                    staffComplains.put(complainid, staff);
-                                    System.out.printf("\n\n--sucessfully assigned staff:[%s] to complain --#[%s]\ngood luck to him\n\n",staffComplains.get(complainid),complainid);
-                                }
+                                staffComplains.put(complainid, "No comments Yet");
+                                staffNested.put(staff,staffComplains);
+                                System.out.printf("\n\n--sucessfully assigned staff:[%s] to complain --#[%s]\ngood luck to him\n\n",staffComplains.get(staff),complainid);
                             }
                         }
                         else if (staffAdminMenu==2){
                             System.out.println("===== staff complains =====");
-                            System.out.println(staffComplains);
+                            System.out.println(staffNested);
+                        }
+                        else {
+
                         }
                     }
-
 
                     //Admin option 5 - exit to main menu
                     else if (adminMenuOption==5){}
@@ -225,10 +228,31 @@ public class CilErp {
 //==========================================================================================================
             else if (IndexOption==3){
 
+                System.out.println("========== Support Staff");
+                System.out.println("enter name of staff ");
+                String staffName = scannerBuffer.nextLine();
+
+                if (staffNested.containsKey(staffName)){
 
 
+
+                    //menu
+                    System.out.print("Enter an option\n1: View complain\n2: Close Complain\n3: exit\n");
+                    int staffMenu = Integer.parseInt(scannerBuffer.nextLine());
+                    if (staffMenu==1){
+                        System.out.println(staffNested);
+                    }
+                    else if (staffMenu==2){}
+                    else if (staffMenu==3){}
+                    else {
+                        System.out.println("invaild option");
+                    }
+
+                }
+                else {
+                    System.out.println("Try again");
+                }
             }
-
 //==========================================================================================================
             else if (IndexOption==4){
 
