@@ -73,9 +73,6 @@ public class AdminModule{
     }
 
 
-
-
-
     private static void viewComp(ArrayList<ComplaintC> complaintCS){
         if ( complaintCS.isEmpty()){
             System.out.println("No Such Complaints");
@@ -124,3 +121,5 @@ public class AdminModule{
         System.out.println("Error: Not Found Complaint ID");
     }
 }
+
+
