@@ -15,13 +15,15 @@ public class AdminModule{
             return;
         }
 
+
         boolean session = true;
         while(session){
             System.out.println("------- ADMIN MANAGEMENT -------");
             System.out.println("1. View Complaints");
             System.out.println("2. Search Complaints using ID's");
             System.out.println("3. Close  Complaint ");
-            System.out.println("4. Exit ");
+            System.out.println("4. Assign a Complaint to a Staff");
+            System.out.println("5. Exit ");
             System.out.print("Enter Option Please: ");
 
             String choice = scanner.nextLine();
@@ -36,6 +38,9 @@ public class AdminModule{
                 closeComp(scanner,complaintCS);
             }
             else if ( choice.equals("4")){
+                assignedToStaff(scanner,complaintCS);
+            }
+            else if ( choice.equals("5")){
                 session = false;
             }
             else {
@@ -44,6 +49,29 @@ public class AdminModule{
 
         }
     }
+
+    private static void assignedToStaff(Scanner scanner, ArrayList<ComplaintC> complaintCS){
+        System.out.println("Please Enter ID of A complaint to Assign: ");
+        int assignID = Integer.parseInt(scanner.nextLine());
+
+        ComplaintC targeted = null;
+        for (ComplaintC c : complaintCS){
+            if (c.id == assignID){
+                targeted =c;
+                break;
+            }
+        }
+        if ( targeted == null ){
+            System.out.println("ID Of Complaint does not Exist! Try Again");
+            return;
+        }
+        System.out.println("Please Enter Support Staff Name:.. ");
+        String name = scanner.nextLine();
+
+        targeted.assignTo = name;
+        System.out.println("Success! \n Complaint: "+assignID+ " is Assigned to: "+name);
+    }
+
 
     private static void viewComp(ArrayList<ComplaintC> complaintCS){
         if ( complaintCS.isEmpty()){
@@ -79,12 +107,12 @@ public class AdminModule{
 
         for (ComplaintC c : complaintCS){
             if (c.id == idClosing){
-                if( c.Status.equals("Closed")){
+                if( c.status.equals("Closed")){
                     System.out.println("Error: The Complaint is Closed Before");
                 }
                 else
                 {
-                    c.Status = "Closed";
+                    c.status = "Closed";
                     System.out.println("Complaint with ID: "+idClosing+ " has been Closed Successfully!");
                 }
                 return;
@@ -93,3 +121,5 @@ public class AdminModule{
         System.out.println("Error: Not Found Complaint ID");
     }
 }
+
+
