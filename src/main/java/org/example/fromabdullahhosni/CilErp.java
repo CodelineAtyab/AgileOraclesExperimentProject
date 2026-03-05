@@ -13,9 +13,14 @@ public class CilErp {
         ArrayList<Integer> complains = new ArrayList<Integer>();
         ArrayList<String> descriptions = new ArrayList<String>();
         ArrayList<String> complainsProiorty = new ArrayList<String>();
-        ArrayList<String> complainStatus = new ArrayList<>();
+        HashMap<Integer,String> complainStatus = new HashMap<>();
         //hash map
         HashMap<Integer, String> staffComplains = new HashMap<>();
+        //task 5
+        ArrayList<String> staff = new ArrayList<>();
+        ArrayList<Integer> complainAssined = new ArrayList<>();
+        ArrayList<String> comment = new ArrayList<>();
+
         String[] proiorty = {"Low","Medium","High"};
 //  Looping Menu
         boolean menuIsRunning = true;
@@ -54,7 +59,7 @@ public class CilErp {
                         descriptions.add(complainDescription);
                         complainsProiorty.add(proiorty[1]);
                         //adding complain status
-                        complainStatus.add("Open");
+                        complainStatus.put(complainIndex,"Open");
                         System.out.println("Successfully added");
 
                         //Displaying complains
@@ -168,7 +173,7 @@ public class CilErp {
 
                             System.out.println("Closing complain *******");
                             //changing the status from open to close
-                            complainStatus.set(searchComplainIndex, "Closed");
+                            complainStatus.replace(closingComplain, "Closed");
                             System.out.printf("Sucessfully!\nclosed the complain: #[%s]\ncomplain status changed to >>>>>>>>>> %s\n",complains.get(searchComplainIndex), complainStatus.get(searchComplainIndex));
                         }
                     }
@@ -187,9 +192,7 @@ public class CilErp {
                             int complainid  = Integer.parseInt(scannerBuffer.nextLine());
                             //error handling if the user enters the wronge id
                             if (complainid >= complains.size() || complainid < 0){
-                                System.out.println("try again");
-                            }
-                            else {
+//                                System.out.println("try again");
                                 //get a particular report
                                 int getIndex = complains.indexOf(complainid);
                                 int staffIndexValue = complains.get(getIndex);
@@ -200,33 +203,143 @@ public class CilErp {
                                 else {
                                     System.out.printf("Ticket ID[%s]\n",complainid );
                                     System.out.println("enter the staff person you want to assign to .....>> ");
-                                    String staff = scannerBuffer.nextLine();
+                                    String staffAssign = scannerBuffer.nextLine();
 
-                                    staffComplains.put(complainid, staff);
-                                    System.out.printf("\n\n--sucessfully assigned staff:[%s] to complain --#[%s]\ngood luck to him\n\n",staffComplains.get(complainid),complainid);
+                                    staff.add(staffAssign);
+                                    complainAssined.add(complainid);
+                                    comment.add("No-comment");
+                                    System.out.printf("======sucessfully\nassigned staff:[%s] ---- to complain #[%s]\ngood luck to him\n",staffAssign,complainid);
                                 }
+                            }
+                            else {
+                                System.out.println("try again");
+
                             }
                         }
                         else if (staffAdminMenu==2){
                             System.out.println("===== staff complains =====");
                             System.out.println(staffComplains);
+
                         }
                     }
-
-
                     //Admin option 5 - exit to main menu
-                    else if (adminMenuOption==5){}
+                    else if (adminMenuOption==5){
+
+                    }
                     //Error Handling
                     else {
                         System.out.println("Choose Valid option, try Again");
+
                     }
                 }
             }
 //==========================================================================================================
             else if (IndexOption==3){
+                System.out.println("========== Support Staff");
+                System.out.println("Enter name of staff, Remember to enter the correct spelling for example Name:[Fahad not same as fahad] ");
+                String searchStaff = scannerBuffer.nextLine();
+
+                if (staff.contains(searchStaff)){
 
 
 
+                    //menu
+                    System.out.print("Enter an option\n1: View complain\n2: Adding Comment\n3: Close Complain\n4: exit to Main Menu\n");
+                    int staffMenu = Integer.parseInt(scannerBuffer.nextLine());
+                    if (staffMenu==1){
+                        System.out.println("===== My Assigned Complains =====");
+                        for (int loop = 0; loop < staff.size(); loop++) {
+                            // Check if the name matches (ignoring case is usually better)
+
+                            if (staff.get(loop).equals(searchStaff)) {
+//                                System.out.println("\n--- Ticket Found ---");
+//                                System.out.println("ID: " + complainAssined.get(loop));
+//                                System.out.println("Name: " + staff.get(loop));
+//                                System.out.println("Comment: " + comment.get(loop));
+                                System.out.printf("= Staff[%s] --- ComplainID[%d] --- comments:[\"%s\"] \n",staff.get(loop),complainAssined.get(loop),comment.get(loop));
+                            }
+                            else {
+                                System.out.printf("Staff %s is not been found, try again " , searchStaff);
+
+                            }
+                        }
+                    }
+                    else if (staffMenu==2){
+                        System.out.println("===== Add/Modify a comment ======");
+                        System.out.print("Enter Complaint ID:\n");
+                        int searchId = Integer.parseInt(scannerBuffer.nextLine());
+                        for (int searchcomment = 0; searchcomment < complainAssined.size(); searchcomment++) {
+                            if (complainAssined.get(searchcomment)==(searchId)) {
+
+                                System.out.println("Current Comment: " + comment.get(searchcomment));
+
+
+                                System.out.print("Enter the new comment: ");
+                                String newComment = scannerBuffer.nextLine();
+
+
+                                comment.set(searchcomment, newComment);
+
+                                System.out.println("Update successful for " + staff.get(searchcomment) + "!");
+
+                            }
+                            else {
+                                System.out.println("ID not found. Try again");}
+
+                        }
+                    }
+                    else if (staffMenu==3){
+                        System.out.println("===== Close Complains ======");
+                        System.out.print("Enter Complaint ID:\n");
+                        int searchCloseComplain = Integer.parseInt(scannerBuffer.nextLine());
+
+//                            if (.equals(searchId)) {
+//
+//                                System.out.println("Current Comment: " + comment.get(searchcomment));
+//
+//
+//                                System.out.print("Enter the new comment: ");
+//                                String newComment = scannerBuffer.nextLine();
+//
+//
+//                                comment.set(searchcomment, newComment);
+//
+//                                System.out.println("Update successful for " + staff.get(searchcomment) + "!");
+//
+//                            }
+//                            else {
+//                                System.out.println("ID not found. Try again");}
+//
+//                        }
+
+                        if (searchCloseComplain >= complains.size() || searchCloseComplain < 0){
+                            System.out.println("Current Status: " + complainStatus.get(searchCloseComplain));
+
+                            if (complainStatus.containsKey(searchCloseComplain) && complainStatus.containsValue("closed") ) {
+                                System.out.println("Sorry cannot change already closed complain");
+
+                            }
+                            else {
+                                complainStatus.replace(searchCloseComplain, "closed");
+                                System.out.println("Sucessfully closed complain");
+                                System.out.println("New Status: " + complainStatus.get(searchCloseComplain));
+                            }
+                        }
+                        else {
+                            System.out.println("Please type a vaild complain ID,try again");
+
+                        }
+
+                    }
+                    else {
+                        System.out.println("invaild option");
+
+                    }
+                }
+                else {
+                    System.out.println("Try again");
+
+                }
             }
 
 //==========================================================================================================
@@ -255,3 +368,4 @@ public class CilErp {
 //extending the admin page, new hash map added in input of the program , they will store [Key: value] for support staff
 
 //support staff menu is located on admin option in the program
+
