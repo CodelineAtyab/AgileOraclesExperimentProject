@@ -1,11 +1,14 @@
 package org.example.frommariya;
 
+import java.util.ArrayList;
+
 public class ComplaintC {
     public int id;
     public String desc;
     public String priority;
     public String status;
-    public String assignTo; //T4
+    public String assignTo;
+    public ArrayList<String> comment;
 
 
     public ComplaintC(int id, String desc, String priority){
@@ -14,6 +17,7 @@ public class ComplaintC {
         this.priority = priority;
         this.status = "OPEN";
         this.assignTo = "Unassigned";
+        this.comment = new ArrayList<>();
     }
 
     @Override
