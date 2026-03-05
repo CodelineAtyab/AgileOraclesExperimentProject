@@ -30,8 +30,9 @@ public class InterviewProblemManager {
         System.out.println("Enter Number of Rows: ");
         int numOfRows = Integer.parseInt(inputObjBuffer.nextLine());
 
-
-
+        /*
+        * Code for Star Triangle
+        * */
         int colCounter = 1;
         for (int currRow=0; currRow < numOfRows; currRow = currRow + 1) {
             // Print the spaces
@@ -47,6 +48,9 @@ public class InterviewProblemManager {
             System.out.println();
         }
 
+        /*
+         * Code for Numeric Triangle
+         * */
         for (int currRow=0; currRow < numOfRows; currRow++) {
 
             // Print the spaces
@@ -61,8 +65,5 @@ public class InterviewProblemManager {
             int toPrint = Integer.parseInt(currNumStrRepr);
             System.out.println(toPrint * toPrint);
         }
-
-
-
     }
 }
