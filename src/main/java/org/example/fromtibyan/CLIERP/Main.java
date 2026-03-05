@@ -1,5 +1,4 @@
 package org.example.fromtibyan.CLIERP;
-
 import java.util.Scanner;
 
 public class Main {
@@ -9,7 +8,8 @@ public class Main {
 
     public static void mainMenu() {
         Scanner userInput = new Scanner(System.in);
-        while (true) {
+        boolean running = true;
+        while (running) {
             System.out.println("######### MAIN MENU #########");
             System.out.println("1.Customer \n2.Admin \n3.Support Staff \n4.Exit");
             System.out.println("#############################");
@@ -21,7 +21,7 @@ public class Main {
                 } else if (option == 2) {
                     AdminMenu.main();
                 } else if (option == 3) {
-                    //support staff menu
+                    SupportStaffMenu.main();
                 } else if (option == 4) {
                     System.out.println("Exiting the application. Goodbye!");
                     System.exit(0);
