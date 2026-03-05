@@ -1,6 +1,7 @@
 package org.example.fromabdullahhosni;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class CilErp {
@@ -13,6 +14,8 @@ public class CilErp {
         ArrayList<String> descriptions = new ArrayList<String>();
         ArrayList<String> complainsProiorty = new ArrayList<String>();
         ArrayList<String> complainStatus = new ArrayList<>();
+        //hash map
+        HashMap<Integer, String> staffComplains = new HashMap<>();
         String[] proiorty = {"Low","Medium","High"};
 //  Looping Menu
         boolean menuIsRunning = true;
@@ -114,7 +117,7 @@ public class CilErp {
                 }
                 else {
 
-                    System.out.println("Admin User Granted\n\n\nEnter an option :\n1: View All Complains\n2: Search a complaint by ID\n3: close a complaint\n4: Exit to main menu");
+                    System.out.println("Admin User Granted\n\n\nEnter an option :\n1: View All Complains\n2: Search a complaint by ID\n3: close a complaint\n4: Assign complain to a Staff member \n5: Exit to main menu");
                     int adminMenuOption = Integer.parseInt(scannerBuffer.nextLine());
                     //Admin option 1
                     if (adminMenuOption==1){
@@ -126,6 +129,8 @@ public class CilErp {
                                     ,descriptions.get(allComplains), complainsProiorty.get(allComplains));
                         }
                     }
+
+
                     //Admin option 2
                     else if (adminMenuOption==2){
 
@@ -144,6 +149,8 @@ public class CilErp {
                             System.out.println("ComplainID Is Missmatching or Incorrect, please try again\n........");
                         }
                     }
+
+
                     //Admin option 3
                     else if (adminMenuOption==3){
 
@@ -165,10 +172,50 @@ public class CilErp {
                             System.out.printf("Sucessfully!\nclosed the complain: #[%s]\ncomplain status changed to >>>>>>>>>> %s\n",complains.get(searchComplainIndex), complainStatus.get(searchComplainIndex));
                         }
                     }
+
+
+                    //extending
+
                     //Admin option 4
                     else if (adminMenuOption==4){
+                        System.out.println("Staff assigning ---------");
+                        System.out.print("1: Assign staff to a complain\n2: View all assignment\n");
+                        int staffAdminMenu = Integer.parseInt(scannerBuffer.nextLine());
 
+                        if (staffAdminMenu==1){
+                            System.out.println("enter the complain Id example[Complain Id: 8868] .....>> ");
+                            int complainid  = Integer.parseInt(scannerBuffer.nextLine());
+                            //error handling if the user enters the wronge id
+                            if (complainid >= complains.size() || complainid < 0){
+                                System.out.println("try again");
+                            }
+                            else {
+                                //get a particular report
+                                int getIndex = complains.indexOf(complainid);
+                                int staffIndexValue = complains.get(getIndex);
+                                //checking for Non-existing complaints or Closed complaints .
+                                if (complainid!=staffIndexValue && complainStatus.equals("Closed") || complainid==staffIndexValue && complainStatus.equals("Closed") ){
+                                    System.out.println("Try Again, this complain ID maybe closed or Non existing");
+                                }
+                                else {
+                                    System.out.printf("Ticket ID[%s]\n",complainid );
+                                    System.out.println("enter the staff person you want to assign to .....>> ");
+                                    String staff = scannerBuffer.nextLine();
+
+                                    staffComplains.put(complainid, staff);
+                                    System.out.printf("\n\n--sucessfully assigned staff:[%s] to complain --#[%s]\ngood luck to him\n\n",staffComplains.get(complainid),complainid);
+                                }
+                            }
+                        }
+                        else if (staffAdminMenu==2){
+                            System.out.println("===== staff complains =====");
+                            System.out.println(staffComplains);
+                        }
                     }
+
+
+                    //Admin option 5 - exit to main menu
+                    else if (adminMenuOption==5){}
                     //Error Handling
                     else {
                         System.out.println("Choose Valid option, try Again");
@@ -205,4 +252,6 @@ public class CilErp {
 
 //Admin can change the status by calling the index and modifying the code.
 
+//extending the admin page, new hash map added in input of the program , they will store [Key: value] for support staff
 
+//support staff menu is located on admin option in the program

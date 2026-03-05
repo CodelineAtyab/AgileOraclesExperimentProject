@@ -27,7 +27,10 @@ public class Main {
                 System.out.println("Customer...");
             }
             else if ( choice == 2 ){
+
+                AdminModule.adminMenu(scanner,complaintCS);
                 System.out.println("Admin...");
+                AdminModule.adminMenu(scanner,complaintCS);
             }
             else if ( choice == 3 ){
                 System.out.println("Support...");

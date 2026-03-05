@@ -10,6 +10,7 @@ public class ComplaintC {
     public String assignTo;
     public ArrayList<String> comment;
 
+
     public ComplaintC(int id, String desc, String priority){
         this.id =id;
         this.desc = desc;
@@ -21,7 +22,7 @@ public class ComplaintC {
 
     @Override
     public String toString(){
-        return "Complaint ID: " + id + "\nPriority: " + priority + "\nComments: " +comment + "\nDescription: "+desc;
+        return "Complaint ID: " + id + "\nPriority: " + priority + "\nAssigned To: " + assignTo + "\nComments: " +comment + "\nDescription: "+desc;
     }
 
 
