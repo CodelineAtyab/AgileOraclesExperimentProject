@@ -63,10 +63,8 @@ public class Admin {
                     int choice = scanner.nextInt();
                     if (choice == 1) {
                         for (int i = 0; i < complaints.size(); i++) {
-                            System.out.println("complaint id = " + complaints.get(i).complaintId +
-                                    " ,complaint description:  " + complaints.get(i).complaintDesc +
-                                    ", complaint priority: " + complaints.get(i).priority +
-                                    ", Status: " + complaints.get(i).status);
+                            System.out.println("complaint id = " + complaints.get(i).complaintId + " ,complaint description:  " + complaints.get(i).complaintDesc +
+                                    ", complaint priority: " + complaints.get(i).priority + ", Status: " + complaints.get(i).status);
                         }
                     } else if (choice == 2) {
                         System.out.println("Enter Complaint ID: ");
@@ -74,10 +72,8 @@ public class Admin {
                         scanner.nextLine();
                         for (int i = 0; i < complaints.size(); i++) {
                             if (complaints.get(i).complaintId == complaintId) {
-                                System.out.println("complaint id = " + complaints.get(i).complaintId +
-                                        " ,complaint description: " + complaints.get(i).complaintDesc +
-                                        ",complaint priority: " + complaints.get(i).priority +
-                                        ",Status: " + complaints.get(i).status);
+                                System.out.println("complaint id = " + complaints.get(i).complaintId + " ,complaint description: " + complaints.get(i).complaintDesc +
+                                        ",complaint priority: " + complaints.get(i).priority + ",Status: " + complaints.get(i).status);
                             }
                         }
                     } else if (choice == 3) {
@@ -123,4 +119,3 @@ class Complaint {
         this.status = status;
     }
 }
-
