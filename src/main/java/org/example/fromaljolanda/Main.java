@@ -15,6 +15,7 @@ public class Main {
         ArrayList<String> complaintPriorities = new ArrayList<>();
         ArrayList<String> complaintStatus = new ArrayList<>();
         ArrayList<String> assignedStaff = new ArrayList<>();
+        ArrayList<String> complaintComments = new ArrayList<>();
 // ---------------------------------------------------------------------------------------------------------------------
         // ================= MAIN MENU =================
         while (mainMenuRunning) {
@@ -33,38 +34,62 @@ public class Main {
                 // ================= Customer MENU =================
                 if (userChoice == 1) {
                     System.out.println("Customer Module Selected.");
-                    System.out.print("Enter Complaint ID (numeric): "); // Ask User to Enter Complaint ID
-                    if (input.hasNextInt()) {
-                        int complaintId = input.nextInt();
-                        input.nextLine();
+                    System.out.println();
+                    boolean customerMenuRunning = true;
+                    while (customerMenuRunning) {
+                        System.out.println("1. Add Complaint\n" +
+                                           "2. Back to Main Menu");
+                        System.out.print("Enter your choice: ");
+                        if (input.hasNextInt()) {
+                            int customerChoice = input.nextInt();
+                            input.nextLine(); // clear buffer
 
-                        System.out.print("Enter Complaint Description: "); // Ask User to Enter Complaint Description
-                        String description = input.nextLine();
+                            if (customerChoice == 1) {
+                                System.out.print("Enter Complaint ID (numeric): "); // Ask User to Enter Complaint ID
+                                if (input.hasNextInt()) {
+                                    int complaintId = input.nextInt();
+                                    input.nextLine();
+                                    System.out.print("Enter Complaint Description: "); // Ask User to Enter Complaint Description
+                                    String description = input.nextLine();
+                                    System.out.print("Select Priority (LOW / MEDIUM / HIGH) or press Enter for default (MEDIUM): "); // Ask User to Enter Complaint Priority
+                                    String priority = input.nextLine().toUpperCase();
 
-                        System.out.print("Select Priority (LOW / MEDIUM / HIGH) or press Enter for default (MEDIUM): "); // Ask User to Enter Complaint Priority
-                        String priority = input.nextLine().toUpperCase();
+                                    if (priority.isEmpty()) {
+                                        priority = "MEDIUM"; // Default = MEDIUM
+                                    }
+                                    if (!priority.equals("LOW") && !priority.equals("MEDIUM") && !priority.equals("HIGH")) {
+                                        System.out.println("Invalid priority! Setting to default (MEDIUM)");
+                                        priority = "MEDIUM";
+                                    }
 
-                        if (priority.isEmpty()) {
-                            priority = "MEDIUM"; // Default = MEDIUM
+                                    // Store Data
+                                    complaintIds.add(complaintId);
+                                    complaintDescriptions.add(description);
+                                    complaintPriorities.add(priority);
+
+                                    System.out.println("Complaint created successfully!"); // Confirmation message
+                                }
+                                else {
+                                    System.out.println("Invalid ID! Must be numeric.");
+                                    input.nextLine(); // clear invalid input
+                                }
+                                complaintStatus.add("OPEN");
+                                assignedStaff.add("UNASSIGNED"); // Default
+                                complaintComments.add(""); // empty comment initially
+                            }
+                            else if (customerChoice == 2) {
+                                customerMenuRunning = false;
+                            }
+                            else {
+                                System.out.println("Invalid option.");
+                            }
                         }
-                        if (!priority.equals("LOW") && !priority.equals("MEDIUM") && !priority.equals("HIGH")) {
-                            System.out.println("Invalid priority! Setting to default (MEDIUM)");
-                            priority = "MEDIUM";
+                        else {
+                            System.out.println("Invalid input! Enter number.");
+                            input.nextLine();
                         }
-
-                        // Store Data
-                        complaintIds.add(complaintId);
-                        complaintDescriptions.add(description);
-                        complaintPriorities.add(priority);
-
-                        System.out.println("Complaint created successfully!"); // Confirmation message
+                        System.out.println();
                     }
-                    else {
-                        System.out.println("Invalid ID! Must be numeric.");
-                        input.nextLine(); // clear invalid input
-                    }
-                    complaintStatus.add("OPEN");
-                    assignedStaff.add("UNASSIGNED"); // Default
                 }
 // ---------------------------------------------------------------------------------------------------------------------
                 // ================= Admin MENU =================
@@ -92,6 +117,7 @@ public class Main {
                                         System.out.println("No complaints found.");
                                     }
                                     else {
+                                        System.out.println();
                                         System.out.println("---> all complaints");
                                         for (int i = 0; i < complaintIds.size(); i++) {
                                             System.out.println("Complaint ID: " + complaintIds.get(i)
@@ -200,6 +226,118 @@ public class Main {
                 // ================= Support Staff MENU =================
                 else if (userChoice == 3) {
                     System.out.println("Support Staff Module Selected.");
+                    System.out.print("Enter your Staff Name: ");
+                    String staffName = input.nextLine();
+                    boolean staffMenuRunning = true;
+                    while (staffMenuRunning) {
+                        System.out.println();
+                        System.out.println("===== SUPPORT STAFF MENU =====");
+                        System.out.println("1. View My Assigned Complaints\n" +
+                                           "2. Add Comment to Complaint\n" +
+                                           "3. Close Complaint\n" +
+                                           "4. Back to Main Menu");
+                        System.out.print("Enter your choice: ");
+                        if (input.hasNextInt()) {
+                            int staffChoice = input.nextInt();
+                            input.nextLine();
+
+                            // ===== View Only Assigned Complaints =====
+                            if (staffChoice == 1) {
+                                int count = 0;
+                                for (int i = 0; i < complaintIds.size(); i++) {
+                                    if (assignedStaff.get(i).equals(staffName)) {
+                                        System.out.println("ID: " + complaintIds.get(i)
+                                                         + " | Description: " + complaintDescriptions.get(i)
+                                                         + " | Priority: " + complaintPriorities.get(i)
+                                                         + " | Status: " + complaintStatus.get(i)
+                                                         + " | Comments: " + complaintComments.get(i));
+                                        count ++;
+                                    }
+                                }
+                                if (count == 0) {
+                                    System.out.println("No complaints assigned to you.");
+                                }
+                            }
+
+                            // ===== Add Comment =====
+                            else if (staffChoice == 2) {
+                                System.out.print("Enter Complaint ID: ");
+                                if (input.hasNextInt()) {
+                                    int commentId = input.nextInt();
+                                    input.nextLine();
+                                    int index = complaintIds.indexOf(commentId);
+
+                                    if (index == -1) {
+                                        System.out.println("Complaint not found.");
+                                    }
+                                    else if (!assignedStaff.get(index).equals(staffName)) {
+                                        System.out.println("You cannot update complaints assigned to another staff member.");
+                                    }
+                                    else if (complaintStatus.get(index).equals("CLOSED")) {
+                                        System.out.println("Cannot comment on CLOSED complaint.");
+                                    }
+                                    else {
+                                        System.out.print("Enter your comment: ");
+                                        String newComment = input.nextLine();
+                                        String existing = complaintComments.get(index);
+                                        if (existing.equals(" ")) {
+                                            complaintComments.set(index, newComment);
+                                        }
+                                        else {
+                                            complaintComments.set(index, existing + " - " + newComment);
+                                            System.out.println("Comment added successfully.");
+                                        }
+                                    }
+                                }
+                                else {
+                                    System.out.println("Invalid ID.");
+                                    input.nextLine();
+                                }
+                            }
+
+                            // ===== Close Complaint =====
+                            else if (staffChoice == 3) {
+                                System.out.print("Enter Complaint ID to close: ");
+                                if (input.hasNextInt()) {
+                                    int closeId = input.nextInt();
+                                    input.nextLine(); // clear buffer
+
+                                    int index = complaintIds.indexOf(closeId);
+
+                                    if (index == -1) {
+                                        System.out.println("Complaint not found.");
+                                    }
+                                    else if (!assignedStaff.get(index).equals(staffName)) {
+                                        System.out.println("You cannot close complaints assigned to another staff member.");
+                                    }
+                                    else if (complaintStatus.get(index).equals("CLOSED")) {
+                                        System.out.println("Complaint already CLOSED.");
+                                    }
+                                    else {
+                                        complaintStatus.set(index, "CLOSED");
+                                        System.out.println("Complaint closed successfully.");
+                                    }
+                                }
+                                else {
+                                    System.out.println("Invalid ID.");
+                                    input.nextLine(); // clear invalid input
+                                }
+
+
+                            }
+                            else if (staffChoice == 4) {
+                                staffMenuRunning = false;
+                            }
+                            else {
+                                System.out.println("Invalid option.");
+                            }
+                        }
+                        else {
+                            System.out.println("Invalid input.");
+                            input.nextLine();
+                        }
+                        System.out.println();
+                    }
                 }
 // ---------------------------------------------------------------------------------------------------------------------
                 // ================= Exit =================
