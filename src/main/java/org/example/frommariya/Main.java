@@ -22,17 +22,19 @@ public class Main {
             scanner.nextLine();
 
             if ( choice == 1 ){
+
                 CustomerModule.CustomertMenu(scanner,complaintCS);
 
-                System.out.println("Customer...");
             }
             else if ( choice == 2 ){
 
                 AdminModule.adminMenu(scanner,complaintCS);
-                System.out.println("Admin...");
+
             }
             else if ( choice == 3 ){
-                System.out.println("Support...");
+
+                SupportStaff.SupportMenu(scanner,complaintCS);
+
             }
             else {
                 break;

@@ -16,6 +16,7 @@ public class Main {
         ArrayList<String> complaintStatus = new ArrayList<>();
         ArrayList<String> assignedStaff = new ArrayList<>();
         ArrayList<String> complaintComments = new ArrayList<>();
+
 // ---------------------------------------------------------------------------------------------------------------------
         // ================= MAIN MENU =================
         while (mainMenuRunning) {
@@ -90,6 +91,7 @@ public class Main {
                         }
                         System.out.println();
                     }
+
                 }
 // ---------------------------------------------------------------------------------------------------------------------
                 // ================= Admin MENU =================
