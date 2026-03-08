@@ -1,7 +1,7 @@
 package org.example.fromrima;
 
-public class StaffModule {
-    public static void main(String[] args){
-        System.out.println("Staff");
+public class StaffModule{
+    public static void main(){
+       System.out.println("Staff Module");
     }
 }

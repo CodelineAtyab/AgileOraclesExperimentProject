@@ -4,58 +4,34 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CustomerModule {
-    public static void main(String[] args) {
+    public static void main() {
         Scanner inputBuffObj = new Scanner(System.in);
-        ArrayList<String> customerArray = new ArrayList<>();
-        while (true) {
-            System.out.println("-------- Main Menu --------");
-            System.out.println(" 1. Customer\n 2. Admin\n 3. Support Staff\n 4. Exit");
+        CliErp cliErpObjects = new CliErp();
+        System.out.println("------ Customer Menu -------- \n -- create complaints (tickets) --");
 
-            String userInput = inputBuffObj.nextLine();
-            int choice;
-            try {
-                choice = Integer.parseInt(userInput);
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number.");
-                continue;
-            }
+        System.out.println("Enter Complaint ID: ");
+        int complaintID = inputBuffObj.nextInt();
+        inputBuffObj.nextLine();
+        System.out.print("Enter Complaint Description: ");
+        String complaintDescription = inputBuffObj.nextLine();
 
-            if (choice == 1) {
+        System.out.print("Select Priority [ LOW / MEDIUM (default) / HIGH ] : ");
+        String complaintPriority = inputBuffObj.nextLine().toUpperCase();
+        if (complaintPriority.isEmpty() || (!complaintPriority.equals("LOW") && !complaintPriority.equals("MEDIUM") && !complaintPriority.equals("HIGH"))) {
+            System.out.println("Invalid priority! Setting to default (MEDIUM)");
+            complaintPriority = "MEDIUM";
 
-                System.out.print("Enter Complaint ID: ");
-                int complaintID = inputBuffObj.nextInt();
-                inputBuffObj.nextLine();
-                System.out.print("Enter Complaint Description: ");
-                String complaintDescription = inputBuffObj.nextLine();
+        cliErpObjects.customerComplaintId.add(complaintID);
+        cliErpObjects.customerComplaintDescriptions.add(complaintDescription);
+        cliErpObjects.customerComplaintPriorities.add(complaintPriority);
 
-                System.out.print("Select Priority [ LOW / MEDIUM (default) / HIGH ] : ");
-                String complaintPriority = inputBuffObj.nextLine().toUpperCase();
-                if (complaintPriority.isEmpty() || (!complaintPriority.equals("LOW") && !complaintPriority.equals("HIGH"))) {
-                    complaintPriority = "MEDIUM";
-                }
-
-
-                customerArray.add(complaintID + complaintDescription + complaintPriority);
-                System.out.println("confirmation");
-
-            }
-
-            if (choice == 2) {
-                System.out.print("Enter Admin PIN: ");
-                int adminPIN = inputBuffObj.nextInt();
-                if (adminPIN == 1234) {
-                    System.out.println(" 1.View all complaints.\n 2.Search complaint by ID.\n 3.Close a complaint.");
-                    if (choice == 1) {
-                        System.out.println(customerArray);
-                    } else if (choice == 2) {
-
-                    }
-                } else {
-                    System.out.println("InCorrect PIN");
-                }
-
-
-            }
-        }
+        System.out.println("Confirmation,successfully created ");
     }
+
+        cliErpObjects.customerComplaintStatus.add("OPEN");
+        cliErpObjects.complaintAssignedStaff.add("UNASSIGNED");
+        cliErpObjects.complaintComments.add("");
+    }
+
 }
+
