@@ -142,6 +142,7 @@ public class Main {
                                 System.out.println("Complaint assigned to " + staff);
                             }
                         }
+
                         else if (admainChoice == 5){
                             System.out.println("view all assigned compliant");
                             if (complainId.isEmpty()){
