@@ -25,9 +25,10 @@ public class StaffModule {
 //       ********************************************* Customer *******************************************************
             // Checking if Menu input is integer
             if (inputBuffer1.hasNextInt()) {
-                int userChoice = Integer.parseInt(inputBuffer1.nextLine());
+                int userChoice = inputBuffer1.nextInt();
+                inputBuffer1.nextLine();
                 if (userChoice == 1) {
-                    System.out.println("I have select Customer Menu");
+                    System.out.println("\nI have select Customer Menu\n");
 
                     //           ************* Complaint ID ****************
                     System.out.println("Please Enter Complaint ID: ");
@@ -55,13 +56,13 @@ public class StaffModule {
                             } else if (priorityChoice.equals("high")) {
                                 inputPriority = ticketPriority[2];
                             } else if (priorityChoice.equals("return")) {
-                                System.out.println("Returning to the Main Menu...");
+                                System.out.println("Returning to the Main Menu...\n");
                                 priorityRunning = false;
                                 continue; // Not saving the ticket
                             } else if (priorityChoice.isEmpty()) {
                                 inputPriority = ticketPriority[1];
                             } else {
-                                System.out.println("Please Enter the Word: Low or Medium or High or Return !!!!");
+                                System.out.println("Please Enter the Word: Low or Medium or High or Return !!!!\n");
                                 continue; // Not saving the ticket
                             }
                             cutomerID.add(inputID);
@@ -70,18 +71,18 @@ public class StaffModule {
                             complaintStatus.add("Open");
                             assignment.add("Not-Assigned");
 
-                            System.out.println("The Complaint Successfully Created!");
+                            System.out.println("\nThe Complaint Successfully Created!\n");
                             priorityRunning = false;
                         }
                     } else {   // If the user enter anything except integer in the Compliant ID
-                        System.out.println("Invalid Choice !");
+                        System.out.println("Invalid Choice !\n");
                         inputBuffer1.nextLine();
                     }
                 }
 
 //                 ********************************************** Admin ********************************************
                 else if (userChoice == 2) {
-                    System.out.println("I have Select Admin Menu");
+                    System.out.println("\nI have Select Admin Menu");
                     System.out.println("Please Enter your Valid PIN");
                     if (inputBuffer1.hasNextInt()) {
                         int adminPIN = Integer.parseInt(inputBuffer1.nextLine());
@@ -89,7 +90,7 @@ public class StaffModule {
                             boolean adminRunning = true;
                             while (adminRunning) {
                                 //System.out.println("Your PIN is Correct !");
-                                System.out.println("The Available Options are: ");
+                                System.out.println("\nThe Available Options are: ");
                                 System.out.println("[1] View All Complaints\n[2] Search Complaint by ID\n[3] Close a Complaint\n" +
                                         "[4] Assign Complaints to support staff members\n[5] Back to the main menu ");
                                 System.out.print("Please Enter a number: ");
@@ -97,18 +98,18 @@ public class StaffModule {
                                     int adminChoice = inputBuffer1.nextInt();
                                     if (adminChoice == 1) {
                                         if (cutomerID.isEmpty()) {
-                                            System.out.println("There is no complaint to be viewed !");
+                                            System.out.println("There is no complaint to be viewed !\n");
                                         } else {
                                             for (int i = 0; i < cutomerID.size(); i++) {
-                                                System.out.printf("Customer ID: %s\n", cutomerID.get(i));
+                                                System.out.printf("\nCustomer ID: %s\n", cutomerID.get(i));
                                                 System.out.printf("Customer Description: %s\n", cutomerDescription.get(i));
                                                 System.out.printf("Customer priorities: %s\n", cutomerPriority.get(i));
                                                 if (assignment.get(i).equals("Not-Assigned")) {
                                                     System.out.println("This Complaint is Not Assigned");
-                                                    System.out.println("========================================");
+                                                    System.out.println("========================================\n");
                                                 } else {
-                                                    System.out.printf("This Complaint is Assigned To: %s", assignment.get(i));
-                                                    System.out.println("========================================");
+                                                    System.out.printf("This Complaint is Assigned To: %s\n", assignment.get(i));
+                                                    System.out.println("========================================\n");
                                                 }
                                             }
                                         }
@@ -123,10 +124,10 @@ public class StaffModule {
                                                 System.out.printf("The Priority is: %s\n", cutomerPriority.get(index));
 
                                             } else {
-                                                System.out.println("The Complaint not found!!!!!");
+                                                System.out.println("The Complaint not found!!!!!\n");
                                             }
                                         } else {    // If the admin enter anything except integer
-                                            System.out.println("Invalid Choice !");
+                                            System.out.println("Invalid Choice !\n");
                                             inputBuffer1.nextLine();
                                         }
                                     } else if (adminChoice == 3) {
@@ -136,68 +137,75 @@ public class StaffModule {
                                             int index = cutomerID.indexOf(searchID);
                                             if (index != -1) {
                                                 if (complaintStatus.get(index).equals("CLOSED")) {  // CHECK IF IT'S ASSIGNED
-                                                    System.out.println("Complaint already CLOSED!");
+                                                    System.out.println("Complaint already CLOSED!\n");
                                                 } else {
                                                     complaintStatus.set(index, "CLOSED");      // ASSIGN IT IF IT'S NOT
-                                                    System.out.println("Complaint successfully CLOSED.");
+                                                    System.out.println("Complaint successfully CLOSED!\n");
                                                 }
                                             }
                                         } else {    // If the admin enter anything except complaint ID
-                                            System.out.println("Invalid Choice !");
+                                            System.out.println("Invalid Choice !\n");
                                             inputBuffer1.nextLine();
                                         }
                                     } else if (adminChoice == 4) {
-                                        System.out.println("Please Enter The Complaint ID That You Want To Assign: ");
+                                        System.out.println("\nPlease Enter The Complaint ID That You Want To Assign: ");
                                         if (inputBuffer1.hasNextInt()) {
                                             int searchID = inputBuffer1.nextInt();
                                             int index = cutomerID.indexOf(searchID);
-                                            if (index != -1) {
-                                                if (complaintStatus.get(index).equals("Closed")) {
-                                                    System.out.println("Cannot Assign. Complaint is Already CLOSED!");
-                                                } else {
-                                                    System.out.print("Please Enter The Staff Name: ");
-                                                    String staffName = inputBuffer1.nextLine();
-                                                    assignment.set(index, staffName);  // Assign to staff member
-                                                    complaintStatus.set(index, "Assigned"); // changing the status to assigned
-                                                    System.out.println("Complaint successfully ASSIGNED to " + staffName);
-                                                }
+                                            if (index == -1) {
+                                                // Complaint not found
+                                                System.out.println("Complaint Not Found!\n");
+                                            } // Already Closed
+                                            else if (complaintStatus.get(index).equalsIgnoreCase("Closed")) {
+                                                System.out.println("Cannot Assign. Complaint is Already CLOSED!\n");
+                                            }   // Already assigned
+                                            else if (!assignment.get(index).equalsIgnoreCase("Not-Assigned")) {
+                                                System.out.println("This Complaint Is Already Assigned To " + assignment.get(index) + "\n");
+                                            }   // Assigning
+                                            else {
+                                                inputBuffer1.nextLine(); // clear buffer
+                                                System.out.print("Please Enter The Staff Name: ");
+                                                String staffName = inputBuffer1.nextLine();
+                                                assignment.set(index, staffName);
+                                                complaintStatus.set(index, "Assigned");
+                                                System.out.printf("Complaint successfully ASSIGNED to %s\n", staffName);
                                             }
                                         } else {    // If the user enter anything except integer in the Admin Choice
-                                            System.out.println("Invalid Choice !");
+                                            System.out.println("Invalid Choice !\n");
                                             inputBuffer1.nextLine();
                                         }
                                     } else if (adminChoice == 5) {
-                                        System.out.println("Exiting The Main Menu...");
+                                        System.out.println("Exiting The Main Menu...\n");
                                         adminRunning = false;
                                     } else {
-                                        System.out.println("Invalid Choice!!!!");
+                                        System.out.println("Invalid Choice!!!!\n");
                                     }
                                 } else {    // If the user enter anything except integer in the Admin Choice
-                                    System.out.println("Invalid Choice !");
+                                    System.out.println("Invalid Choice !\n");
                                     inputBuffer1.nextLine();
                                 }
                             }
                         } else {
-                            System.out.println("Your PIN is inCorrect !");
+                            System.out.println("Your PIN is inCorrect !\n");
                         }
                     } else {    // If the user enter anything except integer in the PIN
-                        System.out.println("Invalid Choice !");
+                        System.out.println("Invalid Choice !\n");
                         inputBuffer1.nextLine();
                     }
 
 // ******************************************** Support Staff ************************************************
                 } else if (userChoice == 3) {
-                    System.out.println("I have Select Support Stuff Menu");
+                    System.out.println("\nI have Select Support Stuff Menu");
                     System.out.println("Please Enter Your Name");
                     String inputStaffName = inputBuffer1.nextLine().toLowerCase();
 
                     if (inputStaffName.isEmpty()){
-                        System.out.println("Invalid Input!!!");
+                        System.out.println("Invalid Input!!!\n");
                         continue;
                     }
                     boolean staffRunning = true;
                     while (staffRunning) {
-                        System.out.println("The Available Options are: ");
+                        System.out.println("\nThe Available Options are: ");
                         System.out.println("[1] View Assigned Complaints\n[2] Close Assigned Complaints\n[3] Back To The Main Menu  ");
                         System.out.print("Please Enter The Number Of The Option: ");
 
@@ -209,13 +217,13 @@ public class StaffModule {
                                 for (int i = 0; i < cutomerID.size(); i++) {
                                     if (assignment.get(i).equalsIgnoreCase(inputStaffName)) {
                                         found = true;
-                                        System.out.printf("Customer ID: %s\n", cutomerID.get(i));
+                                        System.out.printf("\nCustomer ID: %s\n", cutomerID.get(i));
                                         System.out.printf("Customer Description: %s\n", cutomerDescription.get(i));
                                         System.out.printf("Customer priorities: %s\n", cutomerPriority.get(i));
                                         System.out.printf("Complaint Status: %s\n", complaintStatus.get(i));
                                     }
                                 } if (!found) {
-                                    System.out.println("Nothing Assigned To You");
+                                    System.out.println("Nothing Assigned To You!\n");
                                 }
                             } else if (staffInput == 2) {
                                 System.out.println("Please Enter The Complaint ID That You Want To Close: ");
@@ -223,58 +231,59 @@ public class StaffModule {
                                     int closeID = inputBuffer1.nextInt();
                                     int index = cutomerID.indexOf(closeID);
 
-                                    if (index != -1) {
-                                        System.out.println("Failed To Find The Complaint!!!");
+                                    if (index == -1) {
+                                        System.out.println("Failed To Find The Complaint!!!\n");
                                         // Not Assigned To Staff
                                     } else if (!assignment.get(index).equalsIgnoreCase(inputStaffName)) {
-                                        System.out.println("You Cant Close It As It Is Not Assigned To You");
+                                        System.out.println("You Cant Close It As It Is Not Assigned To You\n");
                                     }
                                         // Already Closed
                                     else if (complaintStatus.get(index).equalsIgnoreCase("Closed")) {
-                                        System.out.println("This Complaint Is Already Closed... Can Not Be Modified");
+                                        System.out.println("This Complaint Is Already Closed... Can Not Be Modified\n");
                                     }
                                         // Closing The Complaints
                                     else {
                                         complaintStatus.set(index, "Closed");
-                                        System.out.println("The Complaint Is Successfully Closed");
+                                        System.out.println("The Complaint Is Successfully Closed!\n");
 
                                         System.out.println("Please, If You Want To Add A Comment Reply: Y");
                                         System.out.println("Please, If You Don't Want To Add A Comment Reply: N");
                                         String staffAcceptComment = inputBuffer1.nextLine();
+                                        inputBuffer1.nextLine();
 
                                         if (staffAcceptComment.equals("Y")) {
                                             System.out.println("Please Enter Your Comment: ");
                                             String staffAddingComment = inputBuffer1.nextLine();
                                             if (!staffAddingComment.isEmpty()) {
                                                 staffComment.set(index, staffAddingComment);
-                                                System.out.println("Comment Saved Successfully !");
+                                                System.out.println("Comment Saved Successfully !\n");
                                             } else {
-                                                System.out.println("No Comment Have Been Added");
+                                                System.out.println("No Comment Have Been Added\n");
                                             }
                                         }
                                     }
                                 } else {
-                                    System.out.println("Invalid ID !!!!");
+                                    System.out.println("Invalid ID !!!!\n");
                                 }
                             } else if (staffInput == 3){
                                 staffRunning = false;
                             } else {
-                                System.out.println("Invalid Choice !!!!!");
+                                System.out.println("Invalid Choice !!!!!\n");
                             }
                         } else {    // If the staff enter anything except integer
-                            System.out.println("Invalid Choice !");
+                            System.out.println("Invalid Choice !\n");
                             inputBuffer1.nextLine();
                         }
                     }
 
                 } else if (userChoice == 4) {
-                    System.out.println("Exiting the Program ... ");
+                    System.out.println("Exiting the Program ... \n");
                     mainMenuRunning = false;
                 } else {
                     System.out.print("Please Enter a Number From 1 to 4 !!!!\n");
                 }
             } else {    // If the user enter anything except integer in the Main Menu
-                System.out.println("Invalid Choice !");
+                System.out.println("Invalid Choice !\n");
                 inputBuffer1.nextLine();
             }
             System.out.println();
