@@ -344,9 +344,8 @@ public class CilErp {
 
 //==========================================================================================================
             else if (IndexOption==4){
-
-
-
+                //closing program
+                menuIsRunning = false;
 
             }
 //==========================================================================================================
@@ -356,6 +355,8 @@ public class CilErp {
             }
         }
 
+        System.out.println("Goodbuy!");
+        scannerBuffer.close();
     }
 }
 
@@ -368,4 +369,3 @@ public class CilErp {
 //extending the admin page, new hash map added in input of the program , they will store [Key: value] for support staff
 
 //support staff menu is located on admin option in the program
-
