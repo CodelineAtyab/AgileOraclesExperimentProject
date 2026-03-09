@@ -12,6 +12,7 @@ public class Main {
         ArrayList<String> complainPriority = new ArrayList<String>();
         ArrayList<String> complainStatus = new ArrayList<String>();
         ArrayList<String> complainStaff = new ArrayList<String>();
+        ArrayList<String> complainComments = new ArrayList<String>();
         int id = 0;
         String description;
         String priority;
@@ -59,6 +60,7 @@ public class Main {
                 complainPriority.add(priority);
                 complainStatus.add("open");
                 complainStaff.add("Not assigned");
+                complainComments.add("");
 
             }
             //=====admin module
@@ -66,6 +68,7 @@ public class Main {
                 System.out.println("Admin oprations:");
                 System.out.println("Please enter PIN:");
                 int pinAdmin = input.nextInt();
+                input.nextLine();
                 if (pinAdmin== 9266){
                     System.out.println("Correct PIN. You are logged in as admin");
                     System.out.println("1. View complaints\n2. Search complaint\n3. close complaint\n4. assign complin to staff\n5. view assigned compliant\n6. Exit");
@@ -166,12 +169,87 @@ public class Main {
 
             }
             //=====staff
-                else if (userChoise == 3){
-                System.out.println("Support staff: \n1. \n2. ");
+                else if (userChoise == 3) {
+                input.nextLine();
+                System.out.println("Enter your staff name:");
+                String staffName = input.nextLine();
 
+                System.out.println("1. View assigned complaints");
+                System.out.println("2. Add comment");
+                System.out.println("3. Close complaint");
+                System.out.println("4. Exit");
 
+                int staff = input.nextInt();
+                input.nextLine();
 
+                if (staff == 1) {
+                    boolean found = false;
+
+                    for (int i = 0; i < complainId.size(); i++) {
+
+                        if (complainStaff.get(i).equalsIgnoreCase(staffName)) {
+
+                            found = true;
+
+                            System.out.println("ID: " + complainId.get(i));
+                            System.out.println("Description: " + complainDescrption.get(i));
+                            System.out.println("Priority: " + complainPriority.get(i));
+                            System.out.println("Status: " + complainStatus.get(i));
+                            System.out.println("Comments: " + complainComments.get(i));
+                        }
+                    }
+                    if(!found){
+                    System.out.println("No complaints assigned to you.");
+                    }
+
+                } else if (staff == 2) {
+                    System.out.println("Enter complaint ID to comment");
+                    int commentId = input.nextInt();
+                    input.nextLine();
+
+                    int index = complainId.indexOf(commentId);
+
+                    if (index == -1) {
+                        System.out.println("Complaint not found.");
+                    } else if (!complainStaff.get(index).equalsIgnoreCase(staffName)) {
+                        System.out.println("You cannot update complaints assigned to another staff.");
+                    } else if (complainStatus.get(index).equalsIgnoreCase("CLOSED")) {
+                        System.out.println("Closed complaints cannot be modified.");
+                    } else {
+                        System.out.println("Enter comment:");
+                        String comment = input.nextLine();
+
+                        complainComments.set(index, complainComments.get(index) + " | " + comment);
+
+                        System.out.println("Comment added successfully.");
+                    }
+                }else if (staff == 3){
+
+                    System.out.println("Enter complaint ID to close:");
+                    int closeId = input.nextInt();
+                    input.nextLine();
+
+                    int index = complainId.indexOf(closeId);
+
+                    if (index == -1){
+                        System.out.println("Complaint not found.");
+                    }
+
+                    else if (!complainStaff.get(index).equalsIgnoreCase(staffName)){
+                        System.out.println("You cannot close complaints assigned to another staff.");
+                    }
+
+                    else if (complainStatus.get(index).equalsIgnoreCase("CLOSED")){
+                        System.out.println("Complaint already CLOSED.");
+                    }
+
+                    else{
+                        complainStatus.set(index, "CLOSED");
+                        System.out.println("Complaint closed successfully.");
+                    }
+                }
             }
+
             else if (userChoise == 4){
                 System.out.println("Thank you for visiting");
                 mainMenu = false;
