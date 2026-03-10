@@ -1,3 +1,5 @@
+package org.example.fromaljolanda;
+
 import java.util.Scanner;
 
 public class PyramidOfNumbers {
