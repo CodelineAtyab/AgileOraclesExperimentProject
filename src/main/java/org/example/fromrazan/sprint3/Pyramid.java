@@ -1,4 +1,4 @@
-package org.example.fromrazan.Sprint3;
+package org.example.fromrazan.sprint3;
 
 public class Pyramid {
     public static void main(String[] args) {
