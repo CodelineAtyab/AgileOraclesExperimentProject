@@ -94,7 +94,7 @@ public class Support_Staff_Module {
                 int id = Integer.parseInt(staffScanner.nextLine());
 
                 //2. Closed complaints cannot be modified
-                if ("CLOSE" == (ComplaintsStatus.get(id))) {
+                if ("CLOSE".equals(ComplaintsStatus.get(id))) {
                     System.out.printf("ID %d is already CLOSED / Cannot be Modified. .\n", id);
                 }
 
