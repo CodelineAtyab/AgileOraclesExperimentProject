@@ -18,6 +18,7 @@ public class PyramidPower {
             for (int star = 1; star <= 2 * i - 1; star++) {
                 System.out.print("*");
             }
+
             System.out.println();
         }
     }
