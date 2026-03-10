@@ -1,4 +1,4 @@
-package org.example.fromsafaalmaamari.sprint2safaalmaamari.sprint3;
+package org.example.fromsafaalmaamari.sprint3;
 
 public class NumberLadder {
     public static void main(String[] args) {
