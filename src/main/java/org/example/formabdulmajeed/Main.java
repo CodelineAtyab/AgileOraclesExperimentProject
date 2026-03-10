@@ -169,6 +169,7 @@ public class Main {
 
             }
             //=====staff
+
                 else if (userChoise == 3) {
                 input.nextLine();
                 System.out.println("Enter your staff name:");
@@ -248,6 +249,7 @@ public class Main {
                         System.out.println("Complaint closed successfully.");
                     }
                 }
+
             }
 
             else if (userChoise == 4){
