@@ -64,7 +64,7 @@ public class Support_Staff_Module {
                     Integer id = i;
                     // 2. Check if it is  Already Closed will not change
                     String status = ComplaintsStatus.get(id);
-                    if ("CLOSE" == status) {
+                    if ("CLOSE".equals(status)) {
                         System.out.printf("This ID: %d --> Already CLOSED. Modification not allowed.\n", id);
 
                     } else {
@@ -94,7 +94,7 @@ public class Support_Staff_Module {
                 int id = Integer.parseInt(staffScanner.nextLine());
 
                 //2. Closed complaints cannot be modified
-                if ("CLOSE" == (ComplaintsStatus.get(id))) {
+                if ("CLOSE".equals(ComplaintsStatus.get(id))) {
                     System.out.printf("ID %d is already CLOSED / Cannot be Modified. .\n", id);
                 }
 
