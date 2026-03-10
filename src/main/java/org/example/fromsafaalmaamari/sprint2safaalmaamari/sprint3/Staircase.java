@@ -1,4 +1,4 @@
-package org.example.fromsafaalmaamari.Sprint2SafaAlmaamari.sprint3;
+package org.example.fromsafaalmaamari.sprint2safaalmaamari.sprint3;
 
 public class Staircase {
     public static void main(String[] args){
