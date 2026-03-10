@@ -18,7 +18,7 @@ public class StaffModule {
         boolean mainMenuRunning = true;
 
         while (mainMenuRunning) {
-            System.out.println("Welcome to the main menu");
+            System.out.println("Welcome to the main menu!");
             System.out.println("The available options are:\n[1] Customer\n[2] Admin\n[3] Support Stuff\n[4] Exit");
             System.out.print("Please enter the number: ");
 
@@ -28,7 +28,7 @@ public class StaffModule {
                 int userChoice = inputBuffer1.nextInt();
                 inputBuffer1.nextLine();
                 if (userChoice == 1) {
-                    System.out.println("\nI have select Customer Menu\n");
+                    System.out.println("\nI Have Selected Customer Menu\n");
 
                     //           ************* Complaint ID ****************
                     System.out.println("Please Enter Complaint ID: ");
@@ -70,6 +70,7 @@ public class StaffModule {
                             cutomerPriority.add(inputPriority);
                             complaintStatus.add("Open");
                             assignment.add("Not-Assigned");
+                            staffComment.add("");
 
                             System.out.println("\nThe Complaint Successfully Created!\n");
                             priorityRunning = false;
@@ -82,8 +83,8 @@ public class StaffModule {
 
 //                 ********************************************** Admin ********************************************
                 else if (userChoice == 2) {
-                    System.out.println("\nI have Select Admin Menu");
-                    System.out.println("Please Enter your Valid PIN");
+                    System.out.println("\nI Have Selected Admin Menu!");
+                    System.out.print("Please Enter your Valid PIN: ");
                     if (inputBuffer1.hasNextInt()) {
                         int adminPIN = Integer.parseInt(inputBuffer1.nextLine());
                         if (adminPIN == 1122) {
@@ -104,6 +105,7 @@ public class StaffModule {
                                                 System.out.printf("\nCustomer ID: %s\n", cutomerID.get(i));
                                                 System.out.printf("Customer Description: %s\n", cutomerDescription.get(i));
                                                 System.out.printf("Customer priorities: %s\n", cutomerPriority.get(i));
+                                                System.out.printf("Complaint Status: %s\n", complaintStatus.get(i));
                                                 if (assignment.get(i).equals("Not-Assigned")) {
                                                     System.out.println("This Complaint is Not Assigned");
                                                     System.out.println("========================================\n");
@@ -114,7 +116,7 @@ public class StaffModule {
                                             }
                                         }
                                     } else if (adminChoice == 2) {
-                                        System.out.println("Please Enter the ID: ");
+                                        System.out.print("Please Enter the ID: \n");
                                         if (inputBuffer1.hasNextInt()) {
                                             int searchID = inputBuffer1.nextInt();
                                             int index = cutomerID.indexOf(searchID);
@@ -122,6 +124,7 @@ public class StaffModule {
                                                 System.out.printf("The Customer ID is: %s\n", cutomerID.get(index));
                                                 System.out.printf("The Description is: %s\n", cutomerDescription.get(index));
                                                 System.out.printf("The Priority is: %s\n", cutomerPriority.get(index));
+                                                System.out.printf("Complaint Status: %s\n", complaintStatus.get(index));
 
                                             } else {
                                                 System.out.println("The Complaint not found!!!!!\n");
@@ -131,16 +134,16 @@ public class StaffModule {
                                             inputBuffer1.nextLine();
                                         }
                                     } else if (adminChoice == 3) {
-                                        System.out.println("Please Enter the Complaint ID that you want to Close : ");
+                                        System.out.print("Please Enter the Complaint ID that you want to Close: \n");
                                         if (inputBuffer1.hasNextInt()) {
                                             int searchID = inputBuffer1.nextInt();
                                             int index = cutomerID.indexOf(searchID);
                                             if (index != -1) {
-                                                if (complaintStatus.get(index).equals("CLOSED")) {  // CHECK IF IT'S ASSIGNED
-                                                    System.out.println("Complaint already CLOSED!\n");
+                                                if (complaintStatus.get(index).equals("Closed")) {  // CHECK IF IT'S ASSIGNED
+                                                    System.out.println("Complaint already Closed!\n");
                                                 } else {
-                                                    complaintStatus.set(index, "CLOSED");      // ASSIGN IT IF IT'S NOT
-                                                    System.out.println("Complaint successfully CLOSED!\n");
+                                                    complaintStatus.set(index, "Closed");      // ASSIGN IT IF IT'S NOT
+                                                    System.out.println("Complaint successfully Closed!\n");
                                                 }
                                             }
                                         } else {    // If the admin enter anything except complaint ID
@@ -148,7 +151,7 @@ public class StaffModule {
                                             inputBuffer1.nextLine();
                                         }
                                     } else if (adminChoice == 4) {
-                                        System.out.println("\nPlease Enter The Complaint ID That You Want To Assign: ");
+                                        System.out.print("\nPlease Enter The Complaint ID That You Want To Assign: \n");
                                         if (inputBuffer1.hasNextInt()) {
                                             int searchID = inputBuffer1.nextInt();
                                             int index = cutomerID.indexOf(searchID);
@@ -157,18 +160,18 @@ public class StaffModule {
                                                 System.out.println("Complaint Not Found!\n");
                                             } // Already Closed
                                             else if (complaintStatus.get(index).equalsIgnoreCase("Closed")) {
-                                                System.out.println("Cannot Assign. Complaint is Already CLOSED!\n");
+                                                System.out.println("Cannot Assign. Complaint is Already Closed!\n");
                                             }   // Already assigned
                                             else if (!assignment.get(index).equalsIgnoreCase("Not-Assigned")) {
                                                 System.out.println("This Complaint Is Already Assigned To " + assignment.get(index) + "\n");
                                             }   // Assigning
                                             else {
                                                 inputBuffer1.nextLine(); // clear buffer
-                                                System.out.print("Please Enter The Staff Name: ");
+                                                System.out.print("Please Enter The Staff Name: \n");
                                                 String staffName = inputBuffer1.nextLine();
                                                 assignment.set(index, staffName);
-                                                complaintStatus.set(index, "Assigned");
-                                                System.out.printf("Complaint successfully ASSIGNED to %s\n", staffName);
+                                                complaintStatus.set(index, "Open");
+                                                System.out.printf("Complaint successfully ASSIGNED to %s !\n", staffName);
                                             }
                                         } else {    // If the user enter anything except integer in the Admin Choice
                                             System.out.println("Invalid Choice !\n");
@@ -195,8 +198,8 @@ public class StaffModule {
 
 // ******************************************** Support Staff ************************************************
                 } else if (userChoice == 3) {
-                    System.out.println("\nI have Select Support Stuff Menu");
-                    System.out.println("Please Enter Your Name");
+                    System.out.println("\nI Have Selected Support Stuff Menu!");
+                    System.out.print("Please Enter Your Name: ");
                     String inputStaffName = inputBuffer1.nextLine().toLowerCase();
 
                     if (inputStaffName.isEmpty()){
@@ -221,14 +224,16 @@ public class StaffModule {
                                         System.out.printf("Customer Description: %s\n", cutomerDescription.get(i));
                                         System.out.printf("Customer priorities: %s\n", cutomerPriority.get(i));
                                         System.out.printf("Complaint Status: %s\n", complaintStatus.get(i));
+
                                     }
                                 } if (!found) {
                                     System.out.println("Nothing Assigned To You!\n");
                                 }
                             } else if (staffInput == 2) {
-                                System.out.println("Please Enter The Complaint ID That You Want To Close: ");
+                                System.out.print("Please Enter The Complaint ID That You Want To Close: \n");
                                 if (inputBuffer1.hasNextInt()) {
                                     int closeID = inputBuffer1.nextInt();
+                                    inputBuffer1.nextLine();
                                     int index = cutomerID.indexOf(closeID);
 
                                     if (index == -1) {
@@ -237,33 +242,38 @@ public class StaffModule {
                                     } else if (!assignment.get(index).equalsIgnoreCase(inputStaffName)) {
                                         System.out.println("You Cant Close It As It Is Not Assigned To You\n");
                                     }
-                                        // Already Closed
+                                    // Already Closed
                                     else if (complaintStatus.get(index).equalsIgnoreCase("Closed")) {
-                                        System.out.println("This Complaint Is Already Closed... Can Not Be Modified\n");
+                                        System.out.println("This Complaint Is Already Closed!!! Can Not Be Modified\n");
                                     }
-                                        // Closing The Complaints
+                                    // Closing The Complaints
                                     else {
                                         complaintStatus.set(index, "Closed");
-                                        System.out.println("The Complaint Is Successfully Closed!\n");
+                                        System.out.println("\nThe Complaint Is Successfully Closed!\n");
 
                                         System.out.println("Please, If You Want To Add A Comment Reply: Y");
                                         System.out.println("Please, If You Don't Want To Add A Comment Reply: N");
-                                        String staffAcceptComment = inputBuffer1.nextLine();
-                                        inputBuffer1.nextLine();
+                                        String staffAcceptComment = inputBuffer1.nextLine().trim();
 
-                                        if (staffAcceptComment.equals("Y")) {
+                                        if (staffAcceptComment.equalsIgnoreCase("Y")) {
                                             System.out.println("Please Enter Your Comment: ");
                                             String staffAddingComment = inputBuffer1.nextLine();
+
                                             if (!staffAddingComment.isEmpty()) {
                                                 staffComment.set(index, staffAddingComment);
                                                 System.out.println("Comment Saved Successfully !\n");
                                             } else {
                                                 System.out.println("No Comment Have Been Added\n");
                                             }
+                                        } else if (staffAcceptComment.equalsIgnoreCase("N")) {
+                                            System.out.println("No Comment Added!\n");
+                                        } else {
+                                            System.out.println("Invalid Input! Please Enter Y or N!!!!\n");
                                         }
                                     }
                                 } else {
                                     System.out.println("Invalid ID !!!!\n");
+                                    inputBuffer1.nextLine();
                                 }
                             } else if (staffInput == 3){
                                 staffRunning = false;
@@ -290,6 +300,3 @@ public class StaffModule {
         }
     }
 }
-
-
-
