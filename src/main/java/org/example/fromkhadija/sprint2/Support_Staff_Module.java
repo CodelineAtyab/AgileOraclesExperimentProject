@@ -1,4 +1,4 @@
-package org.example.fromkhadija.Sprint2;
+package org.example.fromkhadija.sprint2;
 
 
 import java.util.HashMap;
