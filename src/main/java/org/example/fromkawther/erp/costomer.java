@@ -1,4 +1,5 @@
 package org.example.fromkawther.erp;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 public class costomer {
@@ -108,3 +109,8 @@ public class costomer {
 
         }
     }
+
+
+public class costomer {
+}
+
