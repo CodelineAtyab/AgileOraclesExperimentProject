@@ -35,6 +35,5 @@ public class HashMapArrayPerformanceBenchmark {
 
         double speedup = (double) arraySearchTotalTime / hashMapSearchTotalTime;
         System.out.printf("%nHashMap was %.0fx faster than ArrayList%n", speedup);
-
     }
 }
