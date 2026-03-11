@@ -1,4 +1,4 @@
-package org.example.fromsafaalmaamari.Sprint2SafaAlmaamari;
+package org.example.fromsafaalmaamari.sprint2safaalmaamari;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Admin {
@@ -135,6 +135,6 @@ class Complaint {
 
 }
 
-}
+
 
 
