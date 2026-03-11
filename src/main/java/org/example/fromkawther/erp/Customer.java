@@ -1,7 +1,8 @@
 package org.example.fromkawther.erp;
+
 import java.util.ArrayList;
 import java.util.Scanner;
-public class costomer {
+public class Customer {
 
 
         public static void main(String[] args) {
@@ -23,6 +24,9 @@ public class costomer {
             if (pin.equals(correctPin)) {
                 System.out.println("Wrong PIN! Access Denied.");
                 return;
+            }else {
+                System.out.println("Wrong PIN! Access Denied.");
+
             }
 
             System.out.println("Access Granted!");
