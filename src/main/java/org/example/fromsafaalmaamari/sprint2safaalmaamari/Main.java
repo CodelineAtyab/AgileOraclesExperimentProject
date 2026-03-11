@@ -1,4 +1,4 @@
-package org.example.fromsafaalmaamari.Sprint2SafaAlmaamari;
+package org.example.fromsafaalmaamari.sprint2safaalmaamari;
 
 import java.util.Scanner;
 
