@@ -1,5 +1,6 @@
 
 package org.example.fromsafaalmaamari.sprint2safaalmaamari;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
