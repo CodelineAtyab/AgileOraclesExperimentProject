@@ -3,6 +3,7 @@ package org.example.fromkawther.erp;
 import java.util.Scanner;
 
 public class Main {
+
         public static void main(String[] args) {
 
             Scanner scanner = new Scanner(System.in);
@@ -69,7 +70,6 @@ public class Main {
         boolean inAdminMenu = true;
         while (inAdminMenu) {
 
-
             System.out.println("\n--- Admin Menu ---");
             System.out.println("1. Manage Users (Placeholder)");
             System.out.println("2. Manage Products (Placeholder)");
@@ -82,6 +82,15 @@ public class Main {
                 case "1":
 
                     System.out.println("Managing users (functionality to be added)");
+                    break;
+                case "2":
+                    System.out.println("Managing products... (functionality to be added)");
+
+
+            String choice = scanner.nextLine();
+            switch (choice) {
+                case "1":
+                    System.out.println("Managing users... (functionality to be added)");
                     break;
                 case "2":
                     System.out.println("Managing products... (functionality to be added)");
@@ -102,6 +111,8 @@ public class Main {
 
 
 
+
+
             System.out.println("\n--- Support Staff Menu ---");
             System.out.println("1. View Support Tickets (Placeholder)");
             System.out.println("2. Respond to Tickets (Placeholder)");
@@ -117,11 +128,21 @@ public class Main {
                 case "2":
                     System.out.println("Responding to tickets... (functionality to be added)");
 
+
+            String choice = scanner.nextLine();
+            switch (choice) {
+                case "1":
+                    System.out.println("Viewing tickets... (functionality to be added)");
+                    break;
+                case "2":
+                    System.out.println("Responding to tickets... (functionality to be added)");
+
                     break;
                 case "3":
                     inSupportMenu = false;
                     break;
                 default:
+
 
                     System.out.println("invalid choice");
 
@@ -130,3 +151,15 @@ public class Main {
         }
     }
 }
+
+                    System.out.println("Invalid choice. Please select a valid menu option.");
+            }
+        }
+    }
+}
+
+
+
+
+
+

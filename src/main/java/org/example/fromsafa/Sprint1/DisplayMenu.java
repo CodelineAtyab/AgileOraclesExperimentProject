@@ -1,5 +1,7 @@
+package org.example.fromsafa.Sprint1;
 import java.util.Scanner;
-public class Main { public static void main(String[] args){
+public class DisplayMenu {
+    public static void main(String[] args){
     Scanner input = new Scanner(System.in);
 
     int choice=0;
