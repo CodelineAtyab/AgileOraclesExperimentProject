@@ -2,10 +2,7 @@ package org.example.fromyarab;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class EscapeMaze {
     public static void main(String[] args){
@@ -30,6 +27,7 @@ public class EscapeMaze {
             int[] exPointCoordinate = new int[2];
             for (int i=0; i<maze.size(); i++){
                 for (int j=0; j<maze.get(i).size(); j++){
+                    // check the characters
                     if (!maze.get(i).get(j).equals("1") && !maze.get(i).get(j).equals("0") && !maze.get(i).get(j).equals("@") && !maze.get(i).get(j).equals("E")){
                         System.out.println("Maze Not Valid!! -> Characters restriction violation...");
                     }
@@ -66,7 +64,72 @@ public class EscapeMaze {
                 System.out.println("Maze Not Valid!! -> Entry/Exit point coordinate violation...");
             }
 
+            //===================================
+            // Backtracking
+            Stack<int[]> backTrack = new Stack<>();
+            int[] currentPosition = new int[2];
+            int[] nextPosition = new int[2];
+            ArrayList<int[]> visited = new ArrayList<>();
+            visited.add(enPointCoordinate);
+            currentPosition = enPointCoordinate;
+            boolean exit = false;
+            while (!exit){
+                if (maze.get(currentPosition[0]).get(currentPosition[1]).equals("E") || backTrack.isEmpty()){
+                    exit = true;
+                }
 
+                if (currentPosition[0] == 0){
+                    if (maze.get(currentPosition[0]+1).get(currentPosition[1]).equals("0")){
+
+                    }
+                }
+                else if (currentPosition[0] == maze.size()-1){
+                    if (maze.get(currentPosition[0]-1).get(currentPosition[1]).equals("0")){
+
+                    }
+                }
+                else if (currentPosition[1] == 0){
+                    if (maze.get(currentPosition[0]).get(currentPosition[1]+1).equals("0")){
+                        currentPosition[1] = currentPosition[1]+1;
+                    }
+                }
+                else if (currentPosition[1] == maze.get(1).size()-1){
+                    if (maze.get(currentPosition[0]).get(currentPosition[1]-1).equals("0")){
+
+                    }
+                }
+                else {
+                    if (!visited.contains(List.of(currentPosition[0]+1,currentPosition[1])) && maze.get(currentPosition[0]+1).get(currentPosition[1]).equals("0")){
+                        backTrack.push(currentPosition);
+                        visited.add(currentPosition);
+                        currentPosition[0] = currentPosition[0]+1;
+                    }
+                    else if (!visited.contains(List.of(currentPosition[0],currentPosition[1]+1)) && maze.get(currentPosition[0]).get(currentPosition[1]+1).equals("0")){
+                        backTrack.push(currentPosition);
+                        visited.add(currentPosition);
+                        currentPosition[1] = currentPosition[0]+1;
+                    }
+                    else if (!visited.contains(List.of(currentPosition[0]-1,currentPosition[1])) && maze.get(currentPosition[0]-1).get(currentPosition[1]).equals("0")){
+                        backTrack.push(currentPosition);
+                        visited.add(currentPosition);
+                        currentPosition[0] = currentPosition[0]-1;
+                    }
+                    else if (!visited.contains(List.of(currentPosition[0],currentPosition[1]-1)) && maze.get(currentPosition[0]).get(currentPosition[1]-1).equals("0")){
+                        backTrack.push(currentPosition);
+                        visited.add(currentPosition);
+                        currentPosition[1] = currentPosition[0]-1;
+                    }
+                    else{
+                        currentPosition = backTrack.pop();
+                    }
+                }
+            }
+            if (maze.get(currentPosition[0]).get(currentPosition[1]).equals("E")){
+                System.out.println("Maze Solved!");
+            }
+            else {
+                System.out.println("No path found!");
+            }
 
         } catch (FileNotFoundException e) {
             System.out.println(e);
