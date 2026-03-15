@@ -3,6 +3,7 @@ package org.example.fromyarab;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class EscapeMaze {
     public static void main(String[] args){
@@ -80,12 +81,11 @@ public class EscapeMaze {
             currentPosition[1] = enPointCoordinate.get(1);
             boolean exit = false;
             while (!exit){
-                System.out.println("--------------");
-                System.out.println("Current Position: "+ Arrays.toString(currentPosition));
+                System.out.println("--------------------");
 
                 if (currentPosition[0] == 0){
                     if (maze.get(currentPosition[0]+1).get(currentPosition[1]).equals("0")){
-                        System.out.println("Move Down");
+                        System.out.println("\nNext Move: Down");
                         backTrack.push(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         visited.add(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         currentPosition[0] = currentPosition[0]+1;
@@ -93,7 +93,7 @@ public class EscapeMaze {
                 }
                 else if (currentPosition[0] == maze.size()-1){
                     if (maze.get(currentPosition[0]-1).get(currentPosition[1]).equals("0")){
-                        System.out.println("Move Up");
+                        System.out.println("\nNext Move: Up");
                         backTrack.push(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         visited.add(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         currentPosition[0] = currentPosition[0]-1;
@@ -101,7 +101,7 @@ public class EscapeMaze {
                 }
                 else if (currentPosition[1] == 0){
                     if (maze.get(currentPosition[0]).get(currentPosition[1]+1).equals("0")){
-                        System.out.println("Move Right");
+                        System.out.println("\nNext Move: Right");
                         backTrack.push(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         visited.add(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         currentPosition[1] = currentPosition[1]+1;
@@ -109,7 +109,7 @@ public class EscapeMaze {
                 }
                 else if (currentPosition[1] == maze.get(1).size()-1){
                     if (maze.get(currentPosition[0]).get(currentPosition[1]-1).equals("0")){
-                        System.out.println("Move Left");
+                        System.out.println("\nNext Move: Left");
                         backTrack.push(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         visited.add(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         currentPosition[1] = currentPosition[1]-1;
@@ -117,31 +117,36 @@ public class EscapeMaze {
                 }
                 else {
                     if (!visited.contains(List.of(currentPosition[0]+1,currentPosition[1])) && (maze.get(currentPosition[0]+1).get(currentPosition[1]).equals("0") || maze.get(currentPosition[0]+1).get(currentPosition[1]).equals("E"))){
-                        System.out.println("Move Down");
+                        printMaze(maze, currentPosition);
+                        System.out.println("\nNext Move: Down");
                         backTrack.push(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         visited.add(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         currentPosition[0] = currentPosition[0]+1;
                     }
                     else if (!visited.contains(List.of(currentPosition[0],currentPosition[1]+1)) && (maze.get(currentPosition[0]).get(currentPosition[1]+1).equals("0") || maze.get(currentPosition[0]).get(currentPosition[1]+1).equals("E"))){
-                        System.out.println("Move Right");
+                        printMaze(maze, currentPosition);
+                        System.out.println("\nNext Move: Right");
                         backTrack.push(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         visited.add(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         currentPosition[1] = currentPosition[1]+1;
                     }
                     else if (!visited.contains(List.of(currentPosition[0]-1,currentPosition[1])) && (maze.get(currentPosition[0]-1).get(currentPosition[1]).equals("0") || maze.get(currentPosition[0]-1).get(currentPosition[1]).equals("E"))){
-                        System.out.println("Move Up");
+                        printMaze(maze, currentPosition);
+                        System.out.println("\nNext Move: Up");
                         backTrack.push(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         visited.add(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         currentPosition[0] = currentPosition[0]-1;
                     }
                     else if (!visited.contains(List.of(currentPosition[0],currentPosition[1]-1)) && (maze.get(currentPosition[0]).get(currentPosition[1]-1).equals("0") || maze.get(currentPosition[0]).get(currentPosition[1]-1).equals("E"))){
-                        System.out.println("Move Left");
+                        printMaze(maze, currentPosition);
+                        System.out.println("\nNext Move: Left");
                         backTrack.push(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         visited.add(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         currentPosition[1] = currentPosition[1]-1;
                     }
                     else{
-                        System.out.println("Pop");
+                        printMaze(maze, currentPosition);
+                        System.out.println("\nPop");
                         ArrayList<Integer> next = backTrack.pop();
                         visited.add(new ArrayList<>(List.of(currentPosition[0],currentPosition[1])));
                         currentPosition[0] = next.get(0);
@@ -152,16 +157,41 @@ public class EscapeMaze {
                 if (maze.get(currentPosition[0]).get(currentPosition[1]).equals("E") || backTrack.isEmpty()){
                     exit = true;
                 }
+                TimeUnit.SECONDS.sleep(1);
+
             }
             if (maze.get(currentPosition[0]).get(currentPosition[1]).equals("E")){
-                System.out.println("Maze Solved!");
+                System.out.println("\nCongratulation>> Maze Solved!");
             }
             else {
-                System.out.println("No path found!");
+                System.out.println("\nNo path found!");
             }
 
         } catch (FileNotFoundException e) {
             System.out.println(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+    // function to print current maze status
+    public static void printMaze(ArrayList<ArrayList<String>> maze, int[] currentPosition){
+        for (int i=0; i<50; i++){
+            System.out.println();
+        }
+        System.out.println("Current Position is: "+ Arrays.toString(currentPosition));
+        for (int i=0; i<maze.size(); i++){
+            for (int j=0; j<maze.get(i).size(); j++){
+                if (currentPosition[0] == i && currentPosition[1] == j){
+                    System.out.print("@");
+                }
+                else {
+                    System.out.print(maze.get(i).get(j));
+                }
+            }
+            System.out.println();
         }
     }
 }
