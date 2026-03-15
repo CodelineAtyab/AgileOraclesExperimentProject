@@ -1,8 +1,8 @@
-package org.example.fromaljolanda.sprint3;
+package org.example.fromaljolanda;
 
 import java.util.Scanner;
 
-public class NumberLadder {
+public class StepUp {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
@@ -11,7 +11,7 @@ public class NumberLadder {
 
         for (int i = 1; i <= userChoice; i++) {
             for (int j = 1; j <= i; j++) {
-                System.out.print(j + "\t");
+                System.out.print("#");
             }
             System.out.println();
         }

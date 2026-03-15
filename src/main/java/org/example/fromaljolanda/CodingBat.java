@@ -1,4 +1,4 @@
-package org.example.fromaljolanda.sprint3;
+package org.example.fromaljolanda;
 
 public class CodingBat {
     public static void main(String[] args) {
