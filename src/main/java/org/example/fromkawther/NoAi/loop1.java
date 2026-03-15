@@ -1,5 +1,5 @@
 package org.example.fromkawther.NoAi;
-
+//update:
 public class loop1 {
     public static void main(String[] args) {
         int lines = 4;
