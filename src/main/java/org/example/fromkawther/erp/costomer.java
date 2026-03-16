@@ -109,8 +109,4 @@ public class costomer {
 
         }
     }
-=======
-
-public class costomer {
-}
 
