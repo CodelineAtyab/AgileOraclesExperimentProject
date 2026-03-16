@@ -1,5 +1,6 @@
 package org.example.fromatyab;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -7,7 +8,6 @@ import java.util.LinkedList;
 public class HashMapManager {
     public static void main(String[] args) {
         HashMap<String, String> complains = new HashMap<>();
-        // LinkedList<String>[] data = new LinkedList<String>[5];
         HashSet<String> oldComplainIds = new HashSet<>();
         HashSet<String> newComplainIds = new HashSet<>();
         oldComplainIds.add("A1");
