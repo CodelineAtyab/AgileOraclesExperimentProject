@@ -26,7 +26,6 @@ public class HashMapManager {
             System.out.println(currCompId);
         }
 
-
         complains.put("A1", "abc");
         complains.put("A2", "xyz");
     }
