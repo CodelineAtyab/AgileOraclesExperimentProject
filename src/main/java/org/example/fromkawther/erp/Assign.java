@@ -32,8 +32,6 @@ public class Assign {
                         ", Priority: " + priority + ", Status: " + status;
             }
         }
-
-        // نموذج موظف الدعم
         public static class SupportStaff {
             int staffId;
             String name;
