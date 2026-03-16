@@ -1,4 +1,4 @@
-package org.example.fromkawther.NoAi;
+package org.example.fromkawther.erp;
 
 public class Climbing {
     public static void main (String[] args){
