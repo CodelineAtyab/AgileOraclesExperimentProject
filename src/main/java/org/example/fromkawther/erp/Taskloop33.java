@@ -6,10 +6,10 @@ public class Taskloop33 {
             int lines = 5;
             for (int i = 1; i <= lines; i++) {
                 for (int j = i; j < lines; j++) {
-                    System.out.print("");
+                    System.out.print(" ");
                 }
-                for (int j = 1; j <= (2 * i - 1); j++) {
-                    System.out.print("#");
+                for (int r = 1; r <= (2 * i - 1); r++) {
+                    System.out.print("*");
                 }
                 System.out.println();
             }
