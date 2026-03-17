@@ -1,8 +1,6 @@
 package org.example.fromkawther.erp;
 
 public class Task4 {
-
-    public class Challenge {
         public static void main (String[] args) {
             int lines = 5;
             for (int i = 1; i <= lines; i++) {
@@ -13,4 +11,4 @@ public class Task4 {
                 System.out.println();
 
 
-            }}}}
+            }}}
