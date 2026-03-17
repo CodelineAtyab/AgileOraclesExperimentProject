@@ -1,4 +1,4 @@
-package org.example.fromkawther.NoAi;
+package org.example.fromkawther.noai;
 
 public class Advanced {
     public static void main(String[] args) {
