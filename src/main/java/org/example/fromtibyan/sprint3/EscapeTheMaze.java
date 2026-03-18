@@ -124,11 +124,11 @@ public class EscapeTheMaze {
     public static boolean allBordersOnes(char[][] mazeArray2D, ArrayList<String> mazeArray) {
         // maze borders condition of all 1s
         int index ;
-        for (index = 0; index < 10; index++) {
+        for (index = 0; index < mazeArray.size(); index++) {
             char columnCellFirst = mazeArray2D[0][index];
-            char columnCellLast = mazeArray2D[9][index];
+            char columnCellLast = mazeArray2D[mazeArray.size()-1][index];
             char rowCellFirst = mazeArray2D[index][0];
-            char rowCellLast = mazeArray2D[index][9];
+            char rowCellLast = mazeArray2D[index][mazeArray.get(0).length()-1];
             if (!(columnCellFirst == '1' || columnCellFirst == '@' || columnCellFirst == 'E')) {
                 return false;
             }
