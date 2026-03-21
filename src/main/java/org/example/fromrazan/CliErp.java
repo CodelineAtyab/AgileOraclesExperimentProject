@@ -5,19 +5,21 @@ import java.util.*;
 
 public class CliErp {
         static class Complaint {
-            int id;
+
             String description;
+            int id;
             String status;
-            String priority;
-            String assignTo;
             List<String> comments;
+            String priority;
+            String assignStaff;
+
 
             Complaint(int id, String description, String priority) {
                 this.id = id;
                 this.description = description;
                 this.priority = priority;
                 this.status = "OPEN";
-                this.assignTo = null;
+                this.assignStaff = null;
                 this.comments = new ArrayList<>();
             }
 
@@ -136,7 +138,7 @@ public class CliErp {
                 return;
             }
             for (Complaint c : complaint.values()) {
-                System.out.println("ID: " + c.id + "| description: " + c.description + " | prority:  " + c.priority + "| status :" + c.status + "|assign : " + (c.assignTo == null ? "None" : c.assignTo));
+                System.out.println("ID: " + c.id + "| description: " + c.description + " | prority:  " + c.priority + "| status :" + c.status + "|assign : " + (c.assignStaff == null ? "None" : c.assignStaff));
             }
 
         }
@@ -192,7 +194,7 @@ public class CliErp {
 
                 System.out.println("enter support staff name : ");
                 String staff = scanner.nextLine();
-                c.assignTo = staff;
+                c.assignStaff = staff;
 
                 System.out.println("complaint" + id + "assigned to" + staff);
             } catch (Exception e) {
@@ -203,8 +205,8 @@ public class CliErp {
 
         static void Viewassign() {
             for (Complaint c : complaint.values()) {
-                if (c.assignTo != null) {
-                    System.out.println("complaint id" + c.id + "assign to" + c.assignTo);
+                if (c.assignStaff != null) {
+                    System.out.println("complaint id" + c.id + "assign to" + c.assignStaff);
                 }
             }
         }
@@ -241,7 +243,7 @@ public class CliErp {
         static void Viewcom(String staff){
             boolean found = false;
             for (Complaint c : complaint.values()){
-                if (staff.equals(c.assignTo)){
+                if (staff.equals(c.assignStaff)){
                     found = true;
                     System.out.println("id: " + c.id + " | description: " + c.description + " | Priority: " + c.priority +
                             " | Status: " + c.status + " | Comments: " + c.comments);
@@ -255,7 +257,7 @@ public class CliErp {
             try {
                 int id = Integer.parseInt(scanner.nextLine());
                 Complaint c = complaint.get(id);
-                if (c == null || staff.equals(c.assignTo) ){
+                if (c == null || staff.equals(c.assignStaff) ){
                     System.out.println("you cannot comment");
                     return;
                 }
@@ -273,7 +275,7 @@ public class CliErp {
             try {
                 int id = Integer.parseInt(scanner.nextLine());
                 Complaint c = complaint.get(id);
-                if (c == null || !staff.equals(c.assignTo)){
+                if (c == null || !staff.equals(c.assignStaff)){
                     System.out.println("you cannot close complaint");
                     return;
                 }
