@@ -19,6 +19,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'corretto'
+          cache: 'maven'          # Caches dependencies automatically
 
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn clean verify     # verify is enough for CI — no need to install
