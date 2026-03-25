@@ -1,19 +1,6 @@
 package org.example.fromkawther.erp;
 import java.util.Scanner;
 import java.util.ArrayList;
-class Complaint {
-    int id;
-    String description;
-    String priority;
-    String status;
-
-    Complaint(int id, String description, String priority) {
-        this.id = id;
-        this.description = description;
-        this.priority = priority;
-        this.status = "OPEN";
-    }
-}
 public class Cli3
 {
         public static void main(String[] args) {
