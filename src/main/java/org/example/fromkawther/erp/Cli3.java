@@ -16,7 +16,7 @@ class Complaint {
 }
 public class Cli3
 {
-        public static void main(String[] args) {a
+        public static void main(String[] args) {
             Scanner sc = new Scanner(System.in);
             ArrayList<Complaint> list = new ArrayList<>();
 
