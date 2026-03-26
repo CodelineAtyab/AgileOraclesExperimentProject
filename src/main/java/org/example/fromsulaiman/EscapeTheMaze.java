@@ -18,7 +18,7 @@ public class EscapeTheMaze {
     }
     public static void main(String[] args) {
         Path mazePath = null;
-        char[][] maze;
+        char[][] maze = null;
 
         try {
             mazePath = Path.of(
@@ -73,6 +73,9 @@ public class EscapeTheMaze {
 
         boolean found = false;
 
+        int rows = maze.length;
+        int cols = maze[0].length;
+
         while (!stack.isEmpty()) {
 
             Point current = stack.peek();
@@ -81,6 +84,29 @@ public class EscapeTheMaze {
                 found = true;
                 break;
             }
+
+            boolean moved = false;
+
+            for (int i = 0; i < 4; i++) {
+                int newRow = current.row + dr[i];
+                int newCol = current.col + dc[i];
+
+                if (newRow >= 0 && newRow < rows &&
+                        newCol >= 0 && newCol < cols &&
+                        !visited[newRow][newCol] &&
+                        (maze[newRow][newCol] == '0' || maze[newRow][newCol] == 'E')) {
+
+                    stack.push(new Point(newRow, newCol));
+                    visited[newRow][newCol] = true;
+                    moved = true;
+                    break;
+                }
+            }
+            if (!moved) {
+                stack.pop();
+            }
         }
     }
 }
+
+
