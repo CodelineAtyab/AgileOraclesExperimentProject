@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Stack;
 
 public class EscapeTheMaze {
     static class Point {
@@ -60,6 +61,14 @@ public class EscapeTheMaze {
             System.out.println("Start not found");
             return;
         }
+
+        Stack<Point> stack = new Stack<>();
+        boolean[][] visited = new boolean[maze.length][maze[0].length];
+
+        stack.push(start);
+        visited[start.row][start.col] = true;
+
+
 
     }
 }
