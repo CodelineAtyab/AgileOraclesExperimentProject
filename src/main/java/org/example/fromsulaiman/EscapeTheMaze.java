@@ -106,6 +106,15 @@ public class EscapeTheMaze {
                 stack.pop();
             }
         }
+        if (found) {
+            System.out.println("Maze Solved!!!!!!!!!!");
+
+            for (Point p : stack) {
+                System.out.println("(" + (p.row + 1) + ", " + (p.col + 1) + ")");
+            }
+        } else {
+            System.out.println("No path found");
+        }
     }
 }
 
