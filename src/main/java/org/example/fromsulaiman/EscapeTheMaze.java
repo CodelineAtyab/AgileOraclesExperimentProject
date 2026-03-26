@@ -71,5 +71,11 @@ public class EscapeTheMaze {
         int[] dr = {-1, 1, 0, 0};
         int[] dc = {0, 0, -1, 1};
 
+        boolean found = false;
+
+        while (!stack.isEmpty()) {
+
+            Point current = stack.peek();
+        }
     }
 }
