@@ -76,6 +76,11 @@ public class EscapeTheMaze {
         while (!stack.isEmpty()) {
 
             Point current = stack.peek();
+
+            if (maze[current.row][current.col] == 'E') {
+                found = true;
+                break;
+            }
         }
     }
 }
