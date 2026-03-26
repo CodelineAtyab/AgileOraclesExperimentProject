@@ -45,5 +45,21 @@ public class EscapeTheMaze {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        Point start = null;
+
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[0].length; j++) {
+                if (maze[i][j] == '@') {
+                    start = new Point(i, j);
+                }
+            }
+        }
+
+        if (start == null) {
+            System.out.println("Start not found");
+            return;
+        }
+
     }
 }
