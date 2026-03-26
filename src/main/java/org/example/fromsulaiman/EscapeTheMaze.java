@@ -6,6 +6,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class EscapeTheMaze {
+    static class Point {
+        int row;
+        int col;
+
+        Point(int r, int c) {
+            row = r;
+            col = c;
+        }
+    }
     public static void main(String[] args) {
         Path mazePath = null;
         char[][] maze;
