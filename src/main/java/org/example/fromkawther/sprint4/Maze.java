@@ -28,11 +28,11 @@ public class Maze {
             if (isValid(maze)) {
                 solve(maze);
             } else {
-                System.out.println("INVALID MAZE CONSTRAINTS.");
+                System.out.println("Invalid Maze");
             }
 
         } catch (IOException e) {
-            System.out.println("ERROR: Could not find the maze file at the specified path.");
+            System.out.println("ERROR");
         }
     }
 
@@ -92,7 +92,7 @@ public class Maze {
                 int nextR = r + dr[i];
                 int nextC = c + dc[i];
 
-                // Check if the next cell is within bounds, is a path/exit, and not visited
+                // Check :
                 if (nextR >= 0 && nextR < rows && nextC >= 0 && nextC < cols &&
                         (maze[nextR][nextC] == '0' || maze[nextR][nextC] == 'E') &&
                         !visited[nextR][nextC]) {
@@ -104,9 +104,9 @@ public class Maze {
                 }
             }
 
-            // If no valid move was found, backtrack by removing the current cell from stack
+            //  backtrack by removing the current cell from stack
             if (!moved) {
-                // Change current cell back to '0' on the grid visually
+                // Change :
                 maze[r][c] = '0';
                 stack.pop();
                 draw(maze);
@@ -137,7 +137,7 @@ public class Maze {
         System.out.println();
     }
 
-    // Function to validate maze rules: check borders and counts of '@' and 'E'
+    // Function to validate maze rules check
     public static boolean isValid(char[][] maze) {
         int rows = maze.length;
         int cols = maze[0].length;
@@ -156,10 +156,10 @@ public class Maze {
                 }
             }
         }
-        // Return true only if there is exactly one start point and one exit
+        // Return
         return at == 1 && e == 1;
     }
-} // <--- End of Maze class
+}
 
 // Help class to store grid coordinates (Row and Column)
 class Position {
