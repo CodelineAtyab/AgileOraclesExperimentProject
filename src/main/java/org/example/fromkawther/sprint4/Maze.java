@@ -5,104 +5,129 @@ import java.nio.file.*;
 import java.util.*;
 
 public class Maze {
-
     public static void main(String[] args) throws IOException, InterruptedException {
+
+        // identify the path of txt file to run the maze:
         Path mazeFile = Path.of("src/main/java/org/example/fromkawther/sprint4/maze.txt");
 
         try {
+            // Read lines:
             List<String> lines = Files.readAllLines(mazeFile);
-            ArrayList<String> mazeArray = new ArrayList<>(lines);
-            int rows = mazeArray.size();
-            int cols = mazeArray.get(0).length();
-            char[][] mazeArray2D = new char[rows][cols];
+            int rows = lines.size();
+            int cols = lines.get(0).length();
 
+            // Create a char:
+            char[][] maze = new char[rows][cols];
+
+            // change string into char:
             for (int i = 0; i < rows; i++) {
-                mazeArray2D[i] = mazeArray.get(i).toCharArray();
+                maze[i] = lines.get(i).toCharArray();
             }
 
-            if (onlyOneSymbol(mazeArray2D, mazeArray) && allBordersOnes(mazeArray2D, mazeArray)) {
-                int startRow = -1, startCol = -1;
-                for (int r = 0; r < rows; r++) {
-                    for (int c = 0; c < cols; c++) {
-                        if (mazeArray2D[r][c] == '@') {
-                            startRow = r;
-                            startCol = c;
-                        }
-                    }
-                }
-
-                if (startRow != -1) {
-                    Position start = new Position(startRow, startCol);
-                    if (symbolMovement(mazeArray2D, start, mazeArray)) {
-                        System.out.println("\nMaze Solved!");
-                    } else {
-                        System.out.println("\nNo path found.");
-                    }
-                }
+            // check the maze:
+            if (isValid(maze)) {
+                solve(maze);
             } else {
                 System.out.println("INVALID MAZE CONSTRAINTS.");
             }
+
         } catch (IOException e) {
-            System.err.println("ERROR: " + e.getMessage());
+            System.out.println("ERROR: Could not find the maze file at the specified path.");
         }
     }
 
-    public static boolean symbolMovement(char[][] mazeArray2D, Position start, ArrayList<String> mazeArray) throws InterruptedException {
-        int rows = mazeArray.size();
-        int cols = mazeArray.get(0).length();
-        boolean[][] visited = new boolean[rows][cols];
-        Stack<Position> stack = new Stack<>();
-        stack.push(start);
+    public static void solve(char[][] maze) throws InterruptedException {
+        int rows = maze.length;
+        int cols = maze[0].length;
+        int startR = -1, startC = -1;
 
-        int[][] dirs = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+        // loop:
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                if (maze[r][c] == '@') {
+                    startR = r;
+                    startC = c;
+                }
+            }
+        }
+
+        // Backtracking:
+        Stack<Position> stack = new Stack<>();
+        // track:
+        boolean[][] visited = new boolean[rows][cols];
+
+        // Push:
+        stack.push(new Position(startR, startC));
+
+        //  directions:
+        int[] dr = {1, 0, -1, 0};
+        int[] dc = {0, 1, 0, -1};
 
         while (!stack.isEmpty()) {
-            Position curr = stack.peek();
-            int r = curr.row;
-            int c = curr.col;
+            // found current position:
+            Position current = stack.peek();
+            int r = current.row;
+            int c = current.col;
 
-            if (mazeArray2D[r][c] == 'E') {
+            // Check if the current cell is the exit 'E'
+            if (maze[r][c] == 'E') {
+                draw(maze);
+                System.out.println("Maze Solved!");
                 printPath(stack);
-                return true;
+                return;
             }
 
+            // point the current cell as visited
             visited[r][c] = true;
-            char original = mazeArray2D[r][c];
-            mazeArray2D[r][c] = '@';
+            // Update
+            maze[r][c] = '@';
 
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-            for (char[] row : mazeArray2D) {
-                System.out.println(new String(row));
-            }
+            // Animation delay:
+            draw(maze);
             Thread.sleep(1000);
 
             boolean moved = false;
-            for (int[] d : dirs) {
-                int nr = r + d[0], nc = c + d[1];
-                if (nr >= 0 && nr < rows && nc >= 0 && nc < cols &&
-                        (mazeArray2D[nr][nc] == '0' || mazeArray2D[nr][nc] == 'E') && !visited[nr][nc]) {
-                    stack.push(new Position(nr, nc));
+            // Attempt to move in each of the 4 possible directions
+            for (int i = 0; i < 4; i++) {
+                int nextR = r + dr[i];
+                int nextC = c + dc[i];
+
+                // Check if the next cell is within bounds, is a path/exit, and not visited
+                if (nextR >= 0 && nextR < rows && nextC >= 0 && nextC < cols &&
+                        (maze[nextR][nextC] == '0' || maze[nextR][nextC] == 'E') &&
+                        !visited[nextR][nextC]) {
+
+                    // Move forward: push new position to stack and mark as moved
+                    stack.push(new Position(nextR, nextC));
                     moved = true;
                     break;
                 }
             }
 
+            // If no valid move was found, backtrack by removing the current cell from stack
             if (!moved) {
-                mazeArray2D[r][c] = '0';
+                // Change current cell back to '0' on the grid visually
+                maze[r][c] = '0';
                 stack.pop();
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
-                for (char[] row : mazeArray2D) {
-                    System.out.println(new String(row));
-                }
+                draw(maze);
                 Thread.sleep(1000);
             }
         }
-        return false;
+        System.out.println("No path found.");
     }
 
-    private static void printPath(Stack<Position> stack) {
+    // Function to "clear" the console using empty lines and redraw the maze
+    public static void draw(char[][] maze) {
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        for (int i = 0; i < maze.length; i++) {
+            System.out.println(new String(maze[i]));
+        }
+    }
+
+    // Function to print the sequence of coordinates that form the final solution
+    public static void printPath(Stack<Position> stack) {
         System.out.print("Path: ");
         for (int i = 0; i < stack.size(); i++) {
             Position p = stack.get(i);
@@ -112,35 +137,36 @@ public class Maze {
         System.out.println();
     }
 
-    public static boolean onlyOneSymbol(char[][] maze, ArrayList<String> list) {
-        int at = 0, e = 0;
-        for (char[] row : maze) {
-            for (char c : row) {
-                if (c == '@') at++;
-                if (c == 'E') e++;
-            }
-        }
-        return at == 1 && e == 1;
-    }
-
-    public static boolean allBordersOnes(char[][] maze, ArrayList<String> list) {
+    // Function to validate maze rules: check borders and counts of '@' and 'E'
+    public static boolean isValid(char[][] maze) {
         int rows = maze.length;
         int cols = maze[0].length;
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                if (i == 0 || i == rows - 1 || j == 0 || j == cols - 1) {
-                    char c = maze[i][j];
-                    if (c != '1' && c != '@' && c != 'E') return false;
+        int at = 0, e = 0;
+
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                if (maze[r][c] == '@') at++;
+                if (maze[r][c] == 'E') e++;
+
+                // Ensure all border cells are walls '1' unless they are '@' or 'E'
+                if (r == 0 || r == rows - 1 || c == 0 || c == cols - 1) {
+                    if (maze[r][c] != '1' && maze[r][c] != '@' && maze[r][c] != 'E') {
+                        return false;
+                    }
                 }
             }
         }
-        return true;
+        // Return true only if there is exactly one start point and one exit
+        return at == 1 && e == 1;
     }
-}
+} // <--- End of Maze class
 
+// Help class to store grid coordinates (Row and Column)
 class Position {
-    int row, col;
-    Position(int r, int c) {
+    int row;
+    int col;
+
+    public Position(int r, int c) {
         this.row = r;
         this.col = c;
     }
