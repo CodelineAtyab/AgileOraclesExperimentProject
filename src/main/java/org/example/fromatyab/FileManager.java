@@ -4,22 +4,59 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 
 public class FileManager {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         char[][] maze = loadAndGetMaze();
         int[] initialPlayerPosition = getPLayerLocation(maze);
+        ArrayList<int[]> listOfMoves = new ArrayList<>();
 
-        System.out.printf("Location of @ is (%d,%d)\n", initialPlayerPosition[0] + 1, initialPlayerPosition[1] + 1);
+        // Predefined list of moves
+        listOfMoves.add(new int[]{9, 2});
+        listOfMoves.add(new int[]{8, 2});
+        listOfMoves.add(new int[]{7, 2});
+        listOfMoves.add(new int[]{6, 2});
+        listOfMoves.add(new int[]{5, 2});
+        listOfMoves.add(new int[]{4, 2});
+        listOfMoves.add(new int[]{4, 3});
+        listOfMoves.add(new int[]{4, 4});
+
+        System.out.printf("Location of @ is (%d,%d)\n", initialPlayerPosition[0], initialPlayerPosition[1]);
 
         System.out.println("Before the change:");
         displayMaze(maze);
 
         // Processing
-        // makeMove(maze, 9, 2);
+        int[] currPlayerPosition = initialPlayerPosition;
 
-        System.out.println("After the change:");
-        displayMaze(maze);
+        for (int[] currMove: listOfMoves) {
+            Thread.sleep(1000);
+            currPlayerPosition = makeMove(maze, currPlayerPosition, currMove);
+            displayMaze(maze);
+        }
+    }
+
+    public static int[] makeMove(char[][] maze, int[] sourcePosition, int[] targetPosition) {
+        char valueOnTargetLocation = maze[targetPosition[0]-1][targetPosition[1]-1];
+
+        // Check if target location is valid
+        if (valueOnTargetLocation == '0' && valueOnTargetLocation != '-') {
+            System.out.println("Found a valid way forward");
+
+            // Mark the source location as tracked
+            maze[sourcePosition[0]-1][sourcePosition[1]-1] = '-';
+
+            // Move the @ to the target location
+            maze[targetPosition[0]-1][targetPosition[1]-1] = '@';
+
+        }
+        else {
+            System.out.println("No way forward");
+        }
+
+        return new int[]{targetPosition[0], targetPosition[1]};
+
     }
 
     public static void displayMaze(char[][] maze) {
@@ -67,8 +104,8 @@ public class FileManager {
         for (int row=0; row < maze.length; row++) {
             for (int col=0; col < maze[row].length; col++) {
                 if (maze[row][col] == '@') {
-                    location[0] = row;
-                    location[1] = col;
+                    location[0] = row + 1;
+                    location[1] = col + 1;
                 }
             }
         }
