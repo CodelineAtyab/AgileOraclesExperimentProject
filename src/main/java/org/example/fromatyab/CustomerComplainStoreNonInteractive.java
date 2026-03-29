@@ -7,10 +7,16 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 import java.util.UUID;
 
 public class CustomerComplainStoreNonInteractive {
+    /**
+     * External arguments passed from CLI
+     * @param args Two String Arguments. Example:
+     *             register "one more complain"
+     *             viewSpecific 5f98d909-2a6b-481b-b7c7-7fb41369d528
+     *             viewAll
+     */
     public static void main(String[] args) {
         // Declare
         Path complainDataFilePath = null;
