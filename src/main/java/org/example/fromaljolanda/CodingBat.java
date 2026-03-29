@@ -1,9 +1,14 @@
 package org.example.fromaljolanda;
 
+import java.util.Arrays;
+
 public class CodingBat {
     public static void main(String[] args) {
-    }
+        int[] array = new int[] {5, 5, 10, 10, 4, 1, 2, 9, 7, 8};
 
+
+    }
+}
     /**
     The parameter weekday is true if it is a weekday, and the parameter vacation is true if we are on vacation.
     We sleep in if it is not a weekday or we're on vacation. Return true if we sleep in.
@@ -151,13 +156,22 @@ public class CodingBat {
     notString("x") → "not x"
     notString("not bad") → "not bad"
 
+     public String notString(String str) {
+         if (str.length() >= 3 && str.substring(0, 3).equals("not")) {
+             return str;
+         }
+         else {
+             return "not " + str;
+         }
+     }
+     */
+// ----------------------------------------------------------------------------
+    /*
 
     */
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-// ----------------------------------------------------------------------------
 
 
 
-}
