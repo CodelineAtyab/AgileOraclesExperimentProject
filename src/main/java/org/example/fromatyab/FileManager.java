@@ -31,8 +31,10 @@ public class FileManager {
         int[] currPlayerPosition = initialPlayerPosition;
 
         for (int[] currMove: listOfMoves) {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             currPlayerPosition = makeMove(maze, currPlayerPosition, currMove);
+
+            printEmptyLines();
             displayMaze(maze);
         }
     }
@@ -110,6 +112,13 @@ public class FileManager {
             }
         }
         return location;
+    }
+
+
+    public static void printEmptyLines() {
+        for (int count=0; count<18; count++) {
+            System.out.println();
+        }
     }
 
     public static final String relativeMazePath = "./data/maze.txt";
