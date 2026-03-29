@@ -7,11 +7,34 @@ import java.nio.file.Path;
 
 public class FileManager {
     public static void main(String[] args) {
-        Path mazePath = null;
+        char[][] maze = loadAndGetMaze();
+        // int[] initialPlayerPosition = getPLayerLocation(maze);
+
+        System.out.println("Before the change:");
+        displayMaze(maze);
+
+        // Processing
+        // makeMove(maze, 9, 2);
+
+        System.out.println("After the change:");
+        displayMaze(maze);
+    }
+
+    public static void displayMaze(char[][] maze) {
+        for(int row=0; row < maze.length; row++) {
+            for(int col=0; col < maze[row].length; col++) {
+                System.out.printf("%c ", maze[row][col]);
+            }
+            System.out.println();
+        }
+    }
+
+    public static char[][] loadAndGetMaze() {
         char[][] maze;
+        Path mazePath = null;
 
         try {
-            mazePath = Path.of(FileManager.class.getResource("./data/maze.txt").toURI());
+            mazePath = Path.of(FileManager.class.getResource(relativeMazePath).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -34,12 +57,14 @@ public class FileManager {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        for(int row=0; row<10; row++) {
-            for(int col=0; col<10; col++) {
-                System.out.printf("%c ", maze[row][col]);
-            }
-            System.out.println();
-        }
+        return maze;
     }
+
+//    public static int[] getPLayerLocation(char[][] maze) {
+//        for (int row=0; row<maze.length; row++) {
+//
+//        }
+//    }
+
+    public static final String relativeMazePath = "./data/maze.txt";
 }
