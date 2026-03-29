@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-public class FileManager {
+public class MazeGameBot {
     public static void main(String[] args) throws InterruptedException {
         char[][] maze = loadAndGetMaze();
         int[] initialPlayerPosition = getPLayerLocation(maze);
@@ -75,7 +75,7 @@ public class FileManager {
         Path mazePath = null;
 
         try {
-            mazePath = Path.of(FileManager.class.getResource(relativeMazePath).toURI());
+            mazePath = Path.of(MazeGameBot.class.getResource(relativeMazePath).toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
