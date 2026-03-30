@@ -19,7 +19,7 @@ public class EscapingMaze {
         char array2d[][] = null;
 
         try {
-            mazePath = Path.of(escapethemaze.class.getResource("../data/maze.txt").toURI());
+            mazePath = Path.of(EscapingMaze.class.getResource("./data/maze.txt").toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -106,7 +106,8 @@ public class EscapingMaze {
         visited[startrow][startColumn] = true;          // mark start as visited
         track.add(new int[]{startrow, startColumn});    // record start in track log
 
-        System.out.printf("start - (%d,%d) current position\n",
+        System.out.println("start solving\n");
+        System.out.printf("maze - (%d,%d) current position\n",
                 startColumn, startrow);                 // print as (x,y) → (col,row)
 
         boolean solved = false;
@@ -142,26 +143,26 @@ public class EscapingMaze {
 
             for (int d = 0; d < 4; d++) {
 
-                int nr = startrow + dRow[d];           // neighbour row
-                int nc = startColumn + dCol[d];           // neighbour col
+                int nextRow = startrow + dRow[d];           // neighbour row
+                int nextColumn = startColumn + dCol[d];           // neighbour col
 
                 // move only if inside bounds AND open path '0' or exit 'E' AND not visited
-                if (nr >= 0 && nr < rows &&
-                        nc >= 0 && nc < cols &&
-                        !visited[nr][nc] &&
-                        (array2d[nr][nc] == '0' || array2d[nr][nc] == 'E')) {
+                if (nextRow >= 0 && nextRow < rows &&
+                        nextColumn >= 0 && nextColumn < cols &&
+                        !visited[nextRow][nextColumn] &&
+                        (array2d[nextRow][nextColumn] == '0' || array2d[nextRow][nextColumn] == 'E')) {
 
-                    visited[nr][nc] = true;              // mark neighbour as visited
-                    stack.push(new int[]{nr, nc});        // push neighbour onto stack
-                    track.add(new int[]{nr, nc});         // record this move in track log
+                    visited[nextRow][nextColumn] = true;              // mark neighbour as visited
+                    stack.push(new int[]{nextRow, nextColumn});        // push neighbour onto stack
+                    track.add(new int[]{nextRow, nextColumn});         // record this move in track log
                     foundNeighbour = true;
 
-                    System.out.printf("push (%d,%d) and update current position\n",
-                            nc, nr);                     // print as (x,y) → (col,row)
+                    System.out.printf(" (%d,%d) current position\n",
+                            nextColumn, nextRow);                     // print as (x,y)  (col,row)
                 }
             }
 
-            // if no neighbours found → dead end, backtrack via stack automatically
+            // if no neighbours found ,then dead end, backtrack via stack automatically
             if (!foundNeighbour && !stack.isEmpty()) {
                 int[] backtrack = stack.peek();          // peek at where we backtrack to
                 System.out.printf("dead end — backtracking to (%d,%d)\n",
@@ -169,6 +170,33 @@ public class EscapingMaze {
             }
             printspaces();
             delayTime(3);
+        }
+
+        // ─────────────────────────────────────────
+        // STEP 6 — PRINT RESULT
+        // ─────────────────────────────────────────
+
+        for (int[] cell : track) {
+            int r = cell[0];
+            int c = cell[1];
+            if (array2d[r][c] != '@' && array2d[r][c] != 'E') {
+                array2d[r][c] = 'X';
+            }
+        }
+
+        if (solved) {
+            System.out.println("=== Maze solved ===");
+        } else {
+            System.out.println("=== No path found ===");
+        }
+
+        printspaces();
+
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                System.out.printf("%c ", array2d[row][col]);
+            }
+            System.out.println();
         }
 
     }
