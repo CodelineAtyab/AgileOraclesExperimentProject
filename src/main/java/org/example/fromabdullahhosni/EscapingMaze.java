@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class EscapingMaze {
@@ -42,12 +43,16 @@ public class EscapingMaze {
             throw new RuntimeException(e);
         }
 
+        int rows = array2d.length;                                     // total rows of the maze
+        int cols = array2d[0].length;
+
         for (int row = 0; row < 10; row++) {
             for (int col = 0; col < 10; col++) {
                 System.out.printf("%c ", array2d[row][col]);
             }
             System.out.println();
         }
+
 
         // ─────────────────────────────────────────
         // STEP 2 — DECLARE START/END POSITION .
@@ -77,6 +82,34 @@ public class EscapingMaze {
             System.out.println("Error: maze must have '@' and 'E'");
         }
 
+        // ─────────────────────────────────────────
+        // STEP 3 — DECLARE STACK AND ARRAYLIST
+        // ─────────────────────────────────────────
+
+        // Stack  for (push/pop each open '0')
+        // each push or pop will be like {row, col}
+        Stack<int[]> stack = new Stack<>();
+        ArrayList<int[]> track = new ArrayList<>();
+
+        // visited point: true, false
+        boolean[][] visited = new boolean[rows][cols];
+
+        // directions: Left, Right, Up, Down  (in that search order)
+        int[] dRow = {0, 0, 1, -1};             // row directions
+        int[] dCol = {1, -1, 0, 0};             // col directions
+
+        // ─────────────────────────────────────────
+        // STEP 4 — PUSH START AND UPDATE CURRENT POSITION
+        // ─────────────────────────────────────────
+
+        stack.push(new int[]{startrow, startColumn});  // push '@' position onto stack
+        visited[startrow][startColumn] = true;          // mark start as visited
+        track.add(new int[]{startrow, startColumn});    // record start in track log
+
+        System.out.printf("start - (%d,%d) current position\n",
+                startColumn, startrow);                 // print as (x,y) → (col,row)
+
+        boolean solved = false;
 
     }
 }
