@@ -116,7 +116,7 @@ public class Maze {
         System.out.println("No path found.");
     }
 
-    // Function to "clear" the console using empty lines and redraw the maze
+    //  "clear" the console using empty lines and redraw:
     public static void draw(char[][] maze) {
         for (int i = 0; i < 50; i++) {
             System.out.println();
@@ -126,7 +126,7 @@ public class Maze {
         }
     }
 
-    // Function to print the sequence of coordinates that form the final solution
+    // Function to print the sequence of coordinates that form the last solution
     public static void printPath(Stack<Position> stack) {
         System.out.print("Path: ");
         for (int i = 0; i < stack.size(); i++) {
@@ -137,7 +137,7 @@ public class Maze {
         System.out.println();
     }
 
-    // Function to validate maze rules check
+    // Function to validate maze rules to check :
     public static boolean isValid(char[][] maze) {
         int rows = maze.length;
         int cols = maze[0].length;
@@ -148,7 +148,7 @@ public class Maze {
                 if (maze[r][c] == '@') at++;
                 if (maze[r][c] == 'E') e++;
 
-                // Ensure all border cells are walls '1' unless they are '@' or 'E'
+                // make sure the border cells are walls '1' unless they are '@' or 'E'
                 if (r == 0 || r == rows - 1 || c == 0 || c == cols - 1) {
                     if (maze[r][c] != '1' && maze[r][c] != '@' && maze[r][c] != 'E') {
                         return false;
@@ -161,7 +161,7 @@ public class Maze {
     }
 }
 
-// Help class to store grid coordinates (Row and Column)
+// Help class to store  (Row and Column)
 class Position {
     int row;
     int col;
