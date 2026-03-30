@@ -2,15 +2,17 @@ package org.example.fromyarab;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class EscapeMaze {
-    public static void main(String[] args){
+    public static void main(String[] args) throws URISyntaxException {
 
         // prepare data structure and File object
         ArrayList<ArrayList<String>> maze = new ArrayList<>();
-        File mazeFile = new File("C:\\Users\\Ya'Rab Al-Mamari\\Desktop\\trainning\\AgileOraclesExperimentProject\\src\\main\\java\\org\\example\\fromyarab\\mazeFile.txt");
+        File mazeFile = new File("src/main/java/org/example/fromyarab/mazeFile.txt");
 
         // try block to access the file and catch exception
         try (Scanner scan = new Scanner(mazeFile)) {
