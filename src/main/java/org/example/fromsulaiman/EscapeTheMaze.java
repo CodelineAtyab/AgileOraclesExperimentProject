@@ -29,22 +29,36 @@ public class EscapeTheMaze {
 
         try {
             String fileContent = Files.readString(mazePath);
-            String[] linesOfFile = fileContent.split("\n");
-            int lineLength = linesOfFile[0].length();
+            String[] linesOfFile = fileContent.split("\\R");
 
-            maze = new char[linesOfFile.length][lineLength];
+            int rows = linesOfFile.length;
+            int cols = linesOfFile[0].length();
 
-            for (int row = 0; row < linesOfFile.length; row++) {
-                char[] currRow = linesOfFile[row].toCharArray();
+            maze = new char[rows][cols];
 
-                for (int col = 0; col < currRow.length; col++) {
-                    maze[row][col] = currRow[col];
-                    System.out.print(maze[row][col]);
+            for (int i = 0; i < rows; i++) {
+                if (linesOfFile[i].length() != cols) {
+                    System.out.println("Error: Maze is not rectangular.");
+                    return;
                 }
-                System.out.println();
+
+                char[] rowChars = linesOfFile[i].toCharArray();
+
+                for (int j = 0; j < cols; j++) {
+                    char c = rowChars[j];
+
+                    if (c != '0' && c != '1' && c != '@' && c != 'E') {
+                        System.out.println("Error: Invalid character '" + c + "' in maze.");
+                        return;
+                    }
+
+                    maze[i][j] = c;
+                }
             }
+
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error reading file.");
+            return;
         }
 
         Point start = null;
@@ -80,6 +94,7 @@ public class EscapeTheMaze {
 
             Point current = stack.peek();
 
+            animate(maze, stack);
             if (maze[current.row][current.col] == 'E') {
                 found = true;
                 break;
@@ -115,6 +130,46 @@ public class EscapeTheMaze {
         } else {
             System.out.println("No path found");
         }
+    }
+    public static void printMaze(char[][] maze, Point current) {
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[0].length; j++) {
+                if (i == current.row && j == current.col) {
+                    System.out.print("@");
+                } else {
+                    System.out.print(maze[i][j]);
+                }
+            }
+            System.out.println();
+        }
+    }
+    public static void animate(char[][] maze, Stack<Point> stack) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+        Point current = stack.peek();
+
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[0].length; j++) {
+                if (i == current.row && j == current.col) {
+                    System.out.print("@");
+                } else {
+                    System.out.print(maze[i][j]);
+                }
+            }
+            System.out.println();
+        }
+
+        System.out.println("\nPath:");
+
+        for (Point p : stack) {
+            System.out.println("(" + (p.row + 1) + ", " + (p.col + 1) + ")");
+        }
+
+        System.out.println("\n-----------------------------\n");
     }
 }
 
