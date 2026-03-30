@@ -1,5 +1,6 @@
 package org.example.fromalharithalkindi.S3;
 
+
 public class S3PyramidOfNumbers {
     public static void main(String[] args) {
         for (int i = 1; i <= 4; i++) {

@@ -1,4 +1,4 @@
-package org.example.fromaljolanda;
+package org.example.fromaljolanda.sprint3;
 
 import java.util.Scanner;
 
