@@ -111,5 +111,94 @@ public class EscapingMaze {
 
         boolean solved = false;
 
+        // ─────────────────────────────────────────
+        // STEP 5 — SEEK A PATH (STACK LOOP)
+        // ─────────────────────────────────────────
+
+        while (!stack.isEmpty()) {                       // keep going while paths remain
+
+            int[] current = stack.pop();                 // pop top → this is our current position
+            startrow = current[0];                     // update current row
+            startColumn = current[1];                     // update current col
+
+
+
+            // check if we reached the exit 'E'
+            if (startrow == exitRow && startColumn == exitcolum) {
+                solved = true;                           // maze is solved!
+                break;
+            }
+
+            // print the maze with '@' at the current position
+            char previousChar = array2d[startrow][startColumn];   // save original char ('0')
+            array2d[startrow][startColumn] = '@';                  // place '@' at current cell
+            printMaze(array2d, rows, cols);                        // print the snapshot
+            array2d[startrow][startColumn] = previousChar;         // restore original char
+            delayTime(1);
+            printspaces();
+
+            // seek: try Left, Right, Up, Down from current position
+            boolean foundNeighbour = false;
+
+            for (int d = 0; d < 4; d++) {
+
+                int nr = startrow + dRow[d];           // neighbour row
+                int nc = startColumn + dCol[d];           // neighbour col
+
+                // move only if inside bounds AND open path '0' or exit 'E' AND not visited
+                if (nr >= 0 && nr < rows &&
+                        nc >= 0 && nc < cols &&
+                        !visited[nr][nc] &&
+                        (array2d[nr][nc] == '0' || array2d[nr][nc] == 'E')) {
+
+                    visited[nr][nc] = true;              // mark neighbour as visited
+                    stack.push(new int[]{nr, nc});        // push neighbour onto stack
+                    track.add(new int[]{nr, nc});         // record this move in track log
+                    foundNeighbour = true;
+
+                    System.out.printf("push (%d,%d) and update current position\n",
+                            nc, nr);                     // print as (x,y) → (col,row)
+                }
+            }
+
+            // if no neighbours found → dead end, backtrack via stack automatically
+            if (!foundNeighbour && !stack.isEmpty()) {
+                int[] backtrack = stack.peek();          // peek at where we backtrack to
+                System.out.printf("dead end — backtracking to (%d,%d)\n",
+                        backtrack[1], backtrack[0]);     // print backtrack position
+            }
+            printspaces();
+            delayTime(3);
+        }
+
+    }
+
+    // ────────────────────────────────────────────────────────────────
+    //  EXTERNAL FUNCTIONS — time delay - making spaces - printing maze
+    // ────────────────────────────────────────────────────────────────
+    public static void printMaze(char[][] maze, int rows, int cols) {
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                System.out.printf("%c ", maze[row][col]);
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printspaces(){
+        int spaces = 3;
+        for (int spacePrint=0; spacePrint<spaces;spacePrint++){
+            System.out.println();
+        }
+    }
+
+
+    public static void delayTime(long seconds){
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
