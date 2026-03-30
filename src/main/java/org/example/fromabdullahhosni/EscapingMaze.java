@@ -77,5 +77,6 @@ public class EscapingMaze {
             System.out.println("Error: maze must have '@' and 'E'");
         }
 
+
     }
 }
