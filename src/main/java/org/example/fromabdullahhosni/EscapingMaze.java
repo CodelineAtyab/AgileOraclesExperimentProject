@@ -1,6 +1,6 @@
 package org.example.fromabdullahhosni;
 
-import org.example.fromabdullahhosni.draft.escapethemaze;
+
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -101,7 +101,6 @@ public class EscapingMaze {
         // ─────────────────────────────────────────
         // STEP 4 — PUSH START AND UPDATE CURRENT POSITION
         // ─────────────────────────────────────────
-
         stack.push(new int[]{startrow, startColumn});  // push '@' position onto stack
         visited[startrow][startColumn] = true;          // mark start as visited
         track.add(new int[]{startrow, startColumn});    // record start in track log
@@ -115,10 +114,8 @@ public class EscapingMaze {
         // ─────────────────────────────────────────
         // STEP 5 — SEEK A PATH (STACK LOOP)
         // ─────────────────────────────────────────
-
         while (!stack.isEmpty()) {                       // keep going while paths remain
-
-            int[] current = stack.pop();                 // pop top → this is our current position
+            int[] current = stack.pop();                 // pop top this is our current position
             startrow = current[0];                     // update current row
             startColumn = current[1];                     // update current col
 
