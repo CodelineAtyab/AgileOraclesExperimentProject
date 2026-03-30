@@ -4,15 +4,22 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class SlitheringCodeChallenge {
     public static void main(String[] args){
 
         // check the arguments
-        if (args.length < 2){
-            System.out.println();
+        if (args.length != 2 || !isNumeric(args[1]) || (!args[0].equalsIgnoreCase("right") &&
+                !args[0].equalsIgnoreCase("left") && !args[0].equalsIgnoreCase("up") &&
+                !args[0].equalsIgnoreCase("down"))){
+            System.out.println("[usage] \nSlitheringCodeChallenge <direction> <step>");
+            System.out.println("<direction> : (String) right, left, up, down");
+            System.out.println("<steps>     : (Integer) positive number (default 1)");
+            return;
         }
+
         // prepare data structure and File object
         String sourceFile = "src/main/java/org/example/fromyarab/evaluation/map.txt";
         ArrayList<ArrayList<String>> map = new ArrayList<>();
@@ -108,5 +115,15 @@ public class SlitheringCodeChallenge {
 
         // the map passed all checks
         return true;
+    }
+
+    // function to check if the string is integer
+    public static boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        }
     }
 }
