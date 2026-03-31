@@ -37,11 +37,13 @@ public class SlitheringCodeChallenge {
 
         // prepare data structure and File object
         String sourceFile = "src/main/java/org/example/fromyarab/evaluation/map.txt";
+        String headPositionFile = "src/main/java/org/example/fromyarab/evaluation/headPosition.txt";
         ArrayList<ArrayList<String>> map = new ArrayList<>();
         ArrayList<int []> snake = new ArrayList<>();
         int[] head = new int[2];
         int[] tail = new int[2];
         File mapFile = new File(sourceFile);
+        File headFile = new File(headPositionFile);
 
         // try block to access the file and catch exception
         try (Scanner scan = new Scanner(mapFile)) {
@@ -56,7 +58,17 @@ public class SlitheringCodeChallenge {
                 return;
             }
 
-            // discover and save snake's position, and it's head and tail
+            // discover and save snake's position, and it's head
+            Scanner scanHead = new Scanner(headFile);
+            ArrayList<String> line = new ArrayList<>(Arrays.asList(scanHead.nextLine().split(" ")));
+            head[0] = Integer.parseInt(line.get(0));
+            head[1] = Integer.parseInt(line.get(1));
+            line = new ArrayList<>(Arrays.asList(scanHead.nextLine().split(" ")));
+            tail[0] = Integer.parseInt(line.get(0));
+            tail[1] = Integer.parseInt(line.get(1));
+            System.out.println(Arrays.toString(head));
+            System.out.println(Arrays.toString(tail));
+
             for (int i=0; i<map.size(); i++){
                 for (int j=0; j<map.get(i).size(); j++){
                     if (map.get(i).get(j).equals("o")){
@@ -69,36 +81,40 @@ public class SlitheringCodeChallenge {
             // move the snake
             if (direction.equals("right") && validateMove(snake, direction, head)){
                 for (int i=0; i<steps; i++){
-                    head = snake.get(snake.size()-1);
-                    snake.add(new int[] {head[0], head[1]+1});
+                    head[1] = head[1]+1;
+                    snake.add(new int[] {head[0], head[1]});
                     snake.remove(0);
+                    printingMap(map, snake);
                 }
                 System.out.println("Current status is: ");
                 printingMap(map, snake);
             }
             else if (direction.equals("left") && validateMove(snake, direction, head)){
                 for (int i=0; i<steps; i++){
-                    head = snake.get(snake.size()-1);
-                    snake.add(new int[] {head[0], head[1]-1});
+                    head[1] = head[1]-1;
+                    snake.add(new int[] {head[0], head[1]});
                     snake.remove(0);
+                    printingMap(map, snake);
                 }
                 System.out.println("Current status is: ");
                 printingMap(map, snake);
             }
             else if (direction.equals("up") && validateMove(snake, direction, head)){
                 for (int i=0; i<steps; i++){
-                    head = snake.get(snake.size()-1);
-                    snake.add(new int[] {head[0]-1, head[1]});
+                    head[0] = head[0]-1;
+                    snake.add(new int[] {head[0], head[1]});
                     snake.remove(0);
+                    printingMap(map, snake);
                 }
                 System.out.println("Current status is: ");
                 printingMap(map, snake);
             }
             else if (direction.equals("down") && validateMove(snake, direction, head)){
                 for (int i=0; i<steps; i++){
-                    head = snake.get(snake.size()-1);
-                    snake.add(new int[] {head[0]+1, head[1]});
+                    head[0] = head[0]+1;
+                    snake.add(new int[] {head[0], head[1]});
                     snake.remove(0);
+                    printingMap(map, snake);
                 }
                 System.out.println("Current status is: ");
                 printingMap(map, snake);
@@ -179,6 +195,23 @@ public class SlitheringCodeChallenge {
 
     // function to validate moving direction
     public static boolean validateMove (ArrayList<int []> snake, String direction, int[] head){
+
+        if (direction.equals("right") && contains(snake, new int[] {head[0], head[1]+1})){
+            System.out.println("The only open directions are left, up and down");
+            return false;
+        }
+        if (direction.equals("left") && contains(snake, new int[] {head[0], head[1]-1})){
+            System.out.println("The only open directions are right, up and down");
+            return false;
+        }
+        if (direction.equals("up") && contains(snake, new int[] {head[0]-1, head[1]})){
+            System.out.println("The only open directions are right, left and down");
+            return false;
+        }
+        if (direction.equals("down") && contains(snake, new int[] {head[0]+1, head[1]})){
+            System.out.println("The only open directions are right, left and up");
+            return false;
+        }
         return true;
     }
 
