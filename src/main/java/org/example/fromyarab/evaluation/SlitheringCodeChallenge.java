@@ -11,12 +11,27 @@ public class SlitheringCodeChallenge {
     public static void main(String[] args){
 
         // check the arguments
-        if (args.length != 2 || !isNumeric(args[1]) || (!args[0].equalsIgnoreCase("right") &&
-                !args[0].equalsIgnoreCase("left") && !args[0].equalsIgnoreCase("up") &&
-                !args[0].equalsIgnoreCase("down"))){
-            System.out.println("[usage] \nSlitheringCodeChallenge <direction> <step>");
-            System.out.println("<direction> : (String) right, left, up, down");
-            System.out.println("<steps>     : (Integer) positive number (default 1)");
+        String direction = "";
+        int steps = 1;
+        if (args.length <= 2){
+            if (args.length == 1 && (args[0].equalsIgnoreCase("right") ||
+                    args[0].equalsIgnoreCase("left") || args[0].equalsIgnoreCase("up") ||
+                    args[0].equalsIgnoreCase("down"))){
+                direction = args[0];
+            }
+            else if (args.length == 2 && isNumeric(args[1]) && Integer.parseInt(args[1]) > 0 && (args[0].equalsIgnoreCase("right") ||
+                    args[0].equalsIgnoreCase("left") || args[0].equalsIgnoreCase("up") ||
+                    args[0].equalsIgnoreCase("down"))){
+                direction = args[0];
+                steps = Integer.parseInt(args[1]);
+            }
+            else {
+                usage();
+                return;
+            }
+        }
+        else {
+            usage();
             return;
         }
 
@@ -115,6 +130,13 @@ public class SlitheringCodeChallenge {
 
         // the map passed all checks
         return true;
+    }
+
+    // function to display the usage of the program
+    public static void usage(){
+        System.out.println("[usage] \nSlitheringCodeChallenge <direction> <step>");
+        System.out.println("<direction> : (String) right, left, up, down");
+        System.out.println("<steps>     : (Integer) positive number <not 0> (default 1)");
     }
 
     // function to check if the string is integer
