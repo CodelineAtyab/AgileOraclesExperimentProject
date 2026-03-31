@@ -1,4 +1,4 @@
-package org.example.fromsaif;
+package org.example.fromsaif.SPRINT3;
 
 public class TheStarMountain {
     public static void main(String[] args) {
