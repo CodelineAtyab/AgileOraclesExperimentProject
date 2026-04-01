@@ -68,8 +68,10 @@ public class SnakeGame {
             System.out.println();
         }
 
-
-        Deque<int[]> snakeBody = new LinkedList<>();
+        //--------------------------------------------
+        // STEP 3 - Building the snake in game.
+        //--------------------------------------------
+        Deque<int[]> snakeBody = new LinkedList<>();       //Queue to represent the snake
 
 //        snakeBody.add(new int[]{7,5});
 //        snakeBody.add(new int[]{7,6});
@@ -78,15 +80,16 @@ public class SnakeGame {
         for (int row = 0 ;row<array2d.length;row++){
             for (int col = 0; col< array2d[0].length; col++){
                 if (array2d[row][col] == 'o'){
-                    snakeBody.add(new int[]{row,col});
+                    snakeBody.add(new int[]{row,col});  //Enqueing/saving all snake body in {snakebody} queue.
                 }
             }
         }
 
-        for (int[] p : snakeBody){
-            System.out.println(Arrays.toString(p) + " ");
-
-        }
+        System.out.println(" Starting Game now!");
+//        for (int[] p : snakeBody){
+//            System.out.println(Arrays.toString(p) + " ");
+//
+//        }
 
         //the move
         int[] newhead = {7,10};
@@ -99,9 +102,23 @@ public class SnakeGame {
         System.out.println("new snake");
         for (int[] p : snakeBody){
             System.out.print(Arrays.toString(p) + " ");
+            System.out.println();
         }
 
-        array2d[oldtail[0]][oldtail[1]] == "-";
+        array2d[oldtail[0]][oldtail[1]] = '-';
+
+        array2d[newhead[0]][newhead[1]] = 'o';
+
+
+        //print the board rows and columns
+        for (int row = 0 ;row<array2d.length ;row++){
+            for (int col = 0 ;col< array2d[0].length ;col++){
+                System.out.printf("%s", array2d[row][col]); //2d array is printing
+            }
+            System.out.println();
+        }
+
+
 
 
 //        // declaring snake {head , tail }position
