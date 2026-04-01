@@ -4,6 +4,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -67,30 +68,53 @@ public class SnakeGame {
             System.out.println();
         }
 
-//
-//
-//        // declaring snake position
+
+        Deque<int[]> snakeBody = new LinkedList<>();
+
+//        snakeBody.add(new int[]{7,5});
+//        snakeBody.add(new int[]{7,6});
+//        snakeBody.add(new int[]{7,8});
+//        snakeBody.add(new int[]{7,9});
+        for (int row = 0 ;row<array2d.length;row++){
+            for (int col = 0; col< array2d[0].length; col++){
+                if (array2d[row][col] == 'o'){
+                    snakeBody.add(new int[]{row,col});
+                }
+            }
+        }
+
+        for (int[] p : snakeBody){
+            System.out.println(Arrays.toString(p) + " ");
+
+        }
+
+        //the move
+        int[] newhead = {7,10};
+        snakeBody.add(newhead);
+        System.out.printf("moved the snake ont the position {%s}\n", newhead);
+
+        int[] oldtail = snakeBody.poll();
+        System.out.printf("removed the snake tail {%s}", Arrays.toString(oldtail));
+
+        System.out.println("new snake");
+        for (int[] p : snakeBody){
+            System.out.print(Arrays.toString(p) + " ");
+        }
+
+        array2d[oldtail[0]][oldtail[1]] == "-";
+
+
+//        // declaring snake {head , tail }position
 //        // position is having {x,y}
 //        int rowPosition = 7; //row is presenting x.
 //        int[] colPosition = {5,6,7,8,9}; //col is presenting y.
 //
-//
-//
 //        Queue<int[]> queue = new LinkedList<>();
-//
-////        for (int col: colPosition) {
-////            queue.add(new int[]{rowPosition, col});
-////            System.out.println(queue);
-////        }
-//
-//        for (int col: colPosition){
-//            queue.add(new int[]{rowPosition,col});
-//        }
-//        for (int[] position: queue){
-//            System.out.println(Arrays.toString(position));
-//        }
-//        System.out.println();
-////        array2d
-//        //moving right
-    }
+
+//        for (int col: colPosition) {
+//            queue.add(new int[]{rowPosition, col});
+//            System.out.println(queue);
+        }
+
+
 }
