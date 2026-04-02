@@ -91,12 +91,42 @@ public class SnakeGame {
 //
 //        }
 
+        //--------------------------------------------
+        // STEP 4 - snake movement direction .
+        //--------------------------------------------
+        int rowDirection = 0;
+        int colDirection = 0;       //declaring the direction delta {up,down, left ,right )
+        String direction = "left";
+//                args[0].toLowerCase();
+
+        //direction delta
+        if (direction.equals("up")){
+            rowDirection = -1;      //go up of the col
+        }
+        if (direction.equals("down")){
+            rowDirection = 1;       //go DOWN int the row
+        }
+        if (direction.equals("left")){
+            colDirection = -1;      //go LEFT of the col
+        }
+        if (direction.equals("right")){
+            colDirection = 1;       //go right of the col
+        }
+
         //the move
-        int[] newhead = {7,10};
+        int[] currentHead = snakeBody.peekLast();   //head element on queue. {0,1} == {row, col}
+        System.out.println("here is the peek" + Arrays.toString(currentHead));
+        int movementRow = currentHead[0] + rowDirection;
+        int movementCol = currentHead[1] + colDirection;
+
+
+        int[] newhead = new int[]{movementRow,movementCol};
         snakeBody.add(newhead);
+        array2d[newhead[0]][newhead[1]] = 'o';
         System.out.printf("moved the snake ont the position {%s}\n", newhead);
 
         int[] oldtail = snakeBody.poll();
+        array2d[oldtail[0]][oldtail[1]] = '-';
         System.out.printf("removed the snake tail {%s}", Arrays.toString(oldtail));
 
         System.out.println("new snake");
@@ -105,9 +135,9 @@ public class SnakeGame {
             System.out.println();
         }
 
-        array2d[oldtail[0]][oldtail[1]] = '-';
-
-        array2d[newhead[0]][newhead[1]] = 'o';
+//        array2d[oldtail[0]][oldtail[1]] = '-';
+//
+//        array2d[newhead[0]][newhead[1]] = 'o';
 
 
         //print the board rows and columns
