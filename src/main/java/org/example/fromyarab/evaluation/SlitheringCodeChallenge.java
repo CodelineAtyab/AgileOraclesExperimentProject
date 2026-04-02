@@ -84,28 +84,31 @@ public class SlitheringCodeChallenge {
             if (validateMove(snake, direction, head, steps)){
                 if (direction.equals("right")){
                     for (int i=0; i<steps; i++){
-                        head = new int[] {head[0], head[1]+1};
+                        head = new int[] {head[0], (head[1]+1) % map.get(0).size()};
                         snake.add(new int[] {head[0], head[1]});
                         snake.remove(0);
                     }
                 }
                 else if (direction.equals("left")){
                     for (int i=0; i<steps; i++){
-                        head = new int[] {head[0], head[1]-1};
+                        head = new int[] {head[0], Math.abs(head[1]-1) % map.get(0).size()};
                         snake.add(new int[] {head[0], head[1]});
                         snake.remove(0);
+                        System.out.println(Arrays.toString(head));
                     }
                 }
                 else if (direction.equals("up")){
                     for (int i=0; i<steps; i++){
-                        head = new int[] {head[0]-1, head[1]};
+                        head = new int[] {((head[0]-1) % map.size() + map.size()) % map.size(), head[1]};
                         snake.add(new int[] {head[0], head[1]});
                         snake.remove(0);
+                        System.out.println(Arrays.toString(head));
+
                     }
                 }
                 else if (direction.equals("down")){
                     for (int i=0; i<steps; i++){
-                        head = new int[] {head[0]+1, head[1]};
+                        head = new int[] {((head[0]+1) % map.size() + map.size()) % map.size(), head[1]};
                         snake.add(new int[] {head[0], head[1]});
                         snake.remove(0);
                     }
@@ -208,9 +211,9 @@ public class SlitheringCodeChallenge {
         boolean left  = !contains(snake, new int[] {head[0], head[1]-1});
         boolean up    = !contains(snake, new int[] {head[0]-1, head[1]});
         boolean down  = !contains(snake, new int[] {head[0]+1, head[1]});
-        String vMessage = "The only open directions are: ";
+        String vMessage = "You hit the snake body..\nThe only open directions are: ";
         if (!right && !left && !up && !down){
-            return "You are stuck!!";
+            return "You are stuck!!\nType reset to reset the game..";
         }
         if (right && !direction.equals("right")){
             vMessage = vMessage + "(right) ";
@@ -224,7 +227,6 @@ public class SlitheringCodeChallenge {
         if (down && !direction.equals("down")){
             vMessage = vMessage + "(down) ";
         }
-        vMessage = vMessage + ".";
         return vMessage;
     }
 
