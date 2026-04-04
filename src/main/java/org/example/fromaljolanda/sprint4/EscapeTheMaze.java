@@ -99,7 +99,6 @@ public class EscapeTheMaze {
         }
     }
 
-
 // -----------------------------------------------------------------------------------------
     // ================= Validate Maze =================
     static boolean validateMaze(char[][] maze) {
@@ -129,6 +128,7 @@ public class EscapeTheMaze {
         }
         return start == 1 && end == 1;
     }
+
 // -----------------------------------------------------------------------------------------
     // ================= Print Maze =================
     static void printMaze(char[][] maze, Stack<int[]> stack) {
@@ -151,6 +151,7 @@ public class EscapeTheMaze {
         System.out.println();
         System.out.println("----------");
     }
+
 // -----------------------------------------------------------------------------------------
     // ================= Print Path =================
     static void printPath(Stack<int[]> stack) {
