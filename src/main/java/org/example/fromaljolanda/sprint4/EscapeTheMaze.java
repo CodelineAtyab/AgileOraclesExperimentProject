@@ -1,6 +1,5 @@
 package org.example.fromaljolanda.sprint4;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,7 +10,6 @@ public class EscapeTheMaze {
 
     public static void main(String[] args) {
         try {
-
             // Load maze
             String path = "src/main/java/org/example/fromaljolanda/sprint4/maze.txt";
             List<String> lines = Files.readAllLines(new File(path).toPath());
