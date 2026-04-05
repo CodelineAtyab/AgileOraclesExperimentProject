@@ -37,16 +37,19 @@ public class Maze {
 public static void solve(char[][] maze) throws InterruptedException {
         int rows = maze.length;
         int cols = maze[0].length;
+
+        // solve() :
         int startR = -1, startC = -1;
 
-// loop:
+//  for loop:
  for (int r = 0; r < rows; r++) {
- for (int c = 0; c < cols; c++) {
-  if (maze[r][c] == '@') {
-    startR = r;
-     startC = c;
-   }
-   }}
+     for (int c = 0; c < cols; c++) {
+         if (maze[r][c] == '@') {
+             startR = r;
+             startC = c;
+         }
+     }
+ }
 
 
  // Backtracking:
@@ -57,7 +60,7 @@ public static void solve(char[][] maze) throws InterruptedException {
  // Push:
         stack.push(new Position(startR, startC));
 
- //  directions:
+ //  directions (up ,down ,right , left):
         int[] dr = {1, 0, -1, 0};
         int[] dc = {0, 1, 0, -1};
 
@@ -67,7 +70,8 @@ public static void solve(char[][] maze) throws InterruptedException {
             int r = current.row;
             int c = current.col;
 
- // Check if the current cell is the exit 'E'
+ // Check if the current cell is the exit 'E' :
+
             if (maze[r][c] == 'E') {
                 draw(maze);
                 System.out.println("Maze Solved!");
@@ -75,7 +79,7 @@ public static void solve(char[][] maze) throws InterruptedException {
                 return;
             }
 
- // point the current cell as visited
+ // point the current cell as visited :
             visited[r][c] = true;
             // Update
             maze[r][c] = '@';
@@ -136,7 +140,7 @@ public static void solve(char[][] maze) throws InterruptedException {
   System.out.println();
     }
 
-   // Function to validate maze rules to check :
+   // Function to validate maze rules to check  it (num of row - num pf clo:
    public static boolean isValid(char[][] maze) {
         int rows = maze.length;
         int cols = maze[0].length;
@@ -144,8 +148,8 @@ public static void solve(char[][] maze) throws InterruptedException {
 
  for (int r = 0; r < rows; r++) {
  for (int c = 0; c < cols; c++) {
-  if (maze[r][c] == '@') at++;
- if (maze[r][c] == 'E') e++;
+  if (maze[r][c] == '@') at++; // count '@' (at start point )
+ if (maze[r][c] == 'E') e++;// count 'E' (end point )
 
  // make sure the border cells are walls '1' unless they are '@' or 'E'
  if (r == 0 || r == rows - 1 || c == 0 || c == cols - 1) {
