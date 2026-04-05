@@ -51,14 +51,11 @@ public class MazeGameBot {
 
             // Move the @ to the target location
             maze[targetPosition[0]-1][targetPosition[1]-1] = '@';
-
         }
         else {
             System.out.println("No way forward");
         }
-
         return new int[]{targetPosition[0], targetPosition[1]};
-
     }
 
     public static void displayMaze(char[][] maze) {
@@ -113,7 +110,6 @@ public class MazeGameBot {
         }
         return location;
     }
-
 
     public static void printEmptyLines() {
         for (int count=0; count<18; count++) {
