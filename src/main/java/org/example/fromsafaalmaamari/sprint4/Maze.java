@@ -137,7 +137,7 @@ public class Maze {
                 }
             }
         }
-        System.out.println("No path found!");
+        System.out.println("No path found....!");
         return false;
     }
     public static void printMaze(char[][] maze) {
@@ -146,6 +146,7 @@ public class Maze {
             for (int col = 0; col < maze[row].length; col++) {
                 System.out.print(maze[row][col] + " ");
             }
+            // print:
             System.out.println();
         }
     }
