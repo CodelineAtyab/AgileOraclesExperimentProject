@@ -1,8 +1,5 @@
 package org.example.fromkawther.erp;
-
 import java.util.Scanner;
-
-
 public class List2 {
 
     public static void main(String[] args) {
@@ -22,12 +19,23 @@ public class List2 {
         complaintID[count] = sc.nextInt();
         sc.nextLine();
 
+
         System.out.print("Enter Complaint Description: ");
         description[count] = sc.nextLine();
 
 
         System.out.print("Enter Priority (LOW / MEDIUM (default) / HIGH): ");
         String priorityInput = sc.nextLine();
+
+
+
+        System.out.print("Enter Complaint Description: ");
+        description[count] = sc.nextLine();
+
+
+        System.out.print("Enter Priority (LOW / MEDIUM (default) / HIGH): ");
+        String priorityInput = sc.nextLine();
+
 
         if (priorityInput.equals("")) {
             priority[count] = "MEDIUM";
@@ -49,3 +57,5 @@ public class List2 {
 
     }
 }
+
+
