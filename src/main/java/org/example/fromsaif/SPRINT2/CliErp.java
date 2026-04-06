@@ -1,4 +1,4 @@
-package org.example.fromsaif;
+package org.example.fromsaif.SPRINT2;
 
 import java.util.ArrayList;
 import java.util.Scanner;
