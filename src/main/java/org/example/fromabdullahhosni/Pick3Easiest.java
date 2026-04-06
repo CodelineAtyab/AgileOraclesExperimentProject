@@ -14,7 +14,7 @@ public class Pick3Easiest {
         String sorting;
         args[1] = new int[]{}
     //        int[] proiortyComplains = parseInt(args[1]);
-        dataset.add(proiortyComplains);
+        dataset.add();
 
 
         //Print: before sorting
