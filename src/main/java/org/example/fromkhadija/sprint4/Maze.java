@@ -63,14 +63,11 @@ public class Maze {
                 return;
             }
 
-            // Mark as visited ('.') unless it's the start
-            if (maze[currrow][currcol] != '@'){
-
                 maze[currrow][currcol] = '.'; /* when the player stand on new point --> mark  as (.) only if it is NOT (@) starting / entering point
                     to Avoid infinite loop */
                 displayMaze(maze, currrow, currcol); // display  and give some to see what happened
                 Thread.sleep(1000);
-            }
+
 
             int[] nextMove = findNextMove(maze, currrow, currcol); //search about free and not visited point
             if (nextMove != null) {
