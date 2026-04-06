@@ -7,13 +7,34 @@ import java.util.ArrayList;
 public class Pick3Easiest {
     public static void main(String[] args) {
 
+        if (args.length == 0) {
+            System.out.println("Usage: java InternQueueSorter <comma-separated-numbers>");
+        }
+
+        //Declaring
         ArrayList<Integer> dataset =  new ArrayList<Integer>();
+        String method;
+        int[] numbers = null;
+
+        try {
+            //taking input
+
+            //split the complains List {6,8,10,3,43,2}
+            String[] split = args[1].split(",");
+            //convert them to int
+            numbers = new int[split.length];
+            for (int i = 0 ;i < split.length; i++ ){
+                numbers[i] = Integer.parseInt(split[i].trim());
+            }
 
 
+        } catch (NumberFormatException e){
+            System.out.println("Error: Please provide only integers separated by commas.");
+        }
 
-        String sorting;
-        args[1] = new int[]{}
+
     //        int[] proiortyComplains = parseInt(args[1]);
+
         dataset.add();
 
 
