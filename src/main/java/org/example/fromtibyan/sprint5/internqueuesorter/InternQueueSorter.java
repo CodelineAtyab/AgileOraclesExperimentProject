@@ -3,33 +3,43 @@ package org.example.fromtibyan.sprint5.internqueuesorter;
 import java.util.Objects;
 
 public class InternQueueSorter {
-    public static void main (String[] args){
+    public static void main(String[] args) {
 
         //args[0] = sorting method
         //args[1] = data to be sorted
+        int[] priorities;
 
-        String[] comma = args[1].split(","); // remove comma separated values
-        int[] priorities = new int[comma.length];
-        for (int i = 0; i < comma.length; i++) {
-            priorities[i] = Integer.parseInt(comma[i].trim()); // convert to array of integers
+        if (args[0].contains(",")){
+            String[] comma = args[0].split(","); // remove comma separated values
+            priorities = new int[comma.length];
+            for (int i = 0; i < comma.length; i++) {
+                priorities[i] = Integer.parseInt(comma[i].trim()); // convert to array of integers
+            }
+            selectionSort(priorities); // making selection sort the default
+        }else {
+            String[] comma = args[1].split(","); // remove comma separated values
+            priorities = new int[comma.length];
+            for (int i = 0; i < comma.length; i++) {
+                priorities[i] = Integer.parseInt(comma[i].trim()); // convert to array of integers
+            }
         }
 
         // making sure user inputs 3 or more priority values
-        if (priorities.length < 3){
+        if (priorities.length < 3) {
             System.out.println("there must be at least 3 priorities");
-        }else {
-            if (Objects.equals(args[0], "--algorithm=selection") || Objects.equals(args[0], "--algorithm") ){
+        } else {
+            if (Objects.equals(args[0], "--algorithm=selection")) {
                 selectionSort(priorities);
             } else if (Objects.equals(args[0], "--algorithm=bubble")) {
                 bubbleSort(priorities);
-            }else{
+            } else if (!args[0].contains(",")) {
                 System.out.println("Usage: java InternQueueSorter [--algorithm=bubble|selection] <priority1,priority2,...,priorityN>");
             }
         }
     }
 
     // sorting priorities by comparing a variable with all elements then swapping min value to be at beginning of array
-    public static void selectionSort(int[] priorities){
+    public static void selectionSort(int[] priorities) {
         for (int currentIteration = 0; currentIteration < priorities.length; currentIteration++) {
             int minPriority = currentIteration; // finding min value
             for (int i = currentIteration; i < priorities.length; i++) {
@@ -44,13 +54,14 @@ public class InternQueueSorter {
         }
         System.out.print("Intern queue: ");
         // print first 3 min priorities
-        for (int i = 0 ; i<3;i++){
-            System.out.print( priorities[i]+ " ");
+        for (int i = 0; i < 3; i++) {
+            System.out.print(priorities[i] + " ");
         }
     }
+
     // sorting priorities by comparing a variable with adjacent element then swapping min value
-    public static void bubbleSort(int[] priorities){
-        for (int i=0; i<priorities.length; i++) {
+    public static void bubbleSort(int[] priorities) {
+        for (int i = 0; i < priorities.length; i++) {
             for (int j = 0; j < priorities.length - 1; j++) {
                 if (priorities[j] > priorities[j + 1]) {
                     // must compare variable with adjacent element
@@ -62,8 +73,8 @@ public class InternQueueSorter {
         }
         System.out.print("Intern queue: ");
         // print first 3 min priorities
-        for (int i = 0 ; i<3;i++){
-            System.out.print( priorities[i]+ " ");
+        for (int i = 0; i < 3; i++) {
+            System.out.print(priorities[i] + " ");
         }
     }
 }
