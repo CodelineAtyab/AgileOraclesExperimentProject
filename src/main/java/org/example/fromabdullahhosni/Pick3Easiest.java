@@ -48,7 +48,18 @@ public class Pick3Easiest {
 //            System.out.printf("%\n", dataset.get(print));
 //        }
 
-        SelectionSort(dataset);
+        // process: choose either bubblesorting or selection sorting
+        if (method.equals("selectionsort"))
+        {
+            SelectionSort(dataset);
+        }
+        else if (method.equals("bubblesort"))
+        {
+            BubbleSort(dataset);
+        }
+
+
+
         //Print: after sorting
         System.out.printf("After %s: %s\n",method,dataset);
         //print 3 lowest priority
@@ -86,9 +97,10 @@ public class Pick3Easiest {
         int size;
         size = dataset.size();
 
-        for (int i = 0 ; i < size;i++ ) {
+        for (int i = 0 ; i < size - 1 ;i++ ) {
             int minimum = i;
-            for (int j = i + 1 ; j < size; j++) {
+            for (int j = i + 1 ; j < size; j++)
+            {
                 //sorting condition: find the minimum
                 if (dataset.get(j) < dataset.get(minimum)) {
                     minimum = j;
@@ -99,6 +111,25 @@ public class Pick3Easiest {
             int temp = dataset.get(minimum);
             dataset.set(minimum, dataset.get(i));
             dataset.set(i, temp);
+        }
+    }
+
+    public static void BubbleSort(ArrayList<Integer> dataset){
+
+        int size;
+        size = dataset.size();
+
+        for (int i = 1 ; i < size ;i++ ) {
+            for (int j = 0 ; j <= ( size - i -1); j++) {
+                //sorting condition: find the minimum
+                if (dataset.get(j) < dataset.get(j+1))
+                {
+                    //Swapping elements: after finding the minimum now implement it on arraylist
+                    int temp = dataset.get(j);
+                    dataset.set(j, dataset.get(j+1));
+                    dataset.set(j+1, temp);
+                }
+            }
         }
 
     }
