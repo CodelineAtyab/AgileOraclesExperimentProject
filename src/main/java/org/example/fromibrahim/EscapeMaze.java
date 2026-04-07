@@ -24,7 +24,7 @@ public class EscapeMaze {
         //  Part.1 Read File & Validation
 
         //  Validate CLI Argument
-        String filePath = "/Users/majedalra7bi/Desktop/AgileOraclesExperimentProject/src/main/java/org/example/fromibrahim/data/maze";
+        String filePath = "src/main/java/org/example/fromibrahim/data/maze";
 
         // Read the File Line By Line
         ArrayList<String> lines = new ArrayList<>();
@@ -167,7 +167,7 @@ public class EscapeMaze {
             }
 
             //  Print maze
-            System.out.print(" ");
+            System.out.println();
 
             for (int row = 0; row < rows; row++) {
                 for (int col = 0; col < columns; col++) {
