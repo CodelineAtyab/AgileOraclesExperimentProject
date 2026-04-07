@@ -1,0 +1,23 @@
+package org.example.fromtibyan.sprint5.internqueuesorteroop;
+
+import static org.example.fromtibyan.sprint5.internqueuesorteroop.InternQueueSorter.priorities;
+
+public class BubbleSort {
+    public static void sort(){
+        for (int i = 0; i < priorities.length; i++) {
+            for (int j = 0; j < priorities.length - 1; j++) {
+                if (priorities[j] > priorities[j + 1]) {
+                    // must compare variable with adjacent element
+                    int temp = priorities[j];// store min value
+                    priorities[j] = priorities[j + 1];// swap both values
+                    priorities[j + 1] = temp;// store in temporary variable for comparison
+                }
+            }
+        }
+        System.out.print("Intern queue: ");
+        // print first 3 min priorities
+        for (int i = 0; i < 3; i++) {
+            System.out.print(priorities[i] + " ");
+        }
+    }
+}
