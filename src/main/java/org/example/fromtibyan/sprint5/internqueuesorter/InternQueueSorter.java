@@ -9,31 +9,36 @@ public class InternQueueSorter {
         //args[1] = data to be sorted
         int[] priorities;
 
-        if (args[0].contains(",")){
-            String[] comma = args[0].split(","); // remove comma separated values
-            priorities = new int[comma.length];
-            for (int i = 0; i < comma.length; i++) {
-                priorities[i] = Integer.parseInt(comma[i].trim()); // convert to array of integers
-            }
-            selectionSort(priorities); // making selection sort the default
+        // so it doesnt throw an exception when args are empty
+        if (args.length < 1){
+            System.out.println("arguments cannot be empty");
         }else {
-            String[] comma = args[1].split(","); // remove comma separated values
-            priorities = new int[comma.length];
-            for (int i = 0; i < comma.length; i++) {
-                priorities[i] = Integer.parseInt(comma[i].trim()); // convert to array of integers
+            if (args[0].contains(",")){
+                String[] comma = args[0].split(","); // remove comma separated values
+                priorities = new int[comma.length];
+                for (int i = 0; i < comma.length; i++) {
+                    priorities[i] = Integer.parseInt(comma[i].trim()); // convert to array of integers
+                }
+                selectionSort(priorities); // making selection sort the default
+            }else {
+                String[] comma = args[1].split(","); // remove comma separated values
+                priorities = new int[comma.length];
+                for (int i = 0; i < comma.length; i++) {
+                    priorities[i] = Integer.parseInt(comma[i].trim()); // convert to array of integers
+                }
             }
-        }
 
-        // making sure user inputs 3 or more priority values
-        if (priorities.length < 3) {
-            System.out.println("there must be at least 3 priorities");
-        } else {
-            if (Objects.equals(args[0], "--algorithm=selection")) {
-                selectionSort(priorities);
-            } else if (Objects.equals(args[0], "--algorithm=bubble")) {
-                bubbleSort(priorities);
-            } else if (!args[0].contains(",")) {
-                System.out.println("Usage: java InternQueueSorter [--algorithm=bubble|selection] <priority1,priority2,...,priorityN>");
+            // making sure user inputs 3 or more priority values
+            if (priorities.length < 3) {
+                System.out.println("there must be at least 3 priorities");
+            } else {
+                if (Objects.equals(args[0], "--algorithm=selection")) {
+                    selectionSort(priorities);
+                } else if (Objects.equals(args[0], "--algorithm=bubble")) {
+                    bubbleSort(priorities);
+                } else if (!args[0].contains(",")) {
+                    System.out.println("Usage: java InternQueueSorter [--algorithm=bubble|selection] <priority1,priority2,...,priorityN>");
+                }
             }
         }
     }
