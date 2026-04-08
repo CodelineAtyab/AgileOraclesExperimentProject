@@ -1,9 +1,9 @@
-package org.example.fromsafa;
+package org.example.fromsafa.sprint4;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Stack;
 
-public class MazeGameBot {
+public class MazeGame {
     public static void main(String[] args) throws Exception{
 
         if (args.length == 0){
