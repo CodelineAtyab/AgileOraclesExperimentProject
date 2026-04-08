@@ -29,7 +29,7 @@ public class InternQueueSorter {
 
         // At least 3 numbers
         if (parts.length < 3) {
-            System.out.println("Need at least 3 numbers!");
+            System.out.println("Error.. Need at least 3 numbers!");
             return;
         }
 
@@ -43,14 +43,19 @@ public class InternQueueSorter {
             }
         }
         catch (Exception e) {
-            System.out.println("Invalid input!");
+            System.out.println("Error.. Invalid input!");
             return;
         }
 
+        System.out.println("Original List: " + Arrays.toString(parts));
+
         // Choose sorting algorithm
         if (useBubble) {
+            System.out.print("Sorted List Using Bubble Sort: ");
             bubbleSort(arr);
-        } else {
+        }
+        else {
+            System.out.print("Sorted List Using Selection Sort: ");
             selectionSort(arr);
         }
 
@@ -61,6 +66,21 @@ public class InternQueueSorter {
         System.out.println("Intern queue: " + arr[0] + ", " + arr[1] + ", " + arr[2]);
 
 
+    }
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    // Bubble Sort
+    public static void bubbleSort(int[] array) {
+        int number_of_element = array.length;
+        for (int i = 0; i < number_of_element - 1; i++) {
+            for (int j = 0; j < number_of_element - i - 1; j++) {
+                // Swap array[j] and array[j+1]
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
     }
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     // Selection Sort
@@ -81,22 +101,6 @@ public class InternQueueSorter {
             int temp = array[min_index];
             array[min_index] = array[i];
             array[i] = temp;
-        }
-    }
-
-// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    // Bubble Sort
-    public static void bubbleSort(int[] array) {
-        int number_of_element = array.length;
-        for (int i = 0; i < number_of_element - 1; i++) {
-            for (int j = 0; j < number_of_element - i - 1; j++) {
-                // Swap array[j] and array[j+1]
-                if (array[j] > array[j + 1]) {
-                    int temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
-                }
-            }
         }
     }
 }
