@@ -1,14 +1,17 @@
 package org.example.fromtibyan.sprint5.escapemazeoop;
 
-import org.example.fromtibyan.sprint3.Position;
-
 import java.util.ArrayList;
 import java.util.Stack;
 
+import static org.example.fromtibyan.sprint5.escapemazeoop.MazeLoader.*;
+
 public class MazeSolver {
+    static int r;
+    static int c;
     public static Boolean SymbolMovement(ArrayList<String> mazeArray){
         boolean[][] visitedCell = new boolean[mazeArray.size()][mazeArray.get(0).length()];
-        java.util.Stack<org.example.fromtibyan.sprint3.Position> mazeStack = new Stack<>();
+        Position start = new Position(startRow,startColumn);
+        Stack<Position> mazeStack = new Stack<>();
         mazeStack.push(start);
 
         int endRow = 0;
@@ -23,9 +26,9 @@ public class MazeSolver {
         }
 
         while (!mazeStack.empty()) {
-            org.example.fromtibyan.sprint3.Position current = mazeStack.pop(); // pop top variable for current position
-            int r = current.row;
-            int c = current.col;
+            Position current = mazeStack.pop(); // pop top variable for current position
+            r = current.row;
+            c = current.col;
 
 
             // move @ between the border & wall
@@ -33,24 +36,23 @@ public class MazeSolver {
                 continue;
             }
             visitedCell[r][c] = true; // to not visit again
-            mazeArray2D[r][c] = '@';
-            for (char[] maze : mazeArray2D) {
-                System.out.println(maze);
-            }
 
-            for (int space = 0; space < 4; space++) {
-                System.out.println();
-            }
 
-            mazeStack.push(new org.example.fromtibyan.sprint3.Position(r + 1, c));//down
-            mazeStack.push(new org.example.fromtibyan.sprint3.Position(r - 1, c));//up
-            mazeStack.push(new org.example.fromtibyan.sprint3.Position(r, c + 1));//right
+            MazeRenderer.printMaze();
+
+
+
+            mazeStack.push(new Position(r + 1, c));//down
+            mazeStack.push(new Position(r - 1, c));//up
+            mazeStack.push(new Position(r, c + 1));//right
             mazeStack.push(new Position(r, c - 1));//left
-            mazeArray2D[r][c] = '0';
+
+
+            MazeRenderer.mazeDelay();
+
             if (r == endRow && c == endColumn) {
                 return true;
             }
-            Thread.sleep(1000);
         }
         return false;
     }

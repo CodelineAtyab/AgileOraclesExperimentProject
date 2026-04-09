@@ -6,19 +6,21 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class MazeLoader {
+static int startRow;
+static int startColumn;
+static char[][] mazeArray2D;
 
     public static Boolean readMaze() {
         Path mazeFile = Path.of("src/main/java/org/example/fromtibyan/sprint5/escapemazeoop/maze.txt");
         try {
             ArrayList<String> mazeArray = (ArrayList<String>) Files.readAllLines(mazeFile);
             // convert to 2d array
-            char[][] mazeArray2D = new char[mazeArray.size()][mazeArray.get(0).length()];
+            mazeArray2D = new char[mazeArray.size()][mazeArray.get(0).length()];
             for (int i = 0; i < mazeArray.size(); i++) {
                 mazeArray2D[i] = mazeArray.get(i).toCharArray();
             }
             if (onlyOneSymbol(mazeArray2D, mazeArray) && allBordersOnes(mazeArray2D, mazeArray)) {
-                int startRow = 0;
-                int startColumn = 0;
+
                 for (int row = 0; row < mazeArray.size(); row++) {
                     for (int column = 0; column < mazeArray.get(0).length(); column++) {
                         if (mazeArray2D[row][column] == '@') {
@@ -27,7 +29,6 @@ public class MazeLoader {
                         }
                     }
                 }
-                Position start = new Position(startRow,startColumn);
 
                 if (MazeSolver.SymbolMovement(mazeArray)) {
                     System.out.println("Maze Solved!");
@@ -43,6 +44,8 @@ public class MazeLoader {
         } catch (IOException e) {
             System.err.println("Error reading the maze file: " + e.getMessage()); // misreading the file
         }
+        return false;
+
     }
 
     public static boolean onlyOneSymbol(char[][] mazeArray2D, ArrayList<String> mazeArray) {
