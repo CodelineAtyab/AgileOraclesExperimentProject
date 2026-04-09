@@ -17,7 +17,7 @@ public class SortAndServe {
 //        Arrays.stream(sortQue).forEach((currentNum) ->{
 //            System.out.printf("%d",currentNum);
 //        });
-
+        System.out.println("the numbers in ascending order");
         for (int firstI =0; firstI < sortQue.length;firstI++){
             int lowestPriorIty = firstI;
             for (int i= firstI; i < sortQue.length;i++){
@@ -30,13 +30,14 @@ public class SortAndServe {
                 int temp = sortQue[firstI];
                 sortQue[firstI] = sortQue[lowestPriorIty];
                 sortQue[lowestPriorIty] = temp;
+
                 Arrays.stream(sortQue).forEach((currentNum) -> {
                     System.out.printf("%d ", currentNum);
                 });
-                System.out.println();}
-
-
+                System.out.println();
+            }
         }
+        System.out.println("The three lowest priority");
         for (int i=0; i<3; i++) {
             System.out.printf("%d ", sortQue[i]);
         }
