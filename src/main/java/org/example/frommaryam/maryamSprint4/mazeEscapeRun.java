@@ -25,6 +25,26 @@ public class mazeEscapeRun {
         int rows = maze.length;
         int cols = maze[0].length;
 
+        //check border
+        boolean valid = true;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                char cell = maze[i][j];
+                if (i == 0 || i == rows - 1 || j == 0 || j == cols - 1) {
+                    if (cell != '1' && cell != '@' && cell != 'E') {
+                        valid = false;
+                    }
+                }
+            }
+        }
+
+        if (!valid) {
+            System.out.println("invalid maze");
+            return;
+        }
+
+
         //find start position
         int startRow = 0, startColm = 0;
         boolean found = false;
