@@ -97,8 +97,6 @@ public class MuscatWeatherApp {
         double temperature = currentWeather.get("temperature").getAsDouble();
         double windSpeed = currentWeather.get("windspeed").getAsDouble();
         String time = currentWeather.get("time").getAsString();
-
-
         
         // Step 4: Display the parsed data in a user-friendly way
         System.out.println("Formatted Weather Information:");
