@@ -21,7 +21,7 @@ jobs:
       - name: Configure Git Identity
         run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "MentorMind Code Review Agent"
+          git config --global user.name "github-actions[bot]"
 
       - name: Review Pull Request with OpenCode
         uses: anomalyco/opencode/github@latest
