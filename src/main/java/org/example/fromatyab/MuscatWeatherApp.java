@@ -84,9 +84,9 @@ public class MuscatWeatherApp {
      */
     private static void displayWeather(String weatherJson) {
         // Step 1: Print the raw JSON response
-            System.out.println("Raw JSON Response:");
-            System.out.println(weatherJson);
-            System.out.println("\n" + "=".repeat(60) + "\n");
+        System.out.println("Raw JSON Response:");
+        System.out.println(weatherJson);
+        System.out.println("\n" + "=".repeat(60) + "\n");
             
         // Step 2: Parse the JSON using Gson (convert text to Java object)
         Gson gson = new Gson();
@@ -99,8 +99,6 @@ public class MuscatWeatherApp {
         String time = currentWeather.get("time").getAsString();
 
 
-
-
         
         // Step 4: Display the parsed data in a user-friendly way
         System.out.println("Formatted Weather Information:");
@@ -111,5 +109,8 @@ public class MuscatWeatherApp {
         System.out.println("\n" + "=".repeat(60));
         System.out.println("Data source: Open-Meteo API (free weather data)");
         System.out.println("Libraries: OkHttp (HTTP client) + Gson (JSON parser)");
+
+
+        
     }
 }
