@@ -32,13 +32,11 @@ jobs:
           model: 'openai/gpt-4o-mini'
           use_github_token: true
           prompt: |
-            Rules for reviewing this pull request before posting a comment:
-            - Check for indentation consistency. It can be either 4 spaces or 2 spaces, but not a mix of both.
-            - Make sure there are no consecutive blank lines in the entire code.
-            - Keeping in mind that the code is for practice purposes, check for any obvious logical errors or potential improvements in the code.
-            - The title of the pull request is: ${{ github.event.pull_request.title }}. It should start with a clickup id (e.g., "86ex6r17g") followed by a : (e.g., "86ex6r17g: ") and then the title of clickup ticket (e.g., "86ex6r17g: Implement user authentication").
-            - The description of the pull request is: ${{ github.event.pull_request.body }}. It should be meaningful and should include a description of the changes made in the pull request, the reason for the changes, and any relevant information that would help reviewers understand the context of the changes.
-            Rules for posting a comment on this pull request:
-            - Make sure to use a one-liner for each identified issue or each suggested improvement found in the code.
-            - Comment should be in proper .md formatting.
+            Things to look for when reviewing this pull request:
+            - The title of the pull request is: ${{ github.event.pull_request.title }}. Title should start with a clickup ticket id (e.g., "86ex6r17g") followed by a : (e.g., "86ex6r17g: ") and then the title of clickup ticket (e.g., "86ex6r17g: Implement user authentication").
+            - The description of the pull request is: ${{ github.event.pull_request.body }}. The description should reflect the changes made in the pull request.
+            - Check for indentation consistency. It should be 4 spaces.
+            - Make sure there are no un needed blank lines in the entire code.
+            - The code in this PR is for practice purposes, check for any obvious logical errors or potential improvements in the code.
+            - Only point out issues or imnprovements that are relevant to the code changes in this pull request in highly summarized manner.
             
