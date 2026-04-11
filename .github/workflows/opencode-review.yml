@@ -38,5 +38,6 @@ jobs:
             - Check for indentation consistency. It should be 4 spaces.
             - Make sure there are no un needed blank lines in the entire code.
             - The code in this PR is for practice purposes, check for any obvious logical errors or potential improvements in the code.
-            - Only point out issues or imnprovements that are relevant to the code changes in this pull request in highly summarized manner.
+            - Only point out issues or improvements with line numbers that are relevant to the code changes in this pull request in a highly summarized manner.
+            - All issues or improvements can be put under one heading "Code Review Comments". No need for detailed sub headings.
             
