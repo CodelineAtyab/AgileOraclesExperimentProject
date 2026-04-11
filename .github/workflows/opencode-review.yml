@@ -21,7 +21,7 @@ jobs:
       - name: Configure Git Identity
         run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "MentorMind Code Review Agent"
 
       - name: Review Pull Request with OpenCode
         uses: anomalyco/opencode/github@latest
@@ -39,3 +39,4 @@ jobs:
             - The title of the pull request is: ${{ github.event.pull_request.title }}. It should start with a clickup id (e.g., "86ex6r17g") followed by a : (e.g., "86ex6r17g: ") and then the title of clickup ticket (e.g., "86ex6r17g: Implement user authentication").
             - The description of the pull request is: ${{ github.event.pull_request.body }}. It should be meaningful and should include a description of the changes made in the pull request, the reason for the changes, and any relevant information that would help reviewers understand the context of the changes.
             - Also leave a general motivational comment for the contributor based on the review outcome.
+            This review comment should look like a human response so don't use headings, instead use summarized and to the point paragraphs.
