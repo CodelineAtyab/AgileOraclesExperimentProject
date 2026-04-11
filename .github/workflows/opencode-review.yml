@@ -32,11 +32,11 @@ jobs:
           model: 'openai/gpt-4o-mini'
           use_github_token: true
           prompt: |
-            Review this pull request:
+            When posting a comment, make sure to use one-liner bullet points for only the issues or improvements found in the code. If there are no issues or improvements, post a comment saying "No issues found. Great job!".
+            Things to look for in this pull request before posting a comment:
             - Check for indentation consistency. It can be either 4 spaces or 2 spaces, but not a mix of both.
-            - Make sure there are no more than one consecutive blank line in the code.
+            - Make sure there are no consecutive blank lines in the entire code.
             - Keeping in mind that the code is for practice purposes, check for any obvious logical errors or potential improvements in the code.
             - The title of the pull request is: ${{ github.event.pull_request.title }}. It should start with a clickup id (e.g., "86ex6r17g") followed by a : (e.g., "86ex6r17g: ") and then the title of clickup ticket (e.g., "86ex6r17g: Implement user authentication").
             - The description of the pull request is: ${{ github.event.pull_request.body }}. It should be meaningful and should include a description of the changes made in the pull request, the reason for the changes, and any relevant information that would help reviewers understand the context of the changes.
-            - Also leave a general motivational comment for the contributor based on the review outcome.
-            This review comment should look like a human response so don't use headings, instead use summarized and to the point paragraphs.
+            
