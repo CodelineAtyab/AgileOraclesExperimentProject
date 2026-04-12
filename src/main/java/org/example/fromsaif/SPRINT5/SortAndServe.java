@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 
 public class SortAndServe {
-
     public static void main(String[] args) {
+
         // Default sorting method
         // Store the complaint list as raw text before converting it into numbers
         String algorithm = "selection";
@@ -36,8 +36,7 @@ public class SortAndServe {
             String currentPart = parts[i].trim(); //Removes spaces between the numbers (Useless but makes output look cleaner)
             try {
                 numbers[i] = Integer.parseInt(currentPart); // Converts line into integer
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid Input, Please provide integers with commas in between them");
                 return;
             }
@@ -48,18 +47,25 @@ public class SortAndServe {
             System.out.println("Please provide at least three integers.");
             return;
         }
-
         // Algorithm decision block
-        if (algorithm.equals("selection")){
-            //selectionSort(numbers);
-        }
-        else if (algorithm.equals("bubble")) {
-            //bubbleSort(numbers);
-        }
-        else {
+        if (algorithm.equals("selection")) {
+            selectionSort(numbers);
+        } else if (algorithm.equals("bubble")) {
+            bubbleSort(numbers);
+        } else {
             System.out.println("Invalid: Use Selection or Bubble algorithm");
             return;
         }
+    }
+
+    public static void bubbleSort(int[] numbers) {}
+    public static void selectionSort(int[] numbers) {
+        int smallestIndex;
+        int temporaryValue;
+
+        for (int i = 0; i < numbers.length - 1; i++) {
+
+            }
 
 
 
@@ -84,9 +90,9 @@ public class SortAndServe {
 
 
 
-        System.out.println("Program started.");
-        System.out.println("Selected algorithm: " + algorithm);
-        System.out.println("Raw input: " + rawInput);
+        //System.out.println("Program started.");
+        //System.out.println("Selected algorithm: " + algorithm);
+        //System.out.println("Raw input: " + rawInput);
     }
 }
 
