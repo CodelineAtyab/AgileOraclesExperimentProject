@@ -5,21 +5,23 @@ import java.util.Scanner;
 
 public class InternQueueSorter {
     public static void main(String[] args) {
+        String algorithm = "selection";
         String rawInput = null;
 
-        // Read from command line argument
+        // Parse command-line arguments
         for (String arg : args) {
-            if (!arg.startsWith("--")) {
+            if (arg.startsWith("--algorithm=")) {
+                algorithm = arg.substring("--algorithm=".length()).toLowerCase();
+            } else {
                 rawInput = arg;
             }
         }
 
+
         // Fall back to STDIN if no inline list was given
         if (rawInput == null || rawInput.isBlank()) {
             Scanner scanner = new Scanner(System.in);
-            if (scanner.hasNextLine()) {
-                rawInput = scanner.nextLine().trim();
-            }
+            if (scanner.hasNextLine()) rawInput = scanner.nextLine().trim();
         }
 
         // Validate that we actually received some input
@@ -37,19 +39,23 @@ public class InternQueueSorter {
         }
 
 
-        if (priorities.length < 3) {
-            System.err.println("Error: Please provide at least 3 priority numbers.");
-            System.exit(1);
+        // ── Sort using chosen algorithm ───────────────────────────────────
+        switch (algorithm) {
+            case "bubble":
+                bubbleSort(priorities);
+                break;
+            case "selection":
+                selectionSort(priorities);
+                break;
+            default:
+                System.err.println("Error: Unknown algorithm '" + algorithm + "'. Use 'selection' or 'bubble'.");
+                System.exit(1);
+            }
+
+        // ── Print results ─────────────────────────────────────────────────
+        System.out.println("Sorted list:  " + arrayToString(priorities));
+        System.out.println("Intern queue: " + priorities[0] + ", " + priorities[1] + ", " + priorities[2]);
         }
-
-        // Test both sorts side by side
-        int[] copy = priorities.clone();
-        selectionSort(priorities);
-        bubbleSort(copy);
-        System.out.println("Selection: " + arrayToString(priorities));
-        System.out.println("Bubble:    " + arrayToString(copy));
-    }
-
     static void selectionSort(int[] arr) {
         int n = arr.length;
         for (int sortedBoundary = 0; sortedBoundary < n - 1; sortedBoundary++) {
@@ -61,9 +67,9 @@ public class InternQueueSorter {
                 int temp = arr[sortedBoundary];
                 arr[sortedBoundary] = arr[minIndex];
                 arr[minIndex] = temp;
+                }
             }
         }
-    }
     static void bubbleSort(int[] arr) {
         int n = arr.length;
 
@@ -108,3 +114,8 @@ public class InternQueueSorter {
         return sb.toString();
     }
 }
+
+
+
+
+
