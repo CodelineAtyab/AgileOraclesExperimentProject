@@ -2,15 +2,20 @@ package org.example.fromabdullahalhadabi;
 import java.io.File;
 import java.util.*;
 
-
-
 public class EscapetheMaze {
     public static void main(String[] args) {
         try {
+            if (args.length == 0) {
+                System.out.println("Usage: java EscapetheMaze <maze-file>");
+                return;
+            }
 
-            Maze maze = MazeLoader.load("Maze.txt");
-
+            Maze maze = MazeLoader.load(args[0]);
             MazeValidator.validate(maze);
+
+            if (!MazeValidator.hasExactlyOnePath(maze)) {
+                throw new Exception("Maze must have exactly ONE valid path from @ to E.");
+            }
 
             MazeSolver.solve(maze);
 
@@ -18,8 +23,6 @@ public class EscapetheMaze {
             System.out.println("Error: " + e.getMessage());
         }
     }
-
-
 }
 
 class Position {
@@ -43,10 +46,7 @@ class Maze {
     }
 
     public boolean isValid(int r, int c) {
-        return r >= 0 && c >= 0 &&
-                r < grid.length &&
-                c < grid[0].length &&
-                grid[r][c] != '1';
+        return r >= 0 && c >= 0 && r < grid.length && c < grid[0].length && grid[r][c] != '1';
     }
 
     public boolean isExit(int r, int c) {
@@ -71,15 +71,12 @@ class MazeLoader {
 }
 
 class MazeValidator {
-
     public static void validate(Maze maze) throws Exception {
         char[][] grid = maze.getGrid();
         int n = grid.length;
 
         for (char[] row : grid) {
-            if (row.length != n) {
-                throw new Exception("Maze must be n x n.");
-            }
+            if (row.length != n) throw new Exception("Maze must be n x n.");
         }
 
         int start = 0, exit = 0;
@@ -94,7 +91,6 @@ class MazeValidator {
         if (start != 1) throw new Exception("Must have exactly ONE @");
         if (exit != 1) throw new Exception("Must have exactly ONE E");
 
-        // Check borders
         for (int i = 0; i < n; i++) {
             if (!validBorder(grid[0][i])) throw new Exception("Invalid top border");
             if (!validBorder(grid[n - 1][i])) throw new Exception("Invalid bottom border");
@@ -106,16 +102,48 @@ class MazeValidator {
     private static boolean validBorder(char c) {
         return c == '1' || c == '@' || c == 'E';
     }
+
+    public static boolean hasExactlyOnePath(Maze maze) {
+        char[][] grid = maze.getGrid();
+        int n = grid.length;
+        boolean[][] visited = new boolean[n][n];
+        Position start = findStart(grid);
+        return countPaths(grid, visited, start.row, start.col) == 1;
+    }
+
+    private static int countPaths(char[][] grid, boolean[][] visited, int r, int c) {
+        if (r < 0 || c < 0 || r >= grid.length || c >= grid.length) return 0;
+        if (grid[r][c] == '1' || visited[r][c]) return 0;
+        if (grid[r][c] == 'E') return 1;
+
+        visited[r][c] = true;
+
+        int paths = 0;
+        paths += countPaths(grid, visited, r - 1, c);
+        paths += countPaths(grid, visited, r + 1, c);
+        paths += countPaths(grid, visited, r, c - 1);
+        paths += countPaths(grid, visited, r, c + 1);
+
+        visited[r][c] = false;
+        return paths;
+    }
+
+    private static Position findStart(char[][] grid) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid.length; j++) {
+                if (grid[i][j] == '@') return new Position(i, j);
+            }
+        }
+        return null;
+    }
 }
 
 class MazeRenderer {
-
     public static void print(Maze maze, Position current) {
         char[][] grid = maze.getGrid();
 
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
-
                 if (current != null && i == current.row && j == current.col)
                     System.out.print("@ ");
                 else
@@ -127,9 +155,7 @@ class MazeRenderer {
 }
 
 class MazeSolver {
-
     public static void solve(Maze maze) throws InterruptedException {
-
         int rows = maze.getGrid().length;
         int cols = maze.getGrid()[0].length;
 
@@ -140,7 +166,6 @@ class MazeSolver {
         stack.push(start);
 
         while (!stack.isEmpty()) {
-
             Position current = stack.peek();
 
             clearConsole();
@@ -148,9 +173,9 @@ class MazeSolver {
             Thread.sleep(1000);
 
             if (maze.isExit(current.row, current.col)) {
-                System.out.println("\n Maze Solved");
+                System.out.println("\nMaze Solved!");
                 printPath(stack);
-                System.out.println("Exit at: (" + current.row + "," + current.col + ")");
+                System.out.println("Found an Exit at: (" + current.row + ", " + current.col + ")");
                 return;
             }
 
@@ -161,10 +186,10 @@ class MazeSolver {
             if (move(maze, stack, visited, current.row, current.col - 1)) continue;
             if (move(maze, stack, visited, current.row, current.col + 1)) continue;
 
-            stack.pop(); // backtrack
+            stack.pop();
         }
 
-        System.out.println("No path found ");
+        System.out.println("No path found");
     }
 
     private static void printPath(Stack<Position> stack) {
@@ -187,20 +212,17 @@ class MazeSolver {
 
     private static Position findStart(Maze maze) {
         char[][] grid = maze.getGrid();
-
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == '@')
-                    return new Position(i, j);
+                if (grid[i][j] == '@') return new Position(i, j);
             }
         }
         return null;
     }
 
+    //
     private static void clearConsole() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 }
-
-
