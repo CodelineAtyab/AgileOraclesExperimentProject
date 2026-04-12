@@ -8,40 +8,62 @@ public class SortAndServe {
             System.out.println("Please enter numbers more than 3");
             return;
         }
+        String sortingType = "selection";
+        int startAtZero = 0;
 
-        int[] sortQue =new int[args.length];
-        for (int i =0;i<sortQue.length;i++){
-            sortQue[i]= Integer.parseInt(args[i]);
-            //System.out.print(sortQue[i].length);
+
+        String sortType = args[0].toLowerCase().replace(",", "");// replace is for removing the comma
+        if (sortType.equals("bubble") || sortType.equals("selection")){
+            sortingType = sortType;
+            startAtZero =1;
         }
-//        Arrays.stream(sortQue).forEach((currentNum) ->{
-//            System.out.printf("%d",currentNum);
-//        });
+
+        int[] sortQue =new int[args.length-startAtZero];
+        for (int i =startAtZero;i<args.length;i++){
+            sortQue[i-startAtZero]= Integer.parseInt(args[i].replace(",", ""));
+        }
         System.out.println("the numbers in ascending order");
-        for (int firstI =0; firstI < sortQue.length;firstI++){
+
+        if (sortType.equals("selection")) {
+            selectonSort(sortQue);
+        }
+        else if (sortType.equals("bubble")) {
+            bubbleSort(sortQue);
+        }
+
+        System.out.println(Arrays.toString(sortQue));
+
+        System.out.println("The three lowest priority");
+        for (int i=0; i<3; i++) {
+            System.out.printf("%d ", sortQue[i]);
+        }
+    }
+    public static void selectonSort(int[] sort){
+        for (int firstI = 0; firstI < sort.length; firstI++) {
             int lowestPriorIty = firstI;
-            for (int i= firstI; i < sortQue.length;i++){
-                if (sortQue[i]<sortQue[lowestPriorIty]){
+            for (int i = firstI; i < sort.length; i++) {
+                if (sort[i] < sort[lowestPriorIty]) {
                     lowestPriorIty = i;
                 }
             }
             // Swapping
             if (lowestPriorIty != firstI) {
-                int temp = sortQue[firstI];
-                sortQue[firstI] = sortQue[lowestPriorIty];
-                sortQue[lowestPriorIty] = temp;
-
-                Arrays.stream(sortQue).forEach((currentNum) -> {
-                    System.out.printf("%d ", currentNum);
-                });
-                System.out.println();
+                int temp = sort[firstI];
+                sort[firstI] = sort[lowestPriorIty];
+                sort[lowestPriorIty] = temp;
             }
         }
-        System.out.println("The three lowest priority");
-        for (int i=0; i<3; i++) {
-            System.out.printf("%d ", sortQue[i]);
-        }
-        System.out.println();
+    }
+    public static void bubbleSort(int[] sort){
+        for (int firstI = 0; firstI < sort.length-1; firstI++) {
+            for (int j = 0; j < sort.length -firstI- 1; j++) {
+                if (sort[j] > sort[j + 1]) {
 
+                    int temp = sort[j];
+                    sort[j] = sort[j + 1];
+                    sort[j + 1] = temp;
+                }
+            }
+        }
     }
 }
