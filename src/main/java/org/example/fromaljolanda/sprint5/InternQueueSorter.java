@@ -17,9 +17,13 @@ public class InternQueueSorter {
             input = args[1]; // Store the numbers (should be in args[1])
         }
 
+        else if (args.length == 2 && args[0].equals("--algorithm=selection")) {
+            input = args[1]; // Store the numbers (should be in args[1])
+        }
+
         else {
             System.out.println("Error.. Enter like this: ");
-            System.out.println("--algorithm=bubble 5,3,9,1,4 OR 5,3,9,1,4");
+            System.out.println("--algorithm=bubble 5,3,9,1,4 OR --algorithm=selection 5,3,9,1,4 OR 5,3,9,1,4");
             return;
         }
 
@@ -93,7 +97,6 @@ public class InternQueueSorter {
                     min_index = j;
                 }
             }
-
 
             // Swapping
             int temp = array[min_index];
