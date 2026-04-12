@@ -1,15 +1,20 @@
 
-I tested the tool using the numbers 5,3,9,1,4
-with the bubble sort flag: java Sort --algorithm=bubble 5,3,9,1,4
+(Bubble Sort)
+I tested the tool with these numbers 5,3,9,1,4 using:
+java Sort --algorithm=bubble 5,3,9,1,4
 
-How it sorted them:
+How it works (Step-by-Step):
 
-First, it compares 5 and 3 and swaps them >> 3,5,9,1,4
+Step 1: Compares 5 and 3 -> Swap (3, 5, 9, 1, 4)
 
-Then it compares 9 and 1 and swaps them >> 3,5,1,9,4
+Step 2: Compares 5 and 9 -> No swap.
 
-Finally, the largest number 9 moves to the end >> 3,5,1,4,9
+Step 3: Compares 9 and 1 -> Swap (3, 5, 1, 9, 4)
 
-After all passes, the final sorted list is: 1, 3, 4, 5, 9
+Step 4: Compares 9 and 4 -> Swap (3, 5, 1, 4, 9)
+(Now the largest number 9 is at the end).
 
-The result for Intern Queue (Top 3): 1, 3, 4
+The same thing happens again for the rest of the numbers until they are all in order:
+
+Final sorted list: 1, 3, 4, 5, 9
+Intern Queue (The first 3 numbers): 1, 3, 4
