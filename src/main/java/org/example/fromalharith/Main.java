@@ -1,42 +1,123 @@
-package org.example.fromalharith;
+package com.Main;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.*;
+import java.util.*;
 
 public class Main {
+
     public static void main(String[] args) {
-        Path mazePath = null;
-        char[][] maze;
 
         try {
-            mazePath = Path.of(Main.class.getResource("./data/.txt").toURI());
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
+            File file = new File("C:/Users/Codeline/Desktop/For AaabAlhosni/AgileOraclesExperimentProject/src/main/java/org/example/fromalharith/board.txt");
 
-        try {
-            String fileContent = Files.readString(mazePath);
-            String[] lineOfFile = fileContent.split("\n");
-            int lineLength = lineOfFile[0].length();
-            maze = new char[lineOfFile.length][];
+            if (!file.exists()) {
+                System.out.println("Board file not found!");
+                return;
+            }
 
-            for (int row = 0; row < lineOfFile.length; row++) {
-                char[] currRow = lineOfFile[row].toCharArray();
+            // Load maze
+            List<char[]> lines = new ArrayList<>();
+            BufferedReader br = new BufferedReader(new FileReader(file));
 
-                for (int col = 0; col < currRow.length; col++) {
-                    maze[row][col] = currRow[col];
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (!line.trim().isEmpty()) {
+                    lines.add(line.toCharArray());
                 }
             }
-            } catch(IOException e){
-                throw new RuntimeException(e);
+            br.close();
+
+            int rows = lines.size();
+            int cols = lines.get(0).length;
+
+            char[][] maze = new char[rows][cols];
+            for (int i = 0; i < rows; i++) {
+                maze[i] = lines.get(i);
             }
 
-            for (int row=0; row<10; row++){
-                for (int col=0; col<10; col++)
-                    System.out.printf("%c",maze[row][col]);
+            int startR = -1, startC = -1;
+
+            // Find start
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+                    if (maze[i][j] == '@') {
+                        startR = i;
+                        startC = j;
+                    }
+                }
             }
-            System.out.println();
+
+            if (startR == -1) {
+                System.out.println("Start '@' not found.");
+                return;
+            }
+
+            // Replace @ by 0
+            maze[startR][startC] = '0';
+
+            boolean[][] visited = new boolean[rows][cols];
+            Stack<int[]> stack = new Stack<>();
+            stack.push(new int[]{startR, startC});
+
+            while (!stack.isEmpty()) {
+
+                int[] pos = stack.peek();
+                int r = pos[0];
+                int c = pos[1];
+
+                visited[r][c] = true;
+
+                // Print maze
+                for (int i = 0; i < rows; i++) {
+                    for (int j = 0; j < cols; j++) {
+                        if (i == r && j == c) {
+                            System.out.print("@ ");
+                        } else {
+                            System.out.print(maze[i][j] + " ");
+                        }
+                    }
+                    System.out.println();
+                }
+
+                System.out.println();
+                Thread.sleep(300);
+
+                // Goal check
+                if (maze[r][c] == 'E') {
+                    System.out.println("Goal reached!");
+                    return;
+                }
+
+                // Move: Right, Down, Left, Up
+                if (c + 1 < cols && !visited[r][c + 1] &&
+                        (maze[r][c + 1] == '0' || maze[r][c + 1] == 'E')) {
+
+                    stack.push(new int[]{r, c + 1});
+
+                } else if (r + 1 < rows && !visited[r + 1][c] &&
+                        (maze[r + 1][c] == '0' || maze[r + 1][c] == 'E')) {
+
+                    stack.push(new int[]{r + 1, c});
+
+                } else if (c - 1 >= 0 && !visited[r][c - 1] &&
+                        (maze[r][c - 1] == '0' || maze[r][c - 1] == 'E')) {
+
+                    stack.push(new int[]{r, c - 1});
+
+                } else if (r - 1 >= 0 && !visited[r - 1][c] &&
+                        (maze[r - 1][c] == '0' || maze[r - 1][c] == 'E')) {
+
+                    stack.push(new int[]{r - 1, c});
+
+                } else {
+                    stack.pop();
+                }
+            }
+
+            System.out.println("No path found.");
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
+}
