@@ -1,20 +1,19 @@
 package org.example.fromaljolanda.sprint5;
 
-import javax.sound.midi.Soundbank;
 import java.util.Arrays;
 
 public class InternQueueSorter {
     public static void main(String[] args) {
 
         String input = null; // Store the input numbers
-        boolean useBubble = false; // Determine whether to use Bubble Sort or not
+        boolean use_bubble = false; // Determine whether to use Bubble Sort or not
 
         if (args.length == 1) {
             input = args[0]; // Use Selection Sort (default)
         }
 
         else if (args.length == 2 && args[0].equals("--algorithm=bubble")) {
-            useBubble = true; // Use Bubble Sort
+            use_bubble = true; // Use Bubble Sort
             input = args[1]; // Store the numbers (should be in args[1])
         }
 
@@ -25,21 +24,21 @@ public class InternQueueSorter {
         }
 
         // Split the string
-        String[] parts = input.split(",");
+        String[] tokens = input.split(",");
 
         // At least 3 numbers
-        if (parts.length < 3) {
-            System.out.println("Error.. Need at least 3 numbers!");
+        if (tokens.length < 3) {
+            System.out.println("Error.. At least three integers are required.");
             return;
         }
 
         // Array to store integers
-        int[] arr = new int[parts.length];
+        int[] arr = new int[tokens.length];
 
         // Convert string values to integers
         try {
-            for (int i = 0; i < parts.length; i++) {
-                arr[i] = Integer.parseInt(parts[i]);
+            for (int i = 0; i < tokens.length; i++) {
+                arr[i] = Integer.parseInt(tokens[i]);
             }
         }
         catch (Exception e) {
@@ -47,10 +46,10 @@ public class InternQueueSorter {
             return;
         }
 
-        System.out.println("Original List: " + Arrays.toString(parts));
+        System.out.println("Original List: " + Arrays.toString(tokens));
 
         // Choose sorting algorithm
-        if (useBubble) {
+        if (use_bubble) {
             System.out.print("Sorted List Using Bubble Sort: ");
             bubbleSort(arr);
         }
@@ -64,8 +63,6 @@ public class InternQueueSorter {
 
         // Print the first 3 smallest numbers
         System.out.println("Intern queue: " + arr[0] + ", " + arr[1] + ", " + arr[2]);
-
-
     }
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     // Bubble Sort
