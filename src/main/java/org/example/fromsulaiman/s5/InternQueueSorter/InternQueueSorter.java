@@ -28,7 +28,7 @@ public class InternQueueSorter {
             System.err.println("Usage: java InternQueueSorter [--algorithm=selection|bubble] <n1,n2,...>");
             System.exit(1);
         }
-        // ── Parse and validate minimum three items ────────────────────────
+        // Parse and validate minimum three items
         int[] priorities = parseInput(rawInput);
 
         if (priorities.length < 3) {
@@ -36,9 +36,39 @@ public class InternQueueSorter {
             System.exit(1);
         }
 
-        System.out.println("Parsed " + priorities.length + " priorities successfully.");
 
+        if (priorities.length < 3) {
+            System.err.println("Error: Please provide at least 3 priority numbers.");
+            System.exit(1);
+        }
 
+        // Test selectionSort
+        selectionSort(priorities);
+        System.out.println("Sorted (selection): " + arrayToString(priorities));
+
+    }
+
+    static void selectionSort(int[] arr) {
+        int n = arr.length;
+
+        for (int sortedBoundary = 0; sortedBoundary < n - 1; sortedBoundary++) {
+
+            int minIndex = sortedBoundary; // assume first unsorted item is min
+
+            // Search for a smaller value in the remaining unsorted portion
+            for (int scanner = sortedBoundary + 1; scanner < n; scanner++) {
+                if (arr[scanner] < arr[minIndex]) {
+                    minIndex = scanner;
+                }
+            }
+
+            // Swap the found minimum into the sorted boundary position
+            if (minIndex != sortedBoundary) {
+                int temp = arr[sortedBoundary];
+                arr[sortedBoundary] = arr[minIndex];
+                arr[minIndex] = temp;
+            }
+        }
     }
     static int[] parseInput(String rawInput) {
         String[] tokens = rawInput.split(",");
@@ -54,5 +84,14 @@ public class InternQueueSorter {
             }
         }
         return result;
+    }
+    static String arrayToString(int[] arr) {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(arr[i]);
+            if (i < arr.length - 1) sb.append(", ");
+        }
+        sb.append("]");
+        return sb.toString();
     }
 }
