@@ -51,7 +51,6 @@ public class Warmup {
         } else {
             return false;
         }
-
     }
 }
 
