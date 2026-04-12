@@ -5,12 +5,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
+
 public class MazeLoader {
-static int startRow;
-static int startColumn;
-static char[][] mazeArray2D;
-static  ArrayList<String> mazeArray;
-static String filePath = "src/main/java/org/example/fromtibyan/sprint5/escapemazeoop/maze.txt";
+    static int startRow;
+    static int startColumn;
+    static char[][] mazeArray2D;
+    static ArrayList<String> mazeArray;
+    static String filePath = "src/main/java/org/example/fromtibyan/sprint5/escapemazeoop/maze.txt";
 
     public static void readMaze() {
         try {
@@ -21,11 +22,11 @@ static String filePath = "src/main/java/org/example/fromtibyan/sprint5/escapemaz
             for (int i = 0; i < mazeArray.size(); i++) {
                 mazeArray2D[i] = mazeArray.get(i).toCharArray();
             }
-            if (onlyOneSymbol(mazeArray2D, mazeArray) && allBordersOnes(mazeArray2D, mazeArray)) {
+            if (onlyOneSymbol() && allBordersOnes()) {
 
                 for (int row = 0; row < mazeArray.size(); row++) {
                     for (int column = 0; column < mazeArray.get(0).length(); column++) {
-                        if (mazeArray2D[row][column] == '@') {
+                        if (Maze.isSymbol(row, column)) {
                             startRow = row;
                             startColumn = column;
                         }
@@ -41,28 +42,25 @@ static String filePath = "src/main/java/org/example/fromtibyan/sprint5/escapemaz
             } else {
                 System.out.println("Border conditions are not met/ there should be 1 @ symbol & 1 E .");
             }
-
-
         } catch (IOException e) {
             System.err.println("Error reading the maze file: " + e.getMessage()); // misreading the file
         }
-
     }
 
-    public static boolean onlyOneSymbol(char[][] mazeArray2D, ArrayList<String> mazeArray) {
+    public static boolean onlyOneSymbol() {
         //checking if there is one @ and one E
         int atCounter = 0;
         int eCounter = 0;
 
         for (int row = 0; row < mazeArray.size(); row++) {
             for (int column = 0; column < mazeArray.get(0).length(); column++) {
-                if (mazeArray2D[row][column] == '@') {
+                if (Maze.isSymbol(row,column)) {
                     atCounter++;
                     if (atCounter > 1) {
                         return false;
                     }
                 }
-                if (mazeArray2D[row][column] == 'E') {
+                if (Maze.isExit(row,column)) {
                     eCounter++;
                     if (eCounter > 1) {
                         return false;
@@ -73,24 +71,20 @@ static String filePath = "src/main/java/org/example/fromtibyan/sprint5/escapemaz
         return atCounter == 1 && eCounter == 1; // only when there is one symbol of each and not 0
     }
 
-    public static boolean allBordersOnes(char[][] mazeArray2D, ArrayList<String> mazeArray) {
+    public static boolean allBordersOnes() {
         // maze borders condition of all 1s
-        int index ;
+        int index;
         for (index = 0; index < mazeArray.size(); index++) {
-            char columnCellFirst = mazeArray2D[0][index];
-            char columnCellLast = mazeArray2D[mazeArray.size()-1][index];
-            char rowCellFirst = mazeArray2D[index][0];
-            char rowCellLast = mazeArray2D[index][mazeArray.get(0).length()-1];
-            if (!(columnCellFirst == '1' || columnCellFirst == '@' || columnCellFirst == 'E')) {
+            if (!(Maze.isWall(0,index) || Maze.isSymbol(0,index) || Maze.isExit(0,index))) {
                 return false;
             }
-            if (!(columnCellLast == '1' || columnCellLast == '@' || columnCellLast == 'E')) {
+            if (!(Maze.isWall(mazeArray.size() - 1,index) || Maze.isSymbol(mazeArray.size() - 1,index) || Maze.isExit(mazeArray.size() - 1,index))) {
                 return false;
             }
-            if (!(rowCellFirst == '1' || rowCellFirst == '@' || rowCellFirst == 'E')) {
+            if (!(Maze.isWall(index,0) || Maze.isSymbol(index,0) || Maze.isExit(index,0))) {
                 return false;
             }
-            if (!(rowCellLast == '1' || rowCellLast == '@' || rowCellLast == 'E')) {
+            if (!(Maze.isWall(index,mazeArray.size() - 1) || Maze.isSymbol(index,mazeArray.size() - 1) || Maze.isExit(index,mazeArray.size() - 1))) {
                 return false;
             }
         }

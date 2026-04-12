@@ -8,9 +8,10 @@ import static org.example.fromtibyan.sprint5.escapemazeoop.MazeLoader.*;
 public class MazeSolver {
     static int r;
     static int c;
-    public static Boolean SymbolMovement(ArrayList<String> mazeArray){
+
+    public static Boolean SymbolMovement(ArrayList<String> mazeArray) {
         boolean[][] visitedCell = new boolean[mazeArray.size()][mazeArray.get(0).length()];
-        Position start = new Position(startRow,startColumn);
+        Position start = new Position(startRow, startColumn);
         Stack<Position> mazeStack = new Stack<>();
         mazeStack.push(start);
 
@@ -18,7 +19,7 @@ public class MazeSolver {
         int endColumn = 0;
         for (int row = 0; row < mazeArray.size(); row++) {
             for (int column = 0; column < mazeArray.get(0).length(); column++) {
-                if (mazeArray2D[row][column] == 'E') {
+                if (Maze.isExit(row,column)) {
                     endRow = row;
                     endColumn = column;
                 }
@@ -31,7 +32,7 @@ public class MazeSolver {
             c = current.col;
 
             // move @ between the border & wall
-            if (r < 0 || c < 0 || r >= mazeArray.size() || c >= mazeArray.get(0).length() || mazeArray2D[r][c] == '1' || visitedCell[r][c]) {
+            if (r < 0 || c < 0 || r >= mazeArray.size() || c >= mazeArray.get(0).length() || Maze.isWall(r,c) || visitedCell[r][c]) {
                 continue;
             }
             visitedCell[r][c] = true; // to not visit again
@@ -49,7 +50,7 @@ public class MazeSolver {
             MazeRenderer.mazeDelay();
 
             if (r == endRow && c == endColumn) {
-                System.out.println("Found an Exit at: "+ "("+r+","+c+")");
+                System.out.println("Found an Exit at: " + "(" + r + "," + c + ")");
                 return true;
             }
         }
