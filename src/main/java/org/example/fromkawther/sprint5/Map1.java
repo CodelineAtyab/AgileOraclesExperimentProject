@@ -1,5 +1,5 @@
 package org.example.fromkawther.sprint5;
-
+import java.util.Map;
 public class Map1 {
 
     //1:
