@@ -1,4 +1,5 @@
-package org.example.fromalharithalkindi.s3;
+package org.example.fromalharithalkindi.S3;
+
 
 public class S3PyramidOfNumbers {
     public static void main(String[] args) {
@@ -11,6 +12,5 @@ public class S3PyramidOfNumbers {
             }
             System.out.println();
         }
-
     }
 }
