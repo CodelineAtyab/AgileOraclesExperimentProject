@@ -17,13 +17,20 @@ public class SortandServe {
         }
         boolean running = true;
         while (running) {
-            System.out.println("\nPress:\n 1.Selection Sort");
+            System.out.println("\nPress:\n 1.Selection Sort\n 2.Bubble Sort\n 0.Exist..");
             int userInput = sc.nextInt();
 
             if (userInput == 1) {
                 selectionSort(ComplainPriorityNumber);
+            } else if (userInput == 2) {
+                BubbleSort(ComplainPriorityNumber);
+            } else if (userInput == 0) {
+                running = false;
+                System.out.println("Existing...");
             }
         }
+
+        System.out.println();
     }
 
     //*****************************************(Selection Sort)*****************************************
@@ -69,5 +76,47 @@ public class SortandServe {
         }
 
     }
+
+    //*****************************************(Bubble Sort)*****************************************
+
+    public static void BubbleSort(int[] ComplainPriorityNumber) {
+
+        System.out.println("*******************BubbleSort*******************");
+
+
+        for (int i = 0; i < ComplainPriorityNumber.length; i++) {
+            for (int j = 0; j < ComplainPriorityNumber.length - 1; j++) {
+                if (ComplainPriorityNumber[j] > ComplainPriorityNumber[j + 1]) {
+                    //Swap:
+                    int temp = ComplainPriorityNumber[j];
+                    ComplainPriorityNumber[j] = ComplainPriorityNumber[j + 1];
+                    ComplainPriorityNumber[j + 1] = temp;
+                }
+            }
+        }
+
+        //The Result After Sorting:
+        System.out.println();
+        System.out.println();
+        System.out.println(" The Complain Priority Number After Sorting: ");
+
+        System.out.println();
+        for (int i = 0; i < ComplainPriorityNumber.length; i++) {
+            System.out.print(" " + ComplainPriorityNumber[i] + " ");
+        }
+
+        System.out.println();
+        System.out.println();
+
+        //List The Lowest Three Numbers:
+        System.out.println("The lowest Three Numbers: ");
+        for (int i = 0; i < 3; i++) {
+
+            System.out.print(" " + ComplainPriorityNumber[i] + " ");
+        }
+
+    }
 }
+
+
 
