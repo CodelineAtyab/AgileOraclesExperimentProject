@@ -24,9 +24,7 @@ public class StringPractices {
 
     // String 1 - Practice 3
     public static String makeTags(String tag, String word) {
-
         return "<" + tag + ">" + word + "</" + tag + ">";
-
     }
 
 }
