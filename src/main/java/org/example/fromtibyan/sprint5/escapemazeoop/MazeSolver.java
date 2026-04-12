@@ -30,27 +30,26 @@ public class MazeSolver {
             r = current.row;
             c = current.col;
 
-
             // move @ between the border & wall
             if (r < 0 || c < 0 || r >= mazeArray.size() || c >= mazeArray.get(0).length() || mazeArray2D[r][c] == '1' || visitedCell[r][c]) {
                 continue;
             }
             visitedCell[r][c] = true; // to not visit again
 
-
             MazeRenderer.printMaze();
-
-
+            Maze.storeMaze();
 
             mazeStack.push(new Position(r + 1, c));//down
             mazeStack.push(new Position(r - 1, c));//up
             mazeStack.push(new Position(r, c + 1));//right
             mazeStack.push(new Position(r, c - 1));//left
 
-
+            MazeRenderer.symbolCoordinates();
+            MazeRenderer.printPath();
             MazeRenderer.mazeDelay();
 
             if (r == endRow && c == endColumn) {
+                System.out.println("Found an Exit at: "+ "("+r+","+c+")");
                 return true;
             }
         }

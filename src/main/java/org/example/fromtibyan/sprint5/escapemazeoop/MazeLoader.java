@@ -9,11 +9,13 @@ public class MazeLoader {
 static int startRow;
 static int startColumn;
 static char[][] mazeArray2D;
+static  ArrayList<String> mazeArray;
+static String filePath = "src/main/java/org/example/fromtibyan/sprint5/escapemazeoop/maze.txt";
 
-    public static Boolean readMaze() {
-        Path mazeFile = Path.of("src/main/java/org/example/fromtibyan/sprint5/escapemazeoop/maze.txt");
+    public static void readMaze() {
         try {
-            ArrayList<String> mazeArray = (ArrayList<String>) Files.readAllLines(mazeFile);
+            Path mazeFile = Path.of(filePath);
+            mazeArray = (ArrayList<String>) Files.readAllLines(mazeFile);
             // convert to 2d array
             mazeArray2D = new char[mazeArray.size()][mazeArray.get(0).length()];
             for (int i = 0; i < mazeArray.size(); i++) {
@@ -37,14 +39,13 @@ static char[][] mazeArray2D;
                 }
 
             } else {
-                System.out.println("Border conditions are not met.");
+                System.out.println("Border conditions are not met/ there should be 1 @ symbol & 1 E .");
             }
 
 
         } catch (IOException e) {
             System.err.println("Error reading the maze file: " + e.getMessage()); // misreading the file
         }
-        return false;
 
     }
 

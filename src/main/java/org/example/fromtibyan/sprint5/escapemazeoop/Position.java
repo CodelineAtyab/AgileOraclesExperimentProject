@@ -6,10 +6,4 @@ public class Position {
         row = r;
         col = c;
     }
-    public int getRowPosition(){
-        return this.row;
-    }
-    public int getColumnPosition(){
-        return this.col;
-    }
 }
