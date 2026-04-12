@@ -19,7 +19,7 @@ public class MazeSolver {
         int endColumn = 0;
         for (int row = 0; row < mazeArray.size(); row++) {
             for (int column = 0; column < mazeArray.get(0).length(); column++) {
-                if (Maze.isExit(row,column)) {
+                if (Maze.isExit(row, column)) {
                     endRow = row;
                     endColumn = column;
                 }
@@ -32,7 +32,7 @@ public class MazeSolver {
             c = current.col;
 
             // move @ between the border & wall
-            if (r < 0 || c < 0 || r >= mazeArray.size() || c >= mazeArray.get(0).length() || Maze.isWall(r,c) || visitedCell[r][c]) {
+            if (r < 0 || c < 0 || r >= mazeArray.size() || c >= mazeArray.get(0).length() || Maze.isWall(r, c) || visitedCell[r][c]) {
                 continue;
             }
             visitedCell[r][c] = true; // to not visit again

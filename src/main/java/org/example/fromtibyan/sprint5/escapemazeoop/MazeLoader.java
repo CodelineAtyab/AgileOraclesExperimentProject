@@ -17,8 +17,7 @@ public class MazeLoader {
         try {
             Path mazeFile = Path.of(filePath);
             mazeArray = (ArrayList<String>) Files.readAllLines(mazeFile);
-            // convert to 2d array
-            mazeArray2D = new char[mazeArray.size()][mazeArray.get(0).length()];
+            mazeArray2D = new char[mazeArray.size()][mazeArray.get(0).length()];// convert to 2d array
             for (int i = 0; i < mazeArray.size(); i++) {
                 mazeArray2D[i] = mazeArray.get(i).toCharArray();
             }
@@ -38,7 +37,6 @@ public class MazeLoader {
                 } else {
                     System.out.println("No path found.");
                 }
-
             } else {
                 System.out.println("Border conditions are not met/ there should be 1 @ symbol & 1 E .");
             }
@@ -46,21 +44,20 @@ public class MazeLoader {
             System.err.println("Error reading the maze file: " + e.getMessage()); // misreading the file
         }
     }
-
+    //checking if there is one @ and one E
     public static boolean onlyOneSymbol() {
-        //checking if there is one @ and one E
         int atCounter = 0;
         int eCounter = 0;
 
         for (int row = 0; row < mazeArray.size(); row++) {
             for (int column = 0; column < mazeArray.get(0).length(); column++) {
-                if (Maze.isSymbol(row,column)) {
+                if (Maze.isSymbol(row, column)) {
                     atCounter++;
                     if (atCounter > 1) {
                         return false;
                     }
                 }
-                if (Maze.isExit(row,column)) {
+                if (Maze.isExit(row, column)) {
                     eCounter++;
                     if (eCounter > 1) {
                         return false;
@@ -70,21 +67,20 @@ public class MazeLoader {
         }
         return atCounter == 1 && eCounter == 1; // only when there is one symbol of each and not 0
     }
-
+    // maze borders condition of all 1s
     public static boolean allBordersOnes() {
-        // maze borders condition of all 1s
         int index;
         for (index = 0; index < mazeArray.size(); index++) {
-            if (!(Maze.isWall(0,index) || Maze.isSymbol(0,index) || Maze.isExit(0,index))) {
+            if (!(Maze.isWall(0, index) || Maze.isSymbol(0, index) || Maze.isExit(0, index))) {
                 return false;
             }
-            if (!(Maze.isWall(mazeArray.size() - 1,index) || Maze.isSymbol(mazeArray.size() - 1,index) || Maze.isExit(mazeArray.size() - 1,index))) {
+            if (!(Maze.isWall(mazeArray.size() - 1, index) || Maze.isSymbol(mazeArray.size() - 1, index) || Maze.isExit(mazeArray.size() - 1, index))) {
                 return false;
             }
-            if (!(Maze.isWall(index,0) || Maze.isSymbol(index,0) || Maze.isExit(index,0))) {
+            if (!(Maze.isWall(index, 0) || Maze.isSymbol(index, 0) || Maze.isExit(index, 0))) {
                 return false;
             }
-            if (!(Maze.isWall(index,mazeArray.size() - 1) || Maze.isSymbol(index,mazeArray.size() - 1) || Maze.isExit(index,mazeArray.size() - 1))) {
+            if (!(Maze.isWall(index, mazeArray.size() - 1) || Maze.isSymbol(index, mazeArray.size() - 1) || Maze.isExit(index, mazeArray.size() - 1))) {
                 return false;
             }
         }
