@@ -10,24 +10,22 @@ public class SortandServe {
 
         System.out.println("The Complaint Priority Numbers Before Sorting: ");
 
-        int[] ComplainPriorityNumber = new int[args.length];
+        int[] complainPriorityNumbers = new int[args.length];
         for (int i = 0; i < args.length; i++) {
-            ComplainPriorityNumber[i] = Integer.parseInt(args[i]);
-            System.out.print(" " + ComplainPriorityNumber[i] + " ");
+            complainPriorityNumbers[i] = Integer.parseInt(args[i]);
+            System.out.print(" " + complainPriorityNumbers[i] + " ");
         }
         boolean running = true;
         while (running) {
             System.out.println("\nPress:\n 1.Selection Sort\n 2.Bubble Sort\n 0.Exist..");
             int userInput = sc.nextInt();
-
             if (userInput == 1) {
-                selectionSort(ComplainPriorityNumber);
+                selectionSort(complainPriorityNumbers);
             } else if (userInput == 2) {
-                BubbleSort(ComplainPriorityNumber);
+                bubbleSort(complainPriorityNumbers);
             } else if (userInput == 0) {
                 running = false;
-                System.out.println("Existing...");
-            }
+                System.out.println("Existing...");}
         }
 
         System.out.println();
@@ -55,9 +53,7 @@ public class SortandServe {
 
         System.out.println();
         System.out.println();
-
         System.out.print(" The Complain Priority Number After Sorting: ");
-
         System.out.println();
         System.out.println();
         // After Sorting:
@@ -71,7 +67,6 @@ public class SortandServe {
         //List The Lowest Three Numbers:
         System.out.println("The lowest Three Numbers: ");
         for (int i = 0; i < 3; i++) {
-
             System.out.print(" " + ComplainPriorityNumber[i] + " ");
         }
 
@@ -79,7 +74,7 @@ public class SortandServe {
 
     //*****************************************(Bubble Sort)*****************************************
 
-    public static void BubbleSort(int[] ComplainPriorityNumber) {
+    public static void bubbleSort(int[] ComplainPriorityNumber) {
 
         System.out.println("*******************BubbleSort*******************");
 
@@ -99,12 +94,10 @@ public class SortandServe {
         System.out.println();
         System.out.println();
         System.out.println(" The Complain Priority Number After Sorting: ");
-
         System.out.println();
         for (int i = 0; i < ComplainPriorityNumber.length; i++) {
             System.out.print(" " + ComplainPriorityNumber[i] + " ");
         }
-
         System.out.println();
         System.out.println();
 
