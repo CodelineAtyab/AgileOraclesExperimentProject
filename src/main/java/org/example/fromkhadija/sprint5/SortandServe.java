@@ -2,6 +2,7 @@ package org.example.fromkhadija.sprint5;
 
 import java.util.Scanner;
 
+
 public class SortandServe {
 
     public static void main(String[] args) {
@@ -15,6 +16,7 @@ public class SortandServe {
             complainPriorityNumbers[i] = Integer.parseInt(args[i]);
             System.out.print(" " + complainPriorityNumbers[i] + " ");
         }
+
         boolean running = true;
         while (running) {
             System.out.println("\nPress:\n 1.Selection Sort\n 2.Bubble Sort\n 0.Exist..");
@@ -30,6 +32,8 @@ public class SortandServe {
 
         System.out.println();
     }
+
+
 
     //*****************************************(Selection Sort)*****************************************
 
