@@ -42,27 +42,21 @@ public class InternQueueSorter {
             System.exit(1);
         }
 
-        // Test selectionSort
+        // Test both sorts side by side
+        int[] copy = priorities.clone();
         selectionSort(priorities);
-        System.out.println("Sorted (selection): " + arrayToString(priorities));
-
+        bubbleSort(copy);
+        System.out.println("Selection: " + arrayToString(priorities));
+        System.out.println("Bubble:    " + arrayToString(copy));
     }
 
     static void selectionSort(int[] arr) {
         int n = arr.length;
-
         for (int sortedBoundary = 0; sortedBoundary < n - 1; sortedBoundary++) {
-
-            int minIndex = sortedBoundary; // assume first unsorted item is min
-
-            // Search for a smaller value in the remaining unsorted portion
+            int minIndex = sortedBoundary;
             for (int scanner = sortedBoundary + 1; scanner < n; scanner++) {
-                if (arr[scanner] < arr[minIndex]) {
-                    minIndex = scanner;
-                }
+                if (arr[scanner] < arr[minIndex]) minIndex = scanner;
             }
-
-            // Swap the found minimum into the sorted boundary position
             if (minIndex != sortedBoundary) {
                 int temp = arr[sortedBoundary];
                 arr[sortedBoundary] = arr[minIndex];
@@ -70,10 +64,29 @@ public class InternQueueSorter {
             }
         }
     }
+    static void bubbleSort(int[] arr) {
+        int n = arr.length;
+
+        for (int pass = 0; pass < n - 1; pass++) {
+            boolean swapped = false;
+
+            // Each pass only needs to reach (n - 1 - pass) because the last `pass` elements are already in their final sorted positions
+            for (int cursor = 0; cursor < n - 1 - pass; cursor++) {
+                if (arr[cursor] > arr[cursor + 1]) {
+                    int temp = arr[cursor];
+                    arr[cursor] = arr[cursor + 1];
+                    arr[cursor + 1] = temp;
+                    swapped = true;
+                }
+            }
+
+            // No swaps this pass → already sorted, stop immediately
+            if (!swapped) break;
+        }
+    }
     static int[] parseInput(String rawInput) {
         String[] tokens = rawInput.split(",");
         int[] result = new int[tokens.length];
-
         for (int i = 0; i < tokens.length; i++) {
             String token = tokens[i].trim();
             try {
