@@ -1,5 +1,6 @@
 package org.example.fromkhadija.sprint5;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 
@@ -21,13 +22,17 @@ public class SortandServe {
         while (running) {
             System.out.println("\nPress:\n 1.Selection Sort\n 2.Bubble Sort\n 0.Exist..");
             int userInput = sc.nextInt();
-            if (userInput == 1) {
-                selectionSort(complainPriorityNumbers);
+            if (userInput == 0) {
+                System.out.println("Existing...");
+                running = false;
             } else if (userInput == 2) {
                 bubbleSort(complainPriorityNumbers);
-            } else if (userInput == 0) {
-                running = false;
-                System.out.println("Existing...");}
+            } else{
+                if ((userInput != 0) || (userInput != 2)){ //if user dose not enter either 0 , 2 will be default is --> Selection Sort
+
+                selectionSort(complainPriorityNumbers);}
+
+                }
         }
 
         System.out.println();
