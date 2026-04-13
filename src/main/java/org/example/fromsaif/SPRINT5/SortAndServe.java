@@ -2,7 +2,6 @@ package org.example.fromsaif.SPRINT5;
 import java.util.Scanner;
 import java.util.Arrays;
 
-
 public class SortAndServe {
     public static void main(String[] args) {
 
@@ -40,7 +39,7 @@ public class SortAndServe {
             try {
                 numbers[i] = Integer.parseInt(currentPart); // Converts line into integer
             } catch (NumberFormatException e) {
-                System.out.println("Invalid Input, Please provide integers with commas in between them");
+                System.out.println("Invalid Input: Please provide at least three integers separated by commas.");
                 return;
             }
         }
@@ -56,7 +55,7 @@ public class SortAndServe {
         } else if (algorithm.equals("bubble")) {
             bubbleSort(numbers);
         } else {
-            System.out.println("Invalid: Use Selection or Bubble algorithm");
+            System.out.println("Invalid Algorithm: Use Selection or Bubble");
             return;
         }
 
@@ -65,26 +64,28 @@ public class SortAndServe {
 
     }
 
-
-
     // Bubble Sort algorithm
     public static void bubbleSort(int[] numbers) {
         int temporaryValue;
+        boolean swapped;
 
         for (int i = numbers.length; i > 0; i--) {
+            swapped = false;
             for (int j = 0; j < i - 1; j++) {
                 if (numbers[j] > numbers[j + 1]) {
                     temporaryValue = numbers[j];
                     numbers[j] = numbers[j + 1];
                     numbers[j + 1] = temporaryValue;
+                    swapped = true;
                 }
+            }
+            if (!swapped) {
+                break;
             }
         }
     }
 
-
     // Selection Sort algorithm
-
     public static void selectionSort(int[] numbers) {
         int smallestIndex;
         int temporaryValue;
@@ -102,7 +103,6 @@ public class SortAndServe {
                 numbers[i] = numbers[smallestIndex];
                 numbers[smallestIndex] = temporaryValue;
             }
-
         }
     }
 }
