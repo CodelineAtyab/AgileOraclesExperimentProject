@@ -1,4 +1,4 @@
-package org.example.fromtibyan.sprint4;
+package org.example.fromtibyan.codingbat;
 
 public class WarmUp {
 
