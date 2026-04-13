@@ -10,7 +10,6 @@ public class SelectionSort {
         /* 1. Compare maxPriorityIndex with every number
          *  2. If any number is greater than maxPriorityIndex, then maxPriorityIndex becomes that number
          * */
-
         Arrays.stream(priorityArray).forEach((currNum) -> {
             System.out.printf("%d ", currNum);
         });
@@ -24,7 +23,6 @@ public class SelectionSort {
                     maxPriorityIndex = i;
                 }
             }
-
             // Swapping
             int temp = priorityArray[currIter];
             priorityArray[currIter] = priorityArray[maxPriorityIndex];
@@ -36,7 +34,6 @@ public class SelectionSort {
             });
             System.out.println();
         }
-
         // Print the result
         for (int i=0; i<3; i++)
             System.out.printf("%d ", priorityArray[i]);
