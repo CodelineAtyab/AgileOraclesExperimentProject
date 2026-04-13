@@ -23,7 +23,7 @@ public class InternQueueSorter {
                 System.out.println("Error: input must be integers!");
                 return;
             }
-        }
+        }//choose algorithm
         System.out.println("Select --algorithm=[bubble|selection]..default [selection]");
         String userSelection = sc.nextLine().toLowerCase();
 
