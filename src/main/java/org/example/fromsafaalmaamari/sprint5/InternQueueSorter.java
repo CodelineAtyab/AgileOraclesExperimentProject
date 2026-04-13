@@ -43,7 +43,6 @@ public class InternQueueSorter {
             System.out.print(priorityNumbers[i] + " ");
         }
     }
-
     public static void bubbleSort(int[] priorityNumbers) {
         for (int i = 0; i < priorityNumbers.length; i++) {
             for (int j = 0; j < priorityNumbers.length - 1; j++) {
@@ -56,7 +55,6 @@ public class InternQueueSorter {
             }
         }
     }
-
     public static void selectionSort(int[] priorityNumbers) {
         for (int i = 0; i < priorityNumbers.length - 1; i++) {
             int minPriority = i;
