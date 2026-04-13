@@ -1,6 +1,5 @@
 package org.example.fromtibyan.sprint5.internqueuesorteroop;
 
-
 public class SelectionSort implements SortStrategy {
     @Override
     public void sort(int[] priorities) {
@@ -15,11 +14,6 @@ public class SelectionSort implements SortStrategy {
             int temp = priorities[currentIteration];// store min value
             priorities[currentIteration] = priorities[minPriority];// swap both values
             priorities[minPriority] = temp;// store in temporary variable for comparison
-        }
-        System.out.print("Intern queue: ");
-        // print first 3 min priorities
-        for (int i = 0; i < 3; i++) {
-            System.out.print(priorities[i] + " ");
         }
     }
 }
