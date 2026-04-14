@@ -1,6 +1,36 @@
 package org.example.fromabdullahalhadabi;
-
 import java.util.Scanner;
+
+
+/**
+ * ================= HOW TO RUN THIS PROGRAM =================
+ *
+ * 1. Compile the project (if needed):
+ *    javac -d . InternQueueSorterOOP.java
+ *
+ * 2. Run from terminal:
+ *    java org.example.fromabdullahalhadabi.InternQueueSorterOOP
+ *
+ * 3. When the program starts:
+ *    - Enter numbers separated by comma or space
+ *      Example:
+ *          10,8,2,6,4
+ *          OR
+ *          10 8 2 6 4
+ *
+ *    - Choose sorting algorithm:
+ *          1 → Selection Sort
+ *          2 → Bubble Sort
+ *          input 1 or 2 and press Enter
+ *
+ * 4. Output:
+ *    The program will display the lowest 3 numbers.
+ *
+ * NOTE:
+ * - You must enter at least 3 numbers.
+ * - If you enter invalid input, the program may throw an error.
+ * ==========================================================
+ */
 
 public class InternQueueSorterOOP {
 
