@@ -1,6 +1,8 @@
 package org.example.fromyarab.internQueueSorterOOPEdition;
 
 public class InputParser {
+
+    // function to check and parse the input list and return an integer list
     public static int[] parseInput(String sPriorities){
         String [] tempPriorities = sPriorities.split(",");
         int[] priorities = new int[tempPriorities.length];
@@ -20,6 +22,7 @@ public class InputParser {
         }
     }
 
+    // function to check a list if it is a list of integers
     public static boolean validateInput(String[] tempPriorities){
         for (String priority : tempPriorities) {
             if (!isNumeric(priority)) {
@@ -29,6 +32,7 @@ public class InputParser {
         return true;
     }
 
+    // function to check if the string is integer
     public static boolean isNumeric(String str) {
         try {
             Integer.parseInt(str);

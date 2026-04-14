@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class SelectionSort implements SortStrategy{
 
+    // implementation of sort function to sort using Bubble Sort Algorithm
     @Override
     public void sort(int[] list) {
         int smallestIndex;
