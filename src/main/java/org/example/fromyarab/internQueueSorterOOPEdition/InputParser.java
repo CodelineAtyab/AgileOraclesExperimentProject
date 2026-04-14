@@ -5,7 +5,7 @@ public class InputParser {
         String [] tempPriorities = sPriorities.split(",");
         int[] priorities = new int[tempPriorities.length];
         if (tempPriorities.length<3){
-            System.out.println("The list should contains only integers!.");
+            System.out.println("The list should contains at least 3 elements separated by comma(,)!.");
             return new int[0];
         }
         if (validateInput(tempPriorities)){

@@ -23,7 +23,7 @@ public class InternQueueSorter {
                 }
             }
             else if (el.contains(",")){
-                sPriorities = args[0];
+                sPriorities = el;
             }
             else {
                 System.out.println("Unrecognizable arguments!.");
@@ -31,8 +31,11 @@ public class InternQueueSorter {
                 return;
             }
         }
+        int[] leastPriorities = new int[0];
+        if (InputParser.parseInput(sPriorities).length !=0){
+            leastPriorities = serve.getLeastValues(InputParser.parseInput(sPriorities));
+        }
 
-        int[] leastPriorities = serve.getLeastValues(InputParser.parseInput(sPriorities));
 
         if (leastPriorities.length >= 3){
             System.out.printf("The least 3 priorities are: %d, %d, %d\n",leastPriorities[0], leastPriorities[1], leastPriorities[2]);
