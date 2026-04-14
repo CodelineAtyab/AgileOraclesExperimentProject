@@ -1,3 +1,4 @@
+/*
 package org.example.fromabdullahalhadabi;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -85,3 +86,4 @@ public class InternQueueSorter {
             }
         }
     }
+ */
