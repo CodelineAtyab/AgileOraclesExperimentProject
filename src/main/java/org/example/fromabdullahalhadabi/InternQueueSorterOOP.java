@@ -1,24 +1,39 @@
 package org.example.fromabdullahalhadabi;
 
+import java.util.Scanner;
+
 public class InternQueueSorterOOP {
 
     public static void main(String[] args) {
 
-        String input = args.length > 0 ? args[0] : "10,8,2,6,4"; // here if the user didn't provide any input we will use this default input
-        SortStrategy strategy = new SelectionSort();
+        Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Enter numbers : ");
+        String input = scanner.nextLine();
 
-        if (args.length > 1 && args[1].equals("algorithm=bubble")) {
+        System.out.println("Choose algorithm:");
+        System.out.println("1 - Selection Sort");
+        System.out.println("2 - Bubble Sort");
+
+        int choice = scanner.nextInt();
+
+        SortStrategy strategy;
+
+        if (choice == 2) {
             strategy = new BubbleSort();
+        } else {
+            strategy = new SelectionSort();
         }
+
+        input = input.replace(" ", ",");
+
         InputParser parser = new InputParser();
         int[] numbers = parser.parse(input);
 
         ComplaintService service = new ComplaintService();
-
         int[] result = service.getLowestThree(numbers, strategy);
 
-
+        System.out.println("Lowest 3 numbers:");
         for (int num : result) {
             System.out.println(num);
         }
@@ -32,7 +47,7 @@ public class InternQueueSorterOOP {
 
     class SelectionSort implements SortStrategy {
         public void sort(int[] arr) {
-            for (int i = 1; i < arr.length -1; i++) {
+            for (int i = 0; i < arr.length -1; i++) {
                 int min = i;
 
                 for (int j = i + 1; j < arr.length; j++) {
@@ -53,7 +68,7 @@ public class InternQueueSorterOOP {
 
     class BubbleSort implements SortStrategy {
         public void sort(int[] arr) {
-            for (int i = 1; i < arr.length -1; i++) {
+            for (int i = 0; i < arr.length -1; i++) {
                 for (int j=0;j< arr.length - i - 1;j++){
                     if (arr[j] > arr[j+1]) { // +1 mean the next number (If left > right to swap)
                         int temp = arr[j];
