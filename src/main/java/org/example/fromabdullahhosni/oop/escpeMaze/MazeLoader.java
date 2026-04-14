@@ -7,12 +7,14 @@ import java.nio.file.Path;
 
 public class MazeLoader {
 
-    Path mazePath = null;
-    char array2d[][] = null;
+    private static Path mazePath = null;
+    private static char[][] array2d = null;    //oop attributes
 
-    public char[][] loadMaze(){
+    //------------------------------------------------------------------------------------
+    // method to Load maze.txt
+    public static char[][] loadMaze(){
         try {
-            mazePath = Path.of(MazeLoader.class.getResource("./data/maze.txt").toURI());
+            mazePath = Path.of(MazeLoader.class.getResource("./maze.txt").toURI());
         } catch (
                 URISyntaxException e) {
             throw new RuntimeException(e);
@@ -20,7 +22,7 @@ public class MazeLoader {
 
         try {
             String fileContent = Files.readString(mazePath);
-            String[] linesOfFile = fileContent.split("\n");
+            String[] linesOfFile = fileContent.split("\\r?\\n");
             int lineLength = linesOfFile[0].length();
 
             array2d = new char[linesOfFile.length][lineLength];  // Load it in 2D Array or Array of Arrays
@@ -37,14 +39,23 @@ public class MazeLoader {
                 IOException e) {
             throw new RuntimeException(e);
         }
+        return array2d;
+    }
 
+    //---------------------------------------
+    // oop methods to reuse varraibles in other classes
+    public static char[][] getArray2d() {
         return array2d;
     }
 
 
 
-//    int rows = array2d.length;                                     // total rows of the maze
-//    int cols = array2d[0].length;
+}
+
+
+
+//        int rows = array2d.length;                                     // total rows of the maze
+//        int cols = array2d[0].length;
 //
 //        for (int row = 0; row < 10; row++) {
 //        for (int col = 0; col < 10; col++) {
@@ -53,4 +64,4 @@ public class MazeLoader {
 //        System.out.println();
 //    }
 
-}
+//}
