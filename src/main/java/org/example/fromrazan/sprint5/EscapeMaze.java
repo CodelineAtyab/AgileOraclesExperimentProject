@@ -145,7 +145,6 @@ static boolean move(int r, int c){
         }
     }
 
-
     //print path
 
     static void printPath(){
