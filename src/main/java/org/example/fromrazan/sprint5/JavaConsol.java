@@ -42,13 +42,13 @@ class BubbleSort implements SortSrategy {
         for (int i = 0; i < arr.length -1; i++){
             swapped = false;
 
-         for (int j = 0; j < arr.length - i - 1; j++){
-             if (arr[j] > arr[j +1]){
+         for (int k = 0; k < arr.length - i - 1; k++){
+             if (arr[k] > arr[k +1]){
 
 
-                 int temp = arr[j];
-                 arr[j] = arr[j + 1];
-                 arr[j + 1] = temp;
+                 int temp = arr[k];
+                 arr[k] = arr[k + 1];
+                 arr[k + 1] = temp;
 
                  swapped = true;
 
