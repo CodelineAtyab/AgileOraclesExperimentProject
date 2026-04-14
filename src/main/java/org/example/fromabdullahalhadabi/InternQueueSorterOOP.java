@@ -36,24 +36,36 @@ public class InternQueueSorterOOP {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        String input;
+        SortStrategy strategy = new SelectionSort(); // default
 
-        System.out.println("Enter numbers : ");
-        String input = scanner.nextLine();
+        // CLI INPUT
+        if (args.length > 0) {
+            input = args[0];
 
-        System.out.println("Choose algorithm:");
-        System.out.println("1 - Selection Sort");
-        System.out.println("2 - Bubble Sort");
+            // check for optional flag
+            if (args.length > 1 && args[1].equals("--algorithm=bubble")) {
+                strategy = new BubbleSort();
+            }
 
-        int choice = scanner.nextInt();
-
-        SortStrategy strategy;
-
-        if (choice == 2) {
-            strategy = new BubbleSort();
         } else {
-            strategy = new SelectionSort();
+            //  STDIN
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Enter numbers : ");
+            input = scanner.nextLine();
+
+            System.out.println("Choose algorithm:");
+            System.out.println("1 - Selection Sort");
+            System.out.println("2 - Bubble Sort");
+
+            int choice = scanner.nextInt();
+
+            if (choice == 2) {
+                strategy = new BubbleSort();
+            }
         }
+
 
         input = input.replace(" ", ",");
 
