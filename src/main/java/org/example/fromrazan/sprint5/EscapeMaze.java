@@ -137,9 +137,7 @@ static boolean move(int r, int c){
             for (int k = 0; k < size; k++){
                 if (i == cr && k == cc){
                     System.out.print("@");
-
                 } else {
-
                     System.out.print(maze[i][k] + "  ");
                 }
             }
