@@ -6,11 +6,9 @@ public class ComplaintService {
     public int[] getLowestThree(int[] priorities, SortStrategy strategy) {
         if (priorities.length < 3) {
             System.err.println("There must be at least 3 priorities");
-            System.exit(0); // exit system if priorities less than 3
+            return new int[0];
         }
         strategy.sort(priorities);
         return Arrays.copyOf(priorities, 3);
     }
 }
-
-
