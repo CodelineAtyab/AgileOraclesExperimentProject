@@ -33,7 +33,7 @@ public class EscapeMaze {
 
     //load maze
    static void loadMaze(String filepath) throws IOException{
-        List<String> lines = Files.readAllLines(Path.of("src/main/java/org/example/fromrazan/maze.txt"));
+        List<String> lines = Files.readAllLines(Path.of("src/main/java/org/example/fromrazan/sprint5/maze.txt"));
 
         size = lines.size();
         maze = new char[size][size];
@@ -80,7 +80,7 @@ public class EscapeMaze {
         if (maze[r][c] == 'E'){
             System.out.println("Maze Solved! ");
             printPath();
-            System.out.println("found Exit at :(" + r + "," + c +")");
+            System.out.println("found Exit at :(" + r + " , " + c +")");
             return true;
         }
 
@@ -140,19 +140,20 @@ static boolean move(int r, int c){
 
                 } else {
 
-                    System.out.print(maze[i][k] + " ");
+                    System.out.print(maze[i][k] + "  ");
                 }
             }
             System.out.println();
         }
     }
 
+
     //print path
 
     static void printPath(){
         System.out.print("path: ");
         for (int [] p : stack ){
-            System.out.print("(" + p[0] + "," + p[1] + ") -> ");
+            System.out.print("(" + p[0] + " , " + p[1] + ") -> ");
         }
         System.out.println("E");
 
