@@ -26,6 +26,10 @@ public class EscapeTheMaze {
                 maze[i] = lines.get(i).toCharArray(); // Convert one text row into one maze row
             }
 
+            System.out.println("Maze converted to 2D array successfully.");
+            System.out.println("First cell: " + maze[0][0]);
+            System.out.println("Second row: " + new String(maze[1]));
+
             } catch(IOException e){
                 System.out.println("Error: file could not be read.");
             }
