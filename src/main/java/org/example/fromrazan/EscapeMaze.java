@@ -110,6 +110,7 @@ import java.util.ArrayList;
        }
 
        public static int[] getPLayerLocation(char[][] maze) {
+
            int[] location = new int[2];
            for (int row=0; row < maze.length; row++) {
                for (int col=0; col < maze[row].length; col++) {
