@@ -1,7 +1,5 @@
 # MazeApp — how to run
 
-From the **project root** (folder with `pom.xml`):
-
 1. **Compile:** `mvn compile`
 
 
