@@ -1,36 +1,37 @@
 package org.example.fromsulaiman.s5.escapethemaze;
 
-import java.util.Stack;
-
 public class MazeApp {
+
     public static void main(String[] args) {
 
-      if (args.length == 0){
-          System.out.println("Usage: java MazeAPP maze.txt");
-          return;
-      }
-
-      Maze maze;
-
-      // load maze
-        try {
-            maze =MazeLoader.load(args[0]);
-        }catch (Exception e){
-            System.out.println("Error loading maze: "+e.getMessage());
+        if (args.length == 0) {
+            System.out.println("Usage: pass the maze file path, for example:");
+            System.out.println("  java -cp target/classes org.example.fromsulaiman.s5.escapethemaze.MazeApp maze.txt");
             return;
         }
 
-        // find the start '@'
-        Position start = findStart(maze);
+        Maze maze;
 
-        // create solver
+        try {
+            maze = MazeLoader.load(args[0]);
+        } catch (Exception e) {
+            System.out.println("Error loading maze: " + e.getMessage());
+            return;
+        }
+
+        Position start = findStart(maze);
+        if (start == null) {
+            System.out.println("Error: start '@' not found (file should have been validated).");
+            return;
+        }
+
         MazeSolver solver = new MazeSolver(maze);
 
-        try{
-            boolean solved =solver.solve(start);
+        try {
+            boolean solved = solver.solve(start);
 
             if (solved) {
-                System.out.println("\n Maze Solved");
+                System.out.println("Maze Solved!");
 
                 Stack<Position> path = solver.getPath();
 
@@ -43,16 +44,17 @@ public class MazeApp {
                 }
 
                 Position end = path.peek();
-                System.out.println("\n Found an exit at: " + end);
+                System.out.println();
+                System.out.println("Found an Exit at: " + end);
 
+            } else {
+                System.out.println("No path found.");
             }
-            else {
-                System.out.println("No Path found");
-            }
-            }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             System.out.println("Execution interrupted.");
         }
     }
+
     private static Position findStart(Maze maze) {
         for (int i = 0; i < maze.getSize(); i++) {
             for (int j = 0; j < maze.getSize(); j++) {
@@ -61,8 +63,6 @@ public class MazeApp {
                 }
             }
         }
-
-        throw new RuntimeException("Start '@' not found in maze");
+        return null;
     }
-
 }

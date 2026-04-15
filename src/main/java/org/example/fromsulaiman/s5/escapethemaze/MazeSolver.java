@@ -1,12 +1,10 @@
 package org.example.fromsulaiman.s5.escapethemaze;
 
-import java.util.Stack;
-
 public class MazeSolver {
 
     private Maze maze;
     private boolean[][] visited;
-    private Stack<Position> stack = new Stack<>();
+    private final Stack<Position> stack = new Stack<>();
 
     public MazeSolver(Maze maze) {
         this.maze = maze;
@@ -20,8 +18,8 @@ public class MazeSolver {
         while (!stack.isEmpty()) {
 
             Position current = stack.peek();
-            int r = current.row;
-            int c = current.col;
+            int r = current.getRow();
+            int c = current.getCol();
 
             if (maze.isExit(r, c)) {
                 animate(current);
@@ -61,8 +59,8 @@ public class MazeSolver {
     }
 
     private void animate(Position pos) throws InterruptedException {
-        int r = pos.row;
-        int c = pos.col;
+        int r = pos.getRow();
+        int c = pos.getCol();
         char previous = maze.getCell(r, c);
         maze.setCell(r, c, '@');
         MazeRenderer.clear();

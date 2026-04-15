@@ -19,7 +19,7 @@ public class MazeRenderer {
     }
 
     public static void delay() throws InterruptedException {
-        Thread.sleep(350);
+        Thread.sleep(1000);
     }
 
 
