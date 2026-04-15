@@ -23,4 +23,9 @@ public class SelectionSort implements SortStrategy {
             array[i] = temp;
         }
     }
+
+    @Override
+    public String getName() {
+        return "Selection Sort";
+    }
 }
