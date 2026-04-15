@@ -37,4 +37,12 @@ public class Maze {
         return grid;
     }
 
+    public void markCurrent(int row, int col) {
+        grid[row][col] = '@';
+    }
+
+    public void clearCell(int row, int col) {
+        grid[row][col] = '0';
+    }
+
 }

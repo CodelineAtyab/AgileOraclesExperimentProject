@@ -18,30 +18,31 @@ public class MazeSolver {
         stack.push(start);
 
         while (!stack.isEmpty()) {
-            Position current = stack.peek();
 
+            Position current = stack.peek();
             int r = current.row;
             int c = current.col;
 
             if (maze.isExit(r, c)) {
+                animate(current);
                 return true;
             }
 
             visited[r][c] = true;
 
-            MazeRenderer.clear();
-            maze.setCell(r, c, '@');
-            MazeRenderer.render(maze);
-            Thread.sleep(1000);
+            animate(current);
 
-            // Try 4 directions
+
             if (move(r - 1, c)) continue;
             if (move(r + 1, c)) continue;
             if (move(r, c - 1)) continue;
             if (move(r, c + 1)) continue;
 
-            // backtrack
             stack.pop();
+
+            if (!stack.isEmpty()) {
+                animate(stack.peek());
+            }
         }
 
         return false;
@@ -57,5 +58,16 @@ public class MazeSolver {
 
     public Stack<Position> getPath() {
         return stack;
+    }
+
+    private void animate(Position pos) throws InterruptedException {
+        int r = pos.row;
+        int c = pos.col;
+        char previous = maze.getCell(r, c);
+        maze.setCell(r, c, '@');
+        MazeRenderer.clear();
+        MazeRenderer.render(maze);
+        MazeRenderer.delay();
+        maze.setCell(r, c, previous);
     }
 }
