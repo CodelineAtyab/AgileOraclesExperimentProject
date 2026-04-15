@@ -15,4 +15,9 @@ public class BubbleSort implements SortStrategy {
             }
         }
     }
+
+    @Override
+    public String getName() {
+        return "Bubble Sort";
+    }
 }
