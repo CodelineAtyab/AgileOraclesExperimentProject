@@ -1,23 +1,19 @@
 package org.example.fromkhadija.sprint5;
 
-
 import java.util.Scanner;
 
-
 public class SortandServe {
-
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-
         System.out.println("The Complaint Priority Numbers Before Sorting: ");
 
         if (args.length >= 3) {
-            System.out.println("You must Enter al least 3 Complain Priority Number");
-            return;
+            System.out.println("You must Enter at least 3 Complain Priority Number");
         }
 
         int[] complainPriorityNumber = new int[args.length];
+
         for (int i = 0; i < args.length; i++) {
             complainPriorityNumber[i] = Integer.parseInt(args[i]);
             System.out.print(" " + complainPriorityNumber[i] + " ");
@@ -33,17 +29,14 @@ public class SortandServe {
             } else if (userInput == 2) {
                 bubbleSort(complainPriorityNumber);
             } else {
-                if ((userInput != 0) || (userInput != 2)) { //if user dose not enter either 0 , 2 will be default is --> Selection Sort
+                if ((userInput != 0) && (userInput != 2)) { //if user dose not enter either 0 , 2 will be default is --> Selection Sort
 
                     selectionSort(complainPriorityNumber);
                 }
-
             }
         }
-
         System.out.println();
     }
-
 
     //*****************************************(Selection Sort)*****************************************
 
@@ -51,9 +44,7 @@ public class SortandServe {
         System.out.println("*******************selectionSort*******************");
 
         for (int currIter = 0; currIter < complainPriorityNumber.length - 1; currIter++) {
-
             int minPriorityNum = currIter;
-
             for (int i = currIter + 1; i < complainPriorityNumber.length; i++) {
                 if (complainPriorityNumber[i] < complainPriorityNumber[minPriorityNum]) {
                     minPriorityNum = i;
@@ -64,7 +55,6 @@ public class SortandServe {
             complainPriorityNumber[currIter] = complainPriorityNumber[minPriorityNum];
             complainPriorityNumber[minPriorityNum] = temp;
         }
-
         System.out.println();
         System.out.println();
         System.out.print(" The Complain Priority Number After Sorting: ");
@@ -84,9 +74,7 @@ public class SortandServe {
         for (int i = 0; i < 3; i++) {
             System.out.print(" " + complainPriorityNumber[i] + " ");
         }
-
     }
-
     //*****************************************(Bubble Sort)*****************************************
 
     public static void bubbleSort(int[] complainPriorityNumber) {
@@ -104,7 +92,6 @@ public class SortandServe {
                 }
             }
         }
-
         //The Result After Sorting:
         System.out.println();
         System.out.println();
@@ -121,9 +108,5 @@ public class SortandServe {
         for (int i = 0; i < 3; i++) {
             System.out.print(" " + complainPriorityNumber[i] + " ");
         }
-
     }
 }
-
-
-
