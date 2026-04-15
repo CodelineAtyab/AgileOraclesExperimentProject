@@ -1,87 +1,88 @@
 package org.example.fromkawther.sprint5;
+
 import java.util.Scanner;
+
 public class Sort {
-public static void main (String[] args) {
-    String inputData = "";
-    String algorithm = "selection"; // Default algorithm
+ public static void main(String[] args) {
+        String data ="";
+        String method ="selection";
 
-    // 1. Check Command line  arguments
-    for (String arg : args) {
-        if (arg.startsWith("--algorithm=")) {
-            algorithm = arg.split("=")[1].toLowerCase();
-        } else {
-            inputData = arg;
+        // 1. Logic to handle Criteria:
+        for (String k: args) {
+            if (k.startsWith("--algorithm=")) {
+               method =k.split("=")[1].toLowerCase();
+            } else {
+                data = k; // This is the comma-separated list
+            }
+        }
+
+        // 2. Read from Standard Input if no data in args
+        if (data.isEmpty()) {
+            Scanner sc = new Scanner(System.in);
+            if (sc.hasNextLine()) {
+                data = sc.nextLine();
+            }
+        }
+
+        try {
+            // 3. Process the input
+            String[] p = data.split(",");
+            if (p.length < 3) {
+                System.out.println("Error: Provide at least 3 numbers.");
+                return;
+            }
+
+            int[] a = new int[p.length];
+            for (int i = 0; i < p.length; i++) {
+                a[i] = Integer.parseInt(p[i].trim());
+            }
+
+            // 4. Choose algorithm:
+            if (method.equals("bubble")) {
+                bubbleSort(a);
+            } else {
+                selectionSort(a);
+            }
+
+            // 5. Print sorted list:
+            for (int i = 0; i < a.length; i++) {
+                System.out.print(a[i] + (i == a.length - 1 ? "" : ","));
+            }
+            System.out.println();
+
+            // 6. Intern queue: lowest 3:
+            System.out.print("Intern queue: ");
+            for (int i = 0; i < 3; i++) {
+                System.out.print(a[i] + (i == 2 ? "" : ","));
+            }
+            System.out.println();
+
+        } catch (Exception e) {
+            System.out.println("Error: Invalid input format.");
         }
     }
-    // 2- read from standard Input if no data in arguments :
-    if (inputData.isEmpty()) {
-        Scanner scanner = new Scanner(System.in);
-        if (scanner.hasNextLine()) {
-            inputData = scanner.nextLine();
+    // finds the minimum in each step :
+    public static void selectionSort(int[] x) {
+        for (int i = 0; i < x.length - 1; i++) {
+            int low = i;
+            for (int j = i + 1; j < x.length; j++) {
+                if (x[j] < x[low]) low = j;
+            }
+            int t = x[low];
+            x[low] = x[i];
+            x[i] = t;
         }
     }
-            try {
-                // convert string input to Integer Array :
-
-                String[] parts = inputData.split(",");
-                if (parts.length < 3) {
-                    System.out.println("Error: Please provide at least 3 numbers.");
-                    return;
-                }
-                int[] numbers = new int[parts.length];
-                for (int i = 0; i < parts.length; i++) {
-                    numbers[i] = Integer.parseInt(parts[i].trim());
-                }
-                // 4- choose sorting method :
-                if (algorithm.equals("bubble")) {
-                    bubbleSort(numbers);
-                } else {
-                    selectionSort(numbers);
-                }
-               // 5 : print result and sorted list :
-                for (int i = 0; i < numbers.length; i++) {
-                    System.out.print(numbers[i] + (i == numbers.length - 1 ? "" : ","));
-                }
-                System.out.println();
-              // intern gueue (the first 3 num):
-                System.out.print("Intern queue: ");
-                for (int i = 0; i < 3; i++) {
-                    System.out.print(numbers[i] + (i == 2 ? "" : ","));
-                }
-                System.out.println();
-
-            } catch (Exception e) {
-                System.out.println("Error: not correct input >> but the numbers separated by commas.");
-            }
-        }
-        // selection sort method :
-        public static void selectionSort(int[] arr) {
-            int n = arr.length;
-            for (int i = 0; i < n - 1; i++) { // smallest  num
-                int minIdx = i;
-                for (int j = i + 1; j < n; j++) {
-                    if (arr[j] < arr[minIdx]) {
-                        minIdx = j; // found  the small num
-                    }
-                }
-                // swap using temp variable :
-                int temp = arr[minIdx];
-                arr[minIdx] = arr[i];
-                arr[i] = temp;
-            }
-        }
-            // bubble sort method :
-        public static void bubbleSort(int[] arr) {
-            int n = arr.length;
-            for (int i = 0; i < n - 1; i++) {
-                for (int j = 0; j < n - i - 1; j++) {
-                    if (arr[j] > arr[j + 1]) {
-                        // Swap
-                        int temp = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = temp;
-                    }
+    public static void bubbleSort(int[] x) {
+        int n = x.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (x[j] > x[j + 1]) {
+                    int t = x[j];
+                    x[j] = x[j + 1];
+                    x[j + 1] = t;
                 }
             }
         }
-        }
+    }
+}
