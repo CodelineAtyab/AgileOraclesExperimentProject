@@ -2,7 +2,7 @@ package org.example.frommaryam.maryamSprint5;
 
 import java.util.Scanner;
 
-public class sort {
+public class Sort {
 
     public static void main(String[] args) {
 
