@@ -62,11 +62,16 @@ public class EscapeTheMaze {
             for (int col = 0; col < cols; col++) {
                 boolean isBorder = row == 0 || row == rows - 1 || col == 0 || col == cols - 1;
 
-            }
+                if (isBorder) {
+                    char cell = maze[row][col];
 
+                    // Stops the validation immediately, then reports the error
+                    if (cell != '1' && cell != '@' && cell != 'E') {
+                        throw new IllegalArgumentException("Border cells must be '1', '@', or 'E'.");
+
+                    }
+                }
+            }
         }
     }
 }
-
-
-
