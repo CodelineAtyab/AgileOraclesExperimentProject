@@ -35,6 +35,19 @@ public class EscapeTheMaze {
 
         } catch (IOException e) {
             System.out.println("Error: file could not be read.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    // Pointer class (Helps locates one position in the maze)
+    static class Point {
+        int row;
+        int col;
+
+        Point(int row, int col) {
+            this.row = row;
+            this.col = col;
         }
     }
 
@@ -57,13 +70,24 @@ public class EscapeTheMaze {
             throw new IllegalArgumentException("Maze must have the same number of rows and columns.");
         }
 
+        int startCount = 0;
+        int exitCount = 0;
+
         // Validate the borders
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
+                char cell = maze[row][col];
+
+                if (cell == '@') {
+                    startCount++;
+                }
+                if (cell == 'E') {
+                    exitCount++;
+                }
+
                 boolean isBorder = row == 0 || row == rows - 1 || col == 0 || col == cols - 1;
 
                 if (isBorder) {
-                    char cell = maze[row][col];
 
                     // Stops the validation immediately, then reports the error
                     if (cell != '1' && cell != '@' && cell != 'E') {
@@ -72,6 +96,13 @@ public class EscapeTheMaze {
                     }
                 }
             }
+        }
+
+        if (startCount != 1) {
+            throw new IllegalArgumentException("Maze must contain exactly one starting point '@'.");
+        }
+        if (exitCount != 1) {
+            throw new IllegalArgumentException("Maze must contain exactly one exit 'E'.");
         }
     }
 }
