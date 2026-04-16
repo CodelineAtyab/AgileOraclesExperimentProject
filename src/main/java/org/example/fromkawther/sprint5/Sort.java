@@ -1,5 +1,4 @@
 package org.example.fromkawther.sprint5;
-
 import java.util.Scanner;
 
 public class Sort {
@@ -28,7 +27,7 @@ public class Sort {
             // 3. Process the input
             String[] p = data.split(",");
             if (p.length < 3) {
-                System.out.println("Error: Provide at least 3 numbers.");
+                System.out.println("Error: assign at least 3 numbers.");
                 return;
             }
 
@@ -58,7 +57,7 @@ public class Sort {
             System.out.println();
 
         } catch (Exception e) {
-            System.out.println("Error: Invalid input format.");
+            System.out.println("Error: Invalid input.");
         }
     }
     // finds the minimum in each step :
@@ -75,8 +74,8 @@ public class Sort {
     }
     public static void bubbleSort(int[] x) {
         int n = x.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
+        for (int i = 0; i < n - 1; i++) { //loop (i)
+            for (int j = 0; j < n - i - 1; j++) { // (j)
                 if (x[j] > x[j + 1]) {
                     int t = x[j];
                     x[j] = x[j + 1];
