@@ -31,6 +31,10 @@ public class Maze {
         return grid[row][col] == 'E';
     }
 
+    public boolean isStart(int row, int col) {
+        return grid[row][col] == '@';
+    }
+
     public boolean isValidMove(int row, int col, boolean[][] visited) {
         return row >= 0 && row < getRows() &&
                 col >= 0 && col < getCols() &&

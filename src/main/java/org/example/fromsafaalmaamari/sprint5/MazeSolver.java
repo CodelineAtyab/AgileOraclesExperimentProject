@@ -54,7 +54,6 @@ public class MazeSolver {
                     break;
                 }
             }
-
             if (!foundNextStep) {
                 stack.pop();
 
@@ -72,9 +71,7 @@ public class MazeSolver {
                 }
             }
         }
-
         System.out.println("No path found!");
         return false;
     }
 }
-
