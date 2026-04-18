@@ -2,6 +2,7 @@ package org.example.fromaljolanda.sprint5.escapeTheMazeOOPEdition;
 
 public class Main {
     public static void main(String[] args) {
+
         // check argument
         if (args.length != 1) {
             System.out.println("Usage: java Main maze.txt");
