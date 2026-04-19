@@ -28,7 +28,6 @@ public class MazeSolver {
                 System.out.println("Maze solved!");
                 return true;
             }
-
             visited[r][c] = true;
 
             boolean foundNextStep = false;
