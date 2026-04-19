@@ -36,5 +36,36 @@ abstract class Ticket {
     public abstract String toString();
 }
 
+class ComplaintTicket extends Ticket {
+    private String type;
+
+    // Static field to track number of ComplaintTicket instances Static Fields
+    private static int numberOfTickets = 0;
+
+
+    public ComplaintTicket(String id, String comment, String type) {
+        super(id, comment); // Call parent constructor (Inheritance)
+        this.type = type;
+        numberOfTickets++;
+    }
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public static int getNumberOfTickets() {
+        return numberOfTickets;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[Complaint] id=%s, comment=\"%s\", type=\"%s\"",
+                getId(), getComment(), type);
+    }
+}
+
 
 
