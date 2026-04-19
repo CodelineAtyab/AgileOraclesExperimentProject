@@ -15,40 +15,28 @@ public class HomePage {
         String customerFeedback = "Service can be made better!";
         int myRating = 2;
 
-        System.out.println(ComplainTicket.getNoOfTicketCreated());
-
-        ComplainTicket compTicketOne = new ComplainTicket();
-        compTicketOne.id = "prem-01";
+        // ComplainTicket Objects
+        Ticket compTicketOne = new ComplainTicket();
         compTicketOne.comment = customerComplain;
-        compTicketOne.type = typeOfComplain;
         customerTickets.add(compTicketOne);
+        System.out.println(compTicketOne.getId());
 
-        ComplainTicket compTicketTwo = new ComplainTicket();
-        compTicketOne.id = "prem-01";
+        Ticket compTicketTwo = new ComplainTicket();
         compTicketOne.comment = customerComplain;
-        compTicketOne.type = typeOfComplain;
         customerTickets.add(compTicketOne);
+        System.out.println(compTicketTwo.getId());
 
-        System.out.println(ComplainTicket.getNoOfTicketCreated());
-
-        FeedbackTicket feedbackTicketOne = new FeedbackTicket();
-        feedbackTicketOne.id = "prem-rate-01";
+        // FeedbackTicket Objects
+        Ticket feedbackTicketOne = new FeedbackTicket();
         feedbackTicketOne.comment = customerFeedback;
-        feedbackTicketOne.rating = myRating;
+        System.out.println(feedbackTicketOne.getId());
+
+        Ticket feedbackTicketTwo = new FeedbackTicket();
+        feedbackTicketTwo.comment = customerFeedback;
+        System.out.println(feedbackTicketOne.getId());
 
         customerTickets.add(feedbackTicketOne);
 
-//        Ticket someTicket = new Ticket();
-//        someTicket.setId("12121");
-//
-//        ArrayList<Ticket> tickets = new ArrayList<>();
-//        tickets.add(someTicket);
-//        tickets.add(new Ticket());
-//        tickets.add(new Ticket());
-//        tickets.add(new Ticket());
-//        tickets.add(new Ticket());
-//        tickets.add(new Ticket());
-//        tickets.add(new Ticket());
 
     }
 }
