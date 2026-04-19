@@ -2,7 +2,6 @@ package org.example.fromsafaalmaamari.sprint5;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.io.InputStream;
 
 public class MazeLoader {
     public static Maze loadFromFile(Path path) throws IOException {

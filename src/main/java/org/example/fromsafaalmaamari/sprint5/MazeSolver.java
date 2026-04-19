@@ -11,7 +11,6 @@ public class MazeSolver {
         this.visited = new boolean[maze.getRows()][maze.getCols()];
         this.stack = new Stack<>();
     }
-
     public boolean solve(Position start) throws InterruptedException {
 
         stack.push(start);
