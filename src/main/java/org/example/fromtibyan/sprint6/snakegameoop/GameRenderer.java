@@ -1,5 +1,8 @@
 package org.example.fromtibyan.sprint6.snakegameoop;
 
+import static org.example.fromtibyan.sprint6.snakegameoop.MapLoader.mapArray2D;
+import static org.example.fromtibyan.sprint6.snakegameoop.Snake.snakeBody;
+
 public class GameRenderer {
     public static void printMap() throws InterruptedException {
         for (char[] row : mapArray2D) {

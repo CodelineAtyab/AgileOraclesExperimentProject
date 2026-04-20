@@ -2,11 +2,14 @@ package org.example.fromtibyan.sprint6.snakegameoop;
 
 // main class w/CLI args
 public class SnakeGame {
-    public static void main(String[] args){
+
+static int steps;
+    public static void main(String[] args) throws InterruptedException {
+        MapLoader.readMap();
         if (args.length == 0) {
             System.out.println("Please specify the direction");
         } else {
-            int steps = 1; // if steps not mentioned then default is 1
+            steps = 1; // if steps not mentioned then default is 1
             if (args.length > 1) {
                 if (!args[1].isEmpty()) {
                     steps = Integer.parseInt(args[1]);
@@ -16,14 +19,9 @@ public class SnakeGame {
                 }
             }
 
-            int[] head = snakeBody.get(0); // get head location
-            int headRowComparison = head[0];
-            int headColumnComparison = head[1];
+            Position.headLocation();
 
-            int[] bodyOne = snakeBody.get(1);// body segment after head location
-            int afterHeadRow = bodyOne[0];
-            int afterHeadColumn = bodyOne[1];
-
+            Position.afterHeadSegmentLocation();
 
             // moving in the upper direction
             if (args[0].equalsIgnoreCase("up")) {
