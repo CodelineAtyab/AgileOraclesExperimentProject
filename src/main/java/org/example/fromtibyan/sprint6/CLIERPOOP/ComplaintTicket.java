@@ -1,14 +1,16 @@
 package org.example.fromtibyan.sprint6.CLIERPOOP;
 
 public class ComplaintTicket extends Ticket {
-    ComplaintTicket(String id, String comment) {
-        super(id, comment);
-    }
+
+    private static int numberOfTickets = 0;
     private String type;
 
-    private static int numberOfTickets;
-    public static int getNumberOfTickets(){
+    ComplaintTicket(String id, String comment) {
+        super(id, comment);
+        numberOfTickets++;
+    }
 
+    public static int getNumberOfTickets(){
         return numberOfTickets;
     }
 }
