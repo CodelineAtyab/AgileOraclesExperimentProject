@@ -4,7 +4,8 @@ abstract public class Ticket {
     private String id;
     private String comment;
 
-    Ticket(String id, String comment){
-
+    public Ticket(String id, String comment){
+        this.id =id;
+        this.comment= comment;
     }
 }
