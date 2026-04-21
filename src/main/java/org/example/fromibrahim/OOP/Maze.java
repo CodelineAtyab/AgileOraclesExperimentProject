@@ -1,11 +1,5 @@
 package org.example.fromibrahim.OOP;
 
-/*
- * Stores the 2D maze grid and provides helper methods for querying cell state.
- * Encapsulation: the grid is private and only mutated through controlled methods.
- * Abstraction:   callers ask "is this a valid move?" rather than reading raw chars.
- * SRP:           this class only manages grid state — rendering and solving live elsewhere.
- */
 public class Maze {
 
     private final char[][] grid;
@@ -55,7 +49,7 @@ public class Maze {
     }
 
     // Marks the given position as the current player location '@' in the grid.
-    // The Maze owns this mutation — no outside class writes directly to the grid.
+    // The Maze owns this mutation no outside class writes directly to the grid.
     // If current cell is not exit, then show @
     public void markVisited(Position position) {
         if (!isExit(position.getRow(), position.getCol())) {

@@ -1,15 +1,6 @@
 package org.example.fromibrahim.OOP;
 import java.util.Stack;
 
-/*
- * Implements stack-based backtracking to find a path from start '@' to exit 'E'.
- * Controls traversal order (Up, Right, Down, Left) and tracks visited cells.
- *
- * SRP:           this class only handles solving logic — display is delegated to MazeRenderer.
- * Encapsulation: Position fields are accessed only through getters, never directly.
- * Abstraction:   grid mutation is delegated to maze.markVisited() — the solver never
- *                writes raw characters to the grid itself.
- */
 public class MazeSolver {
 
     private final Maze maze;

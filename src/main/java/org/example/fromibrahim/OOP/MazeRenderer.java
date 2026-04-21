@@ -1,12 +1,5 @@
 package org.example.fromibrahim.OOP;
 
-/*
- * Handles all console output: drawing the maze and printing result messages.
- *
- * SRP:        this class only handles display — it never modifies maze state.
- * Abstraction: it asks the Maze for a display snapshot via toDisplayGrid(),
- *              rather than reading raw internal data cell by cell.
- */
 public class MazeRenderer {
 
     private final Maze maze;

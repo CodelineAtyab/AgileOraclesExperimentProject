@@ -5,14 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/*
- * Reads a maze from a file, validates its structure and constraints,
- * and returns a fully constructed Maze object.
- *
- * SRP:        this class only handles I/O and validation — it does not solve or render.
- * Abstraction: callers simply call load() and receive a ready-to-use Maze;
- *              all file-reading and validation details are hidden inside private methods.
- */
 public class MazeLoader {
 
     private final String filePath;
