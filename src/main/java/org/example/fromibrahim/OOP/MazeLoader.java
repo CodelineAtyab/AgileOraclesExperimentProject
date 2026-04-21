@@ -1,97 +1,143 @@
 package org.example.fromibrahim.OOP;
 
-// Import required classes
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/*
+ * Reads a maze from a file, validates its structure and constraints,
+ * and returns a fully constructed Maze object.
+ *
+ * SRP:        this class only handles I/O and validation — it does not solve or render.
+ * Abstraction: callers simply call load() and receive a ready-to-use Maze;
+ *              all file-reading and validation details are hidden inside private methods.
+ */
 public class MazeLoader {
 
-    // Method to load maze from file
-    public Maze load(String filePath) throws FileNotFoundException {
+    private final String filePath;
 
-        // List to store all valid (non-empty) lines from the file
-        ArrayList<String> lines = getStrings(filePath);
+    public MazeLoader(String filePath) {
+        this.filePath = filePath;
+    }
 
-        // Get number of rows and columns
+    // Loads the maze from the file and returns a Maze object, or null on failure
+    public Maze load() {
+
+        //  Read the File Line By Line
+        ArrayList<String> lines = new ArrayList<>();
+        try {
+            File file = new File(filePath);
+            Scanner inputBuffer = new Scanner(file);
+
+            while (inputBuffer.hasNextLine()) {
+                String line = inputBuffer.nextLine().trim();
+                //  This avoids adding blank lines
+                if (!line.isEmpty()) {
+                    lines.add(line);
+                }
+            }
+            inputBuffer.close();
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: File not found.");
+            return null;
+        }
+
+        // Check if file is empty
+        if (lines.isEmpty()) {
+            System.out.println("Error: Maze file is empty.");
+            return null;
+        }
+
+        //  Number of rows in the maze = number of lines
         int rows = lines.size();
-        int cols = lines.get(0).length();
+        //  Number of columns = length of the first row
+        int columns = lines.get(0).length();
 
-        // Counters for start '@' and exit 'E'
+        //  Validate row lengths and count special characters
+        if (!validateLines(lines, rows, columns)) {
+            return null;
+        }
+
+        //  Convert the list of lines into a 2D char array
+        char[][] grid = buildGrid(lines, rows, columns);
+
+        //  Validate border cells (must be '1', '@', or 'E')
+        if (!validateBorders(grid, rows, columns)) {
+            return null;
+        }
+
+        return new Maze(grid);
+    }
+
+    // Checks that every row is the same length and contains only valid characters,
+    // and that there is exactly one '@' and one 'E'
+    private boolean validateLines(ArrayList<String> lines, int rows, int columns) {
+
+        //  This will count how many @ and E characters exist
         int startCount = 0;
         int exitCount = 0;
 
-        // Create grid to store maze
-        char[][] grid = new char[rows][cols];
+        for (int row = 0; row < rows; row++) {
+            String line = lines.get(row);
 
-        // Variables to store positions of start and exit
-        Position start = null;
-        Position exit = null;
-
-        for (int r = 0; r < rows; r++) {
-
-            // Ensure all rows have same length
-            if (lines.get(r).length() != cols) {
-                throw new RuntimeException("Error: Rows are not equal length.");
+            //  Checks if the current row length is different from the first row length
+            if (line.length() != columns) {
+                System.out.println("Error: Maze rows are not the same length.");
+                return false;
             }
 
-            for (int c = 0; c < cols; c++) {
+            for (int col = 0; col < columns; col++) {
+                //  Gets one character from the current row
+                char ch = line.charAt(col);
 
-                char ch = lines.get(r).charAt(c); // get each character
-
-                // Validate allowed characters only
                 if (ch != '1' && ch != '0' && ch != '@' && ch != 'E') {
-                    throw new RuntimeException("Error: Invalid character in maze.");
+                    System.out.println("Error: Invalid character found in maze.");
+                    return false;
                 }
-
-                // Store character in grid
-                grid[r][c] = ch;
-
-                // Count start position '@'
-                if (ch == '@') {
-                    startCount++;
-                    start = new Position(r, c); // save its position
-                }
-
-                // Count exit position 'E'
-                if (ch == 'E') {
-                    exitCount++;
-                    exit = new Position(r, c); // save its position
-                }
+                if (ch == '@') startCount++;
+                if (ch == 'E') exitCount++;
             }
         }
 
+        //  Checks whether there is exactly one start and one exit
         if (startCount != 1 || exitCount != 1) {
-            throw new RuntimeException("Error: Maze must contain exactly one '@' and one 'E'.");
+            System.out.println("Error: Maze must contain exactly one '@' and one 'E'.");
+            return false;
         }
 
-        return new Maze(grid, start, exit);
+        return true;
     }
 
-    private static ArrayList<String> getStrings(String filePath) throws FileNotFoundException {
-        ArrayList<String> lines = new ArrayList<>();
-
-        // Create file and scanner to read the file
-        File file = new File(filePath);
-        Scanner scanner = new Scanner(file);
-
-        //  Reading the file
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine().trim(); // remove spaces
-
-            // Skip empty lines
-            if (!line.isEmpty()) {
-                lines.add(line);
+    // Converts the list of lines into a 2D char array
+    private char[][] buildGrid(ArrayList<String> lines, int rows, int columns) {
+        char[][] grid = new char[rows][columns];
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
+                grid[row][col] = lines.get(row).charAt(col);
             }
         }
+        return grid;
+    }
 
-        // Close scanner AFTER reading all lines
-        scanner.close();
+    // Validates that all border cells are walls '1', except '@' and 'E'
+    private boolean validateBorders(char[][] grid, int rows, int columns) {
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
 
-        if (lines.isEmpty()) {
-            throw new RuntimeException("Error: Maze file is empty.");
+                //  This check if the current cell is on the border
+                boolean isBorder = row == 0 || row == rows - 1 || col == 0 || col == columns - 1;
+
+                if (isBorder) {
+                    char ch = grid[row][col];
+                    if (ch != '1' && ch != '@' && ch != 'E') {
+                        System.out.println("Error: Border cells must be '1' except '@' and 'E'.");
+                        return false;
+                    }
+                }
+            }
         }
-        return lines;
+        return true;
     }
 }

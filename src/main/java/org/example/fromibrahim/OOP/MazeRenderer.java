@@ -1,41 +1,51 @@
 package org.example.fromibrahim.OOP;
 
+/*
+ * Handles all console output: drawing the maze and printing result messages.
+ *
+ * SRP:        this class only handles display — it never modifies maze state.
+ * Abstraction: it asks the Maze for a display snapshot via toDisplayGrid(),
+ *              rather than reading raw internal data cell by cell.
+ */
 public class MazeRenderer {
 
-    public void printMaze(Maze maze) {
+    private final Maze maze;
 
-        // Get the 2D grid (maze structure) from the Maze object
-        char[][] grid = maze.getGrid();
+    public MazeRenderer(Maze maze) {
+        this.maze = maze;
+    }
 
-        // Print an empty line before the maze
+    // Prints the current state of the maze to the console.
+    // Uses toDisplayGrid() so the renderer never touches the internal grid directly.
+    public void draw() {
         System.out.println();
-
-        // Loop through each row in the grid
-        for (int row = 0; row < grid.length; row++) {
-
-            // Loop through each column in the current row
-            for (int col = 0; col < grid[row].length; col++) {
-
-                // Print each character (cell) without moving to a new line
-                System.out.print(grid[row][col]);
+        char[][] displayGrid = maze.toDisplayGrid();
+        for (int row = 0; row < maze.getRows(); row++) {
+            for (int col = 0; col < maze.getColumns(); col++) {
+                System.out.print(displayGrid[row][col]);
             }
-
-            // After finishing one row, move to the next line
             System.out.println();
         }
     }
 
-    // This method is used to pause the program (for animation)
-    public void pause() {
-
+    // Pauses rendering for the given number of milliseconds to animate movement
+    public void delay(int milliseconds) {
+        //  Printing Delay
         try {
-            // Pause the program for 1000 milliseconds (1 second)
-            Thread.sleep(1000);
-
+            Thread.sleep(milliseconds);
         } catch (InterruptedException e) {
+            System.out.println("Movement stop !.");
+        }
+    }
 
-            // This block runs if the sleep is interrupted (rare case)
-            System.out.println("Movement stop!!!!");
+    // Prints the final result message after solving is complete
+    public void printResult(boolean found) {
+        // The Maze Solved and Reach the Exit !
+        if (found) {
+            System.out.println("Maze Solved!");
+            System.out.println("Path:");
+        } else {
+            System.out.println("No path found.");
         }
     }
 }

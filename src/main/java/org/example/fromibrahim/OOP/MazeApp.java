@@ -1,53 +1,38 @@
 package org.example.fromibrahim.OOP;
 
-import java.io.FileNotFoundException;
+/*
+ * Entry point of the application.
+ * Handles CLI arguments and coordinates the flow between all components.
+ *
+ * SRP:        this class only wires components together — no logic lives here.
+ * Abstraction: each step (load, render, solve) is a single method call;
+ *              implementation details are hidden inside each responsible class.
+ */
 
 public class MazeApp {
 
-    public static void main(String[] args) {
+    public static void main(String[] arguments) {
 
-        // Check if the user provided the maze file path in the command line
-        if (args.length != 1) {
-            System.out.println("Usage: java MazeApp <maze-file-path>");
-            return; // Stop the program if input is missing
+        //  Validate CLI Argument
+        String filePath = "src/main/java/org/example/fromibrahim/data/maze";
+
+        //  Part.1 Read File & Validation
+        MazeLoader loader = new MazeLoader(filePath);
+        Maze maze = loader.load();
+
+        //  Stop if the maze could not be loaded or failed validation
+        if (maze == null) {
+            return;
         }
 
-        // Save the file path entered by the user
-        String filePath = args[0];
+        //  Part.2 Set up renderer and solver
+        MazeRenderer renderer = new MazeRenderer(maze);
+        MazeSolver solver = new MazeSolver(maze, renderer);
 
-        try {
-            // Create an object from MazeLoader
-            // This class is responsible for reading the maze file
-            MazeLoader loader = new MazeLoader();
+        //  Part.3 Solve the maze using stack-based backtracking
+        boolean found = solver.solve();
 
-            // Load the maze from the file
-            Maze maze = loader.load(filePath);
-
-            // Print the original maze before solving
-            System.out.println("Original Maze:");
-            maze.printMaze();
-
-            // Create an object from MazeSolver
-            // This class is responsible for solving the maze
-            MazeSolver solver = new MazeSolver();
-
-            // Try to solve the maze
-            boolean solved = solver.solve(maze);
-
-            // Check if a path was found
-            if (solved) {
-                System.out.println("\nSolved Maze:");
-                maze.printMaze();
-            } else {
-                System.out.println("\nNo path found in the maze.");
-            }
-
-        } catch (FileNotFoundException e) {
-            // This error happens if the file path is wrong
-            System.out.println("Error: Maze file not found.");
-        } catch (RuntimeException e) {
-            // This handles validation errors from MazeLoader
-            System.out.println("Error: " + e.getMessage());
-        }
+        //  Print final result
+        renderer.printResult(found);
     }
 }

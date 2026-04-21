@@ -1,21 +1,86 @@
 package org.example.fromibrahim.OOP;
 
+/*
+ * Stores the 2D maze grid and provides helper methods for querying cell state.
+ * Encapsulation: the grid is private and only mutated through controlled methods.
+ * Abstraction:   callers ask "is this a valid move?" rather than reading raw chars.
+ * SRP:           this class only manages grid state — rendering and solving live elsewhere.
+ */
 public class Maze {
 
-    // Storing maze
-    private char[][] grid;
+    private final char[][] grid;
+    private final int rows;
+    private final int columns;
+
     private Position start;
     private Position exit;
 
-    public Maze(char[][] grid, Position start, Position exit) {
+    public Maze(char[][] grid) {
         this.grid = grid;
-        this.start = start;
-        this.exit = exit;
+        this.rows = grid.length;
+        this.columns = grid[0].length;
+        locateStartAndExit();
     }
 
-    //  Allowing access to the grid
-    public char[][] getGrid() {
-        return grid;
+    // Scans the grid to find and store the start '@' and exit 'E' positions
+    private void locateStartAndExit() {
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
+                if (grid[row][col] == '@') {
+                    start = new Position(row, col);
+                }
+                if (grid[row][col] == 'E') {
+                    exit = new Position(row, col);
+                }
+            }
+        }
+    }
+
+    // Returns true if the cell at (row, col) is a wall '1'
+    public boolean isWall(int row, int col) {
+        return grid[row][col] == '1';
+    }
+
+    // Returns true if the cell at (row, col) is the exit 'E'
+    public boolean isExit(int row, int col) {
+        return grid[row][col] == 'E';
+    }
+
+    // Returns true if (row, col) is within grid bounds and is walkable ('0' or 'E')
+    public boolean isValidMove(int row, int col) {
+        if (row < 0 || row >= rows || col < 0 || col >= columns) {
+            return false;
+        }
+        return grid[row][col] == '0' || grid[row][col] == 'E';
+    }
+
+    // Marks the given position as the current player location '@' in the grid.
+    // The Maze owns this mutation — no outside class writes directly to the grid.
+    // If current cell is not exit, then show @
+    public void markVisited(Position position) {
+        if (!isExit(position.getRow(), position.getCol())) {
+            grid[position.getRow()][position.getCol()] = '@';
+        }
+    }
+
+    // Returns a copy of the grid for display purposes.
+    // Abstraction: the renderer never touches the internal grid directly.
+    public char[][] toDisplayGrid() {
+        char[][] copy = new char[rows][columns];
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
+                copy[row][col] = grid[row][col];
+            }
+        }
+        return copy;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getColumns() {
+        return columns;
     }
 
     public Position getStart() {
@@ -24,64 +89,5 @@ public class Maze {
 
     public Position getExit() {
         return exit;
-    }
-
-    public int getRows() {
-        return grid.length;
-    }
-
-    public int getCols() {
-        return grid[0].length;
-    }
-
-    //  Checks if position is inside the maze
-    public boolean isInsideBounds(int row, int col) {
-        return row >= 0 && row < getRows() && col >= 0 && col < getCols();
-    }
-
-    //  Checks if position is wall
-    public boolean isWall(int row, int col) {
-        return grid[row][col] == '1';
-    }
-
-    //  Checks if it is the exit
-    public boolean isExit(int row, int col) {
-        return grid[row][col] == 'E';
-    }
-
-    //  Checks if it is a free path
-    public boolean isOpen(int row, int col) {
-        return grid[row][col] == '0';
-    }
-
-    //  Movement rule condition
-    public boolean isValidMove(int row, int col) {
-        return isInsideBounds(row, col) && (isOpen(row, col) || isExit(row, col));
-    }
-
-    public char getCell(int row, int col) {
-        return grid[row][col];
-    }
-
-    //  Update cell (used for animation)
-    public void setCell(int row, int col, char value) {
-        grid[row][col] = value;
-    }
-
-    public void printMaze() {
-
-        // Loop through rows
-        for (int r = 0; r < grid.length; r++) {
-
-            // Loop through columns
-            for (int c = 0; c < grid[r].length; c++) {
-
-                // Print each character with space
-                System.out.print(grid[r][c] + " ");
-            }
-
-            // Move to next line after each row
-            System.out.println();
-        }
     }
 }
