@@ -22,4 +22,8 @@ public class ComplaintTicket extends Ticket {
     public static int getNumberOfTickets(){
         return numberOfTickets;
     }
+
+    public String getId() {
+        return id;
+    }
 }

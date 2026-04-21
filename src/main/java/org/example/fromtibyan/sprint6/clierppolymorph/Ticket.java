@@ -3,6 +3,7 @@ package org.example.fromtibyan.sprint6.clierppolymorph;
 abstract public class Ticket {
     private String id;
     private String comment;
+    private int LocalDateTime;
 
     //constructor
     public Ticket(String id, String comment){
@@ -18,7 +19,7 @@ abstract public class Ticket {
         this.comment = comment;
     }
     //getters
-    public String getId() {
+    abstract public String getId() {
         return id;
     }
 
