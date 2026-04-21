@@ -8,15 +8,15 @@ public class MazeSolver {
     private boolean[][] visited;
 
 
-    public MazeSolver(Maze maze) {
+    public MazeSolver() {
         this.maze = maze;
         // Create visited array with the same maze size
         visited = new boolean[maze.getGrid().length][maze.getGrid()[0].length];
     }
 
     // Public method to start solving from the start position
-    public boolean solve() {
-        Position start = maze.getStart();
+    public boolean solve(Maze maze) {
+        Position start = this.maze.getStart();
         // Start solving from start row and column
         return searchExit(start.getRow(), start.getCol());
     }

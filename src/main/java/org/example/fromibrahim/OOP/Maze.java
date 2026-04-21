@@ -67,4 +67,21 @@ public class Maze {
     public void setCell(int row, int col, char value) {
         grid[row][col] = value;
     }
+
+    public void printMaze() {
+
+        // Loop through rows
+        for (int r = 0; r < grid.length; r++) {
+
+            // Loop through columns
+            for (int c = 0; c < grid[r].length; c++) {
+
+                // Print each character with space
+                System.out.print(grid[r][c] + " ");
+            }
+
+            // Move to next line after each row
+            System.out.println();
+        }
+    }
 }
