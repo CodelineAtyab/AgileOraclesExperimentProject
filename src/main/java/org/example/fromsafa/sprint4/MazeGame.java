@@ -2,7 +2,7 @@ package org.example.fromsafa.sprint4;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Stack;
-
+//ubdate
 public class MazeGame {
     public static void main(String[] args) throws Exception{
 
