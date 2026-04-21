@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Stack;
 
 public class EscapeTheMaze {
     // CLI Argument
@@ -33,6 +34,21 @@ public class EscapeTheMaze {
             System.out.println("Second row: " + new String(maze[1]));
             validateMaze(maze);
 
+            // Finding the starting point
+            Point start = findStart(maze);
+            System.out.println("Start found at: (" + start.row + ", " + start.col + ")");
+
+            // Initial Stack Setup
+            boolean[][] visited = new boolean[maze.length][maze[0].length];
+            Stack<Point> stack = new Stack<>();
+
+            stack.push(start);
+            visited[start.row][start.col] = true;
+
+            // Helper method to check if move is valid or not
+
+
+
         } catch (IOException e) {
             System.out.println("Error: file could not be read.");
         } catch (IllegalArgumentException e) {
@@ -49,6 +65,30 @@ public class EscapeTheMaze {
             this.row = row;
             this.col = col;
         }
+    }
+
+    //============================ FINDING THE STARTING POINT =======================
+    static Point findStart(char[][] maze) {
+        for (int row = 0; row < maze.length; row++) {
+            for (int col = 0; col < maze[row].length; col++) {
+                if (maze[row][col] == '@') {
+                    return new Point(row, col);
+                }
+            }
+        }
+        throw new IllegalArgumentException("Maze must contain '@' as the starting point.");
+    }
+
+    //============================== Movement logic ===================================
+    static boolean isValidMove(char[][] maze, boolean[][] visited, int row, int col) {
+        if (row < 0 || row >= maze.length || col < 0 || col >= maze[0].length) {
+            return false;
+        }
+        if (visited[row][col]) {
+            return false;
+        }
+        char cell = maze[row][col];
+        return cell == '0' || cell == 'E';
     }
 
     // =========================== MAZE VALIDATION ===============================
