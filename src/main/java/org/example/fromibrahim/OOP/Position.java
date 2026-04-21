@@ -1,8 +1,8 @@
 package org.example.fromibrahim.OOP;
 
-
 //  Encapsulation,
 public class Position {
+
     private int row;
     private int col;
 
