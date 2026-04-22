@@ -18,10 +18,10 @@ public class EscapeTheMaze {
         String mazeFilePath = args[0];
         // Load the file
         try {
+
             Path path = Path.of(mazeFilePath); // Creates a file path object (path handling)
             List<String> lines = Files.readAllLines(path); // File Reading
-            System.out.println("Maze file was read successfully.");
-            System.out.println(lines);
+            //System.out.println(lines);
 
             // Converts file lines into 2D arrays
             char[][] maze = new char[lines.size()][];
@@ -29,30 +29,61 @@ public class EscapeTheMaze {
                 maze[i] = lines.get(i).toCharArray(); // Convert one text row into one maze row
             }
 
-            System.out.println("Maze converted to 2D array successfully.");
-            System.out.println("First cell: " + maze[0][0]);
-            System.out.println("Second row: " + new String(maze[1]));
+            //System.out.println("Maze converted to 2D array successfully.");
+
             validateMaze(maze);
+            drawMaze(maze);
 
             // Finding the starting point
             Point start = findStart(maze);
-            System.out.println("Start found at: (" + start.row + ", " + start.col + ")");
+            System.out.println("Starting Point: (" + (start.row + 1) + ", " + (start.col + 1) + ")");
 
             // Initial Stack Setup
             boolean[][] visited = new boolean[maze.length][maze[0].length];
             Stack<Point> stack = new Stack<>();
 
-            stack.push(start);
+            stack.push(start); // Puts the starting position onto the stack
             visited[start.row][start.col] = true;
 
-            // Helper method to check if move is valid or not
+            while (!stack.isEmpty()) {
+                Point current = stack.peek();
+                char[][] displayMaze = copyMaze(maze);
+                displayMaze[start.row][start.col] = '0';
+                displayMaze[current.row][current.col] = '@';
 
+                clearConsole();
+                drawMaze(displayMaze);
+                System.out.println("Maze Path:");
+                for (int i = 0; i < stack.size(); i++) {
+                    Point point = stack.get(i);
+                    System.out.println("(" + (point.row + 1) + ", " + (point.col + 1) + ")");
+                }
+                Thread.sleep(1000);
+
+
+                if (maze[current.row][current.col] == 'E') {
+                    return;
+                }
+
+                Point next = getNextMove(maze, visited, current);
+                if (next != null) {
+                    stack.push(next); // Adds the next position to the current stack
+                    visited[next.row][next.col] = true;
+                } else {
+                    stack.pop(); // Dead end or can't move forward, go backwards
+                }
+            }
+            System.out.println("Path not found");
+
+            // Helper method to check if move is valid or not
 
 
         } catch (IOException e) {
             System.out.println("Error: file could not be read.");
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
+        } catch (InterruptedException e) {
+            System.out.println("Animation was interrupted.");
         }
     }
 
@@ -91,8 +122,57 @@ public class EscapeTheMaze {
         return cell == '0' || cell == 'E';
     }
 
-    // =========================== MAZE VALIDATION ===============================
+    //===================== Helper method to find the next move ========================
+    static Point getNextMove(char[][] maze, boolean[][] visited, Point current) {
+        int row = current.row;
+        int col = current.col;
 
+        if (isValidMove(maze, visited, row, col + 1)) {
+            return new Point(row, col + 1);
+        }
+        if (isValidMove(maze, visited, row + 1, col)) {
+            return new Point(row + 1, col);
+        }
+        if (isValidMove(maze, visited, row, col - 1)) {
+            return new Point(row, col - 1);
+        }
+        if (isValidMove(maze, visited, row - 1, col)) {
+            return new Point(row - 1, col);
+        }
+        return null;
+    }
+
+    // =========================== Draw initial maze grid ============================
+    // Helper method to print the maze
+    static void drawMaze(char[][] maze) {
+        for (int row = 0; row < maze.length; row++) {
+            for (int col = 0; col < maze[row].length; col++) {
+                System.out.print(maze[row][col]);
+            }
+            System.out.println();
+        }
+
+    }
+
+    //===================== Draw maze grid after each position move ===================
+    static void clearConsole() {
+        for (int i = 0; i < 30; i++) {
+            System.out.println();
+        }
+    }
+
+    static char[][] copyMaze(char[][] maze) {
+        char[][] copy = new char[maze.length][maze[0].length];
+
+        for (int row = 0; row < maze.length; row++) {
+            for (int col = 0; col < maze[row].length; col++) {
+                copy[row][col] = maze[row][col];
+            }
+        }
+        return copy;
+    }
+
+    // =========================== MAZE VALIDATION ====================================
     static void validateMaze(char[][] maze) {
         // Validates if there's columns and rows
         if (maze.length == 0) {
