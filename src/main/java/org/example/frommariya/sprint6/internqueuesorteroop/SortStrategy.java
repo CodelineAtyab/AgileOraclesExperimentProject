@@ -1,7 +1,7 @@
-package org.example.frommariya.sprint6;
+package org.example.frommariya.sprint6.internqueuesorteroop;
 
-public class SortStrategy {
-    void sort(java.util.List<Integer> num) {
+import java.util.List;
 
-    }
+public interface SortStrategy {
+    void sort(List<Integer> num);
 }
