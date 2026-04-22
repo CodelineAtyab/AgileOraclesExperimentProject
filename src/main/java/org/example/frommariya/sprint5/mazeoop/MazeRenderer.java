@@ -1,7 +1,5 @@
 package org.example.frommariya.sprint5.mazeoop;
 
-import java.util.Set;
-
 public class MazeRenderer {
     public static void renderer(Maze maze, Position c,int frames){
         System.out.print("\033[H\033[2J"); //Clear the console
@@ -21,5 +19,12 @@ public class MazeRenderer {
             }
             System.out.println();
         }
+    }
+
+    public void render(org.example.fromalharith.oopmaze.Maze maze, org.example.fromalharith.oopmaze.Position current) {
+    }
+
+    public void delay() {
+
     }
 }
