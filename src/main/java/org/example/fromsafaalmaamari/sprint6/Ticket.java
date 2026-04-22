@@ -26,4 +26,3 @@ public class Ticket {
             this.comment = comment;
         }
     }
-

@@ -16,7 +16,7 @@ public class FeedbackTicket extends Ticket {
             if (rating >= 1 && rating <= 5) {
                 this.rating = rating;
             } else {
-                System.out.println("Error invalid value rating values must be between (1-5)");
+                throw new IllegalArgumentException("Error invalid value rating values must be between (1-5)");
             }
         }
 
