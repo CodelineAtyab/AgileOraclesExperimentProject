@@ -26,7 +26,6 @@ public class HomePage {
         System.out.println(t2.toString());
 
 
-
         f1.setComment("Great app!");
         f1.setRating(5);
         System.out.println(f1.toString());
@@ -34,8 +33,5 @@ public class HomePage {
         tickets.add(t1);
         tickets.add(t2);
         tickets.add(f1);
-
-
-
     }
 }
