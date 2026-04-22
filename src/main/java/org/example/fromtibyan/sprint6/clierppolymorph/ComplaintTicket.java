@@ -1,5 +1,7 @@
 package org.example.fromtibyan.sprint6.clierppolymorph;
 
+import java.util.UUID;
+
 public class ComplaintTicket extends Ticket {
 
     private static int numberOfTickets = 0;
@@ -15,6 +17,14 @@ public class ComplaintTicket extends Ticket {
         return type;
     }
 
+    private String buildPrefixedId(){
+        return "C-";
+    }
+    @Override
+    public String getId(){
+        return buildPrefixedId()+ UUID.randomUUID();
+    }
+
     public void setType(String type) {
         this.type = type;
     }
@@ -23,7 +33,4 @@ public class ComplaintTicket extends Ticket {
         return numberOfTickets;
     }
 
-    public String getId() {
-        return id;
-    }
 }

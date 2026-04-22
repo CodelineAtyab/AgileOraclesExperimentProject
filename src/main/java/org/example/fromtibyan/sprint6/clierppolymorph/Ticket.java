@@ -1,5 +1,7 @@
 package org.example.fromtibyan.sprint6.clierppolymorph;
 
+import java.util.UUID;
+
 abstract public class Ticket {
     private String id;
     private String comment;
@@ -18,10 +20,9 @@ abstract public class Ticket {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
     //getters
-    abstract public String getId() {
-        return id;
-    }
+    abstract public String getId();
 
     public String getComment() {
         return comment;

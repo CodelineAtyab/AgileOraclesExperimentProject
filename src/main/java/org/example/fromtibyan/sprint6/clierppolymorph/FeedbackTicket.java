@@ -1,6 +1,8 @@
 package org.example.fromtibyan.sprint6.clierppolymorph;
 
 
+import java.util.UUID;
+
 public class FeedbackTicket extends Ticket {
     private int rating;
 
@@ -11,6 +13,14 @@ public class FeedbackTicket extends Ticket {
         }else {
             this.rating = rating;
         }
+    }
+
+    private String buildPrefixedId(){
+        return "F-";
+    }
+    @Override
+    public String getId(){
+            return buildPrefixedId() + UUID.randomUUID();
     }
     public int getRating() {
         return rating;
