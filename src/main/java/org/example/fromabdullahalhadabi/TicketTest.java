@@ -1,5 +1,5 @@
 package org.example.fromabdullahalhadabi;
-
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class TicketTest {
@@ -39,11 +39,11 @@ public class TicketTest {
 }
 class  Ticket{
     private String comment;
-    private String localDtaeTime;
+    private String localDateTime;
 
-    public Ticket(String localDtaeTime){
-        this.localDtaeTime = localDtaeTime;
-        this.localDtaeTime=localDtaeTime;
+    public Ticket(String comment){
+        this.comment = comment;
+        this.localDateTime = LocalDateTime.now().toString();
     }
     public String getComment() {
     return comment;
@@ -51,16 +51,20 @@ class  Ticket{
     public void setComment(String comment) {
         this.comment = comment;
     }
-    public String getLocalDtaeTime() {
-        return localDtaeTime;
+    public String getLocalDateTime() {
+        return localDateTime;
 
     }
-    public void setLocalDtaeTime(String localDtaeTime) {
-        this.localDtaeTime = localDtaeTime;
+    public void setLocalDateTime(String localDateTime) {
+        this.localDateTime = localDateTime;
+    }
+
+    protected String getPrefix() {
+        return "";
     }
 
     public String getId() {
-        return UUID.randomUUID().toString();
+        return getPrefix() + UUID.randomUUID().toString();
 
     }
 
@@ -71,26 +75,15 @@ class  Ticket{
     public ComplaintTicket(String comment) {
         super(comment);
     }
+
     @Override
-    public String getId() {
-        return buildPrefixedId();
-
-    }
-
-     /*
-      Private helper method to build the prefixed ID.
-      Not exposed publicly - demonstrates encapsulation.
-      @return Prefixed UUID
-      */
-    private String buildPrefixedId() {
-        return PREFIX + UUID.randomUUID().toString();
-
+    protected String getPrefix() {
+        return PREFIX;
     }
 
 }
 
  class FeedbackTicket extends Ticket {
-    // Static counter for prefix
     private static final String PREFIX = "F-";
 
     public FeedbackTicket(String comment) {
@@ -98,22 +91,7 @@ class  Ticket{
     }
 
     @Override
-    public String getId() {
-        return buildPrefixedId();
-    }
-
-    /**
-     * Private helper method to build the prefixed ID.
-     * Not exposed publicly - demonstrates encapsulation.
-     * @return Prefixed UUID
-     */
-    private String buildPrefixedId() {
-        return PREFIX + UUID.randomUUID().toString();
+    protected String getPrefix() {
+        return PREFIX;
     }
 }
-
-
-
-
-
-
