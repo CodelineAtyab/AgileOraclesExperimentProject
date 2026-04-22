@@ -2,7 +2,6 @@ package org.example.frommariya.sprint6.internqueuesorteroop;
 
 import java.util.List;
 
-
 public class SelectionSort implements SortStrategy {
     @Override
     public void sort(List<Integer> num){

@@ -39,3 +39,7 @@ public class InternQueueSort {
         }
     }
 }
+
+//To run the code
+//got to src/main/java and run javac org/example/frommariya/sprint6/internqueuesorteroop/*.java
+//java org.example.frommariya.sprint6.internqueuesorteroop.InternQueueSort "10,5,4,2,7"
