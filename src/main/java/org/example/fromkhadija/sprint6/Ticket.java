@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 //Abstract Parent Class
 public abstract class Ticket {
-
     private String comment;
     private LocalDateTime createdAt;
 
@@ -22,9 +21,11 @@ public abstract class Ticket {
 
         this.comment = comment;
     }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+
     public void setCreatedAt(LocalDateTime createdAt) {
 
         this.createdAt = createdAt;

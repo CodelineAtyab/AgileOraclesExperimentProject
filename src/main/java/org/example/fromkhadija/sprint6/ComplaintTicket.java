@@ -3,14 +3,14 @@ package org.example.fromkhadija.sprint6;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class ComplaintTicket extends Ticket{
-//Encapsulation
-private static final String prefixIdComplaint = "C- "; // static final because  it's constant never change
+public class ComplaintTicket extends Ticket {
+    //Encapsulation
+    private static final String prefixIdComplaint = "C- "; // static final because  it's constant never change
 
     public ComplaintTicket(String comment, LocalDateTime createdAt) {
         super(comment, createdAt);//(super) invoke the constructor of the parent class
         //this.comment = comment; -> i changed access modifier of comment and createdAt to private
-       // this.createdAt = createdAt;
+        // this.createdAt = createdAt;
     }
 
     //overrides getId(): ComplaintTicket → prefix “C-”
