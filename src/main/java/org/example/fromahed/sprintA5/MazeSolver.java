@@ -3,6 +3,7 @@ package org.example.fromahed.sprintA5;
 import java.util.Stack;
 
 public class MazeSolver {
+
     private Maze maze;
 
     public MazeSolver(Maze maze) {
@@ -19,6 +20,13 @@ public class MazeSolver {
         Stack<Position> stack = new Stack<>();
         stack.push(initialPlayerPosition);
 
+        int[][] directions = {
+                {-1, 0},//up
+                {1, 0},//down
+                {0, -1},//left
+                {0, 1},//right
+        };
+
         //!solved > not found exit
         while (!stack.isEmpty()) {
             //here will pop positions to explore or search
@@ -32,49 +40,40 @@ public class MazeSolver {
             }
 
             visited[row][col] = true;
+
+            //check if exit
             if (maze.isExit(row, col)) {
-                maze.set(row, col, '@');//show player at exit
                 MazeRender.displayMaze(maze);
-                Thread.sleep(1000);
 
                 printPath(current);
                 System.out.println("found an exit at: (" + row + "," + col + ")");
                 return true;
             }
-            //mark current position
-            maze.set(row, col, '@');
+            //mark the current position '@'
+            if (!maze.isExit(row, col)) {
+                maze.set(row, col, '@');
+            }
+
+            //show step by step
             MazeRender.displayMaze(maze);
             Thread.sleep(1000);
 
-            //mark visited path
-            maze.set(row, col, '-');
+            //convert it to visited position '-'
+            if (!maze.isExit(row, col)) {
+                maze.set(row, col, '-');
+            }
+
             //explore neighbors
-            int r, c;
-            //up
-            r = row - 1;
-            c = col;
-            if (maze.isValidMove(r, c) && !visited[r][c] && maze.isWalkable(r, c)) {
-                stack.push(new Position(r, c, current));
-            }
-            //down
-            r = row + 1;
-            c = col;
-            if (maze.isValidMove(r, c) && !visited[r][c] && maze.isWalkable(r, c)) {
-                stack.push(new Position(r, c, current));
-            }
-            //left
-            r = row;
-            c = col - 1;
-            if (maze.isValidMove(r, c) && !visited[r][c] && maze.isWalkable(r, c)) {
-                stack.push(new Position(r, c, current));
-            }
-            //right
-            r = row;
-            c = col + 1;
-            if (maze.isValidMove(r, c) && !visited[r][c] && maze.isWalkable(r, c)) {
-                stack.push(new Position(r, c, current));
+            for (int i = 0; i < directions.length; i++) {
+                int r = row + directions[i][0];
+                int c = col + directions[i][1];
+
+                if (maze.isValidMove(r, c) && !visited[r][c] && maze.isWalkable(r, c)) {
+                    stack.push(new Position(r, c, current));
+                }
             }
         }
+
         return false;
     }
 

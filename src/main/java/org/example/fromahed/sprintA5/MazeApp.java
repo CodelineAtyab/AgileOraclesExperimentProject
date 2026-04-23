@@ -7,6 +7,7 @@ public class MazeApp {
             System.out.println("Usage: java MazeApp <maze.file>");
             return;
         }
+
         String filePath = args[0];
 
         //load maze
@@ -30,5 +31,6 @@ public class MazeApp {
         MazeRender.displayMaze(maze);
     }
 }
+
 
 
