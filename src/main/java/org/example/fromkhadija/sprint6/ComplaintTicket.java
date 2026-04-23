@@ -1,3 +1,5 @@
+package org.example.fromkhadija.sprint6;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
