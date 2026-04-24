@@ -1,17 +1,25 @@
 package org.example.fromkawther.sprint6.updating;
 
+import java.util.ArrayList;
+
 public class TicketTest {
-        public static void main(String[] args) {
+    public static void main(String[] args) {
+        // Create ArrayList using the parent type
+        ArrayList<Ticket> tickets = new ArrayList<>();
 
-            Ticket t1 = new Complaint("The internet is slow");
-            Ticket t2 = new Feedback("Very helpful team");
-            System.out.println("Complaint ID: " + t1.getId());
-            System.out.println("Complaint Comment: " + t1.comment);
+        // Adding objects with correct number of arguments
+        tickets.add(new Complaint("Too loud", "Noise"));
+        tickets.add(new Complaint("Too cold", "Air-con"));
+        tickets.add(new Feedback("Great app!", 5));
 
-            System.out.println("------------------------------------------------------");
+        System.out.println("------------- Polymorphic Ticket List -------------");
 
-            System.out.println("Feedback ID: " + t2.getId());
-            System.out.println("Feedback Comment: " + t2.comment);
+        // Loop over the list using the abstract parent reference
+        for (Ticket t : tickets) {
+            // Java will call the correct getId() for each type
+            System.out.println("Ticket ID: " + t.getId());
+            System.out.println("Comment: " + t.getComment());
+            System.out.println("---------------------------------------------");
         }
+    }
 }
-
