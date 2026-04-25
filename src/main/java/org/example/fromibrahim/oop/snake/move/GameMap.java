@@ -7,7 +7,7 @@ package org.example.fromibrahim.oop.snake.move;
                  Changes only happen through setSnakeCell() and clearSnakeCell().
  # Abstraction:   other classes ask isSnakeCell() or isInsideMap() instead of
                 reading raw characters and checking boundaries themselves.
- # SRP:           this class only manages the grid: printing and file saving are elsewhere.
+ # This class only manage the grid: printing and file saving are elsewhere.
  */
 
 public class GameMap {
