@@ -8,7 +8,7 @@ import java.io.IOException;
  # Saves the updated map and snake order back to the map file
  # so the next run starts from the correct state.
 
- # Abstraction: callers just call saveMapToFile() — all file-writing details
+ # Abstraction: callers just call saveMapToFile() all file-writing details
                 are hidden inside this class.
 
  # This class only handles file writing and it does not print,
