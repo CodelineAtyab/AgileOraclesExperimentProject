@@ -9,7 +9,6 @@ import java.io.IOException;
 
  */
 public class SnakeGame {
-
     public static void main(String[] argumentsInput) throws IOException {
 
         //  Part 1. Validate CLI user input
@@ -77,6 +76,7 @@ public class SnakeGame {
 
             //  Get the current head position
             Position head = snake.getHead();
+
             //  Copy the current Head Position Into Row and Column
             int newRow = head.getRow();
             int newCol = head.getCol();
@@ -90,12 +90,14 @@ public class SnakeGame {
             } else if (direction.equals("right")) {
                 newCol++;
             }
+
             //  If Outside the map
             if (!gameMap.isInsideMap(newRow, newCol)) {
                 System.out.println("Invalid move! Out of boundaries.");
                 renderer.printValidDirections(head);
                 return;
             }
+
             //  Collision
             if (snake.isHittingItself(newRow, newCol)) {
                 System.out.println("Collision! Snake hit itself.");
@@ -110,8 +112,10 @@ public class SnakeGame {
 
         //  Part 4. Save map to file & Print it
         filePersistence.saveMapToFile(gameMap, snake);
+
         //  Print map
         renderer.printMap("Updated Map:");
+
         // Print the snake order so the user can see it in the console too
         renderer.printSnakeOrder(filePersistence.buildSnakeOrderLine(snake));
     }
