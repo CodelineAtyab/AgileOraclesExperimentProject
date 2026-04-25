@@ -166,6 +166,10 @@ public class MapLoader {
         return new Snake(snakeBody);
     }
 
+    // Returns the loaded GameMap — only valid after a successful readAndLoadMap()
+    public GameMap getGameMap() {
+        return gameMap;
+    }
     // Returns the loaded Snake, only valid after a successful readAndLoadMap()
     public Snake getSnake() {
         return snake;
