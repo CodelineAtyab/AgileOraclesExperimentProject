@@ -1,13 +1,14 @@
 package org.example.fromibrahim.oop.snake.move;
 
 /*
- * Stores the 2D map grid and provides simple helper methods to read and update it.
+ * Stores the 2D map grid and provides simple helper methods to read and update it
 
- # Encapsulation: the grid is private and no other class can touch cells directly.
-                 Changes only happen through setSnakeCell() and clearSnakeCell().
+ # Encapsulation: the grid is private and no other class can touch cells directly
+                 Changes only happen through setSnakeCell() and clearSnakeCell()
  # Abstraction:   other classes ask isSnakeCell() or isInsideMap() instead of
-                reading raw characters and checking boundaries themselves.
- # This class only manage the grid: printing and file saving are elsewhere.
+                reading raw characters and checking boundaries themselves
+ # This class only manage the grid: printing and file saving are elsewhere
+ *
  */
 
 public class GameMap {
@@ -52,11 +53,9 @@ public class GameMap {
         }
         return copy;
     }
-
     public int getRows() {
         return rows;
     }
-
     public int getColumns() {
         return columns;
     }
