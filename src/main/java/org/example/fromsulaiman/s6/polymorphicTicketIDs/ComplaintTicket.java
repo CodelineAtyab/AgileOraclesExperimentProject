@@ -1,5 +1,7 @@
 package org.example.fromsulaiman.s6.polymorphicTicketIDs;
 
+import java.util.UUID;
+
 public class ComplaintTicket extends Ticket {
     public ComplaintTicket(String comment) {
         super(comment);
@@ -7,7 +9,11 @@ public class ComplaintTicket extends Ticket {
 
     @Override
     public String getId() {
-        return "C-" + java.util.UUID.randomUUID().toString();
+        return buildPrefixedId();
+    }
+
+    private String buildPrefixedId() {
+        return "C-" + UUID.randomUUID().toString();
     }
 
 }
