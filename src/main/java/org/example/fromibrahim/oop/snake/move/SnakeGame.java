@@ -105,8 +105,8 @@ public class SnakeGame {
                 return;
             }
             // Moving: Add Head & Remove Tail
-            Position oldTail = snake.moveSnake(newRow, newCol);
-            gameMap.setSnakeCell(newRow, newCol);
+            Position oldTail = snake.moveSnake(newRow, newCol); // ENCAPSULATION: controlled move through method
+            gameMap.setSnakeCell(newRow, newCol); // ENCAPSULATION: controlled cell update
             gameMap.clearSnakeCell(oldTail.getRow(), oldTail.getCol());
         }
 
