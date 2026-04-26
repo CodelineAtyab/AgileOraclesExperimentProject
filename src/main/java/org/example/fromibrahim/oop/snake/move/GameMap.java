@@ -33,7 +33,7 @@ public class GameMap {
     }
 
     // Marks a cell as occupied by the snake & puts 'o' at that position
-    public void setSnakeCell(int row, int col) {
+    public void setSnakeCell(int row, int col) { // ENCAPSULATION: controlled modification - only 'o' allowed
         map[row][col] = 'o';
     }
 
