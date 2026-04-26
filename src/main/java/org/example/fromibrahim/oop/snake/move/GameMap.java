@@ -8,7 +8,7 @@ package org.example.fromibrahim.oop.snake.move;
  # Abstraction:   other classes ask isSnakeCell() or isInsideMap() instead of
                 reading raw characters and checking boundaries themselves
  # This class only manage the grid: printing and file saving are elsewhere
- *
+
  */
 
 public class GameMap {
