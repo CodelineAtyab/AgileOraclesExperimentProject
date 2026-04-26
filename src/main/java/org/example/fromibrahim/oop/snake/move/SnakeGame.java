@@ -53,7 +53,7 @@ public class SnakeGame {
 
         //  Part 2. Read File & Load Map
 
-        String filePath = "src/main/java/com/agileoracleseval/slitheringeval/ibrahim_alrahbi/SnakeMove/map";
+        String filePath = "src/main/java/org/example/fromibrahim/data/map";
         MapLoader mapLoader = new MapLoader(filePath);
         if (!mapLoader.readAndLoadMap()) {
             return; // mapLoader already printed the error message
