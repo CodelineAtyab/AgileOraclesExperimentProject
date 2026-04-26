@@ -38,7 +38,7 @@ public class GameMap {
     }
 
     // Marks a cell as empty & puts '-' at that position
-    public void clearSnakeCell(int row, int col) {
+    public void clearSnakeCell(int row, int col) { // ENCAPSULATION: controlled clearing - only '-' allowed
         map[row][col] = '-';
     }
 
