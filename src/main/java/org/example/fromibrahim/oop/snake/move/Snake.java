@@ -25,7 +25,7 @@ public class Snake {
     }
 
     // Returns the tail position
-    public Position getTail() {
+    public Position getTail() { // CONTROLLED ACCESS: returns tail position safely
         return snakeBody.getFirst();
     }
 
