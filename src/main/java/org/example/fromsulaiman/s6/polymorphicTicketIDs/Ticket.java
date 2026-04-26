@@ -1,4 +1,9 @@
 package org.example.fromsulaiman.s6.polymorphicTicketIDs;
 
-public class Ticket {
+import java.time.LocalDateTime;
+
+public abstract class Ticket {
+
+    protected String comment;
+    protected LocalDateTime createdAt;
 }
