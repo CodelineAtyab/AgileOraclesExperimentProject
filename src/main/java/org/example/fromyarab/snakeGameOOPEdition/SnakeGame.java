@@ -109,8 +109,14 @@ public class SnakeGame {
     }
 
     private void saveGameState() throws IOException {
-        map.placeSnake(snake.getBody());
-        FilePersistence.saveMap(map, MAP_FILE_PATH);
+        if (snake == null || snake.getBody().isEmpty()) {
+            return;
+        }
+
+        GameMap freshMap = new GameMap(map.getRows(), map.getColumns());
+        freshMap.placeSnake(snake.getBody());
+
+        FilePersistence.saveMap(freshMap, MAP_FILE_PATH);
         FilePersistence.saveSnakeBody(snake.getBody(), SNAKE_FILE_PATH);
     }
 
