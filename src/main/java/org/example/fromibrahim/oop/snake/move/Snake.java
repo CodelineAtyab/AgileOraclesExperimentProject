@@ -36,7 +36,7 @@ public class Snake {
 
     // Checks if the given row and col overlap with any part of the snake body
     // Used to detect a self-collision before moving
-    public boolean isHittingItself(int row, int col) {
+    public boolean isHittingItself(int row, int col) { // COLLISION CHECK: prevents snake from hitting itself
         for (Position segment : snakeBody) {
             if (segment.getRow() == row && segment.getCol() == col) {
                 return true;
