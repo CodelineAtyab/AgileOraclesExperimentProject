@@ -1,8 +1,8 @@
 package org.example.fromibrahim.oop.snake.move;
 
 public class Position {
-    private final int row;
-    private final int col;
+    private final int row; // ENCAPSULATION: private - immutable once created
+    private final int col; // ENCAPSULATION: private - immutable once created
 
     public Position(int row, int col) {
         this.row = row;
