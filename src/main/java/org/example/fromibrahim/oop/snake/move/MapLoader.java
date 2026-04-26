@@ -26,7 +26,7 @@ public class MapLoader {
     }
     // Reads the file, validates it, and builds the GameMap and Snake.
     // Returns true if everything was successful, false if any error was found.
-    public boolean readAndLoadMap() {
+    public boolean readAndLoadMap() { // ABSTRACTION: single method call hides file reading, parsing, validation
 
         ArrayList<String[]> rowsData = new ArrayList<>();
         // A variable to store the snake order line if it exists in the file
