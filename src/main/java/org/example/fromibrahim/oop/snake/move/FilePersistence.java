@@ -21,7 +21,7 @@ public class FilePersistence {
         this.filePath = filePath;
     }
     // Saves the current map grid and the snake order line to the file
-    public void saveMapToFile(GameMap gameMap, Snake snake) throws IOException {
+    public void saveMapToFile(GameMap gameMap, Snake snake) throws IOException { // ABSTRACTION: hides BufferedWriter and file writing complexity
         BufferedWriter fileWrite = new BufferedWriter(new FileWriter(filePath));
 
         //  Write the map grid row by row
