@@ -16,7 +16,7 @@ public class GameRenderer {
         this.gameMap = gameMap;
     }
     //  Prints the map
-    public void printMap(String label) {
+    public void printMap(String label) { // ABSTRACTION: prints map without exposing internal grid to caller
         System.out.println("\n" + label);
         // Uses getMapCopy() so the renderer never accesses the internal grid directly
         char[][] mapCopy = gameMap.getMapCopy();
