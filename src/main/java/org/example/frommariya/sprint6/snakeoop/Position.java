@@ -6,7 +6,7 @@ public class Position {
     public int columns;
     public int rows;
 
-    public Position(int columns,int rows){
+    public Position(int rows,int columns){
         this.columns=columns;
         this.rows=rows;
     }
@@ -35,14 +35,22 @@ public class Position {
     }
 
     @Override
-    public boolean equals(Objects objects){
-        if (this==objects)
+    public boolean equals(Object object){
+        if (this==object)
             return true;
-        if(objects==null || getClass()!= objects.getClass())
+        if(object==null || getClass()!= object.getClass())
             return false;
-        Position position=(Position) objects;
+        Position position=(Position) object;
         return rows==position.rows&&columns==position.columns;
     }
 
+    @Override
+    public int hashCode(){
+        return Objects.hash(rows,columns);
+    }
 
+    @Override
+    public String toString(){
+        return "(" +rows+ "," +columns+ ")";
+    }
 }
