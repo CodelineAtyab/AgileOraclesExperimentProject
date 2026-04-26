@@ -6,4 +6,10 @@ public abstract class Ticket {
 
     protected String comment;
     protected LocalDateTime createdAt;
+
+    public Ticket(String comment) {
+        this.comment   = comment;
+        this.createdAt = LocalDateTime.now();
+    }
+
 }
