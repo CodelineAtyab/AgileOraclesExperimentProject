@@ -10,7 +10,11 @@ public class FeedbackTicket extends Ticket {
 
     @Override
     public String getId() {
-        return null;
+        return buildPrefixedId();
+    }
+
+    private String buildPrefixedId() {
+        return "F-" + UUID.randomUUID().toString();
     }
 
 }
