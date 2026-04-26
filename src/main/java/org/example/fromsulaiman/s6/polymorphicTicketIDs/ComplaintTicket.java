@@ -7,6 +7,7 @@ public class ComplaintTicket extends Ticket {
 
     @Override
     public String getId() {
-        return null;
+        return "C-" + java.util.UUID.randomUUID().toString();
     }
+
 }
