@@ -44,7 +44,7 @@ public class GameMap {
 
     // Returns a copy of the map grid for printing or saving
     // The real internal map is never given directly to other classes
-    public char[][] getMapCopy() {
+    public char[][] getMapCopy() { // ENCAPSULATION: returns copy not original - protects internal state
         char[][] copy = new char[rows][columns];
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
