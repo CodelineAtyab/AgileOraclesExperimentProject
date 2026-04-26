@@ -12,4 +12,14 @@ public abstract class Ticket {
         this.createdAt = LocalDateTime.now();
     }
 
+    public abstract String getId();
+
+    public String getComment() {
+        return comment;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
 }
