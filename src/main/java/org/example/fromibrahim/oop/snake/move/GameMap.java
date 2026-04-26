@@ -12,7 +12,7 @@ package org.example.fromibrahim.oop.snake.move;
  */
 
 public class GameMap {
-    private final char[][] map;
+    private final char[][] map; // ENCAPSULATION: private 2D grid - external code cannot modify cells directly
     private final int rows;
     private final int columns;
 
