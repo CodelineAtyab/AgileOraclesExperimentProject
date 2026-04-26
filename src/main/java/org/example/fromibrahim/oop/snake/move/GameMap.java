@@ -23,7 +23,7 @@ public class GameMap {
     }
 
     // Returns true if this position has a snake segment 'o' on it
-    public boolean isSnakeCell(int row, int col) {
+    public boolean isSnakeCell(int row, int col) { // ABSTRACTION: checks snake presence without exposing raw grid
         return map[row][col] == 'o';
     }
 
