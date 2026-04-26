@@ -23,4 +23,11 @@ public class ComplaintTicket extends Ticket {
     public static int getNumberOfTickets() {
         return numberOfTickets;
     }
+
+    @Override
+    public String toString() {
+        return "[Complaint] id=" + getId() +
+                ", comment=\"" + getComment() + "\"" +
+                ", type=\"" + type + "\"";
+    }
 }

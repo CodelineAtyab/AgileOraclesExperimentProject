@@ -24,4 +24,12 @@ public class FeedbackTicket extends Ticket {
         }
         this.rating = rating;
     }
+
+    @Override
+    public String toString() {
+        return "[Feedback ] id=" + getId() +
+                ", comment=\"" + getComment() + "\"" +
+                ", rating=" + rating;
+    }
+
 }
