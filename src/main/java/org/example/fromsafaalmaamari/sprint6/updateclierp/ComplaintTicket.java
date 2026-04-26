@@ -1,6 +1,4 @@
 package org.example.fromsafaalmaamari.sprint6.updateclierp;
-
-
 import java.util.UUID;
 
 public class ComplaintTicket extends Ticket {
@@ -26,15 +24,11 @@ public class ComplaintTicket extends Ticket {
     }
 
     private String buildPrefixedId(){
-        return "C-";
+        return "C-" + UUID.randomUUID().toString();
     }
 
     @Override
     public String getId() {
-        return buildPrefixedId() + UUID.randomUUID().toString();
-    }
-
-    public String toString(){
-        return "[Complaint] id=" + getId() + ", comment=\"" + getComment() + "\"" + ", type=\"" + type + "\"";
+        return buildPrefixedId();
     }
 }

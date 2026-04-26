@@ -1,14 +1,16 @@
 package org.example.fromsafaalmaamari.sprint6.updateclierp;
+import java.time.LocalDateTime;
 
 public abstract class Ticket {
     private String id;
     private String comment;
-    private String LocalDateTimeCreatedAt;
+    private LocalDateTime createdAt;
 
     //constructor
     public Ticket(String id, String comment){
         this.id = id;
         this.comment = comment;
+        this.createdAt = LocalDateTime.now();
     }
     //abstract method
     public abstract String getId();
@@ -25,5 +27,8 @@ public abstract class Ticket {
     public void setComment(String comment){
         this.comment = comment;
     }
-}
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+}

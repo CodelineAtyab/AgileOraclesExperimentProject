@@ -24,15 +24,11 @@ public class FeedbackTicket extends Ticket {
     }
 
     private String buildPrefixedId(){
-        return "F-";
+        return "F-" + UUID.randomUUID().toString();
     }
 
     @Override
     public String getId() {
-        return buildPrefixedId() + UUID.randomUUID().toString();
-    }
-
-    public String toString() {
-        return "[Feedback] id=" + getId() + ", comment=\"" + getComment() + "\"" + ", rating=" + rating;
+        return buildPrefixedId();
     }
 }
