@@ -83,7 +83,7 @@ public class MapLoader {
     }
 
     // Checks row count, column consistency, minimum size, and valid characters
-    private boolean validateMapRows(ArrayList<String[]> rowsData) {
+    private boolean validateMapRows(ArrayList<String[]> rowsData) { // ABSTRACTION: private helper - hides validation complexity
 
         int rows = rowsData.size();
         if (rows == 0) {
