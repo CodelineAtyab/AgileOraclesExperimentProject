@@ -49,7 +49,7 @@ public class Snake {
     //   - Adds the new head position at the end of the list
     //   - Removes the old tail from the front of the list
     // Returns the old tail so the caller can clear that cell on the map
-    public Position moveSnake(int newRow, int newCol) {
+    public Position moveSnake(int newRow, int newCol) { // CONTROLLED MOVE: adds new head and removes old tail in single operation
         //  Add new Head
         snakeBody.addLast(new Position(newRow, newCol));
         //  Remove old Tail
