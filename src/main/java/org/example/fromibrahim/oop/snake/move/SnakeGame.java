@@ -54,7 +54,7 @@ public class SnakeGame {
         //  Part 2. Read File & Load Map
 
         String filePath = "src/main/java/org/example/fromibrahim/data/map";
-        MapLoader mapLoader = new MapLoader(filePath);
+        MapLoader mapLoader = new MapLoader(filePath); // ABSTRACTION: hides file reading complexity
         if (!mapLoader.readAndLoadMap()) {
             return; // mapLoader already printed the error message
         }
