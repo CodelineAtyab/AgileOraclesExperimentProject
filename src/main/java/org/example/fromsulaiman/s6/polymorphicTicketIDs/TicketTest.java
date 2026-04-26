@@ -1,22 +1,24 @@
 package org.example.fromsulaiman.s6.polymorphicTicketIDs;
 
+import java.util.Scanner;
+
 
 public class TicketTest {
     public static void main(String[] args) {
 
-        Ticket t1 = new ComplaintTicket("Login page is broken on mobile.");
-        Ticket t2 = new FeedbackTicket("Please add a dark mode.");
+        // CHANGE main body — replace the two hardcoded new lines
+        Scanner scanner = new Scanner(System.in);
 
-        // second call — proves UUID is different every time
+        System.out.print("Enter complaint message: ");
+        String complaintMsg = scanner.nextLine();
+
+        System.out.print("Enter feedback message: ");
+        String feedbackMsg = scanner.nextLine();
+
+        Ticket t1 = new ComplaintTicket(complaintMsg); // was ("Login page is broken...")
+        Ticket t2 = new FeedbackTicket(feedbackMsg);   // was ("Please add a dark mode.")
+
         System.out.println(t1.getId());
         System.out.println(t2.getId());
-
-        // prefix check
-        System.out.println(t1.getId().startsWith("C-"));
-        System.out.println(t2.getId().startsWith("F-"));
-
-        // inherited fields
-        System.out.println(t1.getComment());
-        System.out.println(t1.getCreatedAt());
     }
 }
