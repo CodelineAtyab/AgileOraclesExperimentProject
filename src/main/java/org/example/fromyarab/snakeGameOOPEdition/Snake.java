@@ -94,35 +94,35 @@ public class Snake {
 
     public int getMaxStepsInDirection(Direction direction) {
         int steps = 0;
-        List<Position> tempBody = new ArrayList<>(body);
-        Position head = getHead();
+        Position currentHead = getHead();
+        List<Position> visitedPositions = new ArrayList<>();
 
-        if (head == null || tempBody.size() <= 1) {
+        if (currentHead == null || body.size() <= 1) {
             return 0;
         }
 
-        while (tempBody.size() > 1) {
-            int newRow = head.getRow() + direction.getRowDelta() * (steps + 1);
-            int newCol = head.getColumn() + direction.getColumnDelta() * (steps + 1);
+        while (visitedPositions.size() < body.size()) {
+            int newRow = currentHead.getRow() + direction.getRowDelta();
+            int newCol = currentHead.getColumn() + direction.getColumnDelta();
 
             newRow = (newRow % maxRows + maxRows) % maxRows;
             newCol = (newCol % maxColumns + maxColumns) % maxColumns;
 
             Position nextPos = new Position(newRow, newCol);
 
-            boolean collision = false;
-            for (int i = 0; i < tempBody.size() - 1; i++) {
-                if (tempBody.get(i).equals(nextPos)) {
-                    collision = true;
-                    break;
+            if (visitedPositions.contains(nextPos)) {
+                break;
+            }
+
+            for (int i = 0; i < body.size() - 1; i++) {
+                if (body.get(i).equals(nextPos)) {
+                    return steps;
                 }
             }
 
-            if (collision) break;
-
-            tempBody.remove(0);
+            visitedPositions.add(currentHead);
             steps++;
-            head = nextPos;
+            currentHead = nextPos;
         }
         return steps;
     }
