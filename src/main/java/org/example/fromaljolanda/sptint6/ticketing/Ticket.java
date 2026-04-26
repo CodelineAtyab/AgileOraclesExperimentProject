@@ -20,4 +20,8 @@ public abstract class Ticket {
     public String getComment() {
         return comment;
     }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 }
