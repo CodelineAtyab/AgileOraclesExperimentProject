@@ -97,7 +97,11 @@ public class Snake {
         List<Position> tempBody = new ArrayList<>(body);
         Position head = getHead();
 
-        while (true) {
+        if (head == null || tempBody.size() <= 1) {
+            return 0;
+        }
+
+        while (tempBody.size() > 1) {
             int newRow = head.getRow() + direction.getRowDelta() * (steps + 1);
             int newCol = head.getColumn() + direction.getColumnDelta() * (steps + 1);
 
