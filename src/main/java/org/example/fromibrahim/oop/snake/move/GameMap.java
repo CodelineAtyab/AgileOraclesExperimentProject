@@ -28,7 +28,7 @@ public class GameMap {
     }
 
     // Returns true if the row and col are inside the map boundaries
-    public boolean isInsideMap(int row, int col) {
+    public boolean isInsideMap(int row, int col) { // ABSTRACTION: hides boundary checking logic from callers
         return row >= 0 && row < rows && col >= 0 && col < columns;
     }
 
