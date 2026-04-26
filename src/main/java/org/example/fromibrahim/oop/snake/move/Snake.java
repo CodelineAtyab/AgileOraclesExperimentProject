@@ -13,7 +13,7 @@ import java.util.LinkedList;
 
 public class Snake {
     // Read & Ordered tail to head: first index is the tail, last index is the head
-    private final LinkedList<Position> snakeBody;
+    private final LinkedList<Position> snakeBody; // ENCAPSULATION: private field - external access forbidden
 
     public Snake(LinkedList<Position> snakeBody) {
         this.snakeBody = snakeBody;
