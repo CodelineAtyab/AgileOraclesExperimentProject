@@ -8,4 +8,8 @@ public abstract class Ticket {
         this.id = id;
         this.comment = comment;
     }
+
+    public String getId() {
+        return id;
+    }
 }
