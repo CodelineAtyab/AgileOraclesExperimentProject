@@ -20,7 +20,7 @@ public class Snake {
     }
 
     // Returns the head position
-    public Position getHead() {
+    public Position getHead() { // CONTROLLED ACCESS: returns head position without exposing internal list
         return snakeBody.getLast();
     }
 
