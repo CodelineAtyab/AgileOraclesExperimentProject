@@ -37,23 +37,28 @@ public class GameMap {
         }
         return '\0';
     }
-    public boolean isEmpty(){
+    public boolean isEmpty(Position position){
+        return isValidPosition(position) && grid[position.getRows()][position.getColumns()] ==Empty;
 
     }
 
-    public boolean isSnakeBody(){
+    public boolean isSnakeBody(Position position){
+        return isValidPosition(position) &&
+                grid[position.getRows()][position.getColumns()]==Snake_Body;
+    }
+
+    public boolean isValidPosition(Position position){
+        return position.getRows() >=0 && position.getRows() <rows && position.getColumns() >= 0 && position.getColumns() <columns;
 
     }
 
-    public boolean isValidPosition(){
+    public void placeSnake(Position position){
+        setC(position,Snake_Body);
 
     }
 
-    public void placeSnake(){
-
-    }
-
-    public void clearCells(){
+    public void clearCells(Position position){
+        setC(position,Empty);
 
     }
 
@@ -70,6 +75,16 @@ public class GameMap {
     }
 
     public List<Position> getSnakePosition(){
+        List<Position> positions =new ArrayList<>();
+        for(int x=0;x<rows;x++){
+            for(int y=0;y<columns;y++){
+                if(grid[x][y]==Snake_Body){
+                    positions.add(
+                            new Position(x,y));
+                }
+            }
+        }
+        return positions;
     }
 
 
