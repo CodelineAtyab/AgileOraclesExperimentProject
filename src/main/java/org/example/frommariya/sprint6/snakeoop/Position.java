@@ -19,16 +19,30 @@ public class Position {
         return rows;
     }
 
-    public Position movement(Direction dir){
-        switch (dir){
+    public Position movement(Direction dir) {
+        switch (dir) {
             case LEFT:
-                return new Position(rows,columns-1);
+                return new Position(rows, columns - 1);
             case RIGHT:
-                return new Position(rows,columns+1);
+                return new Position(rows, columns + 1);
             case UP:
-                return new Position(rows-1,columns);
+                return new Position(rows - 1, columns);
             case DOWN:
-                return new Position(rows+1,columns);
+                return new Position(rows + 1, columns);
+            default:
+                return this;
         }
+    }
+
+    @Override
+    public boolean equals(Objects objects){
+        if (this==objects)
+            return true;
+        if(objects==null || getClass()!= objects.getClass())
+            return false;
+        Position position=(Position) objects;
+        return rows==position.rows&&columns==position.columns;
+    }
+
 
 }
