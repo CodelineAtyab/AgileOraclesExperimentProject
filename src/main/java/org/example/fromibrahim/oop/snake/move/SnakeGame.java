@@ -25,7 +25,7 @@ public class SnakeGame {
         }
 
         //  Validate Direction
-        String direction = argumentsInput[0].toLowerCase(); // So That it Can Read Any Letter
+        String direction = argumentsInput[0].toLowerCase(); // INPUT NORMALIZATION: accepts any case
         if (!direction.equals("up") &&
                 !direction.equals("down") &&
                 !direction.equals("left") &&
