@@ -22,5 +22,7 @@ public class Main {
 
         tickets.add(f1);
 
+        System.out.println("\nComplaint tickets so far: " + ComplaintTicket.getNumberOfTickets());
+
     }
 }
