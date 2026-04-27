@@ -15,4 +15,8 @@ public class ComplaintTicket extends Ticket {
         return type;
     }
 
+    public static int getNumberOfTickets() {
+        return numberOfTickets;
+    }
+
 }
