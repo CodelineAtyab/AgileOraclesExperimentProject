@@ -1,5 +1,6 @@
 package org.example.fromsaif.SPRINT5.EscapeTheMazeOOP;
 
+
 public class MazeRenderer {
     public void drawMaze(Maze maze) {
         for (int row = 0; row < maze.getRows(); row++) {
