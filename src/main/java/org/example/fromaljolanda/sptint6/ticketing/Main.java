@@ -6,5 +6,6 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Ticket> tickets = new ArrayList<>();
 
+        System.out.println("Complaint tickets so far: " + ComplaintTicket.getNumberOfTickets());
     }
 }
