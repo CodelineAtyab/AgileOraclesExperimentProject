@@ -18,13 +18,39 @@ public class MazeSolver {
     public boolean solve() {
         Position start = findStart();
         stack.push(start);
-        visited[start.getRow()][start.getCol()]=true;
+        visited[start.getRow()][start.getCol()] = true;
         return false;
     }
 
     private Position getNextMove(Position current) {
+        int row = current.getRow();
+        int col = current.getCol();
 
-
+        Position up = new Position(row - 1, col);
+        if (maze.isInsideBounds(up) &&
+                !visited[up.getRow()][up.getCol()] &&
+                (maze.isOpenPath(up) || maze.isExit(up))) {
+            return up;
+        }
+        Position down = new Position(row + 1, col);
+        if (maze.isInsideBounds(down) &&
+                !visited[down.getRow()][down.getCol()] &&
+                (maze.isOpenPath(down) || maze.isExit(down))) {
+            return down;
+        }
+        Position left = new Position(row, col - 1);
+        if (maze.isInsideBounds(left) &&
+                !visited[left.getRow()][left.getCol()] &&
+                (maze.isOpenPath(left) || maze.isExit(left))) {
+            return left;
+        }
+        Position right = new Position(row, col + 1);
+        if (maze.isInsideBounds(right) &&
+                !visited[right.getRow()][right.getCol()] &&
+                (maze.isOpenPath(right) || maze.isExit(right))) {
+            return right;
+        }
+        return null;
     }
 
     private Position findStart() {
@@ -39,6 +65,5 @@ public class MazeSolver {
         }
         throw new IllegalArgumentException("Maze must contain a starting point.");
     }
-
 }
 
