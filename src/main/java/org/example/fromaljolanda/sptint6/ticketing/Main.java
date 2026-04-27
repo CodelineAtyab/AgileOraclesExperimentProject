@@ -7,5 +7,7 @@ public class Main {
         ArrayList<Ticket> tickets = new ArrayList<>();
 
         System.out.println("Complaint tickets so far: " + ComplaintTicket.getNumberOfTickets());
+
+        System.out.println("\n--- Creating tickets ---");
     }
 }
