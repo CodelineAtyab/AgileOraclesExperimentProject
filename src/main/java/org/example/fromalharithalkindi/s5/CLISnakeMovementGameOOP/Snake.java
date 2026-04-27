@@ -1,17 +1,18 @@
 package org.example.fromalharithalkindi.s5.CLISnakeMovementGameOOP;
 
+
 import java.util.LinkedList;
-import java.util.List;
 
 public class Snake {
 
-    private LinkedList<Position> body = new LinkedList<>();
+    private LinkedList<Position> body;
 
     public Snake(LinkedList<Position> body) {
         this.body = body;
     }
 
-    public boolean move(Direction direction, GameMap map) {
+    // direction is now a plain String like "up", "down", etc.
+    public boolean move(String direction, GameMap map) {
 
         Position head = body.getLast();
         Position newHead = head.move(direction);
@@ -31,12 +32,17 @@ public class Snake {
 
     public String getAvailableDirections(GameMap map) {
         StringBuilder sb = new StringBuilder();
-        for (Direction d : Direction.values()) {
+
+        String[] allDirections = Direction.values();
+
+        for (int i = 0; i < allDirections.length; i++) {
+            String d = allDirections[i];
             Position next = body.getLast().move(d);
             if (map.isInside(next) && map.isEmpty(next)) {
-                sb.append(d.name().toLowerCase()).append(" ");
+                sb.append(d).append(" ");
             }
         }
+
         return sb.toString().trim();
     }
 
