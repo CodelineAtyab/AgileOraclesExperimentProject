@@ -19,4 +19,11 @@ public class ComplaintTicket extends Ticket {
         return numberOfTickets;
     }
 
+    @Override
+    public String toString() {
+        return "[Complaint] id = " + getId()
+                + ", comment = \"" + getComment() + "\""
+                + ", type = \"" + getType() + "\"" ;
+    }
+
 }
