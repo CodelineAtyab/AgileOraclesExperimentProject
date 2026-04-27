@@ -18,19 +18,24 @@ public class MazeSolver {
     }
 
     public boolean solve() {
+        Position start = findStart();
+        stack.push(start);
+        visited[start.getRow()][start.getCol()]=true;
         return false;
     }
 
-    private Position findStart(){
+    private Position findStart() {
         for (int row = 0; row < maze.getRows(); row++) {
             for (int col = 0; col < maze.getCols(); col++) {
-                Position position = new Position (row, col);
+                Position position = new Position(row, col);
 
                 if (maze.getCell(position) == '@') {
                     return position;
                 }
             }
         }
-        throw new IllegalArgumentException("Maze must contain '@' as the starting point.");
+        throw new IllegalArgumentException("Maze must contain a starting point.");
     }
+
 }
+
