@@ -26,5 +26,8 @@ public class Main {
 
         System.out.println("\n--- Ticket List ---");
 
+        for (Ticket t : tickets) {
+            System.out.println(t);
+        }
     }
 }
