@@ -1,8 +1,8 @@
 package org.example.frommariya.sprint6.clierpenforceencapsulation;
 
 public class Ticket {
-    public String comment;
-    public String id;
+    private String comment;
+    private String id;
 
     // Creating Constructions
     public Ticket(String comment,String id){
