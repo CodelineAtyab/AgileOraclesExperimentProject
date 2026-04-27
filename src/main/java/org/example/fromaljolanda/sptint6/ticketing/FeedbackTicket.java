@@ -11,4 +11,8 @@ public class FeedbackTicket extends Ticket {
         }
         System.out.println("FeedbackTicket " + id + "added ..");
     }
+
+    public int getRating() {
+        return rating;
+    }
 }
