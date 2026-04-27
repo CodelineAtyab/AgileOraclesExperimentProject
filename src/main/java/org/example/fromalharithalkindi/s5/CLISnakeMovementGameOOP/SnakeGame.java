@@ -35,7 +35,7 @@ public class SnakeGame {
             }
         }
 
-        GameMap gameMap = MapLoader.load("src/map.txt");
+        GameMap gameMap = MapLoader.load("org/example/fromalharithalkindi/s5/CLISnakeMovementGameOOP/map.txt");
         Snake snake = gameMap.extractSnake();
 
         for (int i = 0; i < steps; i++) {
@@ -47,6 +47,6 @@ public class SnakeGame {
         }
 
         GameRenderer.render(gameMap);
-        FilePersistence.save(gameMap, "src/map.txt");
+        FilePersistence.save(gameMap, "org/example/fromalharithalkindi/s5/CLISnakeMovementGameOOP/map.txt");;
     }
 }
