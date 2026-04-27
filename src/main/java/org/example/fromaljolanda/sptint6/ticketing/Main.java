@@ -14,5 +14,7 @@ public class Main {
 
         ComplaintTicket c2 = new ComplaintTicket("CT-002", "Too cold", "Air-con");
 
+        FeedbackTicket f1 = new FeedbackTicket("FB-001", "Great app!", 5);
+
     }
 }
