@@ -19,5 +19,8 @@ public class Main {
         tickets.add(c1);
 
         tickets.add(c2);
+
+        tickets.add(f1);
+
     }
 }
