@@ -24,5 +24,7 @@ public class Main {
 
         System.out.println("\nComplaint tickets so far: " + ComplaintTicket.getNumberOfTickets());
 
+        System.out.println("\n--- Ticket List ---");
+
     }
 }
