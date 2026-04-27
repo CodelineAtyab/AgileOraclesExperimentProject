@@ -1,7 +1,5 @@
 package org.example.fromsaif.SPRINT5.EscapeTheMazeOOP;
 
-import org.example.fromsaif.SPRINT5.EscapeTheMaze;
-
 import java.util.Stack;
 
 public class MazeSolver {
@@ -22,6 +20,11 @@ public class MazeSolver {
         stack.push(start);
         visited[start.getRow()][start.getCol()]=true;
         return false;
+    }
+
+    private Position getNextMove(Position current) {
+
+
     }
 
     private Position findStart() {
