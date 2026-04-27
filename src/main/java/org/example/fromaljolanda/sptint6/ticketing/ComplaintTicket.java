@@ -11,4 +11,8 @@ public class ComplaintTicket extends Ticket {
         System.out.println("ComplaintTicket " + id + "added ..");
     }
 
+    public String getType() {
+        return type;
+    }
+
 }
