@@ -17,5 +17,7 @@ public class Main {
         FeedbackTicket f1 = new FeedbackTicket("FB-001", "Great app!", 5);
 
         tickets.add(c1);
+
+        tickets.add(c2);
     }
 }
