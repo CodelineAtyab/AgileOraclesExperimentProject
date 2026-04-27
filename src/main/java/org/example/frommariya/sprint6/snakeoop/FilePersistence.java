@@ -20,7 +20,6 @@ public class FilePersistence {
                 con.append("\n");
             }
         }
-
         Path snakePath=Paths.get(mapFilePath);
 
         if(snakePath.getParent()!=null){
