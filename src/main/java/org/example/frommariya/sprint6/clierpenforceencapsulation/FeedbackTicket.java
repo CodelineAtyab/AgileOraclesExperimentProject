@@ -3,7 +3,7 @@ package org.example.frommariya.sprint6.clierpenforceencapsulation;
 public class FeedbackTicket extends Ticket {
     private int rating;
 
-    public FeedbackTicket(String comment, String id, int rating) {
+    public FeedbackTicket(String id,String comment, int rating) {
         super(comment, id);
 
         //validate the ration (1-5)
@@ -27,6 +27,6 @@ public class FeedbackTicket extends Ticket {
     @Override
     public String toString(){
         return
-                String.format("[Feedback ] id"+getId()+", comment="+getComment()+", rating="+getRating());
+                String.format("[Feedback ] id: "+getId()+", comment="+getComment()+", rating="+getRating());
     }
 }

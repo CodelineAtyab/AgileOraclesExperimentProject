@@ -4,7 +4,7 @@ public class ComplaintTicket extends Ticket {
     public String type;
     public static int numOfTickets=0;
 
-    public ComplaintTicket(String comment,String id,String type){
+    public ComplaintTicket(String id,String comment,String type){
         super(comment,id);
         this.type=type;
         numOfTickets++;
@@ -27,6 +27,6 @@ public class ComplaintTicket extends Ticket {
     @Override
     public String toString(){
         return
-                String.format("Complaint ID:"+getId()+" \nComments: "+getComment() +" \nType: "+getType());
+                String.format("[Complaint ID]: "+getId()+" Comments: "+getComment() +" Type: "+getType());
     }
 }
