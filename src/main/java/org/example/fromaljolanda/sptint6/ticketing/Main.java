@@ -10,7 +10,8 @@ public class Main {
         // Print number of complaint tickets before creating any objects
         System.out.println("Complaint tickets so far: " + ComplaintTicket.getNumberOfTickets());
 
-        System.out.println("\n--- Creating tickets ---");
+        System.out.println();
+        System.out.println("--- Creating tickets ---");
 
         // Create complaint ticket objects
         ComplaintTicket c1 = new ComplaintTicket("CT-001", "Too loud", "Noise");
@@ -25,9 +26,11 @@ public class Main {
         tickets.add(f1);
 
         // Print number of complaint tickets after creation
-        System.out.println("\nComplaint tickets so far: " + ComplaintTicket.getNumberOfTickets());
+        System.out.println();
+        System.out.println("Complaint tickets so far: " + ComplaintTicket.getNumberOfTickets());
 
-        System.out.println("\n--- Ticket List ---");
+        System.out.println();
+        System.out.println("--- Ticket List ---");
 
         // Loop through tickets and print each one (polymorphism in action)
         for (Ticket t : tickets) {
