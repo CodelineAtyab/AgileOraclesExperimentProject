@@ -9,7 +9,7 @@ public class ComplaintTicket extends Ticket {
         super(id, comment);
         this.type = type;
         numberOfTickets ++;
-        System.out.println("ComplaintTicket " + id + "added ..");
+        System.out.println("ComplaintTicket " + id + " added.");
     }
 
     // Getter method for complaint type
