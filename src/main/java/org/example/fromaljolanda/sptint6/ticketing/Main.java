@@ -12,5 +12,7 @@ public class Main {
 
         ComplaintTicket c1 = new ComplaintTicket("CT-001", "Too loud", "Noise");
 
+        ComplaintTicket c2 = new ComplaintTicket("CT-002", "Too cold", "Air-con");
+
     }
 }
