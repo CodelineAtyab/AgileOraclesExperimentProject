@@ -9,5 +9,8 @@ public class Main {
         System.out.println("Complaint tickets so far: " + ComplaintTicket.getNumberOfTickets());
 
         System.out.println("\n--- Creating tickets ---");
+
+        ComplaintTicket c1 = new ComplaintTicket("CT-001", "Too loud", "Noise");
+
     }
 }
