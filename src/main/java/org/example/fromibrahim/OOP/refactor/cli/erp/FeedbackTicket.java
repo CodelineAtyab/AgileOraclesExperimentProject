@@ -25,4 +25,11 @@ public class FeedbackTicket extends Ticket {
         return rating;
     }
 
+    //  toString()  : overrides Object.toString() for clean printing
+    @Override
+    public String toString() {
+        // getId() and getComment() are inherited from Ticket
+        return "[Feedback ] id=" + getId() + ", comment=\"" + getComment() + "\"" + ", rating="    + rating;
+    }
+
 }
