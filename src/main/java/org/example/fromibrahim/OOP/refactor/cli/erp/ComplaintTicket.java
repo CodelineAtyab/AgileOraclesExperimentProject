@@ -17,4 +17,13 @@ public class ComplaintTicket extends Ticket {
         numberOfTickets++;
     }
 
+    //  Getter
+    public String getType() {
+        return type;
+    }
+
+    //  Static getter
+    public static int getNumberOfTickets() {
+        return numberOfTickets;
+    }
 }
