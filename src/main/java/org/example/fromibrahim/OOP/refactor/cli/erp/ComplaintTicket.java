@@ -6,6 +6,7 @@ public class ComplaintTicket extends Ticket {
 
     private static int numberOfTickets = 0;
 
+    //  Constructor
     public ComplaintTicket(String id, String comment, String type) {
         // super() MUST be the very first statement.
         // It calls Ticket(id, comment) to initialise the inherited fields.
