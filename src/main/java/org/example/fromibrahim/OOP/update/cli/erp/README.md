@@ -1,5 +1,48 @@
 # Polymorphic Ticket System - How It Works
 
+## Class Hierarchy Sketch
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Ticket (Abstract)                        │
+├─────────────────────────────────────────────────────────────┤
+│ - comment: String (private)                                │
+│ - createdAt: LocalDateTime (private)                       │
+├─────────────────────────────────────────────────────────────┤
+│ + Ticket(comment: String)                                  │
+│ + getComment(): String                                     │
+│ + setComment(comment: String): void                        │
+│ + getCreatedAt(): LocalDateTime                            │
+│ + setCreatedAt(createdAt: LocalDateTime): void             │
+│ + getId(): String {abstract}                               │
+└─────────────────────────────────────────────────────────────┘
+                            △
+                            │ extends
+        ┌───────────────────┴───────────────────┐
+        │                                       │
+┌───────▼────────────────────────┐  ┌──────────▼───────────────────────┐
+│     ComplaintTicket            │  │     FeedbackTicket                │
+├───────────────────────────────┤  ├──────────────────────────────────┤
+│ (no additional fields)        │  │ - rating: int (private)          │
+├───────────────────────────────┤  ├──────────────────────────────────┤
+│ + ComplaintTicket(            │  │ + FeedbackTicket(                 │
+│     comment: String)          │  │     comment: String,             │
+│ + getId(): String {override}  │  │     rating: int)                 │
+│ - buildPrefixedId(): String   │  │ + getRating(): int               │
+│     [private helper]          │  │ + setRating(rating: int): void    │
+│                               │  │ + getId(): String {override}      │
+│                               │  │ - buildPrefixedId(): String       │
+│                               │  │     [private helper]              │
+└───────────────────────────────┘  └──────────────────────────────────┘
+```
+
+**Key:**
+- `△` = inheritance (extends)
+- `+` = public method
+- `-` = private method/field
+- `{abstract}` = abstract method (must be overridden)
+- `{override}` = method overrides parent class method
+
 ## Object-Oriented Concepts Demonstrated
 - **Abstraction**: `Ticket` is an abstract class that cannot be instantiated
 - **Inheritance**: `ComplaintTicket` and `FeedbackTicket` extend `Ticket`
