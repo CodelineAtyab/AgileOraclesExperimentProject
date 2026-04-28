@@ -26,5 +26,15 @@ public class Main {
         //  Step 3 : Show counter AFTER creation
         System.out.println();
         System.out.println("Complaint tickets so far: " + ComplaintTicket.getNumberOfTickets());
+
+
+        //  Step 4 : Collect all tickets into one list
+
+        //  ArrayList<Ticket> can store both subtypes because
+        //  ComplaintTicket IS-A Ticket and FeedbackTicket IS-A Ticket.
+        ArrayList<Ticket> tickets = new ArrayList<>();
+        tickets.add(ct1);
+        tickets.add(ct2);
+        tickets.add(fb1);
     }
 }
