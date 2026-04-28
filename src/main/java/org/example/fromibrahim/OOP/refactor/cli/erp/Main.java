@@ -41,7 +41,7 @@ public class Main {
 
         //  ticket.toString() is called automatically by println().
         //  Java decides AT RUNTIME which toString() to use —
-        //  ComplaintTicket's or FeedbackTicket's.  This is called
+        //  ComplaintTicket's or FeedbackTicket's.
 
         System.out.println();
         System.out.println("--- Ticket List ---");
