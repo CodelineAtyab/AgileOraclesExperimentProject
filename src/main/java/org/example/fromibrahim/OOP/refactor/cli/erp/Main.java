@@ -36,5 +36,18 @@ public class Main {
         tickets.add(ct1);
         tickets.add(ct2);
         tickets.add(fb1);
+
+        //  Step 5 : Print every ticket
+
+        //  ticket.toString() is called automatically by println().
+        //  Java decides AT RUNTIME which toString() to use —
+        //  ComplaintTicket's or FeedbackTicket's.  This is called
+
+        System.out.println();
+        System.out.println("--- Ticket List ---");
+
+        for (Ticket ticket : tickets) {
+            System.out.println(ticket);   // calls the correct toString()
+        }
     }
 }
