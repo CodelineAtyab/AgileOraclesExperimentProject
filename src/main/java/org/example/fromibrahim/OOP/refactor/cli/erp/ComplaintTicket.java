@@ -26,4 +26,13 @@ public class ComplaintTicket extends Ticket {
     public static int getNumberOfTickets() {
         return numberOfTickets;
     }
+
+    //  toString()  : overrides Object.toString() for clean printing
+    //  Without this, System.out.println(ticket) would print something
+    //  like  ComplaintTicket@4e50df2e  which is useless.
+    @Override
+    public String toString() {
+        // getId() and getComment() are inherited from Ticket
+        return "[Complaint] id=" + getId() + ", comment=\"" + getComment() + "\"" + ", type=\""    + type         + "\"";
+    }
 }
