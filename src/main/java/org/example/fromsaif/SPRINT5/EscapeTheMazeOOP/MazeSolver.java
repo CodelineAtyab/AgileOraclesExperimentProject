@@ -26,6 +26,12 @@ public class MazeSolver {
             renderer.clearConsole();
             renderer.drawMaze(maze, current);
 
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+
             if (maze.isExit(current)){
                 return true;
             }
