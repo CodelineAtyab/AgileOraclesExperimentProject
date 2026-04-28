@@ -59,10 +59,7 @@ public List<Integer> math1(List<Integer> nums) {
         return strings.stream()
                 .map(s -> s.replace("x", ""))
                 .collect(Collectors.toList());
-    }
-
-
-}
+    }}
 
 
 
