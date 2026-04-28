@@ -12,5 +12,15 @@ public class Main {
         System.out.println();
         System.out.println("--- Creating tickets ---");
 
+        //  Step 2 : Create ticket objects
+        ComplaintTicket ct1 = new ComplaintTicket("CT-001", "Too loud",  "Noise");
+        System.out.println("ComplaintTicket " + ct1.getId() + " added.");
+
+        ComplaintTicket ct2 = new ComplaintTicket("CT-002", "Too cold",  "Air-con");
+        System.out.println("ComplaintTicket " + ct2.getId() + " added.");
+
+        FeedbackTicket fb1 = new FeedbackTicket("FB-001", "Great app!", 5);
+        System.out.println("FeedbackTicket  " + fb1.getId() + " added.");
+
     }
 }
