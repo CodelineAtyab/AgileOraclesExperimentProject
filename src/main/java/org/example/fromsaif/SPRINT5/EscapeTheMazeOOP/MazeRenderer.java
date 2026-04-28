@@ -33,5 +33,7 @@ public class MazeRenderer {
             }
             System.out.println();
         }
+        System.out.println("Current Position:");
+        System.out.println("(" + (current.getRow() + 1) + ", " + (current.getCol() + 1) + ")");
     }
 }
