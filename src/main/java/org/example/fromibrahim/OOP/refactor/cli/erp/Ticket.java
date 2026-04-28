@@ -10,4 +10,13 @@ public abstract class Ticket {
         this.id = id;
         this.comment = comment;
     }
+
+    //  Getters
+    public String getId() {
+        return id;
+    }
+
+    public String getComment() {
+        return comment;
+    }
 }
