@@ -23,17 +23,19 @@ public class MazeSolver {
         while (!stack.isEmpty()) {
             Position current = stack.peek();
 
-            if (maze.isExit(current)) {
+            renderer.clearConsole();
+            renderer.drawMaze(maze, current);
+
+            if (maze.isExit(current)){
                 return true;
             }
-
             Position next = getNextMove(current);
 
             if (next != null) {
                 stack.push(next);
                 visited[next.getRow()][next.getCol()] = true;
-            } else {
-                stack.pop();
+            }
+            else { stack.pop();
             }
         }
         return false;
