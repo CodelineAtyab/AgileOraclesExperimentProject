@@ -22,5 +22,9 @@ public class Main {
         FeedbackTicket fb1 = new FeedbackTicket("FB-001", "Great app!", 5);
         System.out.println("FeedbackTicket  " + fb1.getId() + " added.");
 
+
+        //  Step 3 : Show counter AFTER creation
+        System.out.println();
+        System.out.println("Complaint tickets so far: " + ComplaintTicket.getNumberOfTickets());
     }
 }
