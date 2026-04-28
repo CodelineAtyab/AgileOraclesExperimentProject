@@ -19,4 +19,13 @@ public abstract class Ticket {
     public String getComment() {
         return comment;
     }
+
+    //  Setters
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 }
