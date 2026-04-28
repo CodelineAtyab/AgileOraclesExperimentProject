@@ -20,4 +20,9 @@ public class FeedbackTicket extends Ticket {
         this.rating = rating;
     }
 
+    //  Getter
+    public int getRating() {
+        return rating;
+    }
+
 }
