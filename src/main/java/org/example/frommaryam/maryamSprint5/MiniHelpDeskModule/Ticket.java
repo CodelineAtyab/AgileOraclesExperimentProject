@@ -10,4 +10,8 @@ public abstract class Ticket {
         this.comment = comment;
         this.createdAt = LocalDateTime.now();
     }
+
+    public String getComment() {
+        return comment;
+    }
 }
