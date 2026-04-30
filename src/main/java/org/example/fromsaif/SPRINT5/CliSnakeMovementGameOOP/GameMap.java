@@ -28,6 +28,30 @@ public class GameMap {
 
         return row >= 0 && row < getRows()
                 && col >= 0 && col < getCols();
-
     }
+    // Get stored position (- or o)
+    public char getCell(Position position) {
+        return grid[position.row][position.col];
+    }
+    // Updates one cell on the map.
+    public void setCell(Position position, char value) {
+        grid[position.row][position.col] = value;
+    }
+    // Check if this cell is empty.
+    public boolean isEmpty(Position position) {
+        return isInside(position) && getCell(position) == '-';
+    }
+    // Check if this cell currently has part of the snake.
+    public boolean isSnake(Position position) {
+        return isInside(position) && getCell(position) == 'o';
+    }
+    // Places the snake character on the map.
+    public void placeSnake(Position position) {
+        setCell(position, 'o');
+    }
+    // Clears a cell and turns it back into an empty cell.
+    public void clearCell(Position position) {
+        setCell(position, '-');
+    }
+
 }
