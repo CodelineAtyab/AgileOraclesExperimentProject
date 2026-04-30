@@ -10,6 +10,10 @@ public class ComplaintTicket extends Ticket {
 
     @Override
     public String getId() {
-        return "";
+        return buildId();
+    }
+
+    private String buildId() {
+        return "C-" + UUID.randomUUID().toString();
     }
 }
