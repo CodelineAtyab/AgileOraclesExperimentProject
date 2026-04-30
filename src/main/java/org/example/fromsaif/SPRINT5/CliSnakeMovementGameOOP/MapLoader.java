@@ -9,11 +9,9 @@ public class MapLoader {
 
     private static final int MINIMUM_SIZE = 15;
 
-    // Reads map.txt, converts it into a 2D char grid, validates it,
-    // then returns a GameMap object.
+    // Reads map.txt -> converts it into a 2D char grid -> validates it -> returns a GameMap object.
     public GameMap loadMap(Path mapPath) throws IOException {
         // Read all lines from the map file.
-        // Each line represents one row in the grid.
         List<String> lines = Files.readAllLines(mapPath);
 
         // Convert the text lines into a 2D char array.
