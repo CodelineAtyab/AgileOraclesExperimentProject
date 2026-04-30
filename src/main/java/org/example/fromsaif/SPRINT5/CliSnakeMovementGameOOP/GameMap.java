@@ -21,4 +21,13 @@ public class GameMap {
     public char[][] getGrid() {
         return grid;
     }
+    // Position/Boundry Validation
+    public boolean isInside(Position position) {
+        int row = position.row;
+        int col = position.col;
+
+        return row >= 0 && row < getRows()
+                && col >= 0 && col < getCols();
+
+    }
 }
