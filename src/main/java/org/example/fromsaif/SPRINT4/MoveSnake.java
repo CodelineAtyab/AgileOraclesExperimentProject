@@ -20,6 +20,90 @@ public class MoveSnake {
 
     }
 
+    static boolean isAdjacent(Position first, Position second) {
+        return Math.abs(first.row - second.row) + Math.abs(first.col - second.col) == 1;
+    }
+
+    static LinkedList<Position> buildOrderedSnake(char[][] grid) {
+        List<Position> snakePositions = new LinkedList<>();
+
+        for (int row = 0; row < grid.length; row++) {
+            for (int col = 0; col < grid[row].length; col++) {
+                if (grid[row][col] == 'o') {
+                    snakePositions.add(new Position(row, col));
+                }
+            }
+        }
+
+        LinkedList<Position> orderedSnake = new LinkedList<>();
+
+        if (snakePositions.isEmpty()) {
+            return orderedSnake;
+        }
+
+        Position start = null;
+
+        for (Position position : snakePositions) {
+            int neighborCount = 0;
+
+            for (Position other : snakePositions) {
+                if (position != other && isAdjacent(position, other)) {
+                    neighborCount++;
+                }
+            }
+
+            if (neighborCount == 1) {
+                start = position;
+                break;
+            }
+        }
+
+        if (start == null) {
+            start = snakePositions.get(0);
+        }
+
+        orderedSnake.add(start);
+        Position previous = null;
+        Position current = start;
+
+        while (orderedSnake.size() < snakePositions.size()) {
+            Position next = null;
+
+            for (Position candidate : snakePositions) {
+                if (candidate == current || candidate == previous) {
+                    continue;
+                }
+
+                boolean alreadyAdded = false;
+                for (Position added : orderedSnake) {
+                    if (added.row == candidate.row && added.col == candidate.col) {
+                        alreadyAdded = true;
+                        break;
+                    }
+                }
+
+                if (alreadyAdded) {
+                    continue;
+                }
+
+                if (isAdjacent(current, candidate)) {
+                    next = candidate;
+                    break;
+                }
+            }
+
+            if (next == null) {
+                break;
+            }
+
+            orderedSnake.add(next);
+            previous = current;
+            current = next;
+        }
+
+        return orderedSnake;
+    }
+
     public static void main(String[] args) {
 
         // CLI INPUT VALIDATION
@@ -73,18 +157,8 @@ public class MoveSnake {
                 }
             }
 
-            // Creates linkedlist to store snake segment
-            LinkedList<Position> snake = new LinkedList<>();
-
-            //Scan the entire grid and collect all snake positions.
-            List<Position> temp = new LinkedList<>();
-            for (int row = 0; row < grid.length; row++) {
-                for (int col = 0; col < grid[row].length; col++) {
-                    if (grid[row][col] == 'o') {
-                        snake.add(new Position(row, col));
-                    }
-                }
-            }
+            // Creates linkedlist to store snake segments in correct tail -> head order
+            LinkedList<Position> snake = buildOrderedSnake(grid);
 
             // PRINT THE SNAKE POSITION COORDINATES
             System.out.println("Snake position:");
@@ -125,12 +199,12 @@ public class MoveSnake {
                     return;
                 }
 
-                // Check Self Collusion
+                // Check Self Collision
                 for (int ii = 1; ii < snake.size(); ii++) {
                     Position part = snake.get(ii);
 
                     if (part.row == newRow && part.col == newCol) {
-                        System.out.println("Invalid move: Snake would self collide");
+                        System.out.println("Invalid move: snake would collide with itself");
                         return;
                     }
                 }
