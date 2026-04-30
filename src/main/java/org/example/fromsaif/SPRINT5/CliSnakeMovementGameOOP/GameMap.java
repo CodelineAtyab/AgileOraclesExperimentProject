@@ -53,5 +53,4 @@ public class GameMap {
     public void clearCell(Position position) {
         setCell(position, '-');
     }
-
 }
