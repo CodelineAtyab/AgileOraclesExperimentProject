@@ -18,4 +18,6 @@ public abstract class Ticket {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+
+    public abstract String getId();
 }
