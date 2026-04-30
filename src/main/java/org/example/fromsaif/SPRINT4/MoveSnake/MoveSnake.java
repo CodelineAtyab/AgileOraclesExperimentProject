@@ -1,4 +1,4 @@
-package org.example.fromsaif.SPRINT4;
+package org.example.fromsaif.SPRINT4.MoveSnake;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
