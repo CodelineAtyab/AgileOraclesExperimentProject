@@ -14,4 +14,8 @@ public abstract class Ticket {
     public String getComment() {
         return comment;
     }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 }
