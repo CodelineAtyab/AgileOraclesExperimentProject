@@ -2,6 +2,34 @@
 
 Under Development By Team Agile Oracles
 
+## About This Project
+
+**AgileOraclesExperimentProject** is a collaborative Java learning sandbox for Team Agile Oracles. It gives every team member their own personal package to experiment, practice, and grow their Java skills — sprint by sprint.
+
+### Tech Stack
+- **Language:** Java 17
+- **Build Tool:** Maven
+- **Entry Point:** `org.example.litedesk.Main`
+
+### Project Structure
+
+The project contains **23 individual member packages** under `org.example`, each named after the contributor (e.g., `fromatyab`, `fromibrahim`, `fromkawther`). Work is typically organized into sprint sub-packages (e.g., `sprint2`, `sprint3`).
+
+### What's Inside
+
+| Area | Examples |
+|------|---------|
+| **Data Structures** | Stack, Queue, HashMap implementations |
+| **Algorithms** | Bubble Sort, Selection Sort, Recursion |
+| **Pattern Printing** | Pyramids, Staircases, Number challenges |
+| **Mini Applications** | ERP systems, Customer Complaint Manager, Maze Game Bot |
+| **Menus & CLI Apps** | Multi-role menus (Customer / Admin / Support Staff) |
+
+### Notable Classes
+> Each member also has their own `Main` class as an individual entry point for their experiments.
+
+---
+
 ## Contribution Guidelines
 
 ### Step 1
