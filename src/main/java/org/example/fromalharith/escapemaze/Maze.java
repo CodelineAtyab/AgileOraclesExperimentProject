@@ -1,4 +1,4 @@
-package org.example.escapemaze;
+package org.example.fromalharith.escapemaze;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,7 +11,7 @@ public class Maze {
 
     public static void main(String[] args) {
         try {
-            File file = new File("src/main/java/org/example/escapemaze/themaze");
+            File file = new File("src/main/java/org/example/fromalharith/escapemaze/themaze");
 
             if (!file.exists()) {
                 System.out.println("Board file not found!");
