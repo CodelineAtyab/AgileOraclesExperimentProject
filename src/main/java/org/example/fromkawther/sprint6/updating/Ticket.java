@@ -1,24 +1,19 @@
-package org.example.fromabdullahhosni.oop.CLIerp;
+package org.example.fromkawther.sprint6.updating;
 
 import java.time.LocalDateTime;
 
 public abstract class Ticket {
-    //private varriables - cannot be acces
-    private LocalDateTime createdAt;
     private String comment;
+    private LocalDateTime createdAt;
 
-
-    //constructor
+    // Constructor for the parent class
     public Ticket(String comment) {
-        this.createdAt = LocalDateTime.now();
         this.comment = comment;
+        this.createdAt = LocalDateTime.now();
     }
 
+    // Abstract method that children must implement
     public abstract String getId();
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
 
     public String getComment() {
         return comment;
