@@ -7,6 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FilePersistence {
+
+    // Saves the current game map back into map.txt after a valid snake move.
+    public void saveMap(GameMap gameMap, Path mapPath) throws IOException {
+        // Convert the GameMap grid into text lines using the same map.txt format.
+        List<String> lines = convertGridToLines(gameMap.getGrid());
+        // Write the updated lines back into the map file.
+        Files.write(mapPath, lines);
+    }
     // Converts the 2D char grid into lines of text that can be saved in map.txt.
     private List<String> convertGridToLines(char[][] grid) {
         List<String> lines = new ArrayList<>();
