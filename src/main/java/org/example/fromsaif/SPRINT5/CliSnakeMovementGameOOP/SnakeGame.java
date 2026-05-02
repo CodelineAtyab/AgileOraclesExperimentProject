@@ -1,4 +1,3 @@
 package org.example.fromsaif.SPRINT5.CliSnakeMovementGameOOP;
 
-public class SnakeGame {
-}
+public class SnakeGame {}
