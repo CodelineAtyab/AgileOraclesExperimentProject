@@ -60,7 +60,7 @@ public class Snake {
         }
         return new Position(newRow, newCol);
     }
-    // Collusion Check
+    // Collision Check
     public boolean hasCollision (Position newHead, GameMap gameMap) {
         return hasWallCollision (newHead, gameMap) || hasSelfCollision(newHead);
     }
@@ -84,4 +84,16 @@ public class Snake {
         }
         return false;
     }
+    // Move the snake one step on the map
+    public void move (Position newHead, GameMap gameMap) {
+        Position oldTail = body.removeFirst ();
+        gameMap.clearCell(oldTail);
+
+        // Adds new head to the end of the snake
+        body.addLast (newHead);
+
+        //Place the new head on the visible map
+        gameMap.placeSnake(newHead);
+    }
 }
+
