@@ -21,4 +21,18 @@ public class Snake {
     public Position getTail() {
         return body.getFirst();
     }
+
+    public static Snake fromMap(GameMap gameMap) {
+        LinkedList<Position> snakeBody = new LinkedList<>();
+        char[][] grid = gameMap.getGrid();
+
+        for (int row = 0; row < grid.length; row++) {
+            for (int col = 0; col < grid[row].length; col++) {
+                if (grid[row][col] == 'o') {
+                    snakeBody.add(new Position(row, col));
+                }
+            }
+        }
+        return new Snake(snakeBody);
+    }
 }
