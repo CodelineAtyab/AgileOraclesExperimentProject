@@ -1,13 +1,13 @@
-package org.example.fromabdullahhosni.oop.CLIerp;
+package org.example.fromibrahim.OOP.update.cli.erp;
+
+import java.util.UUID;
 
 public class FeedbackTicket extends Ticket {
+
     private int rating;
 
     public FeedbackTicket(String comment, int rating) {
         super(comment);
-        if (rating < 1 || rating > 5) {
-            throw new IllegalArgumentException("Rating must be between 1 and 5");
-        }
         this.rating = rating;
     }
 
@@ -15,13 +15,16 @@ public class FeedbackTicket extends Ticket {
         return rating;
     }
 
-    // override - polymorphism
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
     @Override
     public String getId() {
         return buildPrefixedId();
     }
 
     private String buildPrefixedId() {
-        return "F-" + java.util.UUID.randomUUID().toString();
+        return "F-" + UUID.randomUUID().toString();
     }
 }
