@@ -60,4 +60,28 @@ public class Snake {
         }
         return new Position(newRow, newCol);
     }
+    // Collusion Check
+    public boolean hasCollision (Position newHead, GameMap gameMap) {
+        return hasWallCollision (newHead, gameMap) || hasSelfCollision(newHead);
+    }
+
+    // Check if the new head position is outside the map boundaries
+    private boolean hasWallCollision(Position newHead, GameMap gameMap){
+        return !gameMap.isInside(newHead);
+    }
+
+    // Check if the new head position would hit the snake body
+    private boolean hasSelfCollision(Position newHead){
+        Position currentTail = getTail();
+        boolean movingIntoTail = currentTail.row == newHead.row && currentTail.col == newHead.col;
+
+        for (int i = 1; i < body.size(); i++){
+            Position part = body.get(i);
+
+            if (part.row == newHead.row && part.col == newHead.col && ! movingIntoTail) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
