@@ -1,5 +1,4 @@
-package org.example.fromsafaalmaamari.Sprint2SafaAlmaamari;
-import org.example.fromsafaalmaamari.Sprint2SafaAlmaamari.Complaint;
+package org.example.fromsafaalmaamari.sprint2safaalmaamari;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
