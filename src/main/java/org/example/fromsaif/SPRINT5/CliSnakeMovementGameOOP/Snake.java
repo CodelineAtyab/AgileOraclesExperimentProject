@@ -12,6 +12,43 @@ public class Snake {
         this.body = body;
     }
 
+    // Prints the directions that the snake can safely move to.
+    public void printAllowedDirections(GameMap gameMap) {
+        System.out.println("Allowed open directions:");
+
+        boolean hasAllowedDirection = false;
+
+        if (isDirectionAllowed(new Direction(Direction.UP), gameMap)) {
+            System.out.println("- up");
+            hasAllowedDirection = true;
+        }
+
+        if (isDirectionAllowed(new Direction(Direction.DOWN), gameMap)) {
+            System.out.println("- down");
+            hasAllowedDirection = true;
+        }
+
+        if (isDirectionAllowed(new Direction(Direction.LEFT), gameMap)) {
+            System.out.println("- left");
+            hasAllowedDirection = true;
+        }
+
+        if (isDirectionAllowed(new Direction(Direction.RIGHT), gameMap)) {
+            System.out.println("- right");
+            hasAllowedDirection = true;
+        }
+
+        if (!hasAllowedDirection) {
+            System.out.println("No safe moves available.");
+        }
+    }
+
+    // Checks one direction before the snake actually moves.
+    private boolean isDirectionAllowed(Direction direction, GameMap gameMap) {
+        Position possibleNewHead = calculateNewHead(direction);
+        return !hasCollision(possibleNewHead, gameMap);
+    }
+
     //Returns the full snake object
     public LinkedList<Position> getBody() {
         return body;
