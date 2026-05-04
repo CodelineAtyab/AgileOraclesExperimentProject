@@ -91,4 +91,11 @@ public class Array1 {
     public int[] plusTwo(int[] a, int[] b) {
         return new int[]{a[0], a[1], b[0], b[1]};
     }
+
+    public int[] swapEnds(int[] nums) {
+        int temp = nums[0];
+        nums[0] = nums[nums.length - 1];
+        nums[nums.length - 1] = temp;
+        return nums;
+    }
 }
