@@ -15,6 +15,16 @@ public class FilePersistence {
         // Write the updated lines back into the map file.
         Files.write(mapPath, lines);
     }
+
+    // Saves the snake body order from tail to head
+    public void saveSnakeState(Snake snake, Path snakeStatePath) throws IOException {
+        List<String> lines = new ArrayList<>();
+        for (Position part : snake.getBody()) {
+            lines.add(part.toFileLine());
+        }
+        Files.write(snakeStatePath, lines);
+    }
+
     // Converts the 2D char grid into lines of text that can be saved in map.txt.
     private List<String> convertGridToLines(char[][] grid) {
         List<String> lines = new ArrayList<>();
