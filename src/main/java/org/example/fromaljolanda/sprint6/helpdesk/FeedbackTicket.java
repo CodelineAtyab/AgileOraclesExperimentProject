@@ -1,16 +1,16 @@
-package org.example.fromaljolanda.sptint6.helpdesk;
+package org.example.fromaljolanda.sprint6.helpdesk;
 
 import java.util.UUID;
 
-public class ComplaintTicket extends Ticket {
+public class FeedbackTicket extends Ticket {
 
-    public ComplaintTicket(String comment) {
+    public FeedbackTicket(String comment) {
         super(comment);
     }
 
     @Override
     public String getId() {
-        return buildPrefixedId("C-");
+        return buildPrefixedId("F-");
     }
 
     // Private helper (Encapsulation)
