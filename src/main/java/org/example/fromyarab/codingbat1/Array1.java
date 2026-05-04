@@ -78,4 +78,8 @@ public class Array1 {
         if (b.length > 0 && b[0] == 1) count++;
         return count;
     }
+
+    public int[] biggerTwo(int[] a, int[] b) {
+        return (a[0] + a[1] >= b[0] + b[1]) ? a : b;
+    }
 }
