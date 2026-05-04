@@ -103,4 +103,9 @@ public class Array1 {
         int mid = nums.length / 2;
         return new int[]{nums[mid - 1], nums[mid], nums[mid + 1]};
     }
+
+    public int maxTriple(int[] nums) {
+        int mid = nums.length / 2;
+        return Math.max(nums[0], Math.max(nums[mid], nums[nums.length - 1]));
+    }
 }
