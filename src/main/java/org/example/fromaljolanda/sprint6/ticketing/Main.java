@@ -1,4 +1,4 @@
-package org.example.fromaljolanda.sptint6.ticketing;
+package org.example.fromaljolanda.sprint6.ticketing;
 
 import java.util.ArrayList;
 
