@@ -63,7 +63,7 @@ public class SnakeGame {
             filePersistence.saveMap(gameMap, MAP_PATH);
             filePersistence.saveSnakeState(snake, SNAKE_STATE_PATH);
 
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
