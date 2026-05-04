@@ -1,5 +1,4 @@
 package org.example.fromtibyan.CLIERP;
-
 public class Complaints {
     int complaintId;
     String complaintDescription;
@@ -38,6 +37,7 @@ public class Complaints {
         return assignedStaff;
     }
 
+    public String getStaffComments(){return staffComments;}
 
     public void setComplaintStatus(String complaintStatus){
         this.complaintStatus = complaintStatus;
@@ -47,6 +47,8 @@ public class Complaints {
         this.assignedStaff = assignedStaff;
     }
 
-
+    public void setStaffComments(String staffComments){
+        this.staffComments = staffComments;
+    }
 
 }
