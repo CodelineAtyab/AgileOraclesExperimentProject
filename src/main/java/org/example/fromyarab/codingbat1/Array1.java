@@ -122,4 +122,14 @@ public class Array1 {
         if (nums.length >= 2 && nums[1] == 1 && nums[2] == 3) return true;
         return false;
     }
+
+    public int[] make2(int[] a, int[] b) {
+        int[] result = new int[2];
+        int i = 0, ai = 0, bi = 0;
+        while (i < 2) {
+            if (ai < a.length) result[i++] = a[ai++];
+            else result[i++] = b[bi++];
+        }
+        return result;
+    }
 }
