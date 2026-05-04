@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class FilePersistence {
@@ -23,6 +24,22 @@ public class FilePersistence {
             lines.add(part.toFileLine());
         }
         Files.write(snakeStatePath, lines);
+    }
+
+    // Load the snake order
+    public Snake loadSnakeState(Path snakeStatePath) throws IOException {
+        List<String> lines = Files.readAllLines(snakeStatePath);
+        LinkedList<Position> body = new LinkedList<>();
+
+        for (String line : lines) {
+            String[] parts = line.split(",");
+
+            int row = Integer.parseInt(parts[0]);
+            int col = Integer.parseInt(parts[1]);
+
+            body.add(new Position(row, col));
+        }
+        return new Snake(body);
     }
 
     // Converts the 2D char grid into lines of text that can be saved in map.txt.
