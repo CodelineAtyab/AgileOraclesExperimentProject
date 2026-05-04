@@ -20,20 +20,35 @@ public class SnakeGame {
             return;
         }
         try {
-            Direction direction = new Direction (args[0]);
+            Direction direction = new Direction(args[0]);
             int steps = 1;
 
             if (args.length == 2) {
                 steps = parseSteps(args[1]);
             }
-
-            System.out.println("direction: " + direction.getValue());
+            System.out.println("Direction: " + direction.getValue());
             System.out.println("Steps: " + steps);
+
+            // Create a helper that manages loading, saving, printing
+            MapLoader mapLoader = new MapLoader();
+            FilePersistence filePersistence = new FilePersistence();
+            GameRenderer gameRenderer = new GameRenderer();
+
+            // Load the map from map.txt and wrap it inside a GameMap object.
+            GameMap gameMap = mapLoader.loadMap(MAP_PATH);
+
+            // Load the snake using snake_state.txt when it exists.
+            // If snake_state.txt does not exist yet, it scans the map once and creates it.
+            Snake snake = filePersistence.loadSnake(gameMap, SNAKE_STATE_PATH);
+
+            System.out.println("Current map:");
+            gameRenderer.render(gameMap);
 
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
 
     // Converts the steps argument from text into a positive integer.
     private static int parseSteps(String input) {
