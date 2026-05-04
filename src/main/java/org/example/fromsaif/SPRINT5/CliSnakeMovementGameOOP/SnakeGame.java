@@ -19,6 +19,35 @@ public class SnakeGame {
             System.out.println("Example: java SnakeGame right 3");
             return;
         }
-        System.out.println("CLI arguments received successfully.");
+        try {
+            Direction direction = new Direction (args[0]);
+            int steps = 1
+
+            if (args.length == 2) {
+                steps = parseSteps(args[1]);
+            }
+
+            System.out.println("direction: " + direction.getValue());
+            System.out.println("Steps; + steps");
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // Converts the steps argument from text into a positive integer.
+    private static int parseSteps(String input) {
+        try {
+            int steps = Integer.parseInt(input);
+
+            if (steps <= 0) {
+                throw new IllegalArgumentException("Steps must be a positive integer.");
+            }
+            return steps;
+            }
+
+         catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Steps must be a positive integer.");
+        }
     }
 }
