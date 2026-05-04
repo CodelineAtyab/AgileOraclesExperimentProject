@@ -19,6 +19,7 @@ public class SnakeGame {
             System.out.println("Example: java SnakeGame right 3");
             return;
         }
+
         try {
             Direction direction = new Direction(args[0]);
             int steps = 1;
@@ -26,6 +27,7 @@ public class SnakeGame {
             if (args.length == 2) {
                 steps = parseSteps(args[1]);
             }
+
             System.out.println("Direction: " + direction.getValue());
             System.out.println("Steps: " + steps);
 
@@ -44,11 +46,27 @@ public class SnakeGame {
             System.out.println("Current map:");
             gameRenderer.render(gameMap);
 
+            // Movement logic one step at a time
+            for (int step = 1; step <= steps; step++) {
+                Position newHead = snake.calculateNewHead(direction);
+                if (snake.hasCollision(newHead, gameMap)) {
+                    System.out.println("Invalid move: Snake would collide.");
+                    snake.printAllowedDirections(gameMap);
+                    return;
+                }
+
+                snake.move(newHead, gameMap);
+                System.out.println("After step " + step + ":");
+                gameRenderer.render(gameMap);
+            }
+
+            filePersistence.saveMap(gameMap, MAP_PATH);
+            filePersistence.saveSnakeState(snake, SNAKE_STATE_PATH);
+
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
-
 
     // Converts the steps argument from text into a positive integer.
     private static int parseSteps(String input) {
