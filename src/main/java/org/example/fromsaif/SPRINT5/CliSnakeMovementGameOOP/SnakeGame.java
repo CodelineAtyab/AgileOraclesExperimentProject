@@ -46,7 +46,7 @@ public class SnakeGame {
             System.out.println("Current map:");
             gameRenderer.render(gameMap);
 
-            // Movement logic one step at a time
+            // Movement of the snake one step at a time
             for (int step = 1; step <= steps; step++) {
                 Position newHead = snake.calculateNewHead(direction);
                 if (snake.hasCollision(newHead, gameMap)) {
@@ -76,9 +76,8 @@ public class SnakeGame {
                 throw new IllegalArgumentException("Steps must be a positive integer.");
             }
             return steps;
-            }
 
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Steps must be a positive integer.");
         }
     }
