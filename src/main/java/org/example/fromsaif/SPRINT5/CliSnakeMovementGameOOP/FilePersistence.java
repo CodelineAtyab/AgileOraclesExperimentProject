@@ -41,6 +41,16 @@ public class FilePersistence {
         }
         return new Snake(body);
     }
+    // Load the snake
+    public Snake loadSnake (GameMap gameMap, Path snakeStatePath) throws IOException {
+        if (Files.exists(snakeStatePath)) {
+            return loadSnakeState(snakeStatePath);
+        }
+
+        Snake snake = Snake.fromMap(gameMap);
+        saveSnakeState(snake, snakeStatePath);
+        return snake;
+    }
 
     // Converts the 2D char grid into lines of text that can be saved in map.txt.
     private List<String> convertGridToLines(char[][] grid) {
