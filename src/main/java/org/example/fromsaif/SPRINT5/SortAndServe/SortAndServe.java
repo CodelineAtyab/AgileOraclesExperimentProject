@@ -1,4 +1,4 @@
-package org.example.fromsaif.SPRINT5;
+package org.example.fromsaif.SPRINT5.SortAndServe;
 import java.util.Scanner;
 import java.util.Arrays;
 

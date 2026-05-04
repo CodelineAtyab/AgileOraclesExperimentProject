@@ -1,16 +1,23 @@
 package org.example.fromabdullahhosni.oop.CLIerp;
 
+import java.time.LocalDateTime;
+
 public abstract class Ticket {
-    private String id;
+    //private varriables - cannot be acces
+    private LocalDateTime createdAt;
     private String comment;
 
-    public Ticket(String id, String comment) {
-        this.id = id;
+
+    //constructor
+    public Ticket(String comment) {
+        this.createdAt = LocalDateTime.now();
         this.comment = comment;
     }
 
-    public String getId() {
-        return id;
+    public abstract String getId();
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
     public String getComment() {

@@ -1,4 +1,4 @@
-package org.example.fromsaif.SPRINT5;
+package org.example.fromsaif.SPRINT4.EscapeTheMaze;
 
 import java.io.IOException;
 import java.nio.file.Files;
