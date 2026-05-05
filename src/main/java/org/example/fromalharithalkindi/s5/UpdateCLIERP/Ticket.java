@@ -30,7 +30,7 @@ public abstract  class Ticket {
     public void display() {
         String border = "─".repeat(52);
         System.out.println("┌" + border + "┐");
-        System.out.println("│  🎫  TICKET DETAILS" + " ".repeat(32) + "│");
+        System.out.println("│    TICKET DETAILS" + " ".repeat(32) + "│");
         System.out.println("├" + border + "┤");
         for (String line : getDetails().split("\n")) {
             System.out.printf("│  %-50s│%n", line);
