@@ -15,6 +15,6 @@ public class FeedbackTicket extends Ticket {
     }
 
     private String buildPrefix() {
-        return "F-" + getId();
+        return "F-";
     }
 }
