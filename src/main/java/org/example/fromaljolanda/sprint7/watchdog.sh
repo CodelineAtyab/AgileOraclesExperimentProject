@@ -6,3 +6,5 @@ LOG_FILE="/home/aljolanda/weatherApp/watchdog.log"
 
 TIME=$(date '+%Y-%m-%d %H:%M:%S')
 
+if pgrep -f "$APP_NAME" > /dev/null
+
