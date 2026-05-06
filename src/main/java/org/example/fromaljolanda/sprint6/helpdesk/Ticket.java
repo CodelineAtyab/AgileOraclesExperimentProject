@@ -1,4 +1,4 @@
-package org.example.fromaljolanda.sptint6.helpdesk;
+package org.example.fromaljolanda.sprint6.helpdesk;
 
 import java.time.LocalDateTime;
 

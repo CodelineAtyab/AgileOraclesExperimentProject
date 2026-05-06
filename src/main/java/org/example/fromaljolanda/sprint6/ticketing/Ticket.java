@@ -1,4 +1,4 @@
-package org.example.fromaljolanda.sptint6.ticketing;
+package org.example.fromaljolanda.sprint6.ticketing;
 
 public abstract class Ticket {
     private String id;
