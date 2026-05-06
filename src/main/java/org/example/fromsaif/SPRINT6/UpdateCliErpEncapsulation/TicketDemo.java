@@ -13,7 +13,7 @@ public class TicketDemo {
         System.out.println("--- Creating tickets ---");
 
         // Create complaint tickets.
-        ComplaintTicket complaintOne = new ComplaintTicket("CT-001", "Wifi not connection", "Payment");
+        ComplaintTicket complaintOne = new ComplaintTicket("CT-001", "Wifi not connecting", "Payment");
         ComplaintTicket complaintTwo = new ComplaintTicket("CT-002", "Wifi is very slow", "Network");
 
         // Create feedback ticket.
