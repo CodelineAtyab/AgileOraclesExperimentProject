@@ -12,8 +12,9 @@ public class ComplaintTicket extends Ticket {
     public ComplaintTicket(String id, String comment, String type) {
         super(id, comment);
         this.type = type;
-    }
 
+        numberOfTickets++;
+    }
     // Returns the complaint type
     public String getType() {
         return type;
@@ -22,9 +23,11 @@ public class ComplaintTicket extends Ticket {
     // Updates the complaint type
     public void setType(String type) {
         this.type = type;
+
     }
     // Returns how many complaint tickets have been created
     public static int getNumberOfTickets() {
         return numberOfTickets;
+
     }
 }
