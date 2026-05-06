@@ -1,7 +1,5 @@
 package org.example.fromsaif.SPRINT6.UpdateCliErpEncapsulation;
 
-import java.time.LocalDateTime;
-
 public abstract class Ticket {
 
     // Stores the unique ticket ID
@@ -10,7 +8,7 @@ public abstract class Ticket {
     // Stores the comment entered by the user
     private String comment;
 
-    public Ticket(String comment) {
+    public Ticket(String id, String comment) {
         this.id = id;
         this.comment = comment;
     }
