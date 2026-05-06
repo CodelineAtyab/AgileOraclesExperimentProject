@@ -1,4 +1,5 @@
 package org.example.fromalharithalkindi.s5.JavaConsoleTool;
 
-public class SortStrategy {
+public interface  SortStrategy {
+    void sort(int[] numbesr);
 }
