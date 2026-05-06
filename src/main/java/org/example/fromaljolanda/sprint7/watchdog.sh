@@ -8,3 +8,6 @@ TIME=$(date '+%Y-%m-%d %H:%M:%S')
 
 if pgrep -f "$APP_NAME" > /dev/null
 
+then
+  echo "[$TIME] $APP_NAME is running. All good." >> "$LOG_FILE"
+
