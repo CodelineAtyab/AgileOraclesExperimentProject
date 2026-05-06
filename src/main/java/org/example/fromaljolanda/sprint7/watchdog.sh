@@ -11,3 +11,6 @@ if pgrep -f "$APP_NAME" > /dev/null
 then
   echo "[$TIME] $APP_NAME is running. All good." >> "$LOG_FILE"
 
+else
+  echo "[$TIME] $APP_NAME is NOT running. Starting it now..." >> "$LOG_FILE"
+
