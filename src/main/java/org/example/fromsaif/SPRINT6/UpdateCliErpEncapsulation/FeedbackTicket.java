@@ -5,21 +5,22 @@ public class FeedbackTicket extends Ticket {
     // Stores the feedback rating
     private int rating;
 
-
     // Constructor passes the feedback comment to parent ticket class
     public FeedbackTicket(String id, String comment, int rating) {
         super(id, comment);
         setRating(rating);
     }
 
-
-
-    @Override
-    public String getId() {
-        return buildPrefix() + UUID.randomUUID(). toString();
+    // Returns the feedback rating
+    public int getRating() {
+        return rating;
     }
 
-    private String buildPrefix() {
-        return "F-";
+    // Updates the feedback rating
+    public void setRating(int rating) {
+        if (rating < 1 || rating > 5) {
+            throw new IllegalArgumentException("Rating must be between 1 and 5.");
+        }
+        this.rating = rating;
     }
 }
