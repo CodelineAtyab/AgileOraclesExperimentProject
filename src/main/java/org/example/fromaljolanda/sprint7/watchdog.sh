@@ -14,3 +14,5 @@ then
 else
   echo "[$TIME] $APP_NAME is NOT running. Starting it now..." >> "$LOG_FILE"
 
+  nohup java -jar "$APP_PATH" >> "$LOG_FILE" 2>&1 &
+fi
