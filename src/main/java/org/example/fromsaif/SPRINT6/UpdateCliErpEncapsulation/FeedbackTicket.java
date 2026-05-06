@@ -1,15 +1,18 @@
 package org.example.fromsaif.SPRINT6.UpdateCliErpEncapsulation;
 
-import org.example.fromsaif.SPRINT6.UpdateCliErpPolymorphic.Ticket;
-
-import java.util.UUID;
-
 public class FeedbackTicket extends Ticket {
 
+    // Stores the feedback rating
+    private int rating;
+
+
     // Constructor passes the feedback comment to parent ticket class
-    public FeedbackTicket(String comment) {
-        super(comment);
+    public FeedbackTicket(String id, String comment, int rating) {
+        super(id, comment);
+        setRating(rating);
     }
+
+
 
     @Override
     public String getId() {
