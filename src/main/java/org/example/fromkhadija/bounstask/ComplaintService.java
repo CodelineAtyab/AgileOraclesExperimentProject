@@ -16,17 +16,21 @@ package org.example.fromkhadija.bounstask;
             //sorting
             strategy.sort(ComplainPriorityNumber);
 
-            // After Sorting:
+            //After Sorted
+            System.out.print("Sorted Numbers: ");
             for (int i = 0; i < ComplainPriorityNumber.length; i++) {
-                System.out.print("\nSorted Numbers:  " + ComplainPriorityNumber[i] + " ");
+                System.out.print(ComplainPriorityNumber[i] + " ");
             }
+            System.out.println();
 
             //List The Lowest Three Numbers:
             int [] result = new int[3];
+            System.out.print("Lowest Three Complaints: ");
             for (int i = 0; i < 3; i++) {
                 result[i] = ComplainPriorityNumber[i];
-                System.out.print("\nLowest Three Complaints:" + result[i] + " ");
+                System.out.print(result[i] + " ");
             }
+            System.out.println();
             return result;
         }
     }
