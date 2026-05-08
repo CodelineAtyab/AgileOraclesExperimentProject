@@ -7,6 +7,7 @@ public class InputParser {
 
             String[] parts = input.trim().split("[,\\s]+");
             int [] numbers = new int[parts.length];
+            System.out.println("Input: " + input);
 
             for (int i = 0; i < parts.length; i++) {
                 numbers[i] = Integer.parseInt(parts[i]);
