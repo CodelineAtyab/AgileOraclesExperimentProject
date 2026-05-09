@@ -1,5 +1,4 @@
 package org.example.fromaljolanda;
-/*
 
 public class CodingBat {
     public boolean sleepIn (boolean weekday, boolean vacation) {
@@ -109,7 +108,7 @@ public class CodingBat {
         return lastTwo + lastTwo + lastTwo;
     }
 
-    public String firstTwo(String str) {
+    public String firstTwo (String str) {
         if (str.length() < 2) {
             return str;
         }
@@ -118,5 +117,8 @@ public class CodingBat {
         }
     }
 
+    public String firstHalf (String str) {
+        return str.substring(0, str.length() / 2);
+    }
+
 }
- */
