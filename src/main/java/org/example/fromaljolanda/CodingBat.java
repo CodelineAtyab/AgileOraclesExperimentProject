@@ -1,4 +1,5 @@
 package org.example.fromaljolanda;
+/*
 
 public class CodingBat {
     public boolean sleepIn (boolean weekday, boolean vacation) {
@@ -118,3 +119,4 @@ public class CodingBat {
     }
 
 }
+ */
