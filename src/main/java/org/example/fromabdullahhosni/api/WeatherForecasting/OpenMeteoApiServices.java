@@ -78,6 +78,10 @@ in a Java environment. Specifically, I will:
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            // Unirest needs to be shut down to stop the background threads
+            Unirest.shutDown();
         }
+
     }
 }
