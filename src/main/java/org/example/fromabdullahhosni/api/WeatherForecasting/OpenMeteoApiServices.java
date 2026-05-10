@@ -66,6 +66,7 @@ in a Java environment. Specifically, I will:
 
             // Printing the result to the CLI
             if (response.getStatus() == 200) {
+                JSONObject myObj = response.getBody().getObject();
             } else {
                 System.out.println("Error: " + response.getStatusText());
             }
