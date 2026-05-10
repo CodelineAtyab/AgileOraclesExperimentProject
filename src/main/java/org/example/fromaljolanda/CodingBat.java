@@ -108,13 +108,17 @@ public class CodingBat {
         return lastTwo + lastTwo + lastTwo;
     }
 
-    public String firstTwo(String str) {
+    public String firstTwo (String str) {
         if (str.length() < 2) {
             return str;
         }
         else {
             return str.substring(0, 2);
         }
+    }
+
+    public String firstHalf (String str) {
+        return str.substring(0, str.length() / 2);
     }
 
 }
