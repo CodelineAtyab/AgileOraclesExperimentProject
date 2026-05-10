@@ -61,6 +61,8 @@ in a Java environment. Specifically, I will:
         try {
             // This is the part you copy-paste from Postman
             Unirest.config().connectTimeout(0).socketTimeout(0);
+            HttpResponse<JsonNode> response = Unirest.get("https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&current=temperature_2m&hourly=temperature_2m&timezone=Asia%2FTokyo")
+                    .asJson();
         } catch (Exception e) {
             e.printStackTrace();
         }
