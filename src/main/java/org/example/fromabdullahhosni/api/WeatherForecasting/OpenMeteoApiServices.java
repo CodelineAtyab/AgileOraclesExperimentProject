@@ -68,6 +68,7 @@ in a Java environment. Specifically, I will:
             if (response.getStatus() == 200) {
                 JSONObject myObj = response.getBody().getObject();
                 double currentTemp = myObj.getJSONObject("current").getDouble("temperature_2m");
+                String unit = myObj.getJSONObject("current_units").getString("temperature_2m");
             } else {
                 System.out.println("Error: " + response.getStatusText());
             }
