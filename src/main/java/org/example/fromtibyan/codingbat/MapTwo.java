@@ -17,4 +17,10 @@ public class MapTwo {
         }return map;
     }
 
+    public Map<String, String> pairs(String[] strings) {
+        Map<String, String> map = new HashMap<String, String>();
+        for (String key: strings){
+            map.put(String.valueOf(key.charAt(0)),String.valueOf(key.charAt(key.length()-1)));
+        }return map;
+    }
 }
