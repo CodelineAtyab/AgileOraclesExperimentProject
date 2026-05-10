@@ -1,10 +1,12 @@
+package org.example.frommariya.sprint7;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.nio.file.Paths;
-import java.nio.file.Files;
 
 public class MuscatWeather {
 private static final String LOG_FILE = System.getProperty("user.home") + "/weather-project/logs/weather.log";
