@@ -59,7 +59,8 @@ in a Java environment. Specifically, I will:
     //the java Snippt
     public static void main(String[] args) {
         try {
-
+            // This is the part you copy-paste from Postman
+            Unirest.config().connectTimeout(0).socketTimeout(0);
         } catch (Exception e) {
             e.printStackTrace();
         }
