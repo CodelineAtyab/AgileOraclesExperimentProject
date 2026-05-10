@@ -69,6 +69,10 @@ in a Java environment. Specifically, I will:
                 JSONObject myObj = response.getBody().getObject();
                 double currentTemp = myObj.getJSONObject("current").getDouble("temperature_2m");
                 String unit = myObj.getJSONObject("current_units").getString("temperature_2m");
+
+
+                System.out.println("--- Tokyo Weather Currently ---");
+                System.out.println("Tokyo current temperature is: " + currentTemp + unit);
             } else {
                 System.out.println("Error: " + response.getStatusText());
             }
