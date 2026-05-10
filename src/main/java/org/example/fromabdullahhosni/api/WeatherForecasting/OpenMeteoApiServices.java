@@ -63,6 +63,12 @@ in a Java environment. Specifically, I will:
             Unirest.config().connectTimeout(0).socketTimeout(0);
             HttpResponse<JsonNode> response = Unirest.get("https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&current=temperature_2m&hourly=temperature_2m&timezone=Asia%2FTokyo")
                     .asJson();
+
+            // Printing the result to the CLI
+            if (response.getStatus() == 200) {
+            } else {
+                System.out.println("Error: " + response.getStatusText());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
