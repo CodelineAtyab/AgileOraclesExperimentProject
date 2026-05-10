@@ -35,5 +35,17 @@ public class MapTwo {
         }
         return map;
     }
+    public Map<String, String> firstChar(String[] strings) {
+        Map<String, String> map = new HashMap<String, String>();
+        for (String key: strings){
+            String first = String.valueOf(key.charAt(0));
+            if (map.containsKey(first)){
+                map.put(first, map.get(first)+key);
+            }else {
+                map.put(first, key);
+            }
+        }return map;
+
+    }
 
 }
