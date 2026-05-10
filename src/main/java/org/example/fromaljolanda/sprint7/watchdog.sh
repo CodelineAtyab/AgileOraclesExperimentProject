@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Name of the Java application
 APP_NAME="weather.jar"
 
