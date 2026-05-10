@@ -23,4 +23,17 @@ public class MapTwo {
             map.put(String.valueOf(key.charAt(0)),String.valueOf(key.charAt(key.length()-1)));
         }return map;
     }
+
+    public Map<String, Integer> wordCount(String[] strings) {
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        for (String key: strings){
+            if (map.containsKey(key)) {
+                map.put(key,map.get(key)+1);
+            } else {
+                map.put(key,1);
+            }
+        }
+        return map;
+    }
+
 }
