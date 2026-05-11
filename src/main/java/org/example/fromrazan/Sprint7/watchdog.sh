@@ -20,7 +20,7 @@ else
 
   #Start the app in background
 
-  nohuo java -jar" $JAR_PATH" > /dev/null 2>&1 &
+  nohup java -jar" $JAR_PATH" > /dev/null 2>&1 &
 
   fi
 
