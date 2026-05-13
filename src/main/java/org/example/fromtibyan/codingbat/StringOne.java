@@ -165,6 +165,14 @@ public class StringOne {
         return a+b;
     }
 
+    public String lastTwo(String str) {
+        if (str.length() >1){
+            String beg = str.substring(0,str.length()-2);
+            char first = str.charAt(str.length()-2);
+            char second = str.charAt(str.length()-1);
+            return beg + second+first;
+        }return str;
+    }
 
 
 
