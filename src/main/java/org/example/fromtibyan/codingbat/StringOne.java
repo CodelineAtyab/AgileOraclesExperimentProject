@@ -261,6 +261,30 @@ public class StringOne {
         return str;
     }
 
+    public String withoutX2(String str) {
+        if (str.length() == 0) {
+            return str;
+        }
+        if (str.length() == 1) {
+            if (str.charAt(0) == 'x') {
+                return "";
+            }
+            return str;
+        }
+        boolean first  = str.charAt(0) == 'x';
+        boolean second = str.charAt(1) == 'x';
+
+        if (first && second) {
+            return str.substring(2);
+        } else if (first) {
+            return str.substring(1);
+        } else if (second) {
+            return str.charAt(0) + str.substring(2);
+        }
+
+        return str;
+    }
+
 
 
 }
