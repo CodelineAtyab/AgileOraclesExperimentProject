@@ -136,6 +136,15 @@ public class StringOne {
         return false;
     }
 
+    public String atFirst(String str) {
+        String at = "@@";
+        if (str.length()>=2){
+            return str.substring(0,2);
+        }else if (str.length() == 1){
+            return str + '@';
+        }
+        return at;
+    }
 
 
 
