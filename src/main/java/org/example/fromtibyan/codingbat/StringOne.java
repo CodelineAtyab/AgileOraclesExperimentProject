@@ -49,5 +49,14 @@ public class StringOne {
         return a.substring(1)+b.substring(1);
     }
 
+    public String left2(String str) {
+        if (str.length()>2){
+            String start= str.substring(0,2);
+            String end = str. substring (2);
+            return end+start;
+        }return str;
+    }
+
+
 
 }
