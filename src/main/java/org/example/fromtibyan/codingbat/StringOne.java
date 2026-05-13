@@ -6,63 +6,67 @@ public class StringOne {
     }
 
     public String makeAbba(String a, String b) {
-        return a+b+b+a;
+        return a + b + b + a;
     }
 
     public String makeTags(String tag, String word) {
-        return "<"+ tag + ">" + word + "</"+ tag + ">";
+        return "<" + tag + ">" + word + "</" + tag + ">";
     }
 
     public String makeOutWord(String out, String word) {
-        return out.substring(0,2)+word+out.substring(2);
+        return out.substring(0, 2) + word + out.substring(2);
     }
 
     public String extraEnd(String str) {
         int length = str.length();
-        String last = str.substring(length-2);
-        return last + last +last;
+        String last = str.substring(length - 2);
+        return last + last + last;
     }
 
     public String firstTwo(String str) {
-        if (str.length()>2){
-            return str.substring(0,2);
-        }return str;
+        if (str.length() > 2) {
+            return str.substring(0, 2);
+        }
+        return str;
     }
 
     public String firstHalf(String str) {
-        int half = str.length()/2;
-        return str.substring(0,half);
+        int half = str.length() / 2;
+        return str.substring(0, half);
 
     }
 
     public String withoutEnd(String str) {
-        return str.substring(1,str.length()-1);
+        return str.substring(1, str.length() - 1);
     }
 
     public String comboString(String a, String b) {
-        if (a.length() >b.length()){
-            return b+a+b;
-        }return a+b+a;
+        if (a.length() > b.length()) {
+            return b + a + b;
+        }
+        return a + b + a;
     }
 
     public String nonStart(String a, String b) {
-        return a.substring(1)+b.substring(1);
+        return a.substring(1) + b.substring(1);
     }
 
     public String left2(String str) {
-        if (str.length()>2){
-            String start= str.substring(0,2);
-            String end = str. substring (2);
-            return end+start;
-        }return str;
+        if (str.length() > 2) {
+            String start = str.substring(0, 2);
+            String end = str.substring(2);
+            return end + start;
+        }
+        return str;
     }
 
     public String right2(String str) {
-        if (str.length()>2){
-            String start = str.substring(0,str.length()-2);
-            String end = str.substring(str.length()-2);
+        if (str.length() > 2) {
+            String start = str.substring(0, str.length() - 2);
+            String end = str.substring(str.length() - 2);
             return end + start;
-        }return str;
+        }
+        return str;
     }
 
     public String theEnd(String str, boolean front) {
@@ -75,25 +79,27 @@ public class StringOne {
 
     public String withouEnd2(String str) {
         String empty = "";
-        if (str.length()>1){
-            return str.substring(1,str.length()-1);
-        }else if (str.length()== 0){
+        if (str.length() > 1) {
+            return str.substring(1, str.length() - 1);
+        } else if (str.length() == 0) {
             return str;
-        }return empty;
+        }
+        return empty;
     }
 
     public String middleTwo(String str) {
-        int mid = (str.length()-1)/2;
-        if (str.length()>=2){
-            return str.substring(mid,mid+2);
-        }return str;
+        int mid = (str.length() - 1) / 2;
+        if (str.length() >= 2) {
+            return str.substring(mid, mid + 2);
+        }
+        return str;
 
     }
 
     public boolean endsLy(String str) {
-        if (str.length()>1){
-            if (str.charAt(str.length()-1) == 'y'
-                    && str.charAt(str.length()-2) == 'l'){
+        if (str.length() > 1) {
+            if (str.charAt(str.length() - 1) == 'y'
+                    && str.charAt(str.length() - 2) == 'l') {
                 return true;
             }
         }
@@ -101,35 +107,38 @@ public class StringOne {
     }
 
     public String nTwice(String str, int n) {
-        String front = str.substring(0,n);
-        String end = str.substring(str.length()-n, str.length());
-        if (str.length()>=1){
+        String front = str.substring(0, n);
+        String end = str.substring(str.length() - n, str.length());
+        if (str.length() >= 1) {
             return front + end;
-        }return str;
+        }
+        return str;
     }
 
     public String twoChar(String str, int index) {
         if (index < 0 || index > str.length() - 2) {
             return str.substring(0, 2);
-        }return str.substring(index, index + 2);
+        }
+        return str.substring(index, index + 2);
     }
 
     public String middleThree(String str) {
-        int mid = (str.length()-1)/2;
-        String midThree = str.substring(mid-1, mid+2);
-        if (str.length()>=3){
+        int mid = (str.length() - 1) / 2;
+        String midThree = str.substring(mid - 1, mid + 2);
+        if (str.length() >= 3) {
             return midThree;
-        }return str;
+        }
+        return str;
     }
 
     public boolean hasBad(String str) {
-        if(str.length()>=3){
-            if (str.charAt(0)=='b'&& str.charAt(1)=='a' && str.charAt(2)=='d'){
+        if (str.length() >= 3) {
+            if (str.charAt(0) == 'b' && str.charAt(1) == 'a' && str.charAt(2) == 'd') {
                 return true;
             }
         }
-        if (str.length()>3){
-            if (str.charAt(1)=='b'&& str.charAt(2)=='a' && str.charAt(3)=='d'){
+        if (str.length() > 3) {
+            if (str.charAt(1) == 'b' && str.charAt(2) == 'a' && str.charAt(3) == 'd') {
                 return true;
             }
         }
@@ -138,60 +147,64 @@ public class StringOne {
 
     public String atFirst(String str) {
         String at = "@@";
-        if (str.length()>=2){
-            return str.substring(0,2);
-        }else if (str.length() == 1){
+        if (str.length() >= 2) {
+            return str.substring(0, 2);
+        } else if (str.length() == 1) {
             return str + '@';
         }
         return at;
     }
 
     public String lastChars(String a, String b) {
-        if (a.length()>=1 && b.length()>=1){
-            return ""+a.charAt(0)+ b.charAt(b.length()-1);
-        }else  if (a.length()<1 && b.length()>=1){
-            return ""+'@'+ b.charAt(b.length()-1);
-        }else  if (a.length()>=1 && b.length()<1){
-            return ""+a.charAt(0)+ '@';
-        }return "@@";
+        if (a.length() >= 1 && b.length() >= 1) {
+            return "" + a.charAt(0) + b.charAt(b.length() - 1);
+        } else if (a.length() < 1 && b.length() >= 1) {
+            return "" + '@' + b.charAt(b.length() - 1);
+        } else if (a.length() >= 1 && b.length() < 1) {
+            return "" + a.charAt(0) + '@';
+        }
+        return "@@";
     }
 
     public String conCat(String a, String b) {
-        if (a.length()>0 && b.length()>0){
-            if (a.charAt(a.length()-1) == b.charAt(0)){
-                return ""+a.substring(0,a.length()-1)+ b;
+        if (a.length() > 0 && b.length() > 0) {
+            if (a.charAt(a.length() - 1) == b.charAt(0)) {
+                return "" + a.substring(0, a.length() - 1) + b;
             }
         }
-        return a+b;
+        return a + b;
     }
 
     public String lastTwo(String str) {
-        if (str.length() >1){
-            String beg = str.substring(0,str.length()-2);
-            char first = str.charAt(str.length()-2);
-            char second = str.charAt(str.length()-1);
-            return beg + second+first;
-        }return str;
+        if (str.length() > 1) {
+            String beg = str.substring(0, str.length() - 2);
+            char first = str.charAt(str.length() - 2);
+            char second = str.charAt(str.length() - 1);
+            return beg + second + first;
+        }
+        return str;
     }
 
     public String seeColor(String str) {
-        if (str.length()>=3){
-            if (str.substring(0,3).equals("red")){
+        if (str.length() >= 3) {
+            if (str.substring(0, 3).equals("red")) {
                 return "red";
-            }else if (str.length()>=4 && str.substring(0,4).equals("blue")){
+            } else if (str.length() >= 4 && str.substring(0, 4).equals("blue")) {
                 return "blue";
             }
-        } return "";
+        }
+        return "";
     }
 
     public boolean frontAgain(String str) {
-        if (str.length()==2){
+        if (str.length() == 2) {
             return true;
-        }else if (str.length() >=3){
-            if(str.charAt(0)==str.charAt(str.length()-2) && str.charAt(1)==str.charAt(str.length()-1)){
+        } else if (str.length() >= 3) {
+            if (str.charAt(0) == str.charAt(str.length() - 2) && str.charAt(1) == str.charAt(str.length() - 1)) {
                 return true;
             }
-        }return false;
+        }
+        return false;
     }
 
     public String minCat(String a, String b) {
@@ -207,7 +220,8 @@ public class StringOne {
             front = str;
         } else {
             front = str.substring(0, 2);
-        } return front + front + front;
+        }
+        return front + front + front;
     }
 
     public String without2(String str) {
@@ -217,7 +231,8 @@ public class StringOne {
             if (front.equals(back)) {
                 return str.substring(2);
             }
-        } return str;
+        }
+        return str;
     }
 
     public String deFront(String str) {
@@ -230,7 +245,8 @@ public class StringOne {
         }
         if (str.length() > 2) {
             result += str.substring(2);
-        }return result;
+        }
+        return result;
     }
 
     public String startWord(String str, String word) {
@@ -246,7 +262,7 @@ public class StringOne {
     }
 
     public String withoutX(String str) {
-        if (str.length() == 0){
+        if (str.length() == 0) {
             return str;
         }
         if (str.charAt(0) == 'x') {
@@ -255,7 +271,7 @@ public class StringOne {
         if (str.length() > 0 && str.charAt(str.length() - 1) == 'x') {
             str = str.substring(0, str.length() - 1);
         }
-        if (str.length() > 2 && str.charAt(str.length() - 1) == 'x' && str.charAt(0) == 'x'){
+        if (str.length() > 2 && str.charAt(str.length() - 1) == 'x' && str.charAt(0) == 'x') {
             str = str.substring(1, str.length() - 1);
         }
         return str;
@@ -271,7 +287,7 @@ public class StringOne {
             }
             return str;
         }
-        boolean first  = str.charAt(0) == 'x';
+        boolean first = str.charAt(0) == 'x';
         boolean second = str.charAt(1) == 'x';
 
         if (first && second) {
@@ -281,10 +297,6 @@ public class StringOne {
         } else if (second) {
             return str.charAt(0) + str.substring(2);
         }
-
         return str;
     }
-
-
-
 }
