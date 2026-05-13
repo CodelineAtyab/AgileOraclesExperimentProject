@@ -114,5 +114,14 @@ public class StringOne {
         }return str.substring(index, index + 2);
     }
 
+    public String middleThree(String str) {
+        int mid = (str.length()-1)/2;
+        String midThree = str.substring(mid-1, mid+2);
+        if (str.length()>=3){
+            return midThree;
+        }return str;
+    }
+
+
 
 }
