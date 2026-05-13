@@ -100,4 +100,13 @@ public class StringOne {
         return false;
     }
 
+    public String nTwice(String str, int n) {
+        String front = str.substring(0,n);
+        String end = str.substring(str.length()-n, str.length());
+        if (str.length()>=1){
+            return front + end;
+        }return str;
+    }
+
+
 }
