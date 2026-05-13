@@ -5,22 +5,22 @@ import java.util.List;
 public class FunctionalOne {
 
     public List<Integer> doubling(List<Integer> nums) {
-        nums.replaceAll(n->n*2);
+        nums.replaceAll(n -> n * 2);
         return nums;
     }
 
     public List<Integer> square(List<Integer> nums) {
-        nums.replaceAll(n->n*n);
+        nums.replaceAll(n -> n * n);
         return nums;
     }
 
     public List<String> addStar(List<String> strings) {
-        strings.replaceAll(s -> s+"*");
+        strings.replaceAll(s -> s + "*");
         return strings;
     }
 
     public List<String> copies3(List<String> strings) {
-        strings.replaceAll(s -> s+s+s);
+        strings.replaceAll(s -> s + s + s);
         return strings;
     }
 
@@ -30,12 +30,12 @@ public class FunctionalOne {
     }
 
     public List<Integer> math1(List<Integer> nums) {
-        nums.replaceAll(n -> (n+1)*10);
+        nums.replaceAll(n -> (n + 1) * 10);
         return nums;
     }
 
     public List<Integer> rightDigit(List<Integer> nums) {
-        nums.replaceAll(n -> n%10);
+        nums.replaceAll(n -> n % 10);
         return nums;
     }
 
@@ -45,8 +45,7 @@ public class FunctionalOne {
     }
 
     public List<String> noX(List<String> strings) {
-        strings.replaceAll(s -> s.replace("x",""));
+        strings.replaceAll(s -> s.replace("x", ""));
         return strings;
     }
-
 }
