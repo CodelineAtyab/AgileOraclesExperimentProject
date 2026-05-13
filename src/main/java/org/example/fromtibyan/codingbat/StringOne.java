@@ -17,4 +17,10 @@ public class StringOne {
         return out.substring(0,2)+word+out.substring(2);
     }
 
+    public String extraEnd(String str) {
+        int length = str.length();
+        String last = str.substring(length-2);
+        return last + last +last;
+    }
+
 }
