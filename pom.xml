@@ -31,7 +31,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.example.litedesk.Main</mainClass>
+                            <mainClass>org.example.litedesk.Main</mainClass> <!-- .jar main execution point -->
                         </manifest>
                     </archive>
                 </configuration>
