@@ -6,9 +6,6 @@ public class ComplaintTicket extends Ticket {
 
     public ComplaintTicket(String id, String comment, String type) {
         super(id, comment);
-        if (type == null || type.isBlank()) {
-            throw new IllegalArgumentException("Type cannot be empty.");
-        }
         this.type = type;
         numberOfTickets++;
     }
