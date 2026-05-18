@@ -1,0 +1,9 @@
+1. Created Watchdog.sh with algorithm diagram and command comments  - Bash script that monitors Weather.jar
+2. Set execute permission with chmod +x                            - Makes the script directly runnable
+3. Ran Watchdog.sh to install cron jobs and verify service health  - Installs @reboot + every-60s cron entries
+4. Created "Rebooting Watchdog file.txt"                          - Manual crontab instructions as backup
+
+To run the script: open a terminal, navigate to the WeatherInMuscat folder with "cd /home/admin/Desktop/WeatherInMuscat", 
+then type "./Watchdog.sh" and press Enter. 
+The script will start Weather.jar if needed, log the status to Watchdog.log, and automatically install cron jobs so it runs every 
+60 seconds and on every system reboot.
