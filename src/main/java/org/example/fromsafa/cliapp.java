@@ -27,7 +27,6 @@ public class cliapp {
 
             int choice = input.nextInt();
 
-            // -------- CUSTOMER --------
             if (choice == 1) {
 
                 System.out.println("1. Create Ticket");
@@ -65,7 +64,6 @@ public class cliapp {
                 }
             }
 
-            // -------- ADMIN --------
             else if (choice == 2) {
 
                 System.out.print("Enter PIN: ");
@@ -79,7 +77,7 @@ public class cliapp {
 
                     int a = input.nextInt();
 
-                    // VIEW
+                   
                     if (a == 1) {
 
                         System.out.print("Enter ID: ");
@@ -102,7 +100,7 @@ public class cliapp {
                         }
                     }
 
-                    // UPDATE
+                   
                     else if (a == 2) {
 
                         System.out.print("Enter ID: ");
@@ -129,7 +127,7 @@ public class cliapp {
                 }
             }
 
-            // -------- EXIT --------
+          
             else if (choice == 3) {
                 System.out.println("Goodbye!");
                 running = false;
