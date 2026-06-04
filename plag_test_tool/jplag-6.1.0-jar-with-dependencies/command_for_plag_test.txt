@@ -1,0 +1,3 @@
+java -jar .\jplag.jar ..\..\src\main\java\org\example -l java -r .\plag_report\report -M RUN_AND_VIEW
+java -jar .\jplag.jar ..\..\src\main\java\org\example -l java -r .\plag_report\report -M RUN
+java -jar .\jplag.jar -r .\plag_report\report.jplag -M VIEW
