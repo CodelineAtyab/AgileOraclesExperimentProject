@@ -8,131 +8,181 @@ import java.util.ArrayList;
 
 
 
- public  class EscapeMaze {
+public  class EscapeMaze {
 
-       public static void main(String[] args) throws InterruptedException {
-           char[][] maze = loadAndGetMaze();
-           int[] initialPlayerPosition = getPLayerLocation(maze);
-           ArrayList<int[]> listOfMoves = new ArrayList<>();
+    public static void main(String[] args) throws InterruptedException {
+        char[][] maze = loadAndGetMaze();
 
-           // Predefined list of moves
-           listOfMoves.add(new int[]{9, 2});
-           listOfMoves.add(new int[]{8, 2});
-           listOfMoves.add(new int[]{7, 2});
-           listOfMoves.add(new int[]{6, 2});
-           listOfMoves.add(new int[]{5, 2});
-           listOfMoves.add(new int[]{4, 2});
-           listOfMoves.add(new int[]{4, 3});
-           listOfMoves.add(new int[]{4, 4});
+        // Validate the maze before doing anything
+        if (!validateMaze(maze)) {
+            System.out.println("Maze validation failed. Exiting.");
+            return;
+        }
 
-           System.out.printf("Location of @ is (%d,%d)\n", initialPlayerPosition[0], initialPlayerPosition[1]);
+        int[] initialPlayerPosition = getPLayerLocation(maze);
+        ArrayList<int[]> listOfMoves = new ArrayList<>();
 
-           System.out.println("Before the change:");
-           displayMaze(maze);
+        // Predefined list of moves
+        listOfMoves.add(new int[]{9, 2});
+        listOfMoves.add(new int[]{8, 2});
+        listOfMoves.add(new int[]{7, 2});
+        listOfMoves.add(new int[]{6, 2});
+        listOfMoves.add(new int[]{5, 2});
+        listOfMoves.add(new int[]{4, 2});
+        listOfMoves.add(new int[]{4, 3});
+        listOfMoves.add(new int[]{4, 4});
 
-           // Processing
-           int[] currPlayerPosition = initialPlayerPosition;
+        System.out.printf("Location of @ is (%d,%d)\n", initialPlayerPosition[0], initialPlayerPosition[1]);
 
-           for (int[] currMove: listOfMoves) {
-               Thread.sleep(2000);
-               currPlayerPosition = makeMove(maze, currPlayerPosition, currMove);
+        System.out.println("Before the change:");
+        displayMaze(maze);
 
-               printEmptyLines();
-               displayMaze(maze);
-           }
-       }
+        // Processing
+        int[] currPlayerPosition = initialPlayerPosition;
 
-       public static int[] makeMove(char[][] maze, int[] sourcePosition, int[] targetPosition) {
-           char valueOnTargetLocation = maze[targetPosition[0]-1][targetPosition[1]-1];
+        for (int[] currMove: listOfMoves) {
+            Thread.sleep(2000);
+            currPlayerPosition = makeMove(maze, currPlayerPosition, currMove);
 
-           // Check if target location is valid
-           if (valueOnTargetLocation == '0') {
-               System.out.println("Found a valid way forward");
+            printEmptyLines();
+            displayMaze(maze);
+        }
+    }
 
-               // Mark the source location as tracked
-               maze[sourcePosition[0] - 1][sourcePosition[1] - 1] = '-';
+    public static boolean validateMaze(char[][] maze) {
+        if (maze == null || maze.length == 0) {
+            System.out.println("Validation error: Maze is empty.");
+            return false;
+        }
 
-               // Move the player
-               maze[targetPosition[0] - 1][targetPosition[1] - 1] = '@';
+        int playerCount = 0;
+        int exitCount = 0;
+        int expectedColumns = maze[0].length;
 
-               return new int[]{targetPosition[0],targetPosition[1]};
+        for (int row = 0; row < maze.length; row++) {
+            // Check consistent row length
+            if (maze[row].length != expectedColumns) {
+                System.out.printf("Validation error: Row %d has inconsistent length.\n", row + 1);
+                return false;
+            }
 
+            for (int col = 0; col < maze[row].length; col++) {
+                char cell = maze[row][col];
+                switch (cell) {
+                    case '@' -> playerCount++;
+                    case 'E' -> exitCount++;
+                    case '0', '1' -> { /* valid characters */ }
+                    default -> {
+                        System.out.printf(
+                                "Validation error: Invalid character '%c' at (%d, %d).\n",
+                                cell, row + 1, col + 1);
+                        return false;
+                    }
+                }
+            }
+        }
 
-           } else {
-               System.out.println("No way forward");
+        if (playerCount != 1) {
+            System.out.printf("Validation error: Expected 1 player '@', found %d.\n", playerCount);
+            return false;
+        }
 
-               //stay in the same position
-               return sourcePosition;
-           }
+        if (exitCount != 1) {
+            System.out.printf("Validation error: Expected 1 exit 'E', found %d.\n", exitCount);
+            return false;
+        }
 
-       }
+        System.out.println("Maze validation passed.");
+        return true;
+    }
 
-       public static void displayMaze(char[][] maze) {
-           for(int row=0; row < maze.length; row++) {
-               for(int col=0; col < maze[row].length; col++) {
-                   System.out.printf("%c ", maze[row][col]);
-               }
-               System.out.println();
-           }
-       }
+    public static int[] makeMove(char[][] maze, int[] sourcePosition, int[] targetPosition) {
+        char valueOnTargetLocation = maze[targetPosition[0]-1][targetPosition[1]-1];
 
-       public static char[][] loadAndGetMaze() {
-           char[][] maze;
-           Path mazePath = null;
+        // Check if target location is valid
+        if (valueOnTargetLocation == '0') {
+            System.out.println("Found a valid way forward");
 
-           try {
-               mazePath = Path.of(EscapeMaze.class.getResource(relativeMazePath).toURI());
-           } catch (URISyntaxException e) {
-               throw new RuntimeException(e);
-           }
+            // Mark the source location as tracked
+            maze[sourcePosition[0] - 1][sourcePosition[1] - 1] = '-';
 
-           try {
-               String fileContent = Files.readString(mazePath);
-               String[] linesOfFile = fileContent.split("\\R");
+            // Move the player
+            maze[targetPosition[0] - 1][targetPosition[1] - 1] = '@';
 
-               int lineLength = linesOfFile[0].trim().length();
-
-               maze = new char[linesOfFile.length][lineLength];  // Load it in 2D Array or Array of Arrays
-
-               for (int row = 0; row < linesOfFile.length; row++) {
-                   char[] currRow = linesOfFile[row].toCharArray();
-                   // System.out.printf("%s\n", linesOfFile[row]);
-
-                   for (int col = 0; col < currRow.length; col++) {
-                       maze[row][col] = currRow[col];
-                   }
-               }
-
-           } catch (IOException e) {
-               throw new RuntimeException(e);
-           }
-           return maze;
-       }
-
-       public static int[] getPLayerLocation(char[][] maze) {
-
-           int[] location = new int[2];
-           for (int row=0; row < maze.length; row++) {
-               for (int col=0; col < maze[row].length; col++) {
-                   if (maze[row][col] == '@') {
-                       location[0] = row + 1;
-                       location[1] = col + 1;
-                   }
-               }
-           }
-           return location;
-       }
+            return new int[]{targetPosition[0],targetPosition[1]};
 
 
-       public static void printEmptyLines() {
-           for (int count=0; count<18; count++) {
-               System.out.println();
-           }
-       }
+        } else {
+            System.out.println("No way forward");
 
-       public static final String relativeMazePath = "maze.txt";
-   }
+            //stay in the same position
+            return sourcePosition;
+        }
+
+    }
+
+    public static void displayMaze(char[][] maze) {
+        for(int row=0; row < maze.length; row++) {
+            for(int col=0; col < maze[row].length; col++) {
+                System.out.printf("%c ", maze[row][col]);
+            }
+            System.out.println();
+        }
+    }
+
+    public static char[][] loadAndGetMaze() {
+        char[][] maze;
+        Path mazePath = null;
+
+        try {
+            mazePath = Path.of(EscapeMaze.class.getResource(relativeMazePath).toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            String fileContent = Files.readString(mazePath);
+            String[] linesOfFile = fileContent.split("\\R");
+
+            int lineLength = linesOfFile[0].trim().length();
+
+            maze = new char[linesOfFile.length][lineLength];  // Load it in 2D Array or Array of Arrays
+
+            for (int row = 0; row < linesOfFile.length; row++) {
+                char[] currRow = linesOfFile[row].toCharArray();
+                // System.out.printf("%s\n", linesOfFile[row]);
+
+                for (int col = 0; col < currRow.length; col++) {
+                    maze[row][col] = currRow[col];
+                }
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return maze;
+    }
+
+    public static int[] getPLayerLocation(char[][] maze) {
+
+        int[] location = new int[2];
+        for (int row=0; row < maze.length; row++) {
+            for (int col=0; col < maze[row].length; col++) {
+                if (maze[row][col] == '@') {
+                    location[0] = row + 1;
+                    location[1] = col + 1;
+                }
+            }
+        }
+        return location;
+    }
 
 
+    public static void printEmptyLines() {
+        for (int count=0; count<18; count++) {
+            System.out.println();
+        }
+    }
 
-
+    public static final String relativeMazePath = "maze.txt";
+}
