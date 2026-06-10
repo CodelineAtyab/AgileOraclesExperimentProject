@@ -3,8 +3,8 @@ package org.example.fromrazan;
 import java.util.*;
 
 
-public class CliErp {
-        static class Complaint {
+
+public class Complaint {
 
             String description;
             int id;
@@ -14,7 +14,7 @@ public class CliErp {
             String assignStaff;
 
 
-            Complaint(int id, String description, String priority) {
+    Complaint(int id, String description, String priority) {
                 this.id = id;
                 this.description = description;
                 this.priority = priority;
@@ -23,7 +23,7 @@ public class CliErp {
                 this.comments = new ArrayList<>();
             }
 
-        }
+
 
         static Scanner scanner = new Scanner(System.in);
         static Map<Integer, Complaint> complaint = new HashMap<>();
@@ -159,7 +159,7 @@ public class CliErp {
             System.out.println("no complaint Id: ");
         }
 
-        public static void CloseComp(Scanner scanner, ArrayList<Complaint> complaint) {
+        static void CloseComp(Scanner scanner, ArrayList<Complaint> complaint) {
             System.out.println("To close, enter the complaint Id: ");
             int close = Integer.parseInt(scanner.nextLine());
             for (Complaint c : complaint) {
