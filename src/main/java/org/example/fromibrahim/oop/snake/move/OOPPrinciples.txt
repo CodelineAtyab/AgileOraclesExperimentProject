@@ -1,0 +1,146 @@
+#################
+ENCAPSULATION
+#################
+------------
+How:   Data hiding through private fields and public methods.
+Why:   Prevents external classes from corrupting internal state.
+
+Classes using Encapsulation:
+
+1. Snake
+   - Field: private final LinkedList<Position> snakeBody
+   - Why:  Other classes cannot add, remove, or reorder segments directly
+   - Access: Only through controlled methods:
+     * moveSnake(int newRow, int newCol) - adds head, removes tail
+     * getHead(), getTail() - read-only access to positions
+     * isHittingItself() - collision checking
+
+2. GameMap
+   - Field: private final char[][] map
+   - Why:  Other classes cannot modify cells directly
+   - Access: Only through controlled methods:
+     * setSnakeCell(row, col) - mark snake position
+     * clearSnakeCell(row, col) - clear snake position
+     * getMapCopy() - returns a copy, not the original
+
+3. Position
+   - Fields: private final int row, private final int col
+   - Why:  Immutable once created, prevents modification
+   - Access: Through getRow() and getCol() methods
+
+#####################
+ABSTRACTION
+#####################
+
+How:   Hiding complex implementation behind simple interfaces.
+Why:   Simpler code for callers - they don't need to know internal details.
+
+Classes using Abstraction:
+
+1. MapLoader
+   - Simple call: readAndLoadMap()
+   - Hidden:   File reading, parsing, validation, building GameMap and Snake
+   - Returns:  gameMap and snake through getGameMap() and getSnake()
+
+2. GameMap
+   - Simple calls: isInsideMap(row, col), isSnakeCell(row, col)
+   - Hidden:   Boundary checking logic and character comparison
+
+3. FilePersistence
+   - Simple call: saveMapToFile(gameMap, snake)
+   - Hidden:   BufferedWriter, file writing, snake order string building
+
+4. GameRenderer
+   - Simple call: printMap(label)
+   - Hidden:   Iterating through getMapCopy(), formatting for console
+
+5. Direction enum
+   - Instead of: direction.equals("up")
+   - Provides:  Direction.UP, Direction.DOWN, etc.
+   - Why:       Type-safe, readable code
+
+
+HOW TO CALL IN MAIN CLASS (SnakeGame):
+------------------------------------
+public class SnakeGame {
+    public static void main(String[] args) {
+        // 1. Load map (uses MapLoader abstraction)
+        MapLoader mapLoader = new MapLoader(filePath);
+        mapLoader.readAndLoadMap();
+        GameMap gameMap = mapLoader.getGameMap();
+        Snake snake = mapLoader.getSnake();
+
+        // 2. Render map (uses GameMap abstraction + GameRenderer)
+        GameRenderer renderer = new GameRenderer(gameMap);
+        renderer.printMap("The map:");
+
+        // 3. Move snake (uses Snake encapsulation + GameMap encapsulation)
+        Position head = snake.getHead();           // Encapsulated access
+        Position oldTail = snake.moveSnake(newRow, newCol);  // Controlled move
+        gameMap.setSnakeCell(newRow, newCol);        // Controlled update
+        gameMap.clearSnakeCell(oldTail.getRow(), oldTail.getCol());
+
+        // 4. Save map (uses FilePersistence abstraction)
+        FilePersistence filePersistence = new FilePersistence(filePath);
+        filePersistence.saveMapToFile(gameMap, snake);
+    }
+}
+
+
+================================================================================
+DIFFERENCES BETWEEN ENCAPSULATION AND ABSTRACTION
+================================================================================
+
+| Aspect          | ENCAPSULATION                        | ABSTRACTION                      |
+|-----------------|--------------------------------------|---------------------------------|
+| Focus           | PROTECTING data (hiding fields)      | HIDING complexity (hiding logic)|
+| Implementation  | private fields + public methods     | simple method calls             |
+| Purpose         | Prevents direct access to data       | Simplifies code for callers    |
+| Example         | snakeBody is private                | readAndLoadMap() hides file IO  |
+| In Java         | private/final modifiers             | Interfaces, abstract classes   |
+
+
+HIGHLIGHTED IN EACH CLASS:
+--------------------------
+
+ENCAPSULATION (Data Protection):
+--------------------------------
+1. Snake:
+   - Private: private final LinkedList<Position> snakeBody
+   - Access only through controlled methods.
+
+2. GameMap:
+   - Private: private final char[][] map
+   - External code cannot access map[row][col] directly.
+
+3. Position:
+   - Private: private final int row, col
+   - Immutable - cannot change after creation.
+
+ABSTRACTION (Complexity Hiding):
+--------------------------------
+1. MapLoader:
+   - Simple: readAndLoadMap()
+   - Complex: file reading, parsing, validation, object building
+
+2. FilePersistence:
+   - Simple: saveMapToFile(gameMap, snake)
+   - Complex: BufferedWriter, string formatting, file operations
+
+3. GameRenderer:
+   - Simple: printMap(label)
+   - Complex: iteration, formatting, console output
+
+KEY DIFFERENCE IN THIS CODEBASE:
+------------------------------
+Encapsulation is about RESTRICTING access (what you CANNOT do).
+  Example: Cannot do snake.snakeBody.add() - it's private!
+
+Abstraction is about SIMPLIFYING work (what you CAN do).
+  Example: Just call mapLoader.readAndLoadMap() - file complexity hidden!
+
+BOTH USED TOGETHER:
+------------------
+GameMap uses BOTH:
+- Encapsulation: private char[][] map (cannot access directly)
+- Abstraction: isInsideMap() hides boundary checking logic
