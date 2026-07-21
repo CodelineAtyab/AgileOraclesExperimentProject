@@ -1,0 +1,12 @@
+DOCTOR_ID,FULL_NAME,DEPARTMENT_ID,SPECIALTY_ID,MOBILE_NO,EMAIL,CONSULTATION_FEE,STATUS
+64,Dr. Ahmed Saleh,31,46,91234567,ahmed.Saleh@hospital.com,35,Active
+1,Dr. Ali Al Balushi,1,1,91111111,ali@hospital.com,35,Active
+2,Dr. Sara Al Hinai,2,2,92222222,sara@hospital.com,30,Active
+3,Dr. Omar Al Riyami,3,4,93333333,omar@hospital.com,40,Active
+4,Dr. Noor Al Rashdi,4,4,94444444,noor@hospital.com,45,Active
+5,Dr. Hamad Al Mahrooqi,5,5,95555555,hamad@hospital.com,25,Active
+22,Dr. Maryam Al Harthi,1,1,94528451,Maryam@gmail.com,45,Active
+41,Dr. Ahmed Al Kindi,1,1,94010001,ahmed.kindi.doctor@example.com,25,Active
+42,Dr. Huda Al Rawahi,2,2,94010002,huda.rawahi.doctor@example.com,20,Active
+43,Dr. Salim Al Farsi,4,3,94010003,salim.farsi.doctor@example.com,30,Active
+44,Dr. Maha Al Busaidi,5,5,94010004,maha.busaidi.doctor@example.com,18,Active

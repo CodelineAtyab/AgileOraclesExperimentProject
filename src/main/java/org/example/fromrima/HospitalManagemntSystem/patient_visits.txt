@@ -1,0 +1,12 @@
+VISIT_ID,APPOINTMENT_ID,PATIENT_ID,DOCTOR_ID,VISIT_DATE,SYMPTOMS,DIAGNOSIS,NOTES,FOLLOW_UP_DATE
+61,281,81,64,2026-07-21T00:00:00,Headache and fever,viral Infection,Patient advised to rest,2026-07-28T00:00:00
+24,5,5,5,2026-07-15T00:00:00,High fever and sore throat,Acute Pharyngitis,Prescribed antibiotics and advised plenty of fluids.,2026-07-24T00:00:00
+41,41,61,41,2026-07-17T00:00:00,Persistent cough and mild fever,Respiratory infection,Patient examined and advised to follow the prescribed treatment.,2026-07-24T00:00:00
+42,42,62,42,2026-07-18T00:00:00,Headache and tiredness,Tension headache,Patient examined and advised to follow the prescribed treatment.,2026-07-25T00:00:00
+43,43,63,43,2026-07-19T00:00:00,Back pain and limited movement,Muscle strain,Patient examined and advised to follow the prescribed treatment.,2026-07-26T00:00:00
+44,44,64,44,2026-07-20T00:00:00,Stomach pain and nausea,Gastritis,Patient examined and advised to follow the prescribed treatment.,2026-07-27T00:00:00
+45,45,65,41,2026-07-21T00:00:00,Sore throat and fever,Throat infection,Patient examined and advised to follow the prescribed treatment.,2026-07-28T00:00:00
+1,1,1,1,2026-07-13T00:00:00,Chest pain and dizziness,Hypertension,Monitor blood pressure daily,2026-07-20T00:00:00
+2,2,2,2,2026-07-13T00:00:00,Fever and headache,Viral Infection,Rest and drink plenty of water,2026-07-18T00:00:00
+3,3,3,3,2026-07-13T00:00:00,Pain and swelling in arm,Possible fracture,X-ray recommended,2026-07-20T00:00:00
+22,4,4,4,2026-07-18T00:00:00,Severe headache and nausea,Migraine,Patient advised to rest and avoid bright light,2026-07-22T00:00:00
