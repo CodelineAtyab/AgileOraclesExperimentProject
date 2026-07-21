@@ -1,0 +1,27 @@
+-- ============================================================
+-- Hospital Management System - Schema DDL
+-- Author: Abdullah Alhadabi
+-- APEX App ID: 153222
+-- ============================================================
+
+-- TODO: Paste the schema SQL content here
+-- This file should contain:
+-- - CREATE TABLE statements for all 13 tables
+-- - Sequences
+-- - Constraints (PK, FK, CHECK, UNIQUE)
+-- - Comments
+
+-- Tables to include:
+-- 1. DEPARTMENTS
+-- 2. DOCTOR_SPECIALTIES
+-- 3. MEDICINE_CATEGORIES
+-- 4. APPOINTMENT_STATUSES
+-- 5. PATIENTS
+-- 6. DOCTORS
+-- 7. ROOMS
+-- 8. MEDICINES
+-- 9. APPOINTMENTS
+-- 10. ADMISSIONS
+-- 11. PATIENT_VISITS
+-- 12. PRESCRIPTIONS
+-- 13. PRESCRIPTION_ITEMS

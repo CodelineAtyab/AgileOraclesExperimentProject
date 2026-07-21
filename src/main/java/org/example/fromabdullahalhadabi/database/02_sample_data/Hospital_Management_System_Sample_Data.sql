@@ -1,0 +1,21 @@
+-- ============================================================
+-- Hospital Management System - Sample Data
+-- Author: Abdullah Alhadabi
+-- APEX App ID: 153222
+-- ============================================================
+
+-- TODO: Paste the sample data SQL content here
+-- This file should contain INSERT statements for:
+-- - DEPARTMENTS
+-- - DOCTOR_SPECIALTIES
+-- - MEDICINE_CATEGORIES
+-- - APPOINTMENT_STATUSES
+-- - PATIENTS
+-- - DOCTORS
+-- - ROOMS
+-- - MEDICINES
+-- - APPOINTMENTS
+-- - ADMISSIONS
+-- - PATIENT_VISITS
+-- - PRESCRIPTIONS
+-- - PRESCRIPTION_ITEMS
