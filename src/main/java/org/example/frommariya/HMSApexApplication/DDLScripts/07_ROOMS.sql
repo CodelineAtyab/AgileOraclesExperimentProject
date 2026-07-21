@@ -1,0 +1,10 @@
+-- ROOMS (5 rows)
+-- Column types inferred: {'ROOM_ID': 'number', 'ROOM_NO': 'string', 'ROOM_TYPE': 'string', 'DAILY_RATE': 'number', 'STATUS': 'string'}
+
+INSERT INTO ROOMS (ROOM_ID, ROOM_NO, ROOM_TYPE, DAILY_RATE, STATUS) VALUES (1, 'G101', 'General', 25, 'Occupied');
+INSERT INTO ROOMS (ROOM_ID, ROOM_NO, ROOM_TYPE, DAILY_RATE, STATUS) VALUES (2, 'G102', 'General', 25, 'Occupied');
+INSERT INTO ROOMS (ROOM_ID, ROOM_NO, ROOM_TYPE, DAILY_RATE, STATUS) VALUES (3, 'P201', 'Private', 60, 'Available');
+INSERT INTO ROOMS (ROOM_ID, ROOM_NO, ROOM_TYPE, DAILY_RATE, STATUS) VALUES (4, 'P202', 'Private', 60, 'Occupied');
+INSERT INTO ROOMS (ROOM_ID, ROOM_NO, ROOM_TYPE, DAILY_RATE, STATUS) VALUES (5, 'ICU01', 'ICU', 150, 'Occupied');
+
+COMMIT;
