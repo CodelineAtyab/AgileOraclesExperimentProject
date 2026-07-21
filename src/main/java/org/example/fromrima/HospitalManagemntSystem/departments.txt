@@ -1,0 +1,7 @@
+DEPARTMENT_ID,DEPARTMENT_NAME,FLOOR_NO,STATUS
+31,Dermatology,3,Active
+1,Cardiology,1,Active
+2,Pediatrics,2,Active
+3,Emergency,1,Active
+4,Orthopedics,3,Active
+5,General Medicine,2,Active
