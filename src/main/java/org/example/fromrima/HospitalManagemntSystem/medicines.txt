@@ -1,0 +1,22 @@
+MEDICINE_ID,MEDICINE_NAME,CATEGORY_ID,UNIT,CURRENT_STOCK,REORDER_LEVEL,STATUS
+1,Amoxicillin,1,Tablet,30,20,Active
+2,Panadol,2,Tablet,10,20,Active
+3,Insulin,3,Injection,8,15,Active
+4,Vitamin,4,Tablet,50,15,Active
+5,Ceftriaxone,21,Injection,5,10,Active
+21,Azithromycin,1,Tablet,45,15,Active
+22,Augmentin,1,Tablet,35,12,Active
+23,Ibuprofen,2,Tablet,60,20,Active
+24,Paracetamol,2,Tablet,80,25,Active
+25,Diclofenac,2,Tablet,30,15,Active
+26,Metformin,3,Tablet,55,20,Active
+27,Glimepiride,3,Tablet,25,10,Active
+28,Vitamin C,4,Tablet,75,20,Active
+29,Vitamin D3,4,Capsule,40,15,Active
+30,Multivitamin,4,Tablet,50,15,Active
+31,Diclofenac Inj,21,Ampoule,18,10,Active
+32,B12 Injection,21,Ampoule,12,10,Active
+33,Amlodipine,41,Tablet,40,15,Active
+34,Losartan,41,Tablet,35,15,Active
+35,Atenolol,41,Tablet,10,15,Active
+47,Eye Cream,63,Cream,100,20,Active

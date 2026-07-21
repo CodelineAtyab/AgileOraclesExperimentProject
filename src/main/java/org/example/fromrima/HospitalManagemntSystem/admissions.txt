@@ -1,0 +1,5 @@
+ADMISSION_ID,PATIENT_ID,DOCTOR_ID,ROOM_ID,ADMISSION_DATE,DISCHARGE_DATE,ADMISSION_REASON,STATUS
+41,81,64,3,2026-07-21T00:00:00,,Further medical observation,Admitted
+1,1,1,1,2026-07-13T00:00:00,2026-07-15T00:00:00,Chest pain observation,Discharged
+2,3,3,5,2026-07-13T00:00:00,,Emergency injury monitoring,Admitted
+21,5,1,2,2026-07-15T00:00:00,2026-07-17T00:00:00,High fever and sore throat,Admitted
