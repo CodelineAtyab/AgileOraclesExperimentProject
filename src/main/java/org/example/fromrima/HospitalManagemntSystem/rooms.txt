@@ -1,0 +1,6 @@
+ROOM_ID,ROOM_NO,ROOM_TYPE,DAILY_RATE,STATUS
+1,G101,General,30,Available
+2,G102,General,30,Occupied
+3,P201,Private,60,Occupied
+4,P202,Private,60,Available
+5,ICU01,ICU,120,Maintenance

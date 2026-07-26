@@ -1,0 +1,5 @@
+STATUS_ID,STATUS_NAME
+3,Cancelled
+2,Completed
+4,No Show
+1,Scheduled
