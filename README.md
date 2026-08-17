@@ -1,65 +1,67 @@
-﻿# AgileOraclesExperimentProject
+# health-endpoint-app
 
-Under Development By Team Agile Oracles
+Minimal Spring Boot 3.x application with a single `GET /health` endpoint that returns HTTP 200 and `OK`. The project is containerized with a standard Dockerfile so the same built JAR can run locally, in Docker, and later in OCI Container Instances.
 
-## Contribution Guidelines
+## Local run
 
-### Step 1
-Copy the ticket ID from ClickUP
-
-### Step 2
-Goto the repo and git status (Make sure you are on main branch)
-
-### Step 3
-git pull (Make sure you are up to date)
-
-### Step 4
-Create a new branch (replica of main) from the main branch and check it out (switch to the new branch)
-Example: `git branch feature/<ticket-id>-ticket-title`
-
-### Step 5
-Checkout the new branch using git checkout 
-Example: `git checkout feature/<ticket-id>-ticket-title`
-
-### Step 6
-Now do your task
-
-### Step 7
-Push your changes (branch) to github by doing:
-```
-git add *
-git commit -m "some-message"
-git push 
-```
-NOTE: (if upstream bracnh is not there then run the --set-upstream command given by git only once)
-
-### Step 8
-Got GitHub and click on "Compare & pull request"
-
-### Step 9
-Add Reviewers and Click on "Create pull request"
-
-### Step 10
-Move the ticket to "Ready for Review"
-
-### Step 11
-Wait for atleast 3 approvals from the team
-
-### Step 12
-After approvals, Please "SQUASH MERGE"
-
-### Step 13
-Go back to the main branch
-```
-git checkout main
+```bash
+mvn clean install
+java -jar target/demo-0.0.1-SNAPSHOT.jar
+curl http://localhost:8080/health
 ```
 
-### Step 14
-Pull the latest chages by doing
-```
-git pull
+Expected response:
+
+```text
+200
 ```
 
-### Step 15
-Repeat the same steps from Step 1 for a new task
+## Docker run
 
+Docker image:
+
+```text
+my-health-app:0.0.1
+```
+
+Build and run:
+
+```bash
+docker build -t my-health-app:0.0.1 .
+docker run -d -p 8080:8080 --name health-app my-health-app:0.0.1
+curl http://localhost:8080/health
+```
+
+Expected response:
+
+```text
+200
+```
+
+## How the pieces fit
+
+Code in `src/main/java/com/example/demo/` is compiled by Maven into `target/demo-0.0.1-SNAPSHOT.jar`. The `Dockerfile` copies that JAR into a JRE image, exposes port 8080, and starts the app with `java -jar`. That produces a container image suitable for OCI Container Instances.
+
+## Dockerfile
+
+```dockerfile
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
+```
+
+## Optional GitHub Actions
+
+The repository can also build and push the Docker image automatically on every push to `main` if you add a workflow and the required Docker Hub secrets.
+
+Required secrets in GitHub:
+
+- `DOCKER_USERNAME=<team docker username>`
+- `DOCKER_PASSWORD=<Docker Hub PAT or password>`
+
+If enabled, the workflow builds the JAR, builds the image, and pushes:
+
+- `<team docker username>/my-health-app:latest`
+- `<team docker username>/my-health-app:${{ github.sha }}`
