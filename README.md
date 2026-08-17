@@ -42,6 +42,31 @@ Expected response:
 
 Code in `src/main/java/com/example/demo/` is compiled by Maven into `target/demo-0.0.1-SNAPSHOT.jar`. The `Dockerfile` copies that JAR into a JRE image, exposes port 8080, and starts the app with `java -jar`. That produces a container image suitable for OCI Container Instances.
 
+## Docker Compose
+
+Compose file:
+
+- `docker-compose.yml`
+
+Build and run with one command:
+
+```bash
+docker compose up --build -d
+curl http://localhost:8080/health
+```
+
+Expected response:
+
+```text
+200
+```
+
+Stop and remove the container when finished:
+
+```bash
+docker compose down
+```
+
 ## Dockerfile
 
 ```dockerfile

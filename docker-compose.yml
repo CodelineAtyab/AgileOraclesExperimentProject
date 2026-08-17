@@ -1,0 +1,9 @@
+services:
+  health-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: my-health-app:0.0.1
+    container_name: health-app
+    ports:
+      - "8080:8080"
