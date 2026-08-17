@@ -1,0 +1,7 @@
+SPECIALTY_ID,SPECIALTY_NAME,STATUS
+46,Dermatologist,Active
+1,Cardiologist,Active
+2,Pediatrician,Active
+3,Orthopedic Specialist,Active
+4,Surgeon,Active
+5,General Practitioner,Active

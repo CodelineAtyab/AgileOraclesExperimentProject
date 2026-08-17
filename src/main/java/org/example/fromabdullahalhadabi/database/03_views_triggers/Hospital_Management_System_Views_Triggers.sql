@@ -1,0 +1,33 @@
+-- ============================================================
+-- Hospital Management System - Views and Triggers
+-- Author: Abdullah Alhadabi
+-- APEX App ID: 153222
+-- ============================================================
+
+-- TODO: Paste the views and triggers SQL content here
+
+-- Views to include:
+-- 1. HMS_ADMISSION_REPORT_V
+-- 2. HMS_APPOINTMENT_REPORT_V
+-- 3. HMS_CLINICAL_WORKSPACE_V
+-- 4. HMS_MEDICINE_STOCK_REPORT_V
+-- 5. HMS_PATIENT_ADMISSION_HISTORY_V
+-- 6. HMS_PATIENT_APPOINTMENT_HISTORY_V
+-- 7. HMS_PATIENT_PREVIOUS_VISITS_V
+-- 8. HMS_PATIENT_PROFILE_V
+-- 9. HMS_PATIENT_VISIT_REPORT_V
+-- 10. HMS_PHARMACY_PRESCRIPTION_V
+-- 11. HMS_VISIT_PRESCRIPTION_V
+-- 12. VW_DASH_APPTS_BY_DEPT
+-- 13. VW_DASH_PATIENTS_BY_GENDER
+-- 14. VW_DASH_MEDICINE_STOCK
+-- 15. VW_DASH_ROOM_STATUS
+-- 16. VW_HMS_KPI_CARDS
+
+-- Triggers to include:
+-- 1. HMS_ADMISSIONS_AIU_ROOM_TRG
+-- 2. HMS_ADMISSIONS_BIU_VAL_TRG
+-- 3. HMS_APPOINTMENTS_BIU_TRG
+-- 4. HMS_PATIENT_VISITS_BIU_TRG
+-- 5. HMS_PRESCRIPTIONS_BIU_TRG
+-- 6. TRG_ADMISSIONS_ROOM_STATUS
