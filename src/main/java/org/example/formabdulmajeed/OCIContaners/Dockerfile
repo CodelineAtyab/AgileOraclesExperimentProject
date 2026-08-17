@@ -2,7 +2,7 @@ FROM amazoncorretto:17-alpine
 
 WORKDIR /health
 
-COPY . .
+COPY ../../../../../../../../../Downloads/health/health .
 
 RUN ./mvnw clean install
 
