@@ -1,0 +1,10 @@
+services:
+  api:
+    build: ../../../../../../../../../health-check-app-v2
+    image: health-check-app:1.0.0
+    container_name: "health-check-app"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./shared_upload_files:/app/uploaded_files
+    restart: always
