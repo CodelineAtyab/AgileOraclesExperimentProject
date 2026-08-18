@@ -1,0 +1,10 @@
+services:
+  api:
+    build: .
+    image: razan/securepassapp:1.0.0
+    container_name: "securepassapp"
+    ports:
+      - 8000:8080
+    restart: always
+    volumes:
+      - C:/shared_upload_files:/app/uploaded_files
