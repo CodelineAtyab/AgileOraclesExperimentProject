@@ -1,0 +1,8 @@
+services:
+    api:
+      build: ../../../../../../../../../Downloads/health/health
+      image: abdulmajeed/health-app:latest
+      container_name: "healthapp"
+      ports:
+        - "8000:8080"
+      restart:  always
