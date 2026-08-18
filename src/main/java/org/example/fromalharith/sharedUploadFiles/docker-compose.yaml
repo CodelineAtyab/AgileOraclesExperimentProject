@@ -1,0 +1,10 @@
+services:
+  api:
+    build: .
+    container_name: upload-app
+    ports:
+      - "8080:8080"
+    volumes:
+      # host folder ←→ container folder
+      # Windows example: C:/shared_upload_files:/app/uploaded_files
+      - ./shared_upload_files:/app/uploaded_files

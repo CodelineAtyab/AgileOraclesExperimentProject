@@ -1,0 +1,7 @@
+.idea
+.git
+.gitignore
+.gitattributes
+HELP.md
+target
+shared_upload_files
