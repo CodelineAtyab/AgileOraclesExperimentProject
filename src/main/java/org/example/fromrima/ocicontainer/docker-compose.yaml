@@ -1,0 +1,8 @@
+services:
+  api:
+    build: .
+    image: rimaaltarshi/healthcheckapp:1.0.0
+    container_name: "healthcheckapp"
+    ports:
+      - 8081:8081
+    restart: always
