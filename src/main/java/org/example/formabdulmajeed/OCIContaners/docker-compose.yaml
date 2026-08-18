@@ -1,6 +1,6 @@
 services:
     api:
-      build: ../../../../../../../../../Downloads/health/health
+      build: .
       image: abdulmajeed/health-app:latest
       container_name: "healthapp"
       ports:
