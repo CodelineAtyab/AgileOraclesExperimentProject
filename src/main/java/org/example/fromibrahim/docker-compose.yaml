@@ -1,0 +1,8 @@
+services:
+  api:
+    build: .
+    image: ibrahimrahbi/healthcheck:latest
+    container_name: "healthcheckapp"
+    ports:
+      - "8000:8080"
+    restart: always
