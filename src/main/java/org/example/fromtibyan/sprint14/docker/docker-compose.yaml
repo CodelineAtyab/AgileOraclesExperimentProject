@@ -1,6 +1,6 @@
 services:
   api:
-    build: .
+    build: ..
     image: tibyan/health-app:1.0.0
     container_name: "health-app"
     ports:
