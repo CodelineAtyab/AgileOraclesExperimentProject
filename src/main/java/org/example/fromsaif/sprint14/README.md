@@ -1,33 +1,45 @@
-# File Upload with Docker Bind Mount
+# Three-Tier File Upload Application
 
-Create the shared host folder:
+Spring Boot API with file storage and Oracle Free DB metadata storage.
+
+## Run
 
 ```bash
 mkdir -p shared_upload_files
+docker compose up -d --build
+docker compose ps
 ```
 
-Build and run the container:
-
-```bash
-docker compose up --build -d
-```
+## Test
 
 Upload a file using Postman:
 
 ```text
 POST http://localhost:8080/upload
-Body -> form-data -> file
+Body -> form-data -> key: file -> type: File
 ```
 
-Check the file on the host and inside the container:
+Check the uploaded file:
 
 ```bash
 ls -l shared_upload_files
-docker exec healthcheck-compose ls -l /app/uploaded_files
 ```
 
-Stop the container:
+Check its metadata in Oracle:
+
+```bash
+docker exec -it healthcheck-oracle sqlplus healthcheck/Healthcheck123@//localhost:1521/FREEPDB1
+```
+
+```sql
+SELECT * FROM FILE_METADATA;
+exit
+```
+
+## Stop
 
 ```bash
 docker compose down
 ```
+
+Oracle is available only to the API through Docker's internal network.
