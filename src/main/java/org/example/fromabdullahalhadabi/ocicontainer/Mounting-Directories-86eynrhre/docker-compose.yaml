@@ -1,10 +1,10 @@
 services:
   api:
     build: .
-    image: healthcheck-app:1.0.0
-    container_name: healthcheck-compose
+    image: healthcheck-app
+    container_name: healthcheck-container
     ports:
-      - "8080:8080"
+      - "8000:8080"
     volumes:
       - ./shared_upload_files:/app/uploaded_files
     restart: always
