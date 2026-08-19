@@ -1,0 +1,10 @@
+services:
+  containerize-app:
+    build:
+      context: ../../../../../../../../Containerize
+      dockerfile: ../../../../../../../../Containerize/Dockerfile
+    image: containerize-app:1.0
+    container_name: containerize-app
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
