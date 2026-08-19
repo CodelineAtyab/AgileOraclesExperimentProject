@@ -1,10 +1,9 @@
-services:
-  containerize-app:
-    build:
-      context: ../../../../../../../../Containerize
-      dockerfile: ../../../../../../../../Containerize/Dockerfile
-    image: containerize-app:1.0
-    container_name: containerize-app
-    ports:
-      - "8080:8080"
-    restart: unless-stopped
+FROM amazoncorretto:17-alpine
+
+WORKDIR /app
+
+COPY . /app
+
+RUN ./mvnw clean install
+
+ENTRYPOINT ["java", "-jar", "./target/Containerize-0.0.1-SNAPSHOT.jar"]
