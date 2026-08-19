@@ -15,6 +15,7 @@ A minimal Spring Boot web app demonstrating file upload handling and containeriz
 
 ## Running locally
 
+
 ```bash
 ./mvnw spring-boot:run
 ```
