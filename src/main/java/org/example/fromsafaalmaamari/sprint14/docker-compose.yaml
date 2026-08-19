@@ -1,0 +1,8 @@
+services:
+  api:
+    build: .
+    image: codeline/checkhealthapp:1.0.0
+    container_name: "checkhealthapp"
+    ports:
+      - 8000:8080
+    restart: always
