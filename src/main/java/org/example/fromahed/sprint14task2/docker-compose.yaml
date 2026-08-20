@@ -5,10 +5,8 @@ services:
     container_name: oracle-free
     restart: unless-stopped
 
-
-
     environment:
-      ORACLE_PASSWORD: ${ORACLE_PASSWORD:-SysPass123}
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD}
 
     volumes:
       - oracle-data:/opt/oracle/oradata
@@ -24,7 +22,6 @@ services:
     networks:
       - app-network
 
-
   api:
     build: .
     image: ahdbarhi/simpleform:1.0.0
@@ -39,8 +36,8 @@ services:
 
     environment:
       SPRING_DATASOURCE_URL: jdbc:oracle:thin:@//oracle:1521/FREEPDB1
-      SPRING_DATASOURCE_USERNAME: system
-      SPRING_DATASOURCE_PASSWORD: ${ORACLE_PASSWORD:-SysPass123}
+      SPRING_DATASOURCE_USERNAME:  ${USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${ORACLE_PASSWORD}
 
     depends_on:
       oracle:
@@ -49,10 +46,8 @@ services:
     networks:
       - app-network
 
-
 networks:
   app-network:
-
 
 volumes:
   oracle-data:
