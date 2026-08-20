@@ -22,8 +22,8 @@ services:
 
   app:
     build:
-      context: ../../../../../../../../../../dockerhealthcheck
-      dockerfile: ../../../../../../../../../../dockerhealthcheck/Dockerfile
+      context: .
+      dockerfile: Dockerfile
 
     ports:
       - "8080:8080"
