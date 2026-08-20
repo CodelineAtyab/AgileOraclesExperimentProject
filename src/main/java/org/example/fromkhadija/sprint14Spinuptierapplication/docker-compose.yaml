@@ -37,7 +37,7 @@ services:
       - ./shared_upload_files:/app/uploaded_files
     environment:
       SPRING_DATASOURCE_URL: jdbc:oracle:thin:@//oracle:1521/FREEPDB1
-      SPRING_DATASOURCE_USERNAME: system
+      SPRING_DATASOURCE_USERNAME: ${ORACLE_USERNAME}
       SPRING_DATASOURCE_PASSWORD: ${ORACLE_PASSWORD}
     depends_on:
       oracle:
