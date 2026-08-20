@@ -1,0 +1,51 @@
+services:
+  oracle:
+    image: gvenzl/oracle-free:23-slim
+    container_name: "oracle-free"
+    restart: unless-stopped
+
+    #ports:
+    #  - "1521:1521"
+
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD:-SysPass123}
+
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+      - ./init:/container-entrypoint-initdb.d:ro
+
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+    networks:
+      - app-network
+
+  api:
+    build: .
+    image: khadijaalimm/healthcheckapp1:1.0.0
+    container_name: "healthcheck"
+    restart: always
+    ports:
+      - "8000:8080"
+
+    volumes:
+      - ./shared_upload_files:/app/uploaded_files
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@//oracle:1521/FREEPDB1
+      SPRING_DATASOURCE_USERNAME: system
+      SPRING_DATASOURCE_PASSWORD: ${ORACLE_PASSWORD:-SysPass123}
+    depends_on:
+      oracle:
+        condition: service_healthy
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  oracle-data:
