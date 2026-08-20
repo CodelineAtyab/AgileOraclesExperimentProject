@@ -2,7 +2,7 @@ services:
   oracle:
     image: gvenzl/oracle-free:23-slim
     container_name: oracle-free
-    restart: unless-stopped
+    restart: always
     environment:
       ORACLE_PASSWORD: ${ORACLE_PASSWORD}
       APP_USER: ${APP_USER}
