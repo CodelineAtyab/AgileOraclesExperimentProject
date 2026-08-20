@@ -19,7 +19,6 @@ Example: `git branch feature/<ticket-id>-ticket-title`
 
 ### Step 5
 Checkout the new branch using git checkout 
-
 Example: `git checkout feature/<ticket-id>-ticket-title`
 
 ### Step 6
