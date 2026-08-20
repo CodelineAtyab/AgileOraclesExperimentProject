@@ -28,7 +28,7 @@ services:
   api:
     build: .
     image: khadijaalimm/healthcheckapp1:1.0.0
-    container_name: "healthcheck-api"
+    container_name: "file-upload-api"
     restart: always
     ports:
       - "8000:8080"
