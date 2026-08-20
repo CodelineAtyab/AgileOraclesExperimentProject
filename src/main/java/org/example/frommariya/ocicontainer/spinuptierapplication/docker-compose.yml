@@ -1,0 +1,44 @@
+services:
+
+  oracle-db:
+    image: gvenzl/oracle-free:23-slim
+
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD}
+      APP_USER: ${APP_USER}
+      APP_USER_PASSWORD: ${APP_USER_PASSWORD}
+
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+
+
+  app:
+    build:
+      context: ../../../../../../../../../../dockerhealthcheck
+      dockerfile: ../../../../../../../../../../dockerhealthcheck/Dockerfile
+
+    ports:
+      - "8080:8080"
+
+    environment:
+      DB_URL: ${DB_URL}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+
+    depends_on:
+      oracle-db:
+        condition: service_healthy
+
+    volumes:
+      - ./shared_upload_files:/app/uploaded_files
+
+
+volumes:
+  oracle-data:
