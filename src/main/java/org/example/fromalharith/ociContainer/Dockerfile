@@ -1,5 +1,6 @@
-FROM maven:3.9-eclipse-temurin-17 AS build
+FROM amazoncorretto:17-alpine AS build
 WORKDIR /app
+RUN apk add --no-cache maven
 COPY pom.xml .
 COPY src ./src
 RUN mvn -q -DskipTests package
