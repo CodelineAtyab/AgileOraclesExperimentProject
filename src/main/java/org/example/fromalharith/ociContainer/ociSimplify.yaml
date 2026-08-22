@@ -1,8 +1,8 @@
 services:
-  api:
-    build: .
-    image: alharith980/securepassapp:1.0.0
-    container_name: "securepassapp"
-    ports:
-      - "8000-8080"
-    restart: always
+    healthcheck-app:
+        build: ./deployment
+        image: healthcheck-app:latest
+        container_name: healthcheck-app
+        ports:
+            - "8080:8080"
+        restart: unless-stopped
