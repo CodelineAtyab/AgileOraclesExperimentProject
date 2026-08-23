@@ -1,9 +1,37 @@
 services:
+  oracle:
+    image: gvenzl/oracle-free:23-slim
+    container_name: oracle-free
+    restart: always
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD}
+      APP_USER: ${APP_USER}
+      APP_USER_PASSWORD: ${APP_USER_PASSWORD}
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+      - ./healthcheck/init:/container-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
   api:
     build: ./healthcheck
     container_name: upload-app
+    restart: unless-stopped
     ports:
       - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@oracle:1521/FREEPDB1
+      SPRING_DATASOURCE_USERNAME: ${APP_USER}
+      SPRING_DATASOURCE_PASSWORD: ${APP_USER_PASSWORD}
     volumes:
-      # Windows: C:/shared_upload_files:/app/uploaded_files
       - ./shared_upload_files:/app/uploaded_files
+    depends_on:
+      oracle:
+        condition: service_healthy
+
+volumes:
+  oracle-data:
