@@ -1,0 +1,30 @@
+services:
+  oracle-db:
+    image: gvenzl/oracle-free:23-slim
+    container_name: oracle-db
+    environment:
+      ORACLE_PASSWORD: OraclePass123
+      APP_USER: fileapp
+      APP_USER_PASSWORD: FileApp123
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 10s
+      retries: 60
+      start_period: 60s
+
+  api:
+    build: .
+    image: razan/securepassapp:1.0.0
+    container_name: "securepassapp"
+    depends_on:
+      oracle-db:
+        condition: service_healthy
+    environment:
+      DB_HOST: oracle-db
+      DB_SERVICE: FREEPDB1
+      DB_USER: fileapp
+      DB_PASSWORD: FileApp123
+    ports:
+      - 8000:8080
+    restart: always
