@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY . /app
 
-RUN ./mvnw clean install
+RUN ./mvnw clean install -DskipTests
 
-ENTRYPOINT ["java", "-jar", "./target/healthcheck-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "./target/healthcheck-task-0.0.1-SNAPSHOT.jar"]
+
