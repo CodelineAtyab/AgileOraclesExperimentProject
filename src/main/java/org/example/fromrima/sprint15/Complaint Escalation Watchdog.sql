@@ -14,6 +14,7 @@ EXCEPTION
     WHEN NO_DATA_FOUND THEN
         RETURN 'N';
 END;
+/
 
 ---
 
@@ -51,6 +52,7 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE( V_COUNT || ' complaints escalated.' );
 
 END;
+/
 
 ---
 
@@ -59,6 +61,8 @@ SET SERVEROUTPUT ON;
 BEGIN
     P_ESCALATE_OVERDUE_COMPLAINTS;
 END;
+/
+
 ---
 SELECT * FROM notifications
 WHERE type = 'WARN';
