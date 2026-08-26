@@ -5,7 +5,7 @@
 -- Author: Abdullah Alhadabi
 -- ============================================================
 
--- TODO: Paste the full APEX application export (f153222.sql) here
+-- This file contains the Oracle APEX application export for the Al Noor Hospital Management System.
 -- This is the complete application definition including:
 -- - Pages 0-36 + 9999, 38 pages total
 -- - 106 items

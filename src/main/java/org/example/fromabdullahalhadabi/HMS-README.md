@@ -20,7 +20,7 @@ fromabdullahalhadabi/
 │   ├── 04_reports/             # Report queries
 │   └── 05_audit/               # Audit and security
 ├── apex/
-│   └── f153222.sql             # Full APEX application export
+│   └── Hospital_Management_System_APEX_Application.sql  # Full APEX application export
 ├── docs/
 │   ├── DEPLOYMENT.md           # Deployment guide
 │   └── *.pdf                   # Application documentation
@@ -67,6 +67,9 @@ fromabdullahalhadabi/
 - Oracle APEX 22.x or later
 - SQL*Plus or SQL Developer
 
+### OCI Docker Connection
+If you are using the `ocicontainer/3-Tier-App-86eyp5k69` setup, the Oracle database is published on host port `1522` to avoid conflicts with local Oracle services.
+
 ### Database Setup
 ```sql
 -- 1. Create schema objects
@@ -81,7 +84,7 @@ fromabdullahalhadabi/
 
 ### APEX Application Import
 1. Navigate to Oracle APEX Workshop
-2. Import `apex/f153222.sql`
+2. Import `apex/Hospital_Management_System_APEX_Application.sql`
 3. Run the application
 
 ---
