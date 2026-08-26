@@ -1,8 +1,8 @@
  
 --A function that checks whether a single complaint (given its ID) is currently 
 --overdue and still open (not resolved/closed/rejected).
---A complaint whose due date has passed and whose status is still IN_PROGRESS or NEW → this is a real problem, it needs escalation → 'Y'
---A complaint whose due date has passed but that's already finished (RESOLVED or CLOSED) → there's no problem, it's already closed → 'N'
+--A complaint whose due date has passed and whose status is still IN_PROGRESS or NEW --> this is a real problem, it needs escalation --> 'Y'
+--A complaint whose due date has passed but that's already finished (RESOLVED or CLOSED) --> there's no problem, it's already closed --> 'N'
 
 CREATE OR REPLACE FUNCTION F_IS_OVERDUE_OPEN (P_COMPLAINT_ID IN NUMBER) RETURN VARCHAR2
 AS
@@ -72,8 +72,10 @@ BEGIN
     P_ESCALATE_OVERDUE_COMPLAINTS;
 END;
 
---This is the first check — we look to see: did escalation_level actually go up for the right complaints?
+--This is the first check
+--look to see: did escalation_level actually go up for the right complaints?
 SELECT complaint_id, status, escalation_level FROM complaints ORDER BY complaint_id;
 
---This is the second check — we look to see: was a WARN notification recorded for every complaint that got escalated?
+--This is the second check
+-- we look to see: was a WARN notification recorded for every complaint that got escalated?
 SELECT * FROM notifications WHERE type = 'WARN' ORDER BY id;
