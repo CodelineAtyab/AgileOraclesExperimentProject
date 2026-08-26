@@ -1,7 +1,7 @@
 # Oracle APEX Hospital Management System
 
 ## Project Overview
-A comprehensive Hospital Management System built with Oracle APEX and Oracle Database. The system manages patients, doctors, appointments, admissions, prescriptions, medicines, and room allocations with full reporting and dashboard capabilities.
+A hospital management system built with Oracle APEX and Oracle Database. It manages patients, doctors, appointments, admissions, prescriptions, medicines, and room allocations with reporting and dashboard support.
 
 **APEX Application ID:** 153222  
 **Workspace:** WKSP_ALNOORHOSPITALOMAN  
@@ -11,21 +11,21 @@ A comprehensive Hospital Management System built with Oracle APEX and Oracle Dat
 
 ## Project Structure
 
-```
+```text
 fromabdullahalhadabi/
-├── database/
-│   ├── 01_schema/              # Table DDL, sequences, constraints
-│   ├── 02_sample_data/         # Seed data for testing
-│   ├── 03_views_triggers/      # Database views and triggers
-│   ├── 04_reports/             # Report queries
-│   └── 05_audit/               # Audit and security
-├── apex/
-│   └── Hospital_Management_System_APEX_Application.sql  # Full APEX application export
-├── docs/
-│   ├── DEPLOYMENT.md           # Deployment guide
-│   └── *.pdf                   # Application documentation
-├── screenshots/                # Application screenshots
-└── *.java                      # Supporting Java files
+|-- database/
+|   |-- 01_schema/         # Table DDL, sequences, constraints
+|   |-- 02_sample_data/    # Seed data for testing
+|   |-- 03_views_triggers/ # Database views and triggers
+|   |-- 04_reports/        # Report queries
+|   `-- 05_audit/          # Audit and security
+|-- apex/
+|   `-- Hospital_Management_System_APEX_Application.sql
+|-- docs/
+|   |-- DEPLOYMENT.md
+|   `-- *.pdf
+|-- screenshots/
+`-- *.java
 ```
 
 ---
@@ -36,7 +36,7 @@ fromabdullahalhadabi/
 |-------|-------------|
 | DEPARTMENTS | Hospital departments |
 | DOCTOR_SPECIALTIES | Doctor specialty mappings |
-| MEDICINE_CATEGORIES | Medicine分类 |
+| MEDICINE_CATEGORIES | Medicine categories |
 | APPOINTMENT_STATUSES | Appointment status codes |
 | PATIENTS | Patient records |
 | DOCTORS | Doctor records |
@@ -68,7 +68,7 @@ fromabdullahalhadabi/
 - SQL*Plus or SQL Developer
 
 ### OCI Docker Connection
-If you are using the `ocicontainer/3-Tier-App-86eyp5k69` setup, the Oracle database is published on host port `1522` to avoid conflicts with local Oracle services.
+If you use the `ocicontainer/3-Tier-App-86eyp5k69` setup, connect to the Oracle database on host port `1522` to avoid conflicts with a local Oracle service.
 
 ### Database Setup
 ```sql

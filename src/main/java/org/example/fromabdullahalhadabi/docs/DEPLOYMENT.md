@@ -1,9 +1,9 @@
 # Hospital Management System - Deployment Guide
 
 ## Overview
-This guide covers deploying the Oracle APEX Hospital Management System.
+This guide explains how to deploy the Oracle APEX Hospital Management System.
 
-If you are using the local OCI Docker setup under `ocicontainer/3-Tier-App-86eyp5k69`, connect SQL Developer to `localhost:1522` with service name `FREEPDB1`.
+If you use the local OCI Docker setup under `ocicontainer/3-Tier-App-86eyp5k69`, connect SQL Developer to `localhost:1522` with service name `FREEPDB1`.
 
 ## Prerequisites
 
@@ -57,7 +57,7 @@ GRANT CREATE VIEW, CREATE TRIGGER, CREATE PROCEDURE TO hms_admin;
 2. Navigate to **App Builder** > **Import**
 3. Select `apex/Hospital_Management_System_APEX_Application.sql`
 4. Follow the import wizard
-5. Set the application alias as needed
+5. Set the application alias if needed
 
 ### 2.2 Configure Application
 1. Open the imported application
