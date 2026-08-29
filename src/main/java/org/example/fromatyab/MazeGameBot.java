@@ -12,31 +12,92 @@ public class MazeGameBot {
         int[] initialPlayerPosition = getPLayerLocation(maze);
         ArrayList<int[]> listOfMoves = new ArrayList<>();
 
-        // Predefined list of moves
-        listOfMoves.add(new int[]{9, 2});
-        listOfMoves.add(new int[]{8, 2});
-        listOfMoves.add(new int[]{7, 2});
-        listOfMoves.add(new int[]{6, 2});
-        listOfMoves.add(new int[]{5, 2});
-        listOfMoves.add(new int[]{4, 2});
-        listOfMoves.add(new int[]{4, 3});
-        listOfMoves.add(new int[]{4, 4});
+        // Step 1. Identify UP, DOWN, LEFT and RIGHT (conditional if the path is available)
+        int[] up = new int[]{initialPlayerPosition[0]-1, initialPlayerPosition[1]};  // [9, 2]
+        int[] down = new int[]{initialPlayerPosition[0]+1, initialPlayerPosition[1]};  // [11, 2]
+        int[] left = new int[]{initialPlayerPosition[0], initialPlayerPosition[1]-1};  // [10, 1]
+        int[] right = new int[]{initialPlayerPosition[0], initialPlayerPosition[1]+1};  // [10, 3]
+
 
         System.out.printf("Location of @ is (%d,%d)\n", initialPlayerPosition[0], initialPlayerPosition[1]);
+        System.out.printf("Identified moves: UP (%d,%d), DOWN (%d,%d), LEFT (%d,%d), RIGHT (%d,%d)\n",
+                up[0], up[1],
+                down[0], down[1],
+                left[0], left[1],
+                right[0], right[1]
+        );
 
-        System.out.println("Before the change:");
-        displayMaze(maze);
+        // Step 2. Push all valid locations into stack (Valid locations where 0 is found)
+        // For UP
+        int rowToPush = up[0]-1;
+        int colToPush = up[1]-1;
+        try {
+            if (maze[rowToPush][colToPush] == '0') {
+                // Push this location to stack
+                System.out.printf("Pushing [%d, %d] in STACK\n", rowToPush+1, colToPush+1);
+            } else {
+                System.out.printf("NOT Pushing [%d, %d] in STACK\n", rowToPush+1, colToPush+1);
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.printf("We are outside. There is nothing UP here at [%d, %d]\n", rowToPush, colToPush);
+        }
+
+        // For DOWN
+        rowToPush = down[0]-1;
+        colToPush = down[1]-1;
+        try {
+            if (maze[rowToPush][colToPush] == '0') {
+                // Push this location to stack
+                System.out.printf("Pushing [%d, %d] in STACK\n", rowToPush+1, colToPush+1);
+            } else {
+                System.out.printf("NOT Pushing [%d, %d] in STACK\n", rowToPush+1, colToPush+1);
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.printf("We are outside. There is nothing DOWN here at [%d, %d]\n", rowToPush, colToPush);
+        }
+
+
+        // For LEFT
+        rowToPush = left[0]-1;
+        colToPush = left[1]-1;
+        try {
+            if (maze[rowToPush][colToPush] == '0') {
+                // Push this location to stack
+                System.out.printf("Pushing [%d, %d] in STACK\n", rowToPush+1, colToPush+1);
+            } else {
+                System.out.printf("NOT Pushing [%d, %d] in STACK\n", rowToPush+1, colToPush+1);
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.printf("We are outside. There is nothing LEFT here at [%d, %d]\n", rowToPush, colToPush);
+        }
+
+        // For RIGHT
+        rowToPush = right[0]-1;
+        colToPush = right[1]-1;
+        try {
+            if (maze[rowToPush][colToPush] == '0') {
+                // Push this location to stack
+                System.out.printf("Pushing [%d, %d] in STACK\n", rowToPush+1, colToPush+1);
+            } else {
+                System.out.printf("NOT Pushing [%d, %d] in STACK\n", rowToPush+1, colToPush+1);
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.printf("We are outside. There is nothing RIGHT here at [%d, %d]\n", rowToPush, colToPush);
+        }
+
+//        System.out.println("Before the change:");
+//        displayMaze(maze);
 
         // Processing
         int[] currPlayerPosition = initialPlayerPosition;
 
-        for (int[] currMove: listOfMoves) {
-            Thread.sleep(2000);
-            currPlayerPosition = makeMove(maze, currPlayerPosition, currMove);
-
-            printEmptyLines();
-            displayMaze(maze);
-        }
+//        for (int[] currMove: listOfMoves) {
+//            Thread.sleep(2000);
+//            currPlayerPosition = makeMove(maze, currPlayerPosition, currMove);
+//
+//            printEmptyLines();
+//            displayMaze(maze);
+//        }
     }
 
     public static int[] makeMove(char[][] maze, int[] sourcePosition, int[] targetPosition) {
