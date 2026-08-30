@@ -30,7 +30,7 @@ services:
     depends_on:
       containerize-db:
         condition: service_healthy
-    restart: unless-stopped
+    restart: always
 
 volumes:
   oracle-data:
