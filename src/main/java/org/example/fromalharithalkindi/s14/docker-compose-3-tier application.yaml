@@ -1,0 +1,36 @@
+services:
+
+  containerize-db:
+    image: gvenzl/oracle-free:23-slim
+    container_name: containerize-db
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD}
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+    healthcheck:
+      test: [ "CMD", "healthcheck.sh" ]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 60s
+
+
+  containerize-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: containerize-app:1.0
+    container_name: containerize-app
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD}
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./shared_upload_files:/app/uploaded_files
+    depends_on:
+      containerize-db:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  oracle-data:
