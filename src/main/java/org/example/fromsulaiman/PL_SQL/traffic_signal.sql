@@ -25,3 +25,40 @@ CREATE TABLE traffic_signals (
                                  last_changed_at TIMESTAMP DEFAULT SYSTIMESTAMP NOT NULL
 );
 /
+
+--------------------------------------------------------------------------
+-- STEP 2: The "check and change" procedure.
+--         The job calls this every 5 seconds. It asks:
+--         "has the current color lasted long enough? if yes, change it."
+--------------------------------------------------------------------------
+CREATE OR REPLACE PROCEDURE process_signal_tick(p_signal_id IN NUMBER) IS
+  PRAGMA AUTONOMOUS_TRANSACTION;                          -- own safe transaction
+  v_state           traffic_signals.state%TYPE;           -- holds current color
+  v_last_changed_at traffic_signals.last_changed_at%TYPE; -- holds last change time
+BEGIN
+  -- read this signal's current color and time
+SELECT state, last_changed_at
+INTO v_state, v_last_changed_at
+FROM traffic_signals
+WHERE signal_id = p_signal_id;
+
+-- RED for 10s -> YELLOW
+IF v_state = 'RED' AND SYSTIMESTAMP >= v_last_changed_at + INTERVAL '10' SECOND THEN
+UPDATE traffic_signals SET state = 'YELLOW', last_changed_at = SYSTIMESTAMP
+WHERE signal_id = p_signal_id;
+
+-- YELLOW for 5s -> GREEN
+ELSIF v_state = 'YELLOW' AND SYSTIMESTAMP >= v_last_changed_at + INTERVAL '5' SECOND THEN
+UPDATE traffic_signals SET state = 'GREEN', last_changed_at = SYSTIMESTAMP
+WHERE signal_id = p_signal_id;
+
+-- GREEN for 10s -> RED
+ELSIF v_state = 'GREEN' AND SYSTIMESTAMP >= v_last_changed_at + INTERVAL '10' SECOND THEN
+UPDATE traffic_signals SET state = 'RED', last_changed_at = SYSTIMESTAMP
+WHERE signal_id = p_signal_id;
+END IF;
+  -- if not enough time passed, do nothing
+
+COMMIT; -- save the change
+END process_signal_tick;
+/
