@@ -108,3 +108,35 @@ BEGIN
   DBMS_SCHEDULER.DROP_JOB(job_name => 'TRAFFIC_SIG_' || p_signal_id, force => TRUE);
 END stop_signal_cycle;
 /
+
+
+--------------------------------------------------------------------------
+-- STEP 6: How to try it.
+--------------------------------------------------------------------------
+
+-- Add a signal (it starts cycling by itself)
+-- INSERT INTO traffic_signals (signal_name) VALUES ('Muscat');
+-- COMMIT;
+
+-- Watch it change: run this every 5-10 seconds
+-- SELECT signal_id, signal_name, state, last_changed_at, SYSTIMESTAMP AS now_time
+--   FROM traffic_signals
+--  ORDER BY signal_id DESC;
+
+-- Add a second signal (runs on its own clock)
+-- INSERT INTO traffic_signals (signal_name) VALUES ('Nizwa');
+-- COMMIT;
+
+-- Stop one signal (the other keeps going)
+-- EXEC stop_signal_cycle(1);
+
+-- Delete a row (stop its job FIRST, then delete)
+-- EXEC stop_signal_cycle(1);
+-- DELETE FROM traffic_signals WHERE signal_id = 1;
+-- COMMIT;
+
+-- See the background jobs
+-- SELECT job_name, state, next_run_date
+--   FROM user_scheduler_jobs
+--  WHERE job_name LIKE 'TRAFFIC_SIG_%';
+--------------------------------------------------------------------------
