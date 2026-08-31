@@ -62,3 +62,26 @@ END IF;
 COMMIT; -- save the change
 END process_signal_tick;
 /
+
+--------------------------------------------------------------------------
+-- STEP 3: The "start the timer" procedure.
+--         Creates a background job that ticks every 5 seconds.
+--         Kept separate because creating a job does a COMMIT,
+--         which a trigger is not allowed to do directly.
+--------------------------------------------------------------------------
+CREATE OR REPLACE PROCEDURE start_signal_cycle(p_signal_id IN NUMBER) IS
+  PRAGMA AUTONOMOUS_TRANSACTION;                             -- own safe transaction
+  v_job_name VARCHAR2(128) := 'TRAFFIC_SIG_' || p_signal_id; -- unique job name
+BEGIN
+  DBMS_SCHEDULER.CREATE_JOB(
+    job_name        => v_job_name,
+    job_type        => 'PLSQL_BLOCK',
+    job_action      => 'BEGIN process_signal_tick(' || p_signal_id || '); END;', -- what to run
+    start_date      => SYSTIMESTAMP,               -- start now
+    repeat_interval => 'FREQ=SECONDLY;INTERVAL=5', -- every 5 seconds
+    enabled         => TRUE,                        -- turn on now
+    auto_drop       => FALSE                        -- keep forever
+  );
+COMMIT;
+END start_signal_cycle;
+/
