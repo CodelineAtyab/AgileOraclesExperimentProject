@@ -85,3 +85,15 @@ BEGIN
 COMMIT;
 END start_signal_cycle;
 /
+
+--------------------------------------------------------------------------
+-- STEP 4: The trigger. Runs right after a row is inserted and starts
+--         its timer. The INSERT finishes instantly (no waiting).
+--------------------------------------------------------------------------
+CREATE OR REPLACE TRIGGER trg_signal_after_insert
+AFTER INSERT ON traffic_signals
+FOR EACH ROW
+BEGIN
+  start_signal_cycle(:NEW.signal_id); -- :NEW.signal_id = the new row's id
+END;
+/
