@@ -97,3 +97,14 @@ BEGIN
   start_signal_cycle(:NEW.signal_id); -- :NEW.signal_id = the new row's id
 END;
 /
+
+
+--------------------------------------------------------------------------
+-- STEP 5: Stop ONE signal. Because job names are predictable
+--         (TRAFFIC_SIG_<id>), this stops only that one signal.
+--------------------------------------------------------------------------
+CREATE OR REPLACE PROCEDURE stop_signal_cycle(p_signal_id IN NUMBER) IS
+BEGIN
+  DBMS_SCHEDULER.DROP_JOB(job_name => 'TRAFFIC_SIG_' || p_signal_id, force => TRUE);
+END stop_signal_cycle;
+/
