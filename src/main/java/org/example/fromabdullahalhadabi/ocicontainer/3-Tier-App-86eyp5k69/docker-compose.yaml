@@ -1,6 +1,7 @@
 services:
   db:
     image: gvenzl/oracle-free:23-slim
+    container_name: oracle-db
     environment:
       ORACLE_PASSWORD: ${ORACLE_PASSWORD:-ChangeMe123}
     ports:
@@ -18,6 +19,7 @@ services:
   api:
     build: .
     image: healthcheck-app
+    container_name: healthcheck-container
     ports:
       - "8000:8080"
     volumes:
