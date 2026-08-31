@@ -71,6 +71,12 @@ begin
         where signal_id = p_signal_id;
         commit;
     END IF;
+    
+    EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        dbms_output.put_line(
+            'Signal ID ' || p_signal_id || ' does not exist.'
+        );
 end check_and_update_signal_status;
 /
 
@@ -110,7 +116,6 @@ END;
 CREATE OR REPLACE PROCEDURE start_signal_watch (p_signal_id IN number)
 as
 begin
-    dbms_output.put_line('TO DO');
     dbms_scheduler.create_job(
         job_name        => 'signal_watch_' || p_signal_id,
         job_type        => 'PLSQL_BLOCK',
