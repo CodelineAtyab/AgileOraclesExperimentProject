@@ -122,3 +122,15 @@ BEGIN
     reset_signals_bulk;
 END;
 /
+
+
+--Difference between the parts:
+
+-- Part 1 uses an implicit cursor.  manages the oracle,
+-- including fetching and closing it.
+-- Part 2 uses an explicit SYS_REFCURSOR. first PROCEDURE that's open the cursor,
+-- second fetches cursor "update signals"  We manually control FETCH and CLOSE,
+-- which requires more code but gives us more control over the result set.
+-- Part 3 uses BULK COLLECT and FORALL instead of updating one row at a time.
+-- This reduces context switching between PL/SQL and SQL and is more efficient
+-- when processing a large number of records.
