@@ -1,24 +1,15 @@
-# OCI Mounting — File Upload with Bind Mount
+# File upload API with Oracle Free
 
-## Setup
-1. Unzip `healthcheck.zip` in this folder (creates `healthcheck/`).
-2. Create the host folder:
-   - Mac/Linux: `mkdir -p shared_upload_files`
-   - Windows: create `shared_upload_files` next to this README (or use `C:\shared_upload_files` and update the volume path in `docker-compose.yaml`).
-3. Start:
-   ```bash
-   docker compose up --build -d
-   ```
+## Run
+1. Unzip `healthcheck.zip`
+2. Copy `.env.example` to `.env` and set your values
+3. `mkdir -p shared_upload_files`
+4. `docker compose up --build -d`
 
 ## Test
-1. Postman: `POST http://localhost:8080/upload`
-   - Body → form-data
-   - key: `file` (type File)
-2. Check host: `shared_upload_files/`
-3. Check container:
-   ```bash
-   docker exec upload-app ls -la /app/uploaded_files
-   ```
+- Health: `GET http://localhost:8080/health`
+- Upload: `POST http://localhost:8080/upload` (form-data key `file`)
 
-## Volume
-`./shared_upload_files` (host) ↔ `/app/uploaded_files` (container)
+Uploaded files go to `shared_upload_files`. Metadata is stored in Oracle table `UPLOAD_META`.
+
+DB host inside Docker is `oracle` (no host ports on Oracle).
