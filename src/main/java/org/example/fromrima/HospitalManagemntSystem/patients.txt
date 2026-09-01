@@ -1,0 +1,21 @@
+PATIENT_ID,CIVIL_ID,FULL_NAME,GENDER,DATE_OF_BIRTH,MOBILE_NO,EMAIL,BLOOD_GROUP,ADDRESS,EMERGENCY_CONTACT_NAME,EMERGENCY_CONTACT_NO,CREATED_AT
+81,98765432,Ali Hassan,Male,1997-07-01T00:00:00,99887766,ali.hassan@gmail.com,O+,Muscat,Mohammed Hassan,9425147,
+1,10000001,Ahmed Al Balushi,Male,1990-05-12T00:00:00,91234567,ahmed@gmail.com,O+,Muscat,Salim Al Balushi,92111111,2026-07-13T05:36:04.132823000
+2,10000002,Fatma Al Hinai,Female,1996-02-18T00:00:00,92345678,fatmaa@gmail.com,A+,Sur,Aisha Al Hinai,92222222,2026-07-13T00:00:00.000000000
+3,10000003,Mohammed Al Riyami,Male,1988-09-25T00:00:00,93456789,mohammed@gmail.com,B+,Nizwa,Khalid Al Riyami,93333333,2026-07-13T05:36:04.136066000
+4,10000004,Aisha Al Busaidi,Female,2001-11-15T00:00:00,94567890,aisha@gmail.com,AB+,Sohar,Mariam Al Busaidi,94444444,2026-07-13T05:36:04.137113000
+5,10000005,Khalid Al Mahrooqi,Male,1993-08-03T00:00:00,95678901,khalid@gmail.com,O-,Muscat,Hamad Al Mahrooqi,95555555,2026-07-13T05:36:04.138123000
+21,219785557,Noor Al Balushi,Female,1998-07-01T00:00:00,91451748,noor@gmail.com,A+,Barka,9758425,,
+61,20000001,Salim Al Habsi,Male,1990-03-12T00:00:00,92010001,salim.habsi@example.com,O+,Muscat,Mariam Al Habsi,93010001,2026-07-16T13:22:58.633708000
+62,20000002,Maha Al Rawahi,Female,1995-07-21T00:00:00,92010002,maha.rawahi@example.com,A+,Seeb,Ahmed Al Rawahi,93010002,2026-07-16T13:22:58.636558000
+63,20000003,Yousef Al Hinai,Male,1988-11-05T00:00:00,92010003,yousef.hinai@example.com,B+,Nizwa,Fatma Al Hinai,93010003,2026-07-16T13:22:58.636711000
+64,20000004,Maryam Al Farsi,Female,2000-02-17T00:00:00,92010004,maryam.farsi@example.com,AB+,Sur,Khalid Al Farsi,93010004,2026-07-16T13:22:58.636820000
+65,20000005,Hamed Al Busaidi,Male,1985-08-30T00:00:00,92010005,hamed.busaidi@example.com,O-,Sohar,Aisha Al Busaidi,93010005,2026-07-16T13:22:58.636921000
+66,20000006,Asma Al Balushi,Female,1998-04-11T00:00:00,92010006,asma.balushi@example.com,A-,Muscat,Said Al Balushi,93010006,2026-07-16T13:22:58.636998000
+67,20000007,Nasser Al Riyami,Male,1992-12-09T00:00:00,92010007,nasser.riyami@example.com,B-,Ibri,Noor Al Riyami,93010007,2026-07-16T13:22:58.637079000
+68,20000008,Huda Al Maamari,Female,1987-06-24T00:00:00,92010008,huda.maamari@example.com,O+,Barka,Ali Al Maamari,93010008,2026-07-16T13:22:58.637153000
+69,20000009,Abdullah Al Shukaili,Male,1996-01-15T00:00:00,92010009,abdullah.shukaili@example.com,A+,Rustaq,Salma Al Shukaili,93010009,2026-07-16T13:22:58.637234000
+70,20000010,Sara Al Amri,Female,2001-09-03T00:00:00,92010010,sara.amri@example.com,AB-,Muscat,Mohammed Al Amri,93010010,2026-07-16T13:22:58.637506000
+71,20000011,Hilal Al Kindi,Male,1979-05-19T00:00:00,92010011,hilal.kindi@example.com,B+,Nizwa,Khadija Al Kindi,93010011,2026-07-16T13:22:58.637568000
+72,20000012,Amal Al Harrasi,Female,1993-10-28T00:00:00,92010012,amal.harrasi@example.com,O-,Muscat,Sultan Al Harrasi,93010012,2026-07-16T13:22:58.637623000
+73,20000013,Sultan Al Harthi,Male,1983-03-07T00:00:00,92010013,sultan.harthi@example.com,A+,Sur,Wafa Al Harthi,93010013,2026-07-16T13:22:58.637666000
