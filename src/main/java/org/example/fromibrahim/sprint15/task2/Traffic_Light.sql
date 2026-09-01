@@ -35,7 +35,7 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Checking and Updating Signal Status for Signal with ID: '|| p_signal_id);
 
 
-    SELECT signal_state,
+    SELECT state,
            last_changed_at
     INTO   v_state,
            v_last_changed_at
@@ -63,7 +63,7 @@ BEGIN
     THEN
 
         UPDATE traffic_signals
-        SET signal_state = v_next_state,
+        SET state = v_next_state,
             last_changed_at = v_oman_time
         WHERE signal_id = p_signal_id;
 
