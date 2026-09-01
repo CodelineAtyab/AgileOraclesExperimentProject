@@ -1,0 +1,50 @@
+services:
+
+  # --- Oracle Database 23ai Free ---
+  oracle-db:
+    image: gvenzl/oracle-free:23-slim
+    container_name: leave-portal-db
+
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD:-oracle}
+      APP_USER: ${DB_APP_USER:-leave_app}
+      APP_USER_PASSWORD: ${DB_APP_PASSWORD:-leave_app_pwd}
+
+    volumes:
+      - ./docker/oracle-init:/container-entrypoint-initdb.d:ro
+      - oracle-data:/opt/oracle/oradata
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+
+    restart: unless-stopped
+
+  # --- Spring Boot API ----
+  api:
+    build: .
+    container_name: leave-portal-api
+
+    depends_on:
+      oracle-db:
+        condition: service_healthy
+
+    ports:
+      - "${SERVER_PORT:-8080}:8080"
+
+    env_file:
+      - .env
+
+    environment:
+      DB_URL: jdbc:oracle:thin:@//oracle-db:1521/FREEPDB1
+      DB_USERNAME: ${DB_APP_USER:-leave_app}
+      DB_PASSWORD: ${DB_APP_PASSWORD:-leave_app_pwd}
+      DB_DDL_AUTO: none
+      OCI_CONFIG_FILE: /tmp/oci-config
+      SERVER_PORT: 8080
+
+    volumes:
+      - ~/.oci:/home/app/.oci:ro
+
+    restart: unless-stopped
+
+volumes:
+  oracle-data:
