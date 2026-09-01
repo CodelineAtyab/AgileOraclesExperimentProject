@@ -22,7 +22,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - C:/Users/mahmo/Desktop/shared_upload_files:/app/uploaded_files
+      - ./shared_upload_files:/app/uploaded_files
     environment:
       DB_URL: jdbc:oracle:thin:@oracle-db:1521/FREEPDB1
       DB_USERNAME: ${DB_USERNAME}
