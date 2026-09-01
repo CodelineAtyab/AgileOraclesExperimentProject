@@ -34,10 +34,10 @@ select * from traffic_signals;
 -- CREATE the Procedure check_and_update_signal_status
 CREATE or Replace PROCEDURE check_and_update_signal_status (p_signal_id IN NUMBER) 
 as 
-    v_state             VARCHAR2;
-    v_last_changed_at   TIMESTAMP;
-    v_next_state        VARCHAR2(10);
-    v_required_seconds  NUMBER;
+    v_state            traffic_signals.state%TYPE;
+    v_last_changed_at  TIMESTAMP;
+    v_next_state       traffic_signals.state%TYPE;
+    v_required_seconds NUMBER;
 begin
     dbms_output.put_line('Checking and Updating Signal Status for Signal with ID: ' || p_signal_id);
     select state,
