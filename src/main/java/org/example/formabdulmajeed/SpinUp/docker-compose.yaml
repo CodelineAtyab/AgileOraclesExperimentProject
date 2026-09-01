@@ -1,0 +1,41 @@
+services:
+  oracle-db:
+    container_name: oracle-free
+    image: gvenzl/oracle-free:23-slim
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PWD}
+      APP_USER: ${APP_USER}
+      APP_USER_PASSWORD: ${APP_PWD}
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 3m
+    networks:
+      - app-net
+    # NO ports: — internal use only (Acceptance Criteria #3)
+
+  api:
+    container_name: healthapp
+    image: abdulmajeed/health-app:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@//oracle-db:1521/FREEPDB1
+      SPRING_DATASOURCE_USERNAME: ${APP_USER}
+      SPRING_DATASOURCE_PASSWORD: ${APP_PWD}
+    depends_on:
+      oracle-db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    networks:
+      - app-net
+    volumes:
+      - ./uploads:/health/uploads
+
+networks:
+  app-net:
+    driver: bridge
