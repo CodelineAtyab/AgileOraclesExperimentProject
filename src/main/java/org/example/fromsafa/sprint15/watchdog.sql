@@ -1,3 +1,5 @@
+SET SERVEROUTPUT ON
+
 CREATE OR REPLACE FUNCTION f_is_complaint_overdue (
     p_complaint_id IN NUMBER
 )
@@ -5,13 +7,17 @@ RETURN VARCHAR2
 IS
     v_is_overdue VARCHAR2(1);
 BEGIN
-SELECT is_overdue
+SELECT CASE
+           WHEN is_overdue = 'Y'
+               AND status NOT IN ('RESOLVED', 'CLOSED', 'REJECTED')
+               THEN 'Y'
+           ELSE 'N'
+           END
 INTO v_is_overdue
 FROM v_complaint_detail
 WHERE complaint_id = p_complaint_id;
 
 RETURN v_is_overdue;
-
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
         RETURN 'N';
@@ -26,7 +32,7 @@ FROM dual;
 
 CREATE OR REPLACE PROCEDURE p_escalate_overdue_complaints
 IS
-    v_count     NUMBER := 0;
+    v_count NUMBER := 0;
     v_new_level NUMBER;
 BEGIN
 FOR rec IN (
@@ -34,7 +40,6 @@ FOR rec IN (
         FROM complaints
         ORDER BY complaint_id
     ) LOOP
-
         IF f_is_complaint_overdue(rec.complaint_id) = 'Y'
            AND rec.escalation_level < 3 THEN
 
@@ -42,8 +47,8 @@ FOR rec IN (
 
 UPDATE complaints
 SET escalation_level = v_new_level,
-    updated_at       = SYSTIMESTAMP,
-    updated_by       = USER
+    updated_at = SYSTIMESTAMP,
+    updated_by = USER
 WHERE complaint_id = rec.complaint_id;
 
 INSERT INTO notifications (for_id, type, msg)
@@ -56,7 +61,6 @@ VALUES (
 
 v_count := v_count + 1;
 END IF;
-
 END LOOP;
 
 COMMIT;
@@ -64,8 +68,6 @@ COMMIT;
 DBMS_OUTPUT.PUT_LINE(v_count || ' complaints escalated.');
 END;
 /
-
-SET SERVEROUTPUT ON;
 
 BEGIN
     p_escalate_overdue_complaints;
@@ -75,7 +77,6 @@ END;
 SELECT complaint_id, status, escalation_level
 FROM complaints
 ORDER BY complaint_id;
-
 
 SELECT id, for_id, type, msg
 FROM notifications
