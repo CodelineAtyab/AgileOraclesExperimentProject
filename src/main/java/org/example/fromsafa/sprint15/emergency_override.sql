@@ -57,9 +57,8 @@ SELECT signal_id
 FROM traffic_signals;
 
 LOOP
-FETCH v_cursor INTO v_signal_id;
-
-        EXIT WHEN v_cursor%NOTFOUND;
+    FETCH v_cursor INTO v_signal_id;
+     EXIT WHEN v_cursor%NOTFOUND;
 
 UPDATE traffic_signals
 SET state = 'RED',
@@ -73,8 +72,8 @@ CLOSE v_cursor;
 
 COMMIT;
 
-DBMS_OUTPUT.PUT_LINE(
-        'Signals reset: ' || v_reset_count
+    DBMS_OUTPUT.PUT_LINE(
+       'Signals reset: ' || v_reset_count
     );
 END;
 /
@@ -96,7 +95,7 @@ SET state =
     last_changed_at = SYSTIMESTAMP
 WHERE signal_id IN (1, 2, 21);
 
-COMMIT;
+
 
 -- Run the explicit cursor procedure
 BEGIN
@@ -129,20 +128,20 @@ SELECT signal_id
 FROM traffic_signals;
 
 LOOP
-FETCH v_cursor
-        BULK COLLECT INTO v_signal_ids
-        LIMIT 100;
+        FETCH v_cursor
+          BULK COLLECT INTO v_signal_ids
+          LIMIT 100;
 
         EXIT WHEN v_signal_ids.COUNT = 0;
 
         FORALL i IN 1 .. v_signal_ids.COUNT
-UPDATE traffic_signals
-SET state = 'RED',
-    last_changed_at = SYSTIMESTAMP
-WHERE signal_id = v_signal_ids(i);
+           UPDATE traffic_signals
+           SET state = 'RED',
+               last_changed_at = SYSTIMESTAMP
+            WHERE signal_id = v_signal_ids(i);
 
-v_reset_count := v_reset_count + SQL%ROWCOUNT;
-END LOOP;
+       v_reset_count := v_reset_count + SQL%ROWCOUNT;
+    END LOOP;
 
 CLOSE v_cursor;
 
