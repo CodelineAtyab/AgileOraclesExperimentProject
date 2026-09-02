@@ -88,32 +88,34 @@ END;
 
 CREATE OR REPLACE PROCEDURE BULK_RESET_ALL_SIGNALS
 AS
-    v_cursor          SYS_REFCURSOR;
-    TYPE t_signal_list IS TABLE OF traffic_signals%ROWTYPE;
-    v_signal_res_list t_signal_list;
-    RESET_COUNT       INTEGER := 0;
+    TYPE t_rec_tab IS TABLE OF traffic_signals%ROWTYPE;
+    v_rec t_rec_tab;
+    RESET_COUNT INTEGER := 0;
 
 BEGIN
-    get_next_signals(v_cursor);
+SELECT * BULK COLLECT INTO v_rec
+FROM traffic_signals;
 
-    -- it is collect all signals in one place without using loop
-    FETCH v_cursor BULK COLLECT INTO v_signal_res_list;
+FORALL i IN 1 .. v_rec.COUNT
+UPDATE traffic_signals
+SET state = 'RED',
+    last_changed_at = SYSTIMESTAMP
+WHERE signal_id = v_rec(i).signal_id;
 
-   
-    FOR i IN 1 .. v_signal_res_list.COUNT LOOP
-        UPDATE traffic_signals
-        SET state = 'RED',
-        last_changed_at = SYSTIMESTAMP
-        WHERE signal_id = v_signal_res_list(i).signal_id;
-
-        RESET_COUNT := RESET_COUNT + 1;
-    END LOOP;
-
-    CLOSE v_cursor;
+RESET_COUNT := v_rec.COUNT;
 
     DBMS_OUTPUT.PUT_LINE('RESET ' || RESET_COUNT || ' TRAFFIC SIGNALS TO RED STATE');
 
 END BULK_RESET_ALL_SIGNALS;
+/
+
+-- Run
+
+SET SERVEROUTPUT ON;
+
+BEGIN
+    BULK_RESET_ALL_SIGNALS;
+END;
 /
     
     
