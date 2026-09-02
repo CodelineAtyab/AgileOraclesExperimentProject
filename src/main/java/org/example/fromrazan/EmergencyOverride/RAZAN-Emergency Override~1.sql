@@ -76,6 +76,13 @@ DBMS_OUTPUT.PUT_LINE('Explicit cursor - Signals reset: ' || v_count);
 END reset_signals_explicit;
 /
 
+CREATE OR REPLACE PROCEDURE get_next_signals ( p_cursor OUT SYS_REFCURSOR )
+AS
+BEGIN
+OPEN p_cursor FOR
+SELECT * FROM traffic_signals;
+END get_next_signals;
+
 
 DECLARE
 v_cursor SYS_REFCURSOR;
