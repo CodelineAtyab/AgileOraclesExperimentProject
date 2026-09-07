@@ -1,0 +1,8 @@
+services:
+  api:
+    build: .
+    image: health-check-app:1.0.0
+    container_name: "health-check-app"
+    ports:
+      - "8080:8080"
+    restart: always
