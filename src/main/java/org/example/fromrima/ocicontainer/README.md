@@ -1,0 +1,1 @@
+docker run -p 8081:8081 -v "${PWD}\shared_upload_files:/app/uploaded_files" --name healthcheckapp rimaaltarshi/healthcheckapp:1.0.0

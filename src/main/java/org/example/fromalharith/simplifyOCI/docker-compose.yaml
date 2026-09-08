@@ -1,0 +1,7 @@
+# simple spring boot app in docker
+services:
+  app:
+    build: ./deployment
+    container_name: healthcheck-app
+    ports:
+      - "8080:8080"

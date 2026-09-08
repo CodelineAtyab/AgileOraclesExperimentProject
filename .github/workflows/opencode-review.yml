@@ -1,0 +1,43 @@
+name: opencode-review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      
+      - name: Configure Git Identity
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Review Pull Request with OpenCode
+        uses: anomalyco/opencode/github@latest
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          model: 'openai/gpt-4o-mini'
+          use_github_token: true
+          prompt: |
+            Things to look for when reviewing this pull request:
+            - The title of the pull request is: ${{ github.event.pull_request.title }}. Title should start with a clickup ticket id (e.g., "86ex6r17g") followed by a : (e.g., "86ex6r17g: ") and then the title of clickup ticket (e.g., "86ex6r17g: Implement user authentication").
+            - The description of the pull request is: ${{ github.event.pull_request.body }}. The description should reflect the changes made in the pull request.
+            - Check for indentation consistency. It should be 4 spaces.
+            - Make sure there are no un needed blank lines in the entire code.
+            - The code in this PR is for practice purposes, check for any obvious logical errors or potential improvements in the code.
+            - Only point out issues or improvements with line numbers that are relevant to the code changes in this pull request in a highly summarized manner.
+            - All issues or improvements can be put under one heading "Code Review Comments". No need for detailed sub headings.
+            

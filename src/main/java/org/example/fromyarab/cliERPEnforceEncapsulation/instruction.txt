@@ -1,0 +1,38 @@
+ Tiny Ticketing Subsystem
+
+📌 User Story
+
+As a budding Java developer,
+I want to create a tiny ticketing subsystem that distinguishes between complaints and feedback,
+so that my team-mates and I can practise encapsulation, inheritance, abstract classes and static fields in a real-world context.
+
+✅ Acceptance Criteria
+
+
+🧩 Class Overview
+
+
+🔍 Sample Console Output
+
+Complaint tickets so far: 0
+
+--- Creating tickets ---
+ComplaintTicket CT-001 added.
+ComplaintTicket CT-002 added.
+FeedbackTicket  FB-001 added.
+
+Complaint tickets so far: 2
+
+--- Ticket List ---
+[Complaint] id=CT-001, comment="Too loud",     type="Noise"
+[Complaint] id=CT-002, comment="Too cold",     type="Air-con"
+[Feedback ] id=FB-001, comment="Great app!",   rating=5
+
+🚀 Additional Implementation Tips
+
+Validate rating in FeedbackTicket constructor (throw IllegalArgumentException if not 1-5).
+Mark numberOfTickets as private static int and never expose a setter.
+Override toString() in each subclass to simplify list printing (optional but useful).
+Use final where appropriate (e.g., for constant strings).
+
+Happy coding!
