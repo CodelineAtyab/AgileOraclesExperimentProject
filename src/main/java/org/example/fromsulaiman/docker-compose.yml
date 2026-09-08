@@ -1,0 +1,8 @@
+services:
+  api:
+    build: .
+    image: codelineatyab/securepassapp:0.0.1
+    container_name: "securepassapp"
+    ports:
+      - 8080:8080
+    restart: always
