@@ -1,0 +1,20 @@
+PRESCRIPTION_ITEM_ID,PRESCRIPTION_ID,MEDICINE_ID,DOSAGE,FREQUENCY,DURATION_DAYS,INSTRUCTIONS
+62,81,23,400 mg,Once Daily,3,Take after breakfast. Avoid taking on an empty stomach
+23,42,1,500 mg,Three Times Daily,7,After Food
+61,81,24,500 mg,Twice Daily,5,Take after mwals with plenty of water.
+22,41,4,1 Tablet,Once Daily,10,After Breakfast
+41,61,21,500 mg,Once Daily,3,After Food
+42,61,28,1 Tablet,Once Daily,7,After Food
+43,62,24,500 mg,Twice Daily,5,After Food
+44,62,29,1 Tablet,Once Daily,7,After Food
+45,63,23,500 mg,Twice Daily,5,After Food
+46,63,25,1 Tablet,Once Daily,7,After Food
+47,64,28,1 Tablet,Once Daily,10,After Breakfast
+48,64,30,1 Tablet,Once Daily,7,After Food
+49,65,22,500 mg,Three Times Daily,7,After Food
+50,65,24,1 Tablet,Once Daily,7,After Food
+1,1,2,500mg,Twice Daily,5,After Food
+2,2,1,500mg,Three Times Daily,7,After Food
+3,2,4,1000mg,Once Daily,10,In the morning
+4,3,2,500mg,Twice Daily,3,After Food
+21,41,2,500 mg,Twice Daily,5,After Food

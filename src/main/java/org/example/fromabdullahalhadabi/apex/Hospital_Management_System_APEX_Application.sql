@@ -1,0 +1,15 @@
+-- ============================================================
+-- Hospital Management System - Oracle APEX Application Export
+-- Application ID: 153222
+-- Workspace: WKSP_ALNOORHOSPITALOMAN
+-- Author: Abdullah Alhadabi
+-- ============================================================
+
+-- TODO: Paste the full APEX application export (f153222.sql) here
+-- This is the complete application definition including:
+-- - Pages 0-36 + 9999, 38 pages total
+-- - 106 items
+-- - 43 processes
+-- - 76 regions
+-- - 66 buttons
+-- - 16 dynamic actions

@@ -1,0 +1,12 @@
+PRESCRIPTION_ID,VISIT_ID,PATIENT_ID,DOCTOR_ID,PRESCRIPTION_DATE,NOTES
+81,61,81,64,2026-07-21T00:00:00,
+61,41,61,41,2026-07-17T00:00:00,Take the prescribed medicines as instructed and complete the full course.
+62,42,62,42,2026-07-18T00:00:00,Take the prescribed medicines as instructed and complete the full course.
+63,43,63,43,2026-07-19T00:00:00,Take the prescribed medicines as instructed and complete the full course.
+64,44,64,44,2026-07-20T00:00:00,Take the prescribed medicines as instructed and complete the full course.
+65,45,65,41,2026-07-21T00:00:00,Take the prescribed medicines as instructed and complete the full course.
+1,1,1,1,2026-07-13T00:00:00,Take medicine after food
+2,2,2,2,2026-07-13T00:00:00,Drink plenty of water
+3,3,3,3,2026-07-13T00:00:00,Follow dosage instructions carefully
+41,22,4,4,2026-07-15T00:00:00,Take medicines as prescribed and after food.
+42,24,5,5,2026-07-15T00:00:00,Take the prescribed medicines after food and complete the full course.

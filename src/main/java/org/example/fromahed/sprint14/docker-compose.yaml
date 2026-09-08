@@ -1,0 +1,8 @@
+services:
+  api:
+    build: .
+    image: ahdbarhi/simpleform:1.0.0
+    container_name: "simpleform"
+    ports:
+      - 8000:8080
+    restart: always
