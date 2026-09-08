@@ -76,3 +76,38 @@ EXEC reset_all_signals_explicit;
 SELECT signal_id, signal_name, state, last_changed_at
 FROM traffic_signals
 ORDER BY signal_id;
+
+
+CREATE OR REPLACE PROCEDURE reset_all_signals_bulk IS
+  TYPE t_signal_ids IS TABLE OF traffic_signals.signal_id%TYPE;
+  l_ids t_signal_ids;
+BEGIN
+
+SELECT signal_id
+           BULK COLLECT INTO l_ids
+FROM traffic_signals;
+
+FORALL i IN 1 .. l_ids.COUNT
+UPDATE traffic_signals
+SET state = 'RED',
+    last_changed_at = SYSTIMESTAMP
+WHERE signal_id = l_ids(i);
+
+DBMS_OUTPUT.PUT_LINE('Signals reset: ' || SQL%ROWCOUNT);
+
+END reset_all_signals_bulk;
+/
+
+
+
+-- Mix up states first
+UPDATE traffic_signals SET state = 'YELLOW' WHERE signal_id = 11;
+UPDATE traffic_signals SET state = 'GREEN'  WHERE signal_id = 12;
+COMMIT;
+
+SELECT signal_id, signal_name, state, last_changed_at FROM traffic_signals ORDER BY signal_id;
+
+SET SERVEROUTPUT ON;
+EXEC reset_all_signals_bulk;
+
+SELECT signal_id, signal_name, state, last_changed_at FROM traffic_signals ORDER BY signal_id;
