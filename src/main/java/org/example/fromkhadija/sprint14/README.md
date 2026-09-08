@@ -1,0 +1,1 @@
+docker run -p 8000:8080 -v "${PWD}\shared_upload_files:/app/uploaded_files" --name healthcheck healthcheck:1.0.0

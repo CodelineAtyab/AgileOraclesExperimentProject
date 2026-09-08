@@ -138,7 +138,6 @@ public class Assign {
                         }
                     } else {
                         System.out.println("Incorrect Admin PIN!");
-
                     }
                 } else if (userOption == 3) {
                     System.out.println("Support Staff option");

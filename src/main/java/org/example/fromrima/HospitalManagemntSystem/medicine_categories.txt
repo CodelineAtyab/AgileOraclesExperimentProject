@@ -1,0 +1,8 @@
+CATEGORY_ID,CATEGORY_NAME,STATUS
+63,Pain Relief,Active
+1,Antibiotic,Active
+2,Painkiller,Active
+3,Diabetes,Active
+4,Vitamins,Active
+21,Injection,Active
+41,Blood Pressure,Active

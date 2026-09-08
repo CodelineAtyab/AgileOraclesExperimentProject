@@ -1,0 +1,1 @@
+docker run -d -p 8000:8080 -v "C:\Users\Codeline\IdeaProjects\healthcheck-task\shared_upload_files:/app/uploaded_files" --name healthcheck-container safa/healthcheck-app:1.0.0

@@ -1,0 +1,19 @@
+package org.example.fromtibyan.sprint5.internqueuesorteroop;
+
+public class SelectionSort implements SortStrategy {
+    @Override
+    public void sort(int[] priorities) {
+        for (int currentIteration = 0; currentIteration < priorities.length; currentIteration++) {
+            int minPriority = currentIteration; // finding min value
+            for (int i = currentIteration; i < priorities.length; i++) {
+                if (priorities[i] < priorities[minPriority]) {
+                    minPriority = i;
+                }
+            }
+            // must compare variable with all elements
+            int temp = priorities[currentIteration];// store min value
+            priorities[currentIteration] = priorities[minPriority];// swap both values
+            priorities[minPriority] = temp;// store in temporary variable for comparison
+        }
+    }
+}

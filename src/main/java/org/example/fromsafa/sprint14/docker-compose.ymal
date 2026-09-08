@@ -1,0 +1,8 @@
+services:
+  api:
+    build: .
+    image: safalsibani/health-app:1.0.0
+    container_name: "health-app"
+    ports:
+      - 8000:8080
+    restart: always
