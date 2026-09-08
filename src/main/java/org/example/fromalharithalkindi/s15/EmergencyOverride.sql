@@ -98,8 +98,6 @@ DBMS_OUTPUT.PUT_LINE('Signals reset: ' || SQL%ROWCOUNT);
 END reset_all_signals_bulk;
 /
 
-
-
 -- Mix up states first
 UPDATE traffic_signals SET state = 'YELLOW' WHERE signal_id = 11;
 UPDATE traffic_signals SET state = 'GREEN'  WHERE signal_id = 12;
