@@ -1,4 +1,3 @@
-# use java 17
 FROM amazoncorretto:17-alpine
 
 WORKDIR /app
