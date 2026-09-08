@@ -122,3 +122,10 @@ BEGIN
     reset_signals_bulk;
 END;
 /
+
+-- Difference between the two versions:
+-- The first version uses a simple loop, which is easier to read and understand.
+-- The second version uses BULK COLLECT and FORALL to process many signal IDs
+-- at once. This reduces the number of SQL-to-PL/SQL context switches and can
+-- improve performance when the table contains many signals, but the code is
+-- more complex and uses more memory.
