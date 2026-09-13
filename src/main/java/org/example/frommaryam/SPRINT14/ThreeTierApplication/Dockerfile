@@ -1,0 +1,9 @@
+FROM amazoncorretto:17-alpine
+
+WORKDIR /app
+
+COPY . /app
+
+RUN ./mvnw clean install -DskipTests
+
+ENTRYPOINT ["java", "-jar", "./target/healthapp-0.0.1-SNAPSHOT.jar"]
